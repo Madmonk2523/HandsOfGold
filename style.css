@@ -487,6 +487,16 @@ p {
 }
 
 .why-card,
+.service-card,
+.stat-card,
+.specialty-card,
+.info-card,
+.review-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.why-card,
 .stat-card,
 .specialty-card,
 .info-card {
@@ -588,6 +598,9 @@ p {
   padding: 1.6rem;
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.12);
+  min-height: 220px;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .stat-number {
@@ -595,7 +608,28 @@ p {
   margin-bottom: 0.4rem;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 0.95;
   color: #e4bf7e;
+}
+
+.stat-label {
+  display: inline-block;
+  max-width: 18ch;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: rgba(245, 239, 229, 0.82);
+}
+
+.service-card p,
+.why-card p,
+.specialty-card p,
+.info-card p,
+.review-card p {
+  margin-bottom: 0;
+}
+
+.review-card {
+  gap: 0.9rem;
 }
 
 .reviews-shell {
@@ -975,6 +1009,14 @@ p {
 
   .review-card {
     flex-basis: 100%;
+  }
+
+  .stat-card {
+    min-height: 0;
+  }
+
+  .stat-label {
+    max-width: none;
   }
 
   .reviews-controls {
