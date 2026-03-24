@@ -511,6 +511,14 @@ p {
   padding: 1.5rem;
 }
 
+.about-note-card .detail-label {
+  color: var(--gold-deep);
+}
+
+.about-note-card .detail-value {
+  color: var(--text);
+}
+
 .why-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
