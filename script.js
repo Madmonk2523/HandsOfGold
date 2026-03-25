@@ -87,8 +87,8 @@ const animateCounter = (element) => {
 
     if (progress < 1) {
       window.requestAnimationFrame(step);
-    } else if (target === 1975) {
-      element.textContent = '1975';
+    } else if (target === 1983) {
+      element.textContent = '1983';
     }
   };
 
@@ -119,6 +119,118 @@ const reviewsTrack = document.getElementById('reviews-track');
 const dotsContainer = document.getElementById('reviews-dots');
 const prevButton = document.getElementById('reviews-prev');
 const nextButton = document.getElementById('reviews-next');
+
+const metalPriceNodes = {
+  XAU: document.getElementById('price-gold'),
+  XAG: document.getElementById('price-silver'),
+  XPT: document.getElementById('price-platinum'),
+};
+const metalsUpdatedNode = document.getElementById('metals-updated');
+
+const METALPRICE_API_KEY = 'd04edaaca6f048a945d3cfa6fae6fe27';
+const METALPRICE_ENDPOINT = `https://api.metalpriceapi.com/v1/latest?api_key=${METALPRICE_API_KEY}&base=USD&currencies=XAU,XAG,XPT`;
+const METALS_REFRESH_MS = 12 * 60 * 60 * 1000;
+
+const formatUsd = (value) =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 2,
+  }).format(value);
+
+const toNumber = (value) => {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
+    return null;
+  }
+
+  return value;
+};
+
+const getDirectPrice = (payload, symbol) => {
+  const directCandidates = [
+    payload?.prices?.[symbol],
+    payload?.data?.prices?.[symbol],
+    payload?.data?.metals?.[symbol],
+    payload?.rates?.[`USD${symbol}`],
+    payload?.data?.rates?.[`USD${symbol}`],
+  ];
+
+  for (const candidate of directCandidates) {
+    const parsed = toNumber(candidate);
+    if (parsed) {
+      return parsed;
+    }
+  }
+
+  const rateCandidates = [payload?.rates?.[symbol], payload?.data?.rates?.[symbol]];
+  for (const rate of rateCandidates) {
+    const parsed = toNumber(rate);
+    if (parsed) {
+      return 1 / parsed;
+    }
+  }
+
+  return null;
+};
+
+const setMetalsErrorState = () => {
+  Object.values(metalPriceNodes).forEach((node) => {
+    if (node) {
+      node.textContent = 'Unavailable';
+    }
+  });
+
+  if (metalsUpdatedNode) {
+    metalsUpdatedNode.textContent = 'Update failed. Retrying in 12h';
+  }
+};
+
+const updateMetalsTicker = async () => {
+  if (!metalPriceNodes.XAU || !metalPriceNodes.XAG || !metalPriceNodes.XPT || !metalsUpdatedNode) {
+    return;
+  }
+
+  try {
+    const response = await fetch(METALPRICE_ENDPOINT, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Metalprice request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const prices = {
+      XAU: getDirectPrice(payload, 'XAU'),
+      XAG: getDirectPrice(payload, 'XAG'),
+      XPT: getDirectPrice(payload, 'XPT'),
+    };
+
+    if (!prices.XAU || !prices.XAG || !prices.XPT) {
+      throw new Error('Unable to parse one or more metal prices from Metalprice response.');
+    }
+
+    metalPriceNodes.XAU.textContent = `${formatUsd(prices.XAU)}/oz`;
+    metalPriceNodes.XAG.textContent = `${formatUsd(prices.XAG)}/oz`;
+    metalPriceNodes.XPT.textContent = `${formatUsd(prices.XPT)}/oz`;
+    metalsUpdatedNode.textContent = `Updated ${new Date().toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+    })}`;
+  } catch (error) {
+    setMetalsErrorState();
+    console.error(error);
+  }
+};
+
+updateMetalsTicker();
+window.setInterval(updateMetalsTicker, METALS_REFRESH_MS);
 
 if (reviewsTrack && dotsContainer && prevButton && nextButton) {
   const slides = Array.from(reviewsTrack.children);
