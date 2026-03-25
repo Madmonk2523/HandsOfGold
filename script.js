@@ -127,10 +127,9 @@ const metalPriceNodes = {
 };
 const metalsUpdatedNode = document.getElementById('metals-updated');
 
-// Prices served from local snapshot — no client-side API calls
 const METALS_DATA_URL = 'data/metals.json';
 const METALS_REFRESH_MS = 12 * 60 * 60 * 1000;
-const METALS_CACHE_KEY = 'hog-metals-cache-v1';
+const METALS_CACHE_KEY = 'hog-metals-cache-v2';
 
 const formatUsd = (value) =>
   new Intl.NumberFormat('en-US', {
