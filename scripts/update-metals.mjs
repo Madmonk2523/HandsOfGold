@@ -2,14 +2,14 @@ import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const token = process.env.GOLDAPI_ACCESS_TOKEN;
+const token = process.env.GOLD_API_TOKEN;
 
 if (!token) {
-  throw new Error('Missing GOLDAPI_ACCESS_TOKEN environment variable.');
+  throw new Error('Missing GOLD_API_TOKEN environment variable.');
 }
 
 const symbols = ['XAU', 'XAG', 'XPT'];
-const baseUrl = 'https://www.goldapi.io/api';
+const baseUrl = 'https://api.gold-api.com/price';
 
 const toNumber = (value) => {
   if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
@@ -20,7 +20,7 @@ const toNumber = (value) => {
 };
 
 const fetchPrice = async (symbol) => {
-  const response = await fetch(`${baseUrl}/${symbol}/USD`, {
+  const response = await fetch(`${baseUrl}/${symbol}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -29,13 +29,13 @@ const fetchPrice = async (symbol) => {
   });
 
   if (!response.ok) {
-    throw new Error(`GoldAPI request failed for ${symbol} with status ${response.status}`);
+    throw new Error(`gold-api.com request failed for ${symbol} with status ${response.status}`);
   }
 
   const payload = await response.json();
-  const price = toNumber(payload?.price) || toNumber(payload?.ask) || toNumber(payload?.bid);
+  const price = toNumber(payload?.price);
   if (!price) {
-    throw new Error(`GoldAPI returned no usable price for ${symbol}`);
+    throw new Error(`gold-api.com returned no usable price for ${symbol}`);
   }
 
   return price;
@@ -46,7 +46,7 @@ const run = async () => {
   const updatedAtMs = Date.now();
 
   const output = {
-    source: 'goldapi',
+    source: 'gold-api.com',
     currency: 'USD',
     updatedAtMs,
     prices: {

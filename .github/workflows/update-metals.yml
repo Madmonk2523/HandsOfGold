@@ -22,7 +22,7 @@ jobs:
 
       - name: Fetch latest metals
         env:
-          GOLDAPI_ACCESS_TOKEN: ${{ secrets.GOLDAPI_ACCESS_TOKEN }}
+          GOLD_API_TOKEN: ${{ secrets.GOLD_API_TOKEN }}
         run: node scripts/update-metals.mjs
 
       - name: Commit updated data
