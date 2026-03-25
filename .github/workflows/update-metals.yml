@@ -1,0 +1,39 @@
+name: Update Metals Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-metals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch latest metals
+        env:
+          GOLDAPI_ACCESS_TOKEN: ${{ secrets.GOLDAPI_ACCESS_TOKEN }}
+        run: node scripts/update-metals.mjs
+
+      - name: Commit updated data
+        run: |
+          if git diff --quiet -- data/metals.json; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/metals.json
+          git commit -m "Update metals snapshot"
+          git push

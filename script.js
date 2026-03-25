@@ -127,8 +127,7 @@ const metalPriceNodes = {
 };
 const metalsUpdatedNode = document.getElementById('metals-updated');
 
-const GOLDAPI_ACCESS_TOKEN = 'goldapi-9a56pxsmn6g021i-io';
-const GOLDAPI_BASE_URL = 'https://www.goldapi.io/api';
+const METALS_DATA_URL = 'data/metals.json';
 const METALS_REFRESH_MS = 12 * 60 * 60 * 1000;
 const METALS_CACHE_KEY = 'hog-metals-cache-v1';
 
@@ -214,26 +213,35 @@ const writeMetalsCache = (prices, updatedAtMs) => {
   }
 };
 
-const fetchGoldApiPrice = async (symbol) => {
-  const response = await fetch(`${GOLDAPI_BASE_URL}/${symbol}/USD`, {
+const fetchMetalsSnapshot = async () => {
+  const response = await fetch(METALS_DATA_URL, {
     method: 'GET',
+    cache: 'no-store',
     headers: {
-      'Content-Type': 'application/json',
-      'x-access-token': GOLDAPI_ACCESS_TOKEN,
+      Accept: 'application/json',
     },
   });
 
   if (!response.ok) {
-    throw new Error(`GoldAPI request failed for ${symbol} with status ${response.status}`);
+    throw new Error(`Metals snapshot request failed with status ${response.status}`);
   }
 
   const payload = await response.json();
-  const parsed = toNumber(payload?.price) || toNumber(payload?.ask) || toNumber(payload?.bid);
-  if (!parsed) {
-    throw new Error(`GoldAPI returned no usable price for ${symbol}`);
+  const updatedAtMs = Number(payload?.updatedAtMs);
+  const prices = {
+    XAU: toNumber(payload?.prices?.XAU),
+    XAG: toNumber(payload?.prices?.XAG),
+    XPT: toNumber(payload?.prices?.XPT),
+  };
+
+  if (!Number.isFinite(updatedAtMs) || !prices.XAU || !prices.XAG || !prices.XPT) {
+    throw new Error('Invalid metals snapshot payload.');
   }
 
-  return parsed;
+  return {
+    updatedAtMs,
+    prices,
+  };
 };
 
 const setMetalsErrorState = () => {
@@ -253,33 +261,17 @@ const updateMetalsTicker = async () => {
     return;
   }
 
-  const now = Date.now();
   const cached = readMetalsCache();
 
-  if (cached && now - cached.updatedAtMs < METALS_REFRESH_MS) {
+  if (cached && Date.now() - cached.updatedAtMs < METALS_REFRESH_MS) {
     paintMetalsTicker(cached.prices, cached.updatedAtMs);
     return;
   }
 
   try {
-    const [xau, xag, xpt] = await Promise.all([
-      fetchGoldApiPrice('XAU'),
-      fetchGoldApiPrice('XAG'),
-      fetchGoldApiPrice('XPT'),
-    ]);
-
-    const prices = {
-      XAU: xau,
-      XAG: xag,
-      XPT: xpt,
-    };
-
-    if (!prices.XAU || !prices.XAG || !prices.XPT) {
-      throw new Error('Unable to parse one or more metal prices from GoldAPI response.');
-    }
-
-    paintMetalsTicker(prices, now);
-    writeMetalsCache(prices, now);
+    const snapshot = await fetchMetalsSnapshot();
+    paintMetalsTicker(snapshot.prices, snapshot.updatedAtMs);
+    writeMetalsCache(snapshot.prices, snapshot.updatedAtMs);
   } catch (error) {
     if (cached) {
       paintMetalsTicker(cached.prices, cached.updatedAtMs);
