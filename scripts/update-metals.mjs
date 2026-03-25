@@ -33,7 +33,7 @@ const fetchPrice = async (symbol) => {
   }
 
   const payload = await response.json();
-  const price = toNumber(payload?.price);
+  const price = toNumber(payload?.price) || toNumber(payload?.ask) || toNumber(payload?.bid);
   if (!price) {
     throw new Error(`gold-api.com returned no usable price for ${symbol}`);
   }
