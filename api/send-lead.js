@@ -6,15 +6,6 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();
 
-const getClientIp = (req) => {
-  const forwarded = req.headers['x-forwarded-for'];
-  if (typeof forwarded === 'string' && forwarded.length) {
-    return forwarded.split(',')[0].trim();
-  }
-
-  return req.socket?.remoteAddress || 'unknown';
-};
-
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
@@ -29,7 +20,6 @@ module.exports = async function handler(req, res) {
     email,
     phone,
     pageUrl,
-    utmSource,
     formStart,
     website,
   } = req.body || {};
@@ -38,10 +28,10 @@ module.exports = async function handler(req, res) {
   const safeEmail = sanitize(email);
   const safePhone = sanitize(phone);
   const safePageUrl = sanitize(pageUrl);
-  const safeUtmSource = sanitize(utmSource) || 'direct';
   const safeWebsite = sanitize(website);
   const formStartTime = Number(formStart);
   const fillMs = Number.isFinite(formStartTime) ? Date.now() - formStartTime : null;
+  const fillSeconds = fillMs === null ? null : Math.max(0, fillMs / 1000);
 
   if (!safeName || !safeEmail || !safePhone) {
     return res.status(400).json({ error: 'Name, email, and phone are required.' });
@@ -78,8 +68,6 @@ module.exports = async function handler(req, res) {
     });
 
     const timestamp = new Date().toISOString();
-    const clientIp = getClientIp(req);
-    const userAgent = sanitize(req.headers['user-agent']);
 
     const textBody = [
       `Name: ${safeName}`,
@@ -87,10 +75,7 @@ module.exports = async function handler(req, res) {
       `Phone: ${safePhone}`,
       `Time: ${timestamp}`,
       `Page: ${safePageUrl || 'Unknown'}`,
-      `UTM Source: ${safeUtmSource}`,
-      `Fill Time (ms): ${fillMs === null ? 'Unknown' : fillMs}`,
-      `IP: ${clientIp}`,
-      `User Agent: ${userAgent || 'Unknown'}`,
+      `Fill Time (seconds): ${fillSeconds === null ? 'Unknown' : fillSeconds.toFixed(1)}`,
     ].join('\n');
 
     const htmlBody = `
@@ -102,10 +87,7 @@ module.exports = async function handler(req, res) {
         <p style="margin:0 0 10px;"><strong>Time:</strong> ${timestamp}</p>
         <hr style="border:none;border-top:1px solid #ddd;margin:16px 0;" />
         <p style="margin:0 0 8px;"><strong>Page:</strong> ${safePageUrl || 'Unknown'}</p>
-        <p style="margin:0 0 8px;"><strong>UTM Source:</strong> ${safeUtmSource}</p>
-        <p style="margin:0 0 8px;"><strong>Fill Time (ms):</strong> ${fillMs === null ? 'Unknown' : fillMs}</p>
-        <p style="margin:0 0 8px;"><strong>IP:</strong> ${clientIp}</p>
-        <p style="margin:0 0 8px;"><strong>User Agent:</strong> ${userAgent || 'Unknown'}</p>
+        <p style="margin:0 0 8px;"><strong>Fill Time (seconds):</strong> ${fillSeconds === null ? 'Unknown' : fillSeconds.toFixed(1)}</p>
       </div>
     `;
 
