@@ -90,6 +90,7 @@ const counters = document.querySelectorAll('[data-counter]');
 
 const animateCounter = (element) => {
   const target = Number(element.dataset.counter);
+  const suffix = element.dataset.suffix || '';
   const duration = 1400;
   const startTime = performance.now();
 
@@ -98,7 +99,7 @@ const animateCounter = (element) => {
     const eased = 1 - Math.pow(1 - progress, 3);
     const value = Math.round(target * eased);
 
-    element.textContent = `${value}`;
+    element.textContent = `${value}${suffix}`;
 
     if (progress < 1) {
       window.requestAnimationFrame(step);
