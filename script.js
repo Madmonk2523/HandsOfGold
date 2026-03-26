@@ -145,6 +145,7 @@ const metalsUpdatedNode = document.getElementById('metals-updated');
 const METALS_DATA_URL = 'data/metals.json';
 const METALS_REFRESH_MS = 12 * 60 * 60 * 1000;
 const METALS_CACHE_KEY = 'hog-metals-cache-v2';
+const METALS_DISPLAY_REFRESH_MS = 60 * 1000;
 
 const formatUsd = (value) =>
   new Intl.NumberFormat('en-US', {
@@ -172,11 +173,31 @@ const formatEasternTimestamp = (timestampMs) =>
     timeZoneName: 'short',
   });
 
+const formatCountdown = (remainingMs) => {
+  const safeMs = Math.max(0, remainingMs);
+  const totalMinutes = Math.floor(safeMs / (60 * 1000));
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (hours > 0) {
+    return `${hours}h ${minutes}m`;
+  }
+
+  return `${minutes}m`;
+};
+
+const renderMetalsUpdatedLine = (updatedAtMs) => {
+  const nextUpdateMs = updatedAtMs + METALS_REFRESH_MS;
+  const remainingMs = nextUpdateMs - Date.now();
+
+  return `Updated ${formatEasternTimestamp(updatedAtMs)} | Next update on: ${formatEasternTimestamp(nextUpdateMs)} (${formatCountdown(remainingMs)})`;
+};
+
 const paintMetalsTicker = (prices, updatedAtMs) => {
   metalPriceNodes.XAU.textContent = `${formatUsd(prices.XAU)}/oz`;
   metalPriceNodes.XAG.textContent = `${formatUsd(prices.XAG)}/oz`;
   metalPriceNodes.XPT.textContent = `${formatUsd(prices.XPT)}/oz`;
-  metalsUpdatedNode.textContent = `Updated ${formatEasternTimestamp(updatedAtMs)}`;
+  metalsUpdatedNode.textContent = renderMetalsUpdatedLine(updatedAtMs);
 };
 
 const readMetalsCache = () => {
@@ -301,6 +322,12 @@ const updateMetalsTicker = async () => {
 
 updateMetalsTicker();
 window.setInterval(updateMetalsTicker, METALS_REFRESH_MS);
+window.setInterval(() => {
+  const cached = readMetalsCache();
+  if (cached && metalsUpdatedNode) {
+    metalsUpdatedNode.textContent = renderMetalsUpdatedLine(cached.updatedAtMs);
+  }
+}, METALS_DISPLAY_REFRESH_MS);
 
 const openLeadPopup = () => {
   if (!leadPopup) {
