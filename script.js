@@ -190,7 +190,7 @@ const renderMetalsUpdatedLine = (updatedAtMs) => {
   const nextUpdateMs = updatedAtMs + METALS_REFRESH_MS;
   const remainingMs = nextUpdateMs - Date.now();
 
-  return `Updated ${formatEasternTimestamp(updatedAtMs)} | Next update on: ${formatEasternTimestamp(nextUpdateMs)} (${formatCountdown(remainingMs)})`;
+  return `Updated ${formatEasternTimestamp(updatedAtMs)} | Next update in ${formatCountdown(remainingMs)}`;
 };
 
 const paintMetalsTicker = (prices, updatedAtMs) => {
