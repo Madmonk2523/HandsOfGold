@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
-const senderEmail = 'example@gmail.com';
-const receiverEmail = 'example@gmail.com';
+const senderEmail = 'chasemallor@gmail.com';
+const receiverEmail = 'chasemallor@gmail.com';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();

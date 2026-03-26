@@ -17,6 +17,8 @@ const LEAD_POPUP_DELAY_MS = 3000;
 const LEAD_POPUP_STORAGE_KEY = 'hog-lead-popup-seen-v2';
 const LEAD_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const LEAD_MIN_FILL_MS = 1200;
+const LEAD_API_ENDPOINT = '/api/send-lead';
+const LEAD_REQUEST_TIMEOUT_MS = 12000;
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
@@ -276,18 +278,19 @@ const updateMetalsTicker = async () => {
 
   const cached = readMetalsCache();
 
-  if (cached && Date.now() - cached.updatedAtMs < METALS_REFRESH_MS) {
+  if (cached) {
     paintMetalsTicker(cached.prices, cached.updatedAtMs);
-    return;
   }
 
   try {
     const snapshot = await fetchMetalsSnapshot();
-    paintMetalsTicker(snapshot.prices, snapshot.updatedAtMs);
-    writeMetalsCache(snapshot.prices, snapshot.updatedAtMs);
+
+    if (!cached || snapshot.updatedAtMs >= cached.updatedAtMs) {
+      paintMetalsTicker(snapshot.prices, snapshot.updatedAtMs);
+      writeMetalsCache(snapshot.prices, snapshot.updatedAtMs);
+    }
   } catch (error) {
     if (cached) {
-      paintMetalsTicker(cached.prices, cached.updatedAtMs);
       return;
     }
 
@@ -426,15 +429,25 @@ if (leadForm && leadSubmit && leadStatus) {
     leadStatus.classList.remove('is-error', 'is-success');
 
     try {
-      const response = await fetch('/api/send-lead', {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), LEAD_REQUEST_TIMEOUT_MS);
+
+      const response = await fetch(LEAD_API_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
 
+      window.clearTimeout(timeoutId);
+
       if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Lead form backend not found. Deploy with a live /api/send-lead endpoint.');
+        }
+
         const payloadError = await response.json().catch(() => ({}));
         throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
       }
@@ -445,7 +458,11 @@ if (leadForm && leadSubmit && leadStatus) {
       leadForm.reset();
       window.setTimeout(closeLeadPopup, 1200);
     } catch (error) {
-      leadStatus.textContent = 'Something went wrong. Please try again in a moment.';
+      const message = error instanceof Error && error.message
+        ? error.message
+        : 'Something went wrong. Please try again in a moment.';
+
+      leadStatus.textContent = message;
       leadStatus.classList.add('is-error');
       leadStatus.classList.remove('is-success');
       console.error(error);
