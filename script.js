@@ -134,6 +134,7 @@ const reviewsTrack = document.getElementById('reviews-track');
 const dotsContainer = document.getElementById('reviews-dots');
 const prevButton = document.getElementById('reviews-prev');
 const nextButton = document.getElementById('reviews-next');
+const metalsTicker = document.querySelector('.metals-ticker');
 
 const metalPriceNodes = {
   XAU: document.getElementById('price-gold'),
@@ -193,11 +194,21 @@ const renderMetalsUpdatedLine = (updatedAtMs) => {
   return `Updated ${formatEasternTimestamp(updatedAtMs)} | Next update in ${formatCountdown(remainingMs)}`;
 };
 
+const syncStickyOffsets = () => {
+  if (!metalsTicker) {
+    return;
+  }
+
+  const tickerHeight = Math.max(1, Math.ceil(metalsTicker.getBoundingClientRect().height));
+  document.documentElement.style.setProperty('--metals-bar-height', `${tickerHeight}px`);
+};
+
 const paintMetalsTicker = (prices, updatedAtMs) => {
   metalPriceNodes.XAU.textContent = `${formatUsd(prices.XAU)}/oz`;
   metalPriceNodes.XAG.textContent = `${formatUsd(prices.XAG)}/oz`;
   metalPriceNodes.XPT.textContent = `${formatUsd(prices.XPT)}/oz`;
   metalsUpdatedNode.textContent = renderMetalsUpdatedLine(updatedAtMs);
+  syncStickyOffsets();
 };
 
 const readMetalsCache = () => {
@@ -290,6 +301,8 @@ const setMetalsErrorState = () => {
   if (metalsUpdatedNode) {
     metalsUpdatedNode.textContent = 'Update failed. Retrying in 12h';
   }
+
+  syncStickyOffsets();
 };
 
 const updateMetalsTicker = async () => {
@@ -321,13 +334,16 @@ const updateMetalsTicker = async () => {
 };
 
 updateMetalsTicker();
+syncStickyOffsets();
 window.setInterval(updateMetalsTicker, METALS_REFRESH_MS);
 window.setInterval(() => {
   const cached = readMetalsCache();
   if (cached && metalsUpdatedNode) {
     metalsUpdatedNode.textContent = renderMetalsUpdatedLine(cached.updatedAtMs);
+    syncStickyOffsets();
   }
 }, METALS_DISPLAY_REFRESH_MS);
+window.addEventListener('resize', syncStickyOffsets, { passive: true });
 
 const openLeadPopup = () => {
   if (!leadPopup) {

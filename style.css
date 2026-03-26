@@ -70,7 +70,6 @@ select {
   position: sticky;
   top: 0;
   z-index: 40;
-  min-height: var(--metals-bar-height);
   background:
     linear-gradient(120deg, rgba(19, 17, 15, 0.96) 0%, rgba(44, 34, 20, 0.95) 55%, rgba(126, 92, 40, 0.88) 100%);
   border-bottom: 1px solid rgba(255, 228, 184, 0.2);
@@ -96,7 +95,6 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: var(--metals-bar-height);
   padding: 0.55rem 0;
 }
 
@@ -107,6 +105,10 @@ select {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 236, 202, 0.84);
+}
+
+.metals-updated {
+  font-size: 0.66rem;
 }
 
 .metals-prices {
@@ -1292,6 +1294,10 @@ p {
   .metals-updated {
     font-size: 0.65rem;
     letter-spacing: 0.12em;
+  }
+
+  .metals-updated {
+    font-size: 0.6rem;
   }
 
   .metals-prices {
