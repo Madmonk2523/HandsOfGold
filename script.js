@@ -4,6 +4,19 @@ const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
 const navLinks = document.querySelectorAll('.site-nav a, .nav-actions a');
 const yearTarget = document.getElementById('year');
+const leadPopup = document.getElementById('lead-popup');
+const leadPopupClose = document.getElementById('lead-popup-close');
+const leadForm = document.getElementById('lead-form');
+const leadSubmit = document.getElementById('lead-submit');
+const leadStatus = document.getElementById('lead-status');
+const leadPageUrl = document.getElementById('lead-page-url');
+const leadUtmSource = document.getElementById('lead-utm-source');
+const leadFormStart = document.getElementById('lead-form-start');
+
+const LEAD_POPUP_DELAY_MS = 3000;
+const LEAD_POPUP_STORAGE_KEY = 'hog-lead-popup-seen-v2';
+const LEAD_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+const LEAD_MIN_FILL_MS = 1200;
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
@@ -285,6 +298,164 @@ const updateMetalsTicker = async () => {
 
 updateMetalsTicker();
 window.setInterval(updateMetalsTicker, METALS_REFRESH_MS);
+
+const openLeadPopup = () => {
+  if (!leadPopup) {
+    return;
+  }
+
+  if (leadFormStart) {
+    leadFormStart.value = String(Date.now());
+  }
+
+  leadPopup.classList.add('is-open');
+  leadPopup.setAttribute('aria-hidden', 'false');
+};
+
+const closeLeadPopup = () => {
+  if (!leadPopup) {
+    return;
+  }
+
+  leadPopup.classList.remove('is-open');
+  leadPopup.setAttribute('aria-hidden', 'true');
+
+  try {
+    window.localStorage.setItem(LEAD_POPUP_STORAGE_KEY, String(Date.now()));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+if (leadPopup) {
+  let popupSeen = false;
+
+  try {
+    const lastShownAt = Number(window.localStorage.getItem(LEAD_POPUP_STORAGE_KEY));
+    popupSeen = Number.isFinite(lastShownAt) && Date.now() - lastShownAt < LEAD_POPUP_COOLDOWN_MS;
+  } catch (error) {
+    console.error(error);
+  }
+
+  if (leadPageUrl) {
+    leadPageUrl.value = window.location.href;
+  }
+
+  if (leadUtmSource) {
+    const params = new URLSearchParams(window.location.search);
+    leadUtmSource.value = params.get('utm_source') || 'direct';
+  }
+
+  if (!popupSeen) {
+    window.setTimeout(openLeadPopup, LEAD_POPUP_DELAY_MS);
+  }
+
+  leadPopup.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLElement && target.dataset.popupClose === 'true') {
+      closeLeadPopup();
+    }
+  });
+
+  if (leadPopupClose) {
+    leadPopupClose.addEventListener('click', closeLeadPopup);
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && leadPopup.classList.contains('is-open')) {
+      closeLeadPopup();
+    }
+  });
+}
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const isValidPhone = (value) => {
+  const digits = value.replace(/\D/g, '');
+  return digits.length >= 10 && digits.length <= 15;
+};
+
+if (leadForm && leadSubmit && leadStatus) {
+  leadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(leadForm);
+    const payload = {
+      name: String(formData.get('name') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      phone: String(formData.get('phone') || '').trim(),
+      pageUrl: String(formData.get('pageUrl') || '').trim(),
+      utmSource: String(formData.get('utmSource') || '').trim(),
+      formStart: String(formData.get('formStart') || '').trim(),
+      website: String(formData.get('website') || '').trim(),
+    };
+
+    if (!payload.name || !payload.email || !payload.phone) {
+      leadStatus.textContent = 'Please complete all fields before submitting.';
+      leadStatus.classList.add('is-error');
+      leadStatus.classList.remove('is-success');
+      return;
+    }
+
+    if (!emailPattern.test(payload.email)) {
+      leadStatus.textContent = 'Please enter a valid email address.';
+      leadStatus.classList.add('is-error');
+      leadStatus.classList.remove('is-success');
+      return;
+    }
+
+    if (!isValidPhone(payload.phone)) {
+      leadStatus.textContent = 'Please enter a valid phone number.';
+      leadStatus.classList.add('is-error');
+      leadStatus.classList.remove('is-success');
+      return;
+    }
+
+    const fillMs = Date.now() - Number(payload.formStart || 0);
+    if (!Number.isFinite(fillMs) || fillMs < LEAD_MIN_FILL_MS) {
+      leadStatus.textContent = 'Please review your details and try again.';
+      leadStatus.classList.add('is-error');
+      leadStatus.classList.remove('is-success');
+      return;
+    }
+
+    leadSubmit.disabled = true;
+    leadSubmit.textContent = 'Submitting...';
+    leadForm.setAttribute('aria-busy', 'true');
+    leadStatus.textContent = '';
+    leadStatus.classList.remove('is-error', 'is-success');
+
+    try {
+      const response = await fetch('/api/send-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const payloadError = await response.json().catch(() => ({}));
+        throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
+      }
+
+      leadStatus.textContent = 'Success. Your 30% offer has been claimed.';
+      leadStatus.classList.add('is-success');
+      leadStatus.classList.remove('is-error');
+      leadForm.reset();
+      window.setTimeout(closeLeadPopup, 1200);
+    } catch (error) {
+      leadStatus.textContent = 'Something went wrong. Please try again in a moment.';
+      leadStatus.classList.add('is-error');
+      leadStatus.classList.remove('is-success');
+      console.error(error);
+    } finally {
+      leadSubmit.disabled = false;
+      leadSubmit.textContent = 'Claim My 30% Off';
+      leadForm.setAttribute('aria-busy', 'false');
+    }
+  });
+}
 
 if (reviewsTrack && dotsContainer && prevButton && nextButton) {
   const slides = Array.from(reviewsTrack.children);

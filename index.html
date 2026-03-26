@@ -556,6 +556,45 @@
         </section>
       </main>
 
+      <div class="lead-popup" id="lead-popup" aria-hidden="true" role="dialog" aria-labelledby="lead-popup-title">
+        <div class="lead-popup-overlay" data-popup-close="true"></div>
+        <div class="lead-popup-card" role="document">
+          <button class="lead-popup-close" type="button" id="lead-popup-close" aria-label="Close lead form">&times;</button>
+          <p class="lead-popup-eyebrow">Exclusive Offer</p>
+          <h2 id="lead-popup-title">Claim 30% Off Your Next Piece</h2>
+          <p class="lead-popup-copy">Join the Hands Of Gold NY client list for first access to special pricing and custom jewelry updates.</p>
+
+          <ul class="lead-popup-perks" aria-label="Offer details">
+            <li>Private pricing alerts</li>
+            <li>VIP access to new pieces</li>
+            <li>One-time 30% welcome offer</li>
+          </ul>
+
+          <form class="lead-popup-form" id="lead-form" novalidate>
+            <label for="lead-name">Name</label>
+            <input id="lead-name" name="name" type="text" autocomplete="name" required />
+
+            <label for="lead-email">Email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required />
+
+            <label for="lead-phone">Phone</label>
+            <input id="lead-phone" name="phone" type="tel" autocomplete="tel" required />
+
+            <input type="hidden" id="lead-page-url" name="pageUrl" value="" />
+            <input type="hidden" id="lead-utm-source" name="utmSource" value="" />
+            <input type="hidden" id="lead-form-start" name="formStart" value="" />
+
+            <label class="lead-honeypot" for="lead-website">Website</label>
+            <input class="lead-honeypot" id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+
+            <p class="lead-popup-fineprint">By submitting, you agree to be contacted by Hands Of Gold NY about your offer.</p>
+
+            <button class="button button-primary lead-submit" type="submit" id="lead-submit">Claim My 30% Off</button>
+            <p class="lead-popup-status" id="lead-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
       <footer class="site-footer">
         <div class="container footer-grid">
           <div class="footer-brand">

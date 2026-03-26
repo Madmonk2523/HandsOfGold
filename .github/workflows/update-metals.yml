@@ -3,7 +3,11 @@ name: Update Metals Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '17 0,12 * * *'
+
+concurrency:
+  group: metals-update
+  cancel-in-progress: true
 
 permissions:
   contents: write
