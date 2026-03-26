@@ -98,12 +98,10 @@ const animateCounter = (element) => {
     const eased = 1 - Math.pow(1 - progress, 3);
     const value = Math.round(target * eased);
 
-    element.textContent = target >= 100 ? `${value}%` : `${value}`;
+    element.textContent = `${value}`;
 
     if (progress < 1) {
       window.requestAnimationFrame(step);
-    } else if (target === 1983) {
-      element.textContent = '1983';
     }
   };
 
