@@ -143,7 +143,7 @@ const metalPriceNodes = {
 const metalsUpdatedNode = document.getElementById('metals-updated');
 
 const METALS_DATA_URL = 'data/metals.json';
-const METALS_REFRESH_MS = 12 * 60 * 60 * 1000;
+const METALS_REFRESH_MS = 60 * 60 * 1000;
 const METALS_CACHE_KEY = 'hog-metals-cache-v2';
 const METALS_DISPLAY_REFRESH_MS = 60 * 1000;
 
