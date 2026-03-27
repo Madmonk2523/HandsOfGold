@@ -187,7 +187,9 @@ const formatCountdown = (remainingMs) => {
 };
 
 const renderMetalsUpdatedLine = (updatedAtMs) => {
-  const nextUpdateMs = updatedAtMs + METALS_REFRESH_MS;
+  const now = new Date();
+  const nextHourDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
+  const nextUpdateMs = nextHourDate.getTime();
   const remainingMs = nextUpdateMs - Date.now();
 
   return `Updated ${formatEasternTimestamp(updatedAtMs)} | Next update in ${formatCountdown(remainingMs)}`;
