@@ -23,6 +23,9 @@ const toNumber = (value) => {
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const getHourMarkTimestamp = (date = new Date()) =>
+  new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 0, 0, 0).getTime();
+
 const fetchPrice = async (symbol, attempt = 1) => {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
@@ -105,7 +108,7 @@ const run = async () => {
     throw new Error('Failed to build a complete metals snapshot after retries and fallback.');
   }
 
-  const updatedAtMs = Date.now();
+  const updatedAtMs = getHourMarkTimestamp();
 
   const output = {
     source: 'gold-api.com',
