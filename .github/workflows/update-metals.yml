@@ -3,7 +3,7 @@ name: Update Metals Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 0,12 * * *'
+    - cron: '0 * * * *'
 
 concurrency:
   group: metals-update
