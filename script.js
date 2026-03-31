@@ -496,7 +496,7 @@ if (leadForm && leadSubmit && leadStatus) {
         throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
       }
 
-      leadStatus.textContent = 'Success. Your 30% offer has been claimed.';
+      leadStatus.textContent = 'Success. Your 10% offer has been claimed.';
       leadStatus.classList.add('is-success');
       leadStatus.classList.remove('is-error');
       leadForm.reset();
@@ -512,7 +512,7 @@ if (leadForm && leadSubmit && leadStatus) {
       console.error(error);
     } finally {
       leadSubmit.disabled = false;
-      leadSubmit.textContent = 'Claim My 30% Off';
+      leadSubmit.textContent = 'Claim My 10% Off';
       leadForm.setAttribute('aria-busy', 'false');
     }
   });
