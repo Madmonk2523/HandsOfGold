@@ -375,20 +375,7 @@ p {
   box-shadow: var(--shadow-sm);
 }
 
-.nav-shop {
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 220, 155, 0.4);
-  background: rgba(24, 19, 13, 0.88);
-  color: var(--text-inverse);
-  box-shadow: var(--shadow-sm);
-}
-
 .nav-call::after {
-  display: none;
-}
-
-.nav-shop::after {
   display: none;
 }
 
@@ -858,12 +845,6 @@ p {
   background:
     radial-gradient(circle at top right, rgba(213, 168, 79, 0.2), transparent 30%),
     linear-gradient(180deg, rgba(10, 9, 7, 0.85), rgba(15, 12, 9, 0.96));
-}
-
-.shop-section {
-  background:
-    radial-gradient(circle at 10% 20%, rgba(213, 168, 79, 0.14), transparent 36%),
-    linear-gradient(180deg, rgba(9, 8, 6, 0.95), rgba(16, 12, 8, 0.96));
 }
 
 .gallery-grid {
