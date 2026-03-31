@@ -518,6 +518,31 @@ if (leadForm && leadSubmit && leadStatus) {
   });
 }
 
+const productMainImage = document.getElementById('product-main-image');
+const productThumbs = document.querySelectorAll('.product-thumb');
+
+if (productMainImage && productThumbs.length) {
+  productThumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const image = thumb.getAttribute('data-product-image');
+      const alt = thumb.getAttribute('data-product-alt') || productMainImage.alt;
+
+      if (!image) {
+        return;
+      }
+
+      productMainImage.src = image;
+      productMainImage.alt = alt;
+
+      productThumbs.forEach((item) => {
+        const isActive = item === thumb;
+        item.classList.toggle('is-active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
+    });
+  });
+}
+
 if (reviewsTrack && dotsContainer && prevButton && nextButton) {
   const slides = Array.from(reviewsTrack.children);
   let currentIndex = 0;

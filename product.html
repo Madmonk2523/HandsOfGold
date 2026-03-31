@@ -8,7 +8,7 @@
       name="description"
       content="Featured product demo page for Hands of Gold NY showcasing a premium jewelry layout with trust details and a clean call to action."
     />
-    <title>Featured Product | Hands of Gold NY</title>
+    <title>14K Diamond Heart Stud Earrings | Hands of Gold NY</title>
     <link rel="icon" href="logo.jpg" type="image/jpeg" />
     <link rel="apple-touch-icon" href="logo.jpg" />
     <link rel="stylesheet" href="style.css" />
@@ -72,15 +72,37 @@
       <main class="page-main">
         <section class="section product-page-section">
           <div class="container">
-            <p class="breadcrumbs" data-reveal="up"><a href="index.html#home">Home</a> / <a href="shop.html">Shop</a> / Featured Product</p>
+            <p class="breadcrumbs" data-reveal="up"><a href="index.html#home">Home</a> / <a href="shop.html">Shop</a> / 14K Diamond Heart Stud Earrings</p>
 
             <div class="product-layout">
               <article class="product-gallery-card" data-reveal="up">
                 <div class="product-gallery-frame">
                   <img
+                    id="product-main-image"
                     src="14k yellow gold diamond heart earrings.jpg"
-                    alt="14K yellow gold diamond heart earrings"
+                    alt="14K yellow gold diamond heart stud earrings front view"
                   />
+                </div>
+
+                <div class="product-thumb-row" aria-label="Product image options">
+                  <button
+                    class="product-thumb is-active"
+                    type="button"
+                    data-product-image="14k yellow gold diamond heart earrings.jpg"
+                    data-product-alt="14K yellow gold diamond heart stud earrings front view"
+                    aria-pressed="true"
+                  >
+                    <img src="14k yellow gold diamond heart earrings.jpg" alt="Front view thumbnail" />
+                  </button>
+                  <button
+                    class="product-thumb"
+                    type="button"
+                    data-product-image="14k yellow gold diamond heart earrings image 2.jpg"
+                    data-product-alt="14K yellow gold diamond heart stud earrings pair view"
+                    aria-pressed="false"
+                  >
+                    <img src="14k yellow gold diamond heart earrings image 2.jpg" alt="Pair view thumbnail" />
+                  </button>
                 </div>
               </article>
 
@@ -89,21 +111,22 @@
                 <h1>14K Diamond Heart Stud Earrings</h1>
                 <p class="product-price">$320</p>
                 <p class="product-description">
-                  Solid 14K gold jewelry crafted for durability and everyday wear. A timeless piece with a clean polished finish.
+                  Solid 14K gold earrings crafted for durability and everyday wear. A timeless piece with a clean polished finish.
                 </p>
 
-                <ul class="product-highlights" aria-label="Product highlights">
-                  <li>Elegant polished gold setting</li>
-                  <li>Gift-ready everyday luxury look</li>
-                  <li>Perfect for a modern, premium storefront demo</li>
-                </ul>
+                <div class="product-meta-chips" aria-label="Product categories">
+                  <span>Jewelry</span>
+                  <span>Earrings</span>
+                  <span>0.5 CT Lab Grown Diamond</span>
+                </div>
 
                 <div class="product-form">
-                  <label for="product-size">Select size</label>
-                  <select id="product-size" name="product-size">
-                    <option>18&quot;</option>
-                    <option>20&quot;</option>
-                    <option>22&quot;</option>
+                  <label for="product-metal">Choose metal</label>
+                  <select id="product-metal" name="product-metal">
+                    <option>10k White Gold</option>
+                    <option>10k Yellow Gold</option>
+                    <option>14k White Gold</option>
+                    <option selected>14k Yellow Gold</option>
                   </select>
 
                   <button class="button button-primary" type="button">Add to Cart</button>
@@ -111,6 +134,37 @@
                 </div>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section class="section product-details-section">
+          <div class="container">
+            <article class="product-details-card" data-reveal="up">
+              <p class="eyebrow">Product Details</p>
+              <h2>Specifications</h2>
+
+              <div class="product-detail-grid">
+                <div class="product-detail-item"><strong>Product Type</strong><span>Jewelry</span></div>
+                <div class="product-detail-item"><strong>Jewelry Type</strong><span>Earrings</span></div>
+                <div class="product-detail-item"><strong>Earring Type</strong><span>Button</span></div>
+                <div class="product-detail-item"><strong>Material: Primary</strong><span>Gold</span></div>
+                <div class="product-detail-item"><strong>Primary Color</strong><span>Yellow</span></div>
+                <div class="product-detail-item"><strong>Primary Purity</strong><span>14K</span></div>
+                <div class="product-detail-item"><strong>Length of Item</strong><span>9.75</span></div>
+                <div class="product-detail-item"><strong>Width of Item</strong><span>10</span></div>
+                <div class="product-detail-item"><strong>Country of Origin</strong><span>India</span></div>
+                <div class="product-detail-item"><strong>Metal</strong><span>14k Yellow Gold</span></div>
+                <div class="product-detail-item"><strong>Average Weight</strong><span>1.47 GM</span></div>
+                <div class="product-detail-item"><strong>Diamond Weight</strong><span>0.5 CT</span></div>
+                <div class="product-detail-item"><strong>Completeness</strong><span>Complete (all stones included)</span></div>
+                <div class="product-detail-item"><strong>Earring Closure</strong><span>Post &amp; Push Back</span></div>
+                <div class="product-detail-item"><strong>Stone Type</strong><span>Diamond, Lab Grown</span></div>
+              </div>
+
+              <p class="product-origin-note">
+                According to United States law, “country of origin” refers to the country of manufacture, production, or growth of any article of foreign origin entering the United States.
+              </p>
+            </article>
           </div>
         </section>
 
@@ -144,13 +198,13 @@
         </section>
       </main>
 
-      <footer class="site-footer light-footer">
+      <footer class="site-footer">
         <div class="container footer-grid">
           <div class="footer-brand">
             <img src="logo.jpg" alt="Hands of Gold Jewelry and Repairs logo" class="footer-logo" />
             <div>
               <h2>Hands of Gold Jewelry and Repairs</h2>
-              <p>Fine jewelry, trusted repairs, and personal service from a family-owned local jeweler.</p>
+              <p>Timeless craftsmanship, trusted service, and family-owned care in Copiague since 1983.</p>
               <p>Hablamos español.</p>
             </div>
           </div>
@@ -162,23 +216,23 @@
           </div>
 
           <div class="footer-column">
-            <h3>Browse</h3>
-            <a href="shop.html">Shop</a>
-            <a href="index.html#services">Services</a>
-            <a href="index.html#visit">Visit Us</a>
+            <h3>Hours</h3>
+            <p>Mon-Sat: 10 AM-7 PM</p>
+            <p>Sunday: 12 PM-4 PM</p>
           </div>
 
           <div class="footer-column">
             <h3>Connect</h3>
             <a href="https://instagram.com/handsofgoldnyc?utm_medium=copy_link" target="_blank" rel="noreferrer">Instagram</a>
             <a href="https://www.facebook.com/Handsofgoldnyc#" target="_blank" rel="noreferrer">Facebook</a>
-            <a href="tel:6312646610">Call Now</a>
+            <a href="https://www.tiktok.com/@handsofgoldoficial_" target="_blank" rel="noreferrer">TikTok</a>
+            <a href="https://g.page/r/CYE_GVC073x4EB0/review" target="_blank" rel="noreferrer">Google Reviews</a>
           </div>
         </div>
 
         <div class="container footer-bottom">
           <p>© <span id="year"></span> Hands of Gold Jewelry and Repairs. All rights reserved.</p>
-          <p>Demo product page for client presentation.</p>
+          <p>Site credit placeholder for Mallor Web Solutions.</p>
         </div>
       </footer>
     </div>
