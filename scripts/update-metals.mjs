@@ -5,7 +5,9 @@ import path from 'node:path';
 const token = process.env.GOLD_API_TOKEN;
 
 if (!token) {
-  throw new Error('Missing GOLD_API_TOKEN environment variable.');
+  throw new Error(
+    'Missing GOLD_API_TOKEN environment variable. Add GOLD_API_TOKEN in the repository\'s GitHub Actions secrets.'
+  );
 }
 
 const symbols = ['XAU', 'XAG', 'XPT'];

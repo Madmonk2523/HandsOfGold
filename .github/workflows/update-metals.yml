@@ -27,7 +27,13 @@ jobs:
       - name: Fetch latest metals
         env:
           GOLD_API_TOKEN: ${{ secrets.GOLD_API_TOKEN }}
-        run: node scripts/update-metals.mjs
+        run: |
+          if [ -z "$GOLD_API_TOKEN" ]; then
+            echo "GOLD_API_TOKEN is not configured for this repository. Skipping metals update."
+            exit 0
+          fi
+
+          node scripts/update-metals.mjs
 
       - name: Commit updated data
         run: |
