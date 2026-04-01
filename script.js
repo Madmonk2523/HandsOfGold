@@ -18,7 +18,7 @@ const LEAD_POPUP_STORAGE_KEY = 'hog-lead-popup-seen-v2';
 const LEAD_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const LEAD_MIN_FILL_MS = 1200;
 const LEAD_API_ENDPOINT = '/api/send-lead';
-const LEAD_REQUEST_TIMEOUT_MS = 12000;
+const LEAD_REQUEST_TIMEOUT_MS = 20000;
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
@@ -622,4 +622,255 @@ if (reviewsTrack && dotsContainer && prevButton && nextButton) {
 
   buildDots();
   updateSlider();
+}
+
+const goldPuritySelect = document.getElementById('gold-purity');
+const goldWeightInput = document.getElementById('gold-weight');
+const goldEstimatedOfferNode = document.getElementById('gold-estimated-offer');
+const goldOfferForm = document.getElementById('gold-offer-form');
+const goldFormPurity = document.getElementById('gold-form-purity');
+const goldFormWeight = document.getElementById('gold-form-weight');
+const goldFormEstimatedOffer = document.getElementById('gold-offer-estimated');
+const goldOfferSubmit = document.getElementById('gold-offer-submit');
+const goldFormStatus = document.getElementById('gold-form-status');
+const goldPhotoInput = document.getElementById('gold-photo');
+const goldPhotoName = document.getElementById('gold-photo-name');
+const goldPageUrl = document.getElementById('gold-page-url');
+const goldUtmSource = document.getElementById('gold-utm-source');
+const goldFormStart = document.getElementById('gold-form-start');
+
+const GOLD_DEMO_PRICE_PER_GRAM = 70;
+const GOLD_PHOTO_MAX_BYTES = 4 * 1024 * 1024;
+const GOLD_PURITY_VALUES = {
+  '10k': 0.417,
+  '14k': 0.585,
+  '18k': 0.75,
+  '22k': 0.917,
+  '24k': 1,
+};
+
+const formatWeightForForm = (weight) => {
+  if (!Number.isFinite(weight) || weight <= 0) {
+    return '';
+  }
+
+  return `${Number.isInteger(weight) ? weight : weight.toFixed(1)} grams`;
+};
+
+const updateGoldOfferEstimate = () => {
+  if (!goldPuritySelect || !goldWeightInput || !goldEstimatedOfferNode) {
+    return 0;
+  }
+
+  const purityKey = goldPuritySelect.value;
+  const purityValue = GOLD_PURITY_VALUES[purityKey] ?? 0;
+  const weight = Math.max(0, Number.parseFloat(goldWeightInput.value) || 0);
+  const estimatedValue = weight * purityValue * GOLD_DEMO_PRICE_PER_GRAM * 0.8;
+  const displayValue = formatUsd(estimatedValue);
+
+  goldEstimatedOfferNode.textContent = displayValue;
+
+  if (goldFormPurity) {
+    goldFormPurity.value = purityKey.toUpperCase();
+  }
+
+  if (goldFormWeight) {
+    goldFormWeight.value = formatWeightForForm(weight);
+  }
+
+  if (goldFormEstimatedOffer) {
+    goldFormEstimatedOffer.value = displayValue;
+  }
+
+  return estimatedValue;
+};
+
+const fileToDataUrl = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      resolve(String(reader.result || ''));
+    };
+
+    reader.onerror = () => {
+      reject(new Error('Could not read the selected photo.'));
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+if (goldPuritySelect && goldWeightInput) {
+  updateGoldOfferEstimate();
+  goldPuritySelect.addEventListener('change', updateGoldOfferEstimate);
+  goldWeightInput.addEventListener('input', updateGoldOfferEstimate);
+}
+
+if (goldPageUrl) {
+  goldPageUrl.value = window.location.href;
+}
+
+if (goldUtmSource) {
+  const params = new URLSearchParams(window.location.search);
+  goldUtmSource.value = params.get('utm_source') || 'direct';
+}
+
+if (goldFormStart) {
+  goldFormStart.value = String(Date.now());
+}
+
+if (goldPhotoInput && goldPhotoName) {
+  goldPhotoInput.addEventListener('change', () => {
+    const selectedFile = goldPhotoInput.files && goldPhotoInput.files[0];
+    goldPhotoName.textContent = selectedFile ? `Selected: ${selectedFile.name}` : 'No photo selected.';
+  });
+}
+
+if (goldOfferForm && goldOfferSubmit && goldFormStatus) {
+  goldOfferForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const estimatedValue = updateGoldOfferEstimate();
+    const formData = new FormData(goldOfferForm);
+    const payload = {
+      name: String(formData.get('name') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      phone: String(formData.get('phone') || '').trim(),
+      purity: String(formData.get('purity') || '').trim(),
+      weight: String(formData.get('weight') || '').trim(),
+      estimatedOffer: String(formData.get('estimatedOffer') || '').trim(),
+      pageUrl: String(formData.get('pageUrl') || '').trim(),
+      utmSource: String(formData.get('utmSource') || '').trim(),
+      formStart: String(formData.get('formStart') || '').trim(),
+      website: String(formData.get('website') || '').trim(),
+      leadType: String(formData.get('leadType') || 'Gold Buying Offer').trim(),
+    };
+
+    if (!payload.name || !payload.email || !payload.phone) {
+      goldFormStatus.textContent = 'Please complete all required fields before submitting.';
+      goldFormStatus.classList.add('is-error');
+      goldFormStatus.classList.remove('is-success');
+      return;
+    }
+
+    if (!emailPattern.test(payload.email)) {
+      goldFormStatus.textContent = 'Please enter a valid email address.';
+      goldFormStatus.classList.add('is-error');
+      goldFormStatus.classList.remove('is-success');
+      return;
+    }
+
+    if (!isValidPhone(payload.phone)) {
+      goldFormStatus.textContent = 'Please enter a valid phone number.';
+      goldFormStatus.classList.add('is-error');
+      goldFormStatus.classList.remove('is-success');
+      return;
+    }
+
+    if (!Number.isFinite(estimatedValue) || estimatedValue <= 0) {
+      goldFormStatus.textContent = 'Please enter a valid gold weight to calculate your estimate.';
+      goldFormStatus.classList.add('is-error');
+      goldFormStatus.classList.remove('is-success');
+      return;
+    }
+
+    const fillMs = Date.now() - Number(payload.formStart || 0);
+    if (!Number.isFinite(fillMs) || fillMs < LEAD_MIN_FILL_MS) {
+      goldFormStatus.textContent = 'Please review your details and try again.';
+      goldFormStatus.classList.add('is-error');
+      goldFormStatus.classList.remove('is-success');
+      return;
+    }
+
+    let photoNameValue = '';
+    let photoTypeValue = '';
+    let photoDataUrlValue = '';
+    const selectedPhoto = goldPhotoInput && goldPhotoInput.files && goldPhotoInput.files[0];
+
+    if (selectedPhoto) {
+      if (selectedPhoto.size > GOLD_PHOTO_MAX_BYTES) {
+        goldFormStatus.textContent = 'Please upload an image under 4 MB.';
+        goldFormStatus.classList.add('is-error');
+        goldFormStatus.classList.remove('is-success');
+        return;
+      }
+
+      photoNameValue = selectedPhoto.name;
+      photoTypeValue = selectedPhoto.type || 'application/octet-stream';
+
+      try {
+        photoDataUrlValue = await fileToDataUrl(selectedPhoto);
+      } catch (error) {
+        goldFormStatus.textContent = 'We could not read the selected photo. Please try another image.';
+        goldFormStatus.classList.add('is-error');
+        goldFormStatus.classList.remove('is-success');
+        console.error(error);
+        return;
+      }
+    }
+
+    goldOfferSubmit.disabled = true;
+    goldOfferSubmit.textContent = 'Submitting...';
+    goldOfferForm.setAttribute('aria-busy', 'true');
+    goldFormStatus.textContent = '';
+    goldFormStatus.classList.remove('is-error', 'is-success');
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), LEAD_REQUEST_TIMEOUT_MS);
+
+      const response = await fetch(LEAD_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...payload,
+          photoName: photoNameValue,
+          photoType: photoTypeValue,
+          photoDataUrl: photoDataUrlValue,
+        }),
+        signal: controller.signal,
+      });
+
+      window.clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Lead form backend not found. Deploy with a live /api/send-lead endpoint.');
+        }
+
+        const payloadError = await response.json().catch(() => ({}));
+        throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
+      }
+
+      goldFormStatus.textContent = 'Success. Your offer request has been sent.';
+      goldFormStatus.classList.add('is-success');
+      goldFormStatus.classList.remove('is-error');
+      goldOfferForm.reset();
+
+      if (goldPhotoName) {
+        goldPhotoName.textContent = 'No photo selected.';
+      }
+
+      if (goldFormStart) {
+        goldFormStart.value = String(Date.now());
+      }
+
+      updateGoldOfferEstimate();
+    } catch (error) {
+      const message = error instanceof Error && error.message
+        ? error.message
+        : 'Something went wrong. Please try again in a moment.';
+
+      goldFormStatus.textContent = message;
+      goldFormStatus.classList.add('is-error');
+      goldFormStatus.classList.remove('is-success');
+      console.error(error);
+    } finally {
+      goldOfferSubmit.disabled = false;
+      goldOfferSubmit.textContent = 'Claim My Offer';
+      goldOfferForm.setAttribute('aria-busy', 'false');
+    }
+  });
 }
