@@ -2,7 +2,17 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const token = process.env.GOLD_API_TOKEN;
+const token =
+  process.env.GOLD_API_TOKEN ||
+  process.env.GOLDAPI_ACCESS_TOKEN ||
+  process.env.GOLD_API_KEY ||
+  process.env.GOLDAPI_API_KEY ||
+  '';
+
+const requestHeaders = {
+  'Content-Type': 'application/json',
+  ...(token ? { 'x-access-token': token } : {}),
+};
 
 if (!token) {
   throw new Error(
@@ -35,10 +45,7 @@ const fetchPrice = async (symbol, attempt = 1) => {
   try {
     const response = await fetch(`${baseUrl}/${symbol}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': token,
-      },
+      headers: requestHeaders,
       signal: controller.signal,
     });
 
