@@ -1919,22 +1919,11 @@ p {
 
 /* We Buy Gold page */
 .gold-buy-page {
-  background: linear-gradient(180deg, #f6f2ea 0%, #fbfaf7 46%, #f1ece4 100%);
-  color: #1d1711;
-}
-
-.gold-buy-page .site-header::after {
-  background: rgba(248, 244, 237, 0.9);
-}
-
-.gold-buy-page .site-nav a,
-.gold-buy-page .nav-actions a,
-.gold-buy-page .brand-subtitle {
-  color: #443624;
-}
-
-.gold-buy-page .brand-name {
-  color: #160f09;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(213, 168, 79, 0.18), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(105, 76, 33, 0.24), transparent 28%),
+    linear-gradient(180deg, #070605 0%, #0b0907 48%, #110d09 100%);
+  color: var(--text);
 }
 
 .gold-buy-main {
@@ -1943,25 +1932,22 @@ p {
 
 .gold-buy-main p,
 .gold-buy-main li {
-  color: #5b4c3a;
+  color: var(--text-soft);
 }
 
 .gold-buy-main h1,
 .gold-buy-main h2,
 .gold-buy-main h3 {
-  color: #18120c;
-  font-family: var(--font-body);
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  color: var(--text-inverse);
 }
 
 .gold-buy-main .eyebrow {
-  color: #8a6526;
+  color: var(--gold-deep);
 }
 
 .gold-buy-hero {
   position: relative;
-  padding: 8rem 0 4.5rem;
+  padding: 8.5rem 0 5rem;
   overflow: hidden;
 }
 
@@ -1970,213 +1956,104 @@ p {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(247, 242, 234, 0.96) 0%, rgba(247, 242, 234, 0.92) 42%, rgba(247, 242, 234, 0.7) 62%, rgba(25, 18, 12, 0.54) 100%),
-    url("gallery3.jpg") center / cover no-repeat;
+    linear-gradient(130deg, rgba(8, 7, 6, 0.97) 0%, rgba(26, 21, 15, 0.92) 50%, rgba(64, 47, 25, 0.74) 100%),
+    radial-gradient(circle at 12% 18%, rgba(213, 168, 79, 0.22), transparent 26%),
+    radial-gradient(circle at 86% 10%, rgba(255, 255, 255, 0.08), transparent 20%);
 }
 
 .gold-buy-hero::after {
   content: "";
   position: absolute;
-  inset: auto 0 0;
-  height: 120px;
-  background: linear-gradient(180deg, transparent, rgba(246, 242, 234, 0.96));
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), transparent 92%);
+  pointer-events: none;
 }
 
-.gold-buy-hero-inner,
-.scam-grid,
-.calc-layout,
-.gold-form-layout {
+.gold-convert-head,
+.gold-convert-cards {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  align-items: center;
 }
 
-.gold-buy-copy {
-  max-width: 640px;
+.gold-convert-head {
+  max-width: 760px;
+  margin-bottom: 1.7rem;
 }
 
-.gold-buy-copy h1 {
-  font-size: clamp(2.7rem, 5.4vw, 4.75rem);
+.gold-convert-head h1 {
+  font-size: clamp(2.6rem, 5.8vw, 5.1rem);
+  line-height: 1.02;
 }
 
 .gold-buy-subtext {
+  max-width: 62ch;
   margin-top: 1rem;
-  font-size: 1.12rem;
-  color: #403321;
+  font-size: 1.08rem;
 }
 
-.gold-buy-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 1.75rem 0 1rem;
+.gold-convert-cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
 }
 
-.gold-buy-trustline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.6rem 0.95rem;
-  border-radius: 999px;
-  border: 1px solid rgba(169, 123, 42, 0.2);
-  background: rgba(213, 168, 79, 0.14);
-  color: #2e2418 !important;
-  font-weight: 700;
-}
-
-.gold-buy-trustline::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 5px rgba(213, 168, 79, 0.18);
-}
-
-.gold-buy-panel,
-.trust-point,
-.step-card,
-.calculator-card,
-.gold-form-card,
-.scam-card {
+.gold-buy-page .calculator-card,
+.gold-buy-page .gold-form-card,
+.gold-buy-page .trust-point {
   position: relative;
-  background: rgba(255, 255, 255, 0.84);
-  border: 1px solid rgba(169, 123, 42, 0.16);
-  border-radius: 24px;
-  box-shadow: 0 18px 45px rgba(64, 49, 31, 0.12);
-  backdrop-filter: blur(14px);
+  background: var(--surface);
+  border: 1px solid rgba(255, 229, 184, 0.24);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
 }
 
-.gold-buy-panel::before,
-.trust-point::before,
-.step-card::before,
-.calculator-card::before,
-.gold-form-card::before,
-.scam-card::before {
+.gold-buy-page .calculator-card::before,
+.gold-buy-page .gold-form-card::before,
+.gold-buy-page .trust-point::before {
   content: "";
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 221, 164, 0.2);
   pointer-events: none;
 }
 
-.gold-buy-panel,
-.calculator-card,
-.gold-form-card,
-.scam-card {
+.gold-buy-page .calculator-card,
+.gold-buy-page .gold-form-card {
   padding: 1.5rem;
 }
 
-.gold-panel-label,
 .offer-label {
   margin: 0 0 0.8rem;
   font-size: 0.76rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #886321 !important;
+  color: var(--gold-deep) !important;
 }
 
-.gold-panel-list,
-.warning-list {
-  margin: 0 0 1.2rem;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.75rem;
+.gold-calc-copy {
+  margin-bottom: 0.75rem;
 }
 
-.gold-panel-list li,
-.warning-list li {
-  position: relative;
-  padding-left: 1.2rem;
-}
-
-.gold-panel-list li::before,
-.warning-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55rem;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ddb872, #b3812c);
-}
-
-.gold-buy-section {
-  padding: 4.5rem 0;
-}
-
-.gold-buy-section-alt {
-  background: #ece7df;
-}
-
-.trust-points,
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.trust-point,
-.step-card {
-  padding: 1.3rem;
-}
-
-.trust-point {
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.trust-point:hover,
-.step-card:hover,
-.calculator-card:hover,
-.gold-form-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 50px rgba(64, 49, 31, 0.15);
-}
-
-.trust-icon,
-.step-number {
-  display: inline-grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
+.gold-calc-formula,
+.gold-calc-live-price {
   margin-bottom: 1rem;
+  padding: 0.65rem 0.8rem;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(221, 184, 114, 0.25), rgba(179, 129, 44, 0.12));
-  color: #7a571f;
-  font-weight: 800;
+  border: 1px solid rgba(255, 224, 173, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(245, 239, 229, 0.9) !important;
+  font-size: 0.94rem;
 }
 
-.step-number {
-  border-radius: 50%;
-}
-
-.scam-card {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.scam-card p:last-child {
-  margin-bottom: 0;
-}
-
-.calc-layout,
-.gold-form-layout {
-  align-items: start;
-}
-
-.calc-copy,
-.gold-form-copy {
-  max-width: 560px;
-}
-
-.calc-note {
-  margin: 1rem 0 0;
-  font-weight: 600;
+.gold-calc-live-price strong {
+  color: #f8d596;
 }
 
 .calculator-fields,
@@ -2194,7 +2071,7 @@ p {
 .field span {
   display: block;
   margin-bottom: 0.45rem;
-  color: #2c2113;
+  color: rgba(248, 240, 224, 0.9);
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -2207,16 +2084,16 @@ p {
   min-height: 52px;
   padding: 0.78rem 0.9rem;
   border-radius: 14px;
-  border: 1px solid rgba(169, 123, 42, 0.22);
-  background: #fffdf8;
-  color: #1d1711;
+  border: 1px solid rgba(255, 224, 168, 0.24);
+  background: rgba(0, 0, 0, 0.34);
+  color: #fff8ea;
 }
 
 .calculator-card input:focus-visible,
 .calculator-card select:focus-visible,
 .gold-offer-form input:focus-visible,
 .gold-offer-form select:focus-visible {
-  outline: 2px solid rgba(213, 168, 79, 0.5);
+  outline: 2px solid rgba(222, 181, 104, 0.75);
   outline-offset: 1px;
 }
 
@@ -2224,15 +2101,15 @@ p {
   margin: 1rem 0;
   padding: 1rem 1.1rem;
   border-radius: 18px;
-  border: 1px solid rgba(169, 123, 42, 0.18);
-  background: linear-gradient(135deg, rgba(213, 168, 79, 0.16), rgba(255, 255, 255, 0.82));
+  border: 1px solid rgba(255, 228, 179, 0.26);
+  background: linear-gradient(135deg, rgba(213, 168, 79, 0.22), rgba(255, 255, 255, 0.04));
 }
 
 .offer-amount {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1;
-  color: #17110b !important;
+  color: #f8e6c0 !important;
   font-weight: 800;
 }
 
@@ -2244,7 +2121,7 @@ p {
 .file-note {
   display: block;
   margin-top: 0.4rem;
-  color: #6d5c46;
+  color: rgba(245, 239, 229, 0.7);
 }
 
 .gold-form-status {
@@ -2254,11 +2131,31 @@ p {
 }
 
 .gold-form-status.is-success {
-  color: #7a571f;
+  color: #f8d594;
 }
 
 .gold-form-status.is-error {
-  color: #b54f35;
+  color: #ffd0b7;
+}
+
+.gold-buy-section {
+  padding: 4.75rem 0;
+}
+
+.gold-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.gold-buy-page .trust-point {
+  padding: 1.35rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gold-buy-page .trust-point:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .gold-final-cta-section {
@@ -2270,33 +2167,20 @@ p {
 }
 
 @media (max-width: 1080px) {
-  .gold-buy-hero-inner,
-  .scam-grid,
-  .calc-layout,
-  .gold-form-layout,
-  .trust-points,
-  .steps-grid {
-    grid-template-columns: 1fr 1fr;
+  .gold-convert-cards {
+    grid-template-columns: 1fr;
   }
 
-  .gold-buy-hero-inner,
-  .scam-grid,
-  .calc-layout,
-  .gold-form-layout {
-    grid-template-columns: 1fr;
+  .gold-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 860px) {
   .gold-buy-page .site-nav,
   .gold-buy-page .nav-actions {
-    background: rgba(250, 247, 241, 0.98);
-    border-color: rgba(169, 123, 42, 0.18);
-  }
-
-  .trust-points,
-  .steps-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: rgba(10, 9, 7, 0.97);
+    border-color: rgba(255, 221, 164, 0.22);
   }
 }
 
@@ -2305,20 +2189,9 @@ p {
     padding-top: 7rem;
   }
 
-  .gold-buy-actions,
   .calculator-fields,
   .form-row,
-  .trust-points,
-  .steps-grid {
+  .gold-proof-grid {
     grid-template-columns: 1fr;
-  }
-
-  .gold-buy-panel,
-  .trust-point,
-  .step-card,
-  .calculator-card,
-  .gold-form-card,
-  .scam-card {
-    border-radius: 22px;
   }
 }
