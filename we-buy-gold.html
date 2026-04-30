@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Get paid cash for your gold today at Hands of Gold Jewelry and Repairs in Copiague. Transparent testing, honest weights, no pressure, and fast in-store offers."
+    />
+    <meta
+      name="keywords"
+      content="we buy gold Copiague, cash for gold Long Island, sell gold jewelry Copiague, gold buyer near me, Hands of Gold gold buying"
+    />
+    <meta name="author" content="Hands of Gold Jewelry and Repairs" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="We Buy Gold | Hands of Gold Jewelry and Repairs" />
+    <meta
+      property="og:description"
+      content="We test your gold in front of you with transparent pricing, honest weights, and no pressure to sell."
+    />
+    <meta property="og:url" content="https://madmonk2523.github.io/HandsOfGold/we-buy-gold.html" />
+    <meta property="og:image" content="https://madmonk2523.github.io/HandsOfGold/logo.jpg" />
+    <link rel="canonical" href="https://madmonk2523.github.io/HandsOfGold/we-buy-gold.html" />
+    <title>We Buy Gold | Hands of Gold Jewelry and Repairs</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="logo.jpg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="gold-buy-page">
+    <div class="site-shell">
+      <aside class="metals-ticker" aria-label="Live precious metal prices">
+        <div class="container metals-ticker-inner">
+          <p class="metals-label">Live Spot Prices</p>
+          <div class="metals-prices" role="status" aria-live="polite">
+            <span class="metal-chip">Gold <strong id="price-gold">Loading...</strong></span>
+            <span class="metal-chip">Silver <strong id="price-silver">Loading...</strong></span>
+            <span class="metal-chip">Platinum <strong id="price-platinum">Loading...</strong></span>
+          </div>
+          <p class="metals-updated" id="metals-updated">Updating...</p>
+        </div>
+      </aside>
+
+      <header class="site-header" id="top">
+        <div class="container nav-wrap">
+          <a class="brand" href="index.html#home" aria-label="Hands of Gold Jewelry and Repairs home">
+            <img src="logo.jpg" alt="Hands of Gold Jewelry and Repairs logo" class="brand-logo" />
+            <span class="brand-copy">
+              <span class="brand-name">Hands of Gold</span>
+              <span class="brand-subtitle">Jewelry and Repairs</span>
+            </span>
+          </a>
+
+          <div class="nav-panel">
+            <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+              <a href="index.html#home">Home</a>
+              <a href="index.html#about">About</a>
+              <a href="index.html#services">Services</a>
+              <a href="we-buy-gold.html" aria-current="page">We Buy Gold</a>
+              <a href="shop.html">Shop</a>
+              <a href="index.html#reviews">Reviews</a>
+              <a href="index.html#visit">Visit Us</a>
+              <a href="index.html#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+              <a href="https://instagram.com/handsofgoldnyc?utm_medium=copy_link" target="_blank" rel="noreferrer">Instagram</a>
+              <a href="https://www.facebook.com/Handsofgoldnyc#" target="_blank" rel="noreferrer">Facebook</a>
+              <a href="tel:6312646610" class="nav-call">Call Now</a>
+            </div>
+          </div>
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Open navigation menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="page-main gold-buy-main">
+        <section class="gold-buy-hero gold-convert-hero" id="gold-offer-form-section">
+          <div class="container">
+            <div class="gold-convert-head" data-reveal="up">
+              <p class="eyebrow">We Buy Gold | Fast In-Store Offers</p>
+              <h1>Get Your Estimate Now</h1>
+              <p class="gold-buy-subtext">Enter your gold details, see your estimate, and submit your offer request in one step.</p>
+            </div>
+
+            <div class="gold-convert-cards">
+              <article class="calculator-card" data-reveal="up" id="calculator" aria-label="Gold estimate calculator">
+                <p class="offer-label">Instant Estimate</p>
+                <p class="gold-calc-copy">
+                  We calculate the pure gold value based on weight, purity, and current market price, then estimate your cash payout at about 80% of melt value.
+                </p>
+                <p class="gold-calc-formula">Estimated Cash Offer = Weight x Purity % x Gold Price Per Gram x 0.80</p>
+                <p class="gold-calc-live-price">Current Gold Price Per Gram: <strong id="gold-price-per-gram">$70.00</strong></p>
+                <div class="calculator-fields">
+                  <label class="field" for="gold-purity">
+                    <span>Purity</span>
+                    <select id="gold-purity" name="gold-purity">
+                      <option value="10k">10k</option>
+                      <option value="14k" selected>14k</option>
+                      <option value="18k">18k</option>
+                      <option value="22k">22k</option>
+                      <option value="24k">24k</option>
+                    </select>
+                  </label>
+
+                  <label class="field" for="gold-weight">
+                    <span>Weight in grams</span>
+                    <input id="gold-weight" name="gold-weight" type="number" min="0" step="0.1" placeholder="Enter weight" />
+                  </label>
+                </div>
+
+                <div class="offer-output" aria-live="polite">
+                  <p class="offer-label">Estimated Cash Offer</p>
+                  <p class="offer-amount" id="gold-estimated-offer">$0.00</p>
+                </div>
+
+                <p class="offer-disclaimer">Final offer is confirmed in store after testing and weighing.</p>
+              </article>
+
+              <article class="gold-form-card" data-reveal="left" aria-label="Gold offer form">
+                <p class="offer-label">Get Your Offer</p>
+                <form class="gold-offer-form" id="gold-offer-form" novalidate>
+                  <div class="form-row">
+                    <label class="field" for="gold-name">
+                      <span>Name</span>
+                      <input id="gold-name" name="name" type="text" autocomplete="name" required />
+                    </label>
+
+                    <label class="field" for="gold-phone">
+                      <span>Phone</span>
+                      <input id="gold-phone" name="phone" type="tel" autocomplete="tel" required />
+                    </label>
+                  </div>
+
+                  <label class="field" for="gold-email">
+                    <span>Email</span>
+                    <input id="gold-email" name="email" type="email" autocomplete="email" required />
+                  </label>
+
+                  <div class="form-row">
+                    <label class="field" for="gold-form-purity">
+                      <span>Purity</span>
+                      <input id="gold-form-purity" name="purity" type="text" readonly />
+                    </label>
+
+                    <label class="field" for="gold-form-weight">
+                      <span>Weight</span>
+                      <input id="gold-form-weight" name="weight" type="text" readonly />
+                    </label>
+                  </div>
+
+                  <label class="field" for="gold-offer-estimated">
+                    <span>Estimated Offer</span>
+                    <input id="gold-offer-estimated" name="estimatedOffer" type="text" readonly />
+                  </label>
+
+                  <label class="field" for="gold-photo">
+                    <span>Optional photo upload</span>
+                    <input id="gold-photo" name="photo" type="file" accept="image/*" />
+                    <small class="file-note" id="gold-photo-name">No photo selected.</small>
+                  </label>
+
+                  <input type="hidden" id="gold-page-url" name="pageUrl" value="" />
+                  <input type="hidden" id="gold-utm-source" name="utmSource" value="" />
+                  <input type="hidden" id="gold-form-start" name="formStart" value="" />
+                  <input type="hidden" name="leadType" value="Gold Buying Offer" />
+
+                  <label class="lead-honeypot" for="gold-website">Website</label>
+                  <input class="lead-honeypot" id="gold-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+
+                  <button class="button button-primary" type="submit" id="gold-offer-submit">Get My Offer</button>
+                  <p class="gold-form-status" id="gold-form-status" role="status" aria-live="polite"></p>
+                </form>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section gold-buy-section">
+          <div class="container">
+            <div class="section-header center" data-reveal="up">
+              <p class="eyebrow">Why Hands of Gold</p>
+              <h2>Clear process. Real numbers. No pressure.</h2>
+            </div>
+            <div class="trust-points gold-proof-grid">
+              <article class="trust-point" data-reveal="up">
+                <h3>Tested in front of you</h3>
+                <p>You see how we evaluate your gold.</p>
+              </article>
+              <article class="trust-point" data-reveal="up">
+                <h3>Transparent pricing</h3>
+                <p>Weight, purity, and current market conditions are explained clearly.</p>
+              </article>
+              <article class="trust-point" data-reveal="up">
+                <h3>Cash paid same day</h3>
+                <p>Accept the offer and get paid on the spot.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section cta-section gold-final-cta-section">
+          <div class="container cta-panel gold-final-cta" data-reveal="up">
+            <div>
+              <p class="eyebrow">Visit Our Store</p>
+              <h2>494 Oak St, Copiague, NY 11726</h2>
+              <p>Mon-Sat 10 AM-7 PM | Sunday 12 PM-4 PM</p>
+            </div>
+            <div class="cta-actions">
+              <a class="button button-primary" href="tel:6312646610">Call Now</a>
+              <a
+                class="button button-secondary"
+                href="https://www.google.com/maps/search/?api=1&query=494+Oak+St+Copiague+NY+11726"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Get Directions
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div class="footer-brand">
+            <img src="logo.jpg" alt="Hands of Gold Jewelry and Repairs logo" class="footer-logo" />
+            <div>
+              <h2>Hands of Gold Jewelry and Repairs</h2>
+              <p>Timeless craftsmanship, trusted service, and family-owned care in Copiague since 1983.</p>
+              <p>Hablamos español.</p>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Visit</h3>
+            <p>494 Oak St<br />Copiague, NY 11726</p>
+            <p><a href="tel:6312646610">(631) 264-6610</a></p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Hours</h3>
+            <p>Mon-Sat: 10 AM-7 PM</p>
+            <p>Sunday: 12 PM-4 PM</p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Connect</h3>
+            <a href="https://instagram.com/handsofgoldnyc?utm_medium=copy_link" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/Handsofgoldnyc#" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://www.tiktok.com/@handsofgoldoficial_" target="_blank" rel="noreferrer">TikTok</a>
+            <a href="https://g.page/r/CYE_GVC073x4EB0/review" target="_blank" rel="noreferrer">Google Reviews</a>
+          </div>
+        </div>
+
+        <div class="container footer-bottom">
+          <p>© <span id="year"></span> Hands of Gold Jewelry and Repairs. All rights reserved.</p>
+          <p>Site credit placeholder for Mallor Web Solutions.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
