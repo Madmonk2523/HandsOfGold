@@ -204,12 +204,25 @@ const syncStickyOffsets = () => {
   document.documentElement.style.setProperty('--metals-bar-height', `${tickerHeight}px`);
 };
 
+const TROY_OZ_TO_GRAMS = 31.1035;
+let goldPricePerGram = 70;
+
+const goldPricePerGramNode = document.getElementById('gold-price-per-gram');
+
 const paintMetalsTicker = (prices, updatedAtMs) => {
   metalPriceNodes.XAU.textContent = `${formatUsd(prices.XAU)}/oz`;
   metalPriceNodes.XAG.textContent = `${formatUsd(prices.XAG)}/oz`;
   metalPriceNodes.XPT.textContent = `${formatUsd(prices.XPT)}/oz`;
   metalsUpdatedNode.textContent = renderMetalsUpdatedLine(updatedAtMs);
   syncStickyOffsets();
+
+  const liveGramPrice = prices.XAU / TROY_OZ_TO_GRAMS;
+  if (Number.isFinite(liveGramPrice) && liveGramPrice > 0) {
+    goldPricePerGram = liveGramPrice;
+    if (goldPricePerGramNode) {
+      goldPricePerGramNode.textContent = formatUsd(liveGramPrice);
+    }
+  }
 };
 
 const readMetalsCache = () => {
@@ -639,7 +652,6 @@ const goldPageUrl = document.getElementById('gold-page-url');
 const goldUtmSource = document.getElementById('gold-utm-source');
 const goldFormStart = document.getElementById('gold-form-start');
 
-const GOLD_DEMO_PRICE_PER_GRAM = 70;
 const GOLD_PHOTO_MAX_BYTES = 4 * 1024 * 1024;
 const GOLD_PURITY_VALUES = {
   '10k': 0.417,
@@ -665,7 +677,7 @@ const updateGoldOfferEstimate = () => {
   const purityKey = goldPuritySelect.value;
   const purityValue = GOLD_PURITY_VALUES[purityKey] ?? 0;
   const weight = Math.max(0, Number.parseFloat(goldWeightInput.value) || 0);
-  const estimatedValue = weight * purityValue * GOLD_DEMO_PRICE_PER_GRAM * 0.8;
+  const estimatedValue = weight * purityValue * goldPricePerGram * 0.8;
   const displayValue = formatUsd(estimatedValue);
 
   goldEstimatedOfferNode.textContent = displayValue;
