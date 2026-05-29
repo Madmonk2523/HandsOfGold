@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 
 const configuredEmail = 'handsofgold@handsofgold.org';
-const configuredAppPassword = 'ewvv cxti vvkq tdfj';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();
@@ -71,7 +70,7 @@ module.exports = async function handler(req, res) {
     return res.status(429).json({ error: 'Please slow down and try again.' });
   }
 
-  const emailPass = normalizeAppPassword(process.env.EMAIL_PASS || process.env.GMAIL_APP_PASSWORD || configuredAppPassword);
+  const emailPass = normalizeAppPassword(process.env.EMAIL_PASS || process.env.GMAIL_APP_PASSWORD);
   const senderEmail = configuredEmail;
   const receiverEmail = configuredEmail;
 
