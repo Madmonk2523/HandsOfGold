@@ -76,6 +76,10 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'Missing EMAIL_PASS (or GMAIL_APP_PASSWORD) environment variable.' });
   }
 
+  if (emailPass.length !== 16) {
+    return res.status(500).json({ error: 'EMAIL_PASS must be a valid 16-character Gmail app password.' });
+  }
+
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -84,6 +88,8 @@ module.exports = async function handler(req, res) {
         pass: emailPass,
       },
     });
+
+    await transporter.verify();
 
     const timestamp = new Date().toISOString();
     const isGoldBuyingLead = safeLeadType.toLowerCase().includes('gold');
@@ -160,6 +166,15 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.error('Lead email send failed:', error);
-    return res.status(500).json({ error: 'Failed to send lead.' });
+
+    if (error && typeof error === 'object' && error.code === 'EAUTH') {
+      return res.status(500).json({ error: 'Email authentication failed. Confirm Gmail app password and account security settings.' });
+    }
+
+    if (error && typeof error === 'object' && (error.code === 'ESOCKET' || error.code === 'ETIMEDOUT')) {
+      return res.status(500).json({ error: 'Email server connection timed out. Please try again in a moment.' });
+    }
+
+    return res.status(500).json({ error: 'Failed to send lead. Verify server email configuration and try again.' });
   }
 };
