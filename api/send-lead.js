@@ -5,6 +5,16 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();
 const normalizeAppPassword = (value) => String(value || '').replace(/[\s_-]+/g, '').trim();
+const readEnv = (...keys) => {
+  for (const key of keys) {
+    const value = process.env[key];
+    if (value) {
+      return value;
+    }
+  }
+
+  return '';
+};
 
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -70,16 +80,31 @@ module.exports = async function handler(req, res) {
     return res.status(429).json({ error: 'Please slow down and try again.' });
   }
 
-  const emailPass = normalizeAppPassword(process.env.EMAIL_PASS || process.env.GMAIL_APP_PASSWORD);
-  const senderEmail = configuredEmail;
-  const receiverEmail = configuredEmail;
+  const isGoldBuyingLead = safeLeadType.toLowerCase().includes('gold');
+  const senderEmail = isGoldBuyingLead
+    ? sanitize(readEnv('GOLD_EMAIL_USER', 'GOLD_SENDER_EMAIL', 'GOLD_EMAIL_ADDRESS')) || configuredEmail
+    : configuredEmail;
+  const receiverEmail = isGoldBuyingLead
+    ? sanitize(readEnv('GOLD_TO_EMAIL', 'GOLD_RECEIVER_EMAIL', 'GOLD_INBOX_EMAIL')) || senderEmail
+    : configuredEmail;
+  const emailPass = isGoldBuyingLead
+    ? normalizeAppPassword(readEnv('GOLD_EMAIL_PASS', 'GOLD_GMAIL_APP_PASSWORD', 'EMAIL_PASS', 'GMAIL_APP_PASSWORD'))
+    : normalizeAppPassword(readEnv('EMAIL_PASS', 'GMAIL_APP_PASSWORD'));
 
   if (!emailPass) {
-    return res.status(500).json({ error: 'Missing EMAIL_PASS (or GMAIL_APP_PASSWORD) environment variable.' });
+    return res.status(500).json({
+      error: isGoldBuyingLead
+        ? 'Missing GOLD_EMAIL_PASS (or GOLD_GMAIL_APP_PASSWORD) environment variable.'
+        : 'Missing EMAIL_PASS (or GMAIL_APP_PASSWORD) environment variable.',
+    });
   }
 
   if (emailPass.length !== 16) {
-    return res.status(500).json({ error: 'EMAIL_PASS must be a valid 16-character Gmail app password.' });
+    return res.status(500).json({
+      error: isGoldBuyingLead
+        ? 'GOLD_EMAIL_PASS must be a valid 16-character Gmail app password.'
+        : 'EMAIL_PASS must be a valid 16-character Gmail app password.',
+    });
   }
 
   try {
@@ -94,7 +119,6 @@ module.exports = async function handler(req, res) {
     await transporter.verify();
 
     const timestamp = new Date().toISOString();
-    const isGoldBuyingLead = safeLeadType.toLowerCase().includes('gold');
     const subjectLine = isGoldBuyingLead ? 'New Gold Buying Offer - Hands Of Gold NY' : 'New Lead - Hands Of Gold NY';
 
     const textLines = [
@@ -170,7 +194,11 @@ module.exports = async function handler(req, res) {
     console.error('Lead email send failed:', error);
 
     if (error && typeof error === 'object' && error.code === 'EAUTH') {
-      return res.status(500).json({ error: 'Email authentication failed. Confirm EMAIL_PASS matches the app password for handsofgold@handsofgold.org.' });
+      return res.status(500).json({
+        error: isGoldBuyingLead
+          ? `Email authentication failed. Confirm the app password matches ${senderEmail}.`
+          : `Email authentication failed. Confirm EMAIL_PASS matches the app password for ${senderEmail}.`,
+      });
     }
 
     if (error && typeof error === 'object' && (error.code === 'ESOCKET' || error.code === 'ETIMEDOUT')) {
