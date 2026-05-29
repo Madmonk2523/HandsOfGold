@@ -5,6 +5,7 @@ const receiverEmail = 'handsofgoldlongisland@gmail.com';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();
+const normalizeAppPassword = (value) => String(value || '').replace(/\s+/g, '').trim();
 
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -70,8 +71,9 @@ module.exports = async function handler(req, res) {
     return res.status(429).json({ error: 'Please slow down and try again.' });
   }
 
-  if (!process.env.EMAIL_PASS) {
-    return res.status(500).json({ error: 'Missing EMAIL_PASS environment variable.' });
+  const emailPass = normalizeAppPassword(process.env.EMAIL_PASS || process.env.GMAIL_APP_PASSWORD || '');
+  if (!emailPass) {
+    return res.status(500).json({ error: 'Missing EMAIL_PASS (or GMAIL_APP_PASSWORD) environment variable.' });
   }
 
   try {
@@ -79,7 +81,7 @@ module.exports = async function handler(req, res) {
       service: 'gmail',
       auth: {
         user: senderEmail,
-        pass: process.env.EMAIL_PASS,
+        pass: emailPass,
       },
     });
 
