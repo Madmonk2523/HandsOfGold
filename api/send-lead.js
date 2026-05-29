@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const senderEmail = 'handsofgoldlongisland@gmail.com';
-const receiverEmail = 'handsofgoldlongisland@gmail.com';
+const fallbackEmail = 'handsofgoldlongisland@gmail.com';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();
@@ -72,6 +71,13 @@ module.exports = async function handler(req, res) {
   }
 
   const emailPass = normalizeAppPassword(process.env.EMAIL_PASS || process.env.GMAIL_APP_PASSWORD || '');
+  const senderEmail = sanitize(process.env.EMAIL_USER || process.env.GMAIL_USER || fallbackEmail);
+  const receiverEmail = sanitize(process.env.RECEIVER_EMAIL || process.env.LEAD_TO_EMAIL || senderEmail || fallbackEmail);
+
+  if (!senderEmail) {
+    return res.status(500).json({ error: 'Missing EMAIL_USER (or GMAIL_USER) environment variable.' });
+  }
+
   if (!emailPass) {
     return res.status(500).json({ error: 'Missing EMAIL_PASS (or GMAIL_APP_PASSWORD) environment variable.' });
   }
@@ -168,7 +174,7 @@ module.exports = async function handler(req, res) {
     console.error('Lead email send failed:', error);
 
     if (error && typeof error === 'object' && error.code === 'EAUTH') {
-      return res.status(500).json({ error: 'Email authentication failed. Confirm Gmail app password and account security settings.' });
+      return res.status(500).json({ error: 'Email authentication failed. Confirm EMAIL_USER matches the Gmail account that generated EMAIL_PASS.' });
     }
 
     if (error && typeof error === 'object' && (error.code === 'ESOCKET' || error.code === 'ETIMEDOUT')) {
