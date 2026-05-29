@@ -5,7 +5,7 @@ const configuredAppPassword = 'ewvv cxti vvkq tdfj';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const sanitize = (value) => String(value || '').replace(/[\r\n\t]/g, ' ').trim();
-const normalizeAppPassword = (value) => String(value || '').replace(/\s+/g, '').trim();
+const normalizeAppPassword = (value) => String(value || '').replace(/[\s_-]+/g, '').trim();
 
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
