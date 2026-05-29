@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const configuredEmail = 'handsofgoldlongisland@gmail.com';
+const configuredEmail = 'handsofgold@handsofgold.org';
 const configuredAppPassword = 'ewvv cxti vvkq tdfj';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -171,7 +171,7 @@ module.exports = async function handler(req, res) {
     console.error('Lead email send failed:', error);
 
     if (error && typeof error === 'object' && error.code === 'EAUTH') {
-      return res.status(500).json({ error: 'Email authentication failed. Confirm EMAIL_PASS matches the app password for handsofgoldlongisland@gmail.com.' });
+      return res.status(500).json({ error: 'Email authentication failed. Confirm EMAIL_PASS matches the app password for handsofgold@handsofgold.org.' });
     }
 
     if (error && typeof error === 'object' && (error.code === 'ESOCKET' || error.code === 'ETIMEDOUT')) {
