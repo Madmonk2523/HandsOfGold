@@ -39,6 +39,11 @@ module.exports = async function handler(req, res) {
     photoName,
     photoDataUrl,
     photoType,
+    itemType,
+    textDesign,
+    preferredVisitDate,
+    repairType,
+    description,
     leadType,
   } = req.body || {};
 
@@ -53,6 +58,11 @@ module.exports = async function handler(req, res) {
   const safeEstimatedOffer = sanitize(estimatedOffer);
   const safePhotoName = sanitize(photoName);
   const safePhotoType = sanitize(photoType);
+  const safeItemType = sanitize(itemType);
+  const safeTextDesign = sanitize(textDesign);
+  const safePreferredVisitDate = sanitize(preferredVisitDate);
+  const safeRepairType = sanitize(repairType);
+  const safeDescription = sanitize(description);
   const safeLeadType = sanitize(leadType) || 'Website Lead';
   const rawPhotoDataUrl = String(photoDataUrl || '').trim();
   const formStartTime = Number(formStart);
@@ -144,6 +154,26 @@ module.exports = async function handler(req, res) {
       textLines.push(`Estimated Offer: ${safeEstimatedOffer}`);
     }
 
+    if (safeItemType) {
+      textLines.push(`Material / Item Type: ${safeItemType}`);
+    }
+
+    if (safeTextDesign) {
+      textLines.push(`Text or Design: ${safeTextDesign}`);
+    }
+
+    if (safePreferredVisitDate) {
+      textLines.push(`Preferred Visit Date: ${safePreferredVisitDate}`);
+    }
+
+    if (safeRepairType) {
+      textLines.push(`Type of Repair: ${safeRepairType}`);
+    }
+
+    if (safeDescription) {
+      textLines.push(`Description: ${safeDescription}`);
+    }
+
     const attachments = [];
     if (rawPhotoDataUrl) {
       const photoMatch = rawPhotoDataUrl.match(/^data:(.+);base64,(.+)$/);
@@ -175,6 +205,11 @@ module.exports = async function handler(req, res) {
         ${safePurity ? `<p style="margin:0 0 8px;"><strong>Purity:</strong> ${safePurity}</p>` : ''}
         ${safeWeight ? `<p style="margin:0 0 8px;"><strong>Weight:</strong> ${safeWeight}</p>` : ''}
         ${safeEstimatedOffer ? `<p style="margin:0 0 8px;"><strong>Estimated Offer:</strong> ${safeEstimatedOffer}</p>` : ''}
+        ${safeItemType ? `<p style="margin:0 0 8px;"><strong>Material / Item Type:</strong> ${safeItemType}</p>` : ''}
+        ${safeTextDesign ? `<p style="margin:0 0 8px;"><strong>Text or Design:</strong> ${safeTextDesign}</p>` : ''}
+        ${safePreferredVisitDate ? `<p style="margin:0 0 8px;"><strong>Preferred Visit Date:</strong> ${safePreferredVisitDate}</p>` : ''}
+        ${safeRepairType ? `<p style="margin:0 0 8px;"><strong>Type of Repair:</strong> ${safeRepairType}</p>` : ''}
+        ${safeDescription ? `<p style="margin:0 0 8px;"><strong>Description:</strong> ${safeDescription}</p>` : ''}
         ${attachments.length ? `<p style="margin:0 0 8px;"><strong>Photo Attached:</strong> ${safePhotoName || 'Yes'}</p>` : ''}
       </div>
     `;

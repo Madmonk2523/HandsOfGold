@@ -19,6 +19,7 @@ const LEAD_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const LEAD_MIN_FILL_MS = 1200;
 const LEAD_API_ENDPOINT = '/api/send-lead';
 const LEAD_REQUEST_TIMEOUT_MS = 20000;
+const REPO_BASE_PATH = window.location.hostname.endsWith('github.io') ? '/HandsOfGold' : '';
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
@@ -142,7 +143,7 @@ const metalPriceNodes = {
 };
 const metalsUpdatedNode = document.getElementById('metals-updated');
 
-const METALS_DATA_URL = 'data/metals.json';
+const METALS_DATA_URL = `${REPO_BASE_PATH}/data/metals.json`;
 const METALS_REFRESH_MS = 60 * 60 * 1000;
 const METALS_CACHE_KEY = 'hog-metals-cache-v2';
 const METALS_DISPLAY_REFRESH_MS = 60 * 1000;
@@ -885,4 +886,194 @@ if (goldOfferForm && goldOfferSubmit && goldFormStatus) {
       goldOfferForm.setAttribute('aria-busy', 'false');
     }
   });
+}
+
+const setupServiceForm = ({
+  formId,
+  submitId,
+  statusId,
+  pageUrlId,
+  utmSourceId,
+  formStartId,
+  successMessage,
+  buildPayload,
+}) => {
+  const form = document.getElementById(formId);
+  const submitButton = document.getElementById(submitId);
+  const statusNode = document.getElementById(statusId);
+  const pageUrlNode = document.getElementById(pageUrlId);
+  const utmNode = document.getElementById(utmSourceId);
+  const formStartNode = document.getElementById(formStartId);
+  const emptyStateNode = form ? form.querySelector('.service-form-empty') : null;
+
+  if (!form || !submitButton || !statusNode) {
+    return;
+  }
+
+  if (pageUrlNode) {
+    pageUrlNode.value = window.location.href;
+  }
+
+  if (utmNode) {
+    const params = new URLSearchParams(window.location.search);
+    utmNode.value = params.get('utm_source') || 'direct';
+  }
+
+  if (formStartNode) {
+    formStartNode.value = String(Date.now());
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const firstName = String(formData.get('firstName') || '').trim();
+    const lastName = String(formData.get('lastName') || '').trim();
+    const fullName = `${firstName} ${lastName}`.trim();
+    const email = String(formData.get('email') || '').trim();
+    const phone = String(formData.get('phone') || '').trim();
+    const pageUrl = String(formData.get('pageUrl') || '').trim();
+    const utmSource = String(formData.get('utmSource') || '').trim();
+    const formStart = String(formData.get('formStart') || '').trim();
+    const website = String(formData.get('website') || '').trim();
+    const leadType = String(formData.get('leadType') || 'Website Lead').trim();
+
+    if (!firstName || !lastName || !email || !phone) {
+      statusNode.textContent = 'Please complete all required fields before submitting.';
+      statusNode.classList.add('is-error');
+      statusNode.classList.remove('is-success');
+      return;
+    }
+
+    if (!emailPattern.test(email)) {
+      statusNode.textContent = 'Please enter a valid email address.';
+      statusNode.classList.add('is-error');
+      statusNode.classList.remove('is-success');
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      statusNode.textContent = 'Please enter a valid phone number.';
+      statusNode.classList.add('is-error');
+      statusNode.classList.remove('is-success');
+      return;
+    }
+
+    const fillMs = Date.now() - Number(formStart || 0);
+    if (!Number.isFinite(fillMs) || fillMs < LEAD_MIN_FILL_MS) {
+      statusNode.textContent = 'Please review your details and try again.';
+      statusNode.classList.add('is-error');
+      statusNode.classList.remove('is-success');
+      return;
+    }
+
+    const payload = {
+      name: fullName,
+      email,
+      phone,
+      pageUrl,
+      utmSource,
+      formStart,
+      website,
+      leadType,
+      ...buildPayload(formData),
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
+    form.setAttribute('aria-busy', 'true');
+    statusNode.textContent = '';
+    statusNode.classList.remove('is-error', 'is-success');
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), LEAD_REQUEST_TIMEOUT_MS);
+
+      const response = await fetch(LEAD_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+      });
+
+      window.clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Lead form backend not found. Deploy with a live /api/send-lead endpoint.');
+        }
+
+        const payloadError = await response.json().catch(() => ({}));
+        throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
+      }
+
+      statusNode.textContent = successMessage;
+      statusNode.classList.add('is-success');
+      statusNode.classList.remove('is-error');
+      form.reset();
+
+      if (formStartNode) {
+        formStartNode.value = String(Date.now());
+      }
+
+      if (emptyStateNode) {
+        emptyStateNode.classList.add('is-hidden');
+      }
+    } catch (error) {
+      const message = error instanceof Error && error.message
+        ? error.message
+        : 'Something went wrong. Please try again in a moment.';
+
+      statusNode.textContent = message;
+      statusNode.classList.add('is-error');
+      statusNode.classList.remove('is-success');
+      console.error(error);
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = submitButton.dataset.defaultText || 'Submit';
+      form.setAttribute('aria-busy', 'false');
+    }
+  });
+};
+
+setupServiceForm({
+  formId: 'engraving-form',
+  submitId: 'engraving-submit',
+  statusId: 'engraving-status',
+  pageUrlId: 'engraving-page-url',
+  utmSourceId: 'engraving-utm-source',
+  formStartId: 'engraving-form-start',
+  successMessage: 'Success. Your engraving request was sent. We will contact you shortly.',
+  buildPayload: (formData) => ({
+    itemType: String(formData.get('material') || '').trim(),
+    textDesign: String(formData.get('textDesign') || '').trim(),
+    preferredVisitDate: String(formData.get('preferredVisitDate') || '').trim(),
+  }),
+});
+
+const engravingSubmitNode = document.getElementById('engraving-submit');
+if (engravingSubmitNode) {
+  engravingSubmitNode.dataset.defaultText = engravingSubmitNode.textContent;
+}
+
+setupServiceForm({
+  formId: 'repairs-form',
+  submitId: 'repairs-submit',
+  statusId: 'repairs-status',
+  pageUrlId: 'repairs-page-url',
+  utmSourceId: 'repairs-utm-source',
+  formStartId: 'repairs-form-start',
+  successMessage: 'Success. Your drop-off request was sent. We will confirm your visit soon.',
+  buildPayload: (formData) => ({
+    repairType: String(formData.get('repairType') || '').trim(),
+    description: String(formData.get('description') || '').trim(),
+    preferredVisitDate: String(formData.get('preferredDropoffDate') || '').trim(),
+  }),
+});
+
+const repairsSubmitNode = document.getElementById('repairs-submit');
+if (repairsSubmitNode) {
+  repairsSubmitNode.dataset.defaultText = repairsSubmitNode.textContent;
 }
