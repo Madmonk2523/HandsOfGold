@@ -1497,6 +1497,7 @@ const initCubanConfigurator = async () => {
 
     const ready = hasSelectedProduct();
     requiresProductBlock.hidden = !ready;
+    requiresProductBlock.classList.toggle('is-ready', ready);
     if (productGateNote) {
       productGateNote.hidden = ready;
       productGateNote.textContent = ready ? '' : 'Pick a product to start.';

@@ -2472,6 +2472,12 @@ p {
   display: grid;
   gap: 0.95rem;
 }
+.requires-product .builder-step h3 {
+  display: none;
+}
+.requires-product.is-ready .builder-step h3 {
+  display: block;
+}
 
 .service-card-grid-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
