@@ -1372,7 +1372,7 @@ const initCubanConfigurator = async () => {
 
     const mediaSet = getActiveMediaSet();
     if (!mediaSet.length) {
-      galleryPlaceholder.innerHTML = '<p>slect an item</p>';
+      galleryPlaceholder.innerHTML = '<p>select an item</p>';
       if (galleryThumbs) {
         galleryThumbs.innerHTML = '';
       }
