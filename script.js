@@ -1220,7 +1220,6 @@ const initCubanConfigurator = async () => {
     || !optionLength
     || !optionKarat
     || !requiresProductBlock
-    || !productGateNote
     || !catalogAlert
     || !summaryProduct
     || !summarySku
@@ -1419,7 +1418,10 @@ const initCubanConfigurator = async () => {
 
     const ready = hasSelectedProduct();
     requiresProductBlock.hidden = !ready;
-    productGateNote.hidden = ready;
+    if (productGateNote) {
+      productGateNote.hidden = ready;
+      productGateNote.textContent = ready ? '' : 'Pick a product to start.';
+    }
 
     if (!ready) {
       refreshSummary();
