@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Hands of Gold online store is coming soon."
+      content="Build your classic Cuban link necklace or bracelet with live spot-based pricing, exact catalog variants, and a premium Hands of Gold customization experience."
     />
     <title>Shop | Hands of Gold NY</title>
     <link rel="icon" href="logo.jpg" type="image/jpeg" />
@@ -69,10 +69,240 @@
         </div>
       </header>
 
-      <main class="page-main">
-        <section class="shop-hero">
-          <div class="container shop-hero-simple" data-reveal="up">
-            <h1>COMING SOON!!!</h1>
+      <main class="page-main cuban-shop-main" id="configurator-app">
+        <section class="shop-hero cuban-hero">
+          <div class="container cuban-hero-layout" data-reveal="up">
+            <div>
+              <p class="eyebrow">Luxury Configurator</p>
+              <h1>Classic Cuban Link Shop</h1>
+              <p class="shop-subheading">
+                Design your piece in real time. Every karat option and weight comes from your variant catalog, and pricing updates live from spot metal rates.
+              </p>
+            </div>
+            <div class="cuban-hero-badges" aria-label="Store highlights">
+              <span>Classic Cuban Link Bracelet</span>
+              <span>Classic Cuban Link Necklace</span>
+              <span>Catalog-Driven Variants</span>
+              <span>Live Spot-Based Pricing</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section cuban-config-section">
+          <div class="container cuban-config-layout">
+            <article class="cuban-gallery-card" data-reveal="up">
+              <div class="cuban-gallery-main" id="gallery-main" aria-live="polite">
+                <div class="placeholder-image-block" id="gallery-placeholder" data-color="yellow" data-view="front">
+                  <p>Image Placeholder</p>
+                  <small>Front View - Yellow Gold</small>
+                </div>
+                <button class="gallery-zoom-toggle" id="gallery-zoom" type="button">Zoom</button>
+                <button class="gallery-fullscreen-toggle" id="gallery-fullscreen" type="button">Full Screen</button>
+              </div>
+              <div class="cuban-gallery-thumbs" id="gallery-thumbs" aria-label="Gallery views">
+                <button type="button" class="is-active" data-view="front">Front View</button>
+                <button type="button" data-view="side">Side View</button>
+                <button type="button" data-view="clasp">Clasp View</button>
+                <button type="button" data-view="close">Close-Up View</button>
+                <button type="button" data-view="lifestyle">Lifestyle View</button>
+                <button type="button" data-view="wrist">On Wrist View</button>
+                <button type="button" data-view="neck">On Neck View</button>
+              </div>
+            </article>
+
+            <article class="cuban-builder-card" data-reveal="left">
+              <div class="builder-step">
+                <p class="builder-step-label">Step 1</p>
+                <h2>Select Product</h2>
+                <div class="option-grid" id="option-product" role="radiogroup" aria-label="Select product"></div>
+              </div>
+
+              <div class="builder-step">
+                <p class="builder-step-label">Step 2</p>
+                <h3>Select Width</h3>
+                <div class="option-grid option-grid-tight" id="option-width" role="radiogroup" aria-label="Select width"></div>
+              </div>
+
+              <div class="builder-step">
+                <p class="builder-step-label">Step 3</p>
+                <h3>Select Length</h3>
+                <div class="option-grid option-grid-tight" id="option-length" role="radiogroup" aria-label="Select length"></div>
+              </div>
+
+              <div class="builder-step">
+                <p class="builder-step-label">Step 4</p>
+                <h3>Select Karat</h3>
+                <div class="option-grid" id="option-karat" role="radiogroup" aria-label="Select karat"></div>
+              </div>
+
+              <div class="builder-step">
+                <p class="builder-step-label">Visual Finish</p>
+                <h3>Gold Color</h3>
+                <div class="option-grid" id="option-color" role="radiogroup" aria-label="Select gold color">
+                  <button type="button" data-color="yellow" class="is-active">Yellow Gold</button>
+                  <button type="button" data-color="white">White Gold</button>
+                  <button type="button" data-color="rose">Rose Gold</button>
+                </div>
+              </div>
+
+              <div class="config-alert" id="catalog-alert" aria-live="polite"></div>
+
+              <div class="final-config-card">
+                <h3>Final Configuration</h3>
+                <dl class="final-config-grid">
+                  <div><dt>Product</dt><dd id="summary-product">-</dd></div>
+                  <div><dt>SKU</dt><dd id="summary-sku">-</dd></div>
+                  <div><dt>Width</dt><dd id="summary-width">-</dd></div>
+                  <div><dt>Length</dt><dd id="summary-length">-</dd></div>
+                  <div><dt>Karat</dt><dd id="summary-karat">-</dd></div>
+                  <div><dt>Gold Color</dt><dd id="summary-color">-</dd></div>
+                  <div><dt>Weight</dt><dd id="summary-weight">-</dd></div>
+                  <div><dt>Availability</dt><dd id="summary-availability">-</dd></div>
+                </dl>
+              </div>
+
+              <div class="price-live-card">
+                <p>Live spot per gram: <strong id="shop-live-spot">-</strong></p>
+                <p class="live-price">Now <strong id="summary-price">-</strong></p>
+                <p class="compare-price">Was <span id="summary-compare">-</span></p>
+                <p class="price-note">Retail formula: (spot + surcharge) x purity x weight / margin. Final rounded to nearest $5.</p>
+                <div class="price-actions">
+                  <button class="button button-secondary" type="button" id="add-to-cart">Add to Cart</button>
+                  <button class="button button-primary" type="button" id="checkout-lock">Checkout / Lock Price</button>
+                </div>
+                <p class="price-lock-note" id="price-lock-note">Price locks only at checkout.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cuban-filters-section">
+          <div class="container">
+            <article class="cuban-filter-card" data-reveal="up">
+              <div class="filter-head">
+                <p class="eyebrow">Search Variants</p>
+                <h2>Instant Filtering</h2>
+              </div>
+              <div class="variant-filters">
+                <label>Product<select id="filter-product"><option value="">All</option></select></label>
+                <label>Width<select id="filter-width"><option value="">All</option></select></label>
+                <label>Length<select id="filter-length"><option value="">All</option></select></label>
+                <label>Karat<select id="filter-karat"><option value="">All</option></select></label>
+              </div>
+              <div class="variant-results" id="variant-results" aria-live="polite"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cuban-tools-section">
+          <div class="container tool-grid">
+            <article class="tool-card" data-reveal="up">
+              <p class="eyebrow">Width Comparison</p>
+              <h2>Understand The Scale</h2>
+              <div class="width-bars">
+                <div><span>5mm</span><i style="--w: 20%"></i></div>
+                <div><span>8mm</span><i style="--w: 32%"></i></div>
+                <div><span>11mm</span><i style="--w: 44%"></i></div>
+                <div><span>15mm</span><i style="--w: 60%"></i></div>
+                <div><span>17mm</span><i style="--w: 68%"></i></div>
+              </div>
+            </article>
+
+            <article class="tool-card" data-reveal="up">
+              <p class="eyebrow">Bracelet Size Guide</p>
+              <h2>Wrist Lengths</h2>
+              <div class="size-pill-grid">
+                <span>7"</span><span>7.5"</span><span>8"</span><span>8.25"</span><span>8.5"</span><span>9"</span><span>10"</span>
+              </div>
+              <p class="tool-note">Use a soft tape around wrist bone and add comfort space based on fit preference.</p>
+            </article>
+
+            <article class="tool-card" data-reveal="up">
+              <p class="eyebrow">Necklace Guide</p>
+              <h2>Drop Position Reference</h2>
+              <div class="neck-drop-list">
+                <div><strong>16"</strong><span>High neck / choker fit</span></div>
+                <div><strong>18"</strong><span>Base of neck</span></div>
+                <div><strong>20"</strong><span>Upper chest</span></div>
+                <div><strong>22"</strong><span>Mid chest</span></div>
+                <div><strong>24"</strong><span>Lower chest</span></div>
+                <div><strong>30"</strong><span>Statement drop</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cuban-admin-section">
+          <div class="container">
+            <article class="admin-card" data-reveal="up">
+              <div class="admin-head">
+                <p class="eyebrow">Admin Dashboard</p>
+                <h2>Catalog + Pricing Controls</h2>
+                <button type="button" class="button button-tertiary" id="admin-toggle">Toggle Admin</button>
+              </div>
+              <div class="admin-body" id="admin-body" hidden>
+                <div class="admin-grid">
+                  <section>
+                    <h3>Pricing Controls</h3>
+                    <div class="admin-field-grid">
+                      <label>Surcharge $/gram
+                        <input type="number" id="admin-surcharge" min="0" step="0.01" />
+                      </label>
+                      <label>Margin Divisor
+                        <input type="number" id="admin-margin" min="0.01" step="0.01" />
+                      </label>
+                      <label>Compare Multiplier
+                        <input type="number" id="admin-compare" min="0.1" step="0.01" />
+                      </label>
+                    </div>
+                    <div class="admin-actions">
+                      <button type="button" class="button button-secondary" id="admin-save-pricing">Save Pricing</button>
+                      <button type="button" class="button button-tertiary" id="admin-reset-pricing">Reset Pricing</button>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3>Catalog Import</h3>
+                    <p class="admin-note">Upload CSV with columns: product,width,length,karat,weightGrams,sku,availability</p>
+                    <input type="file" id="admin-csv" accept=".csv,text/csv" />
+                    <div class="admin-actions">
+                      <button type="button" class="button button-secondary" id="admin-import-csv">Import CSV</button>
+                      <button type="button" class="button button-tertiary" id="admin-export-json">Export JSON</button>
+                    </div>
+                  </section>
+                </div>
+
+                <section class="admin-variant-section">
+                  <div class="admin-variant-head">
+                    <h3>Variant Editor</h3>
+                    <button type="button" class="button button-secondary" id="admin-add-variant">Add Variant</button>
+                  </div>
+                  <div class="admin-table-wrap">
+                    <table class="admin-table" id="admin-variant-table">
+                      <thead>
+                        <tr>
+                          <th>Product</th>
+                          <th>Width</th>
+                          <th>Length</th>
+                          <th>Karat</th>
+                          <th>Weight</th>
+                          <th>SKU</th>
+                          <th>Availability</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                  <div class="admin-actions">
+                    <button type="button" class="button button-primary" id="admin-save-variants">Save Variants</button>
+                    <button type="button" class="button button-tertiary" id="admin-reset-variants">Reset To Seed</button>
+                  </div>
+                </section>
+
+                <p id="admin-status" class="admin-status" aria-live="polite"></p>
+              </div>
+            </article>
           </div>
         </section>
       </main>
