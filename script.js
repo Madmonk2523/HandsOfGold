@@ -1221,7 +1221,6 @@ const initCubanConfigurator = async () => {
     || !optionKarat
     || !requiresProductBlock
     || !summaryPrice
-    || !liveSpot
     || !addToCartButton
     || !priceLockNote
     || !cartToggle
@@ -1340,7 +1339,9 @@ const initCubanConfigurator = async () => {
 
   const refreshSummary = () => {
     const variant = getSelectedVariant();
-    liveSpot.textContent = formatUsd(goldPricePerGram);
+    if (liveSpot) {
+      liveSpot.textContent = formatUsd(goldPricePerGram);
+    }
 
     const pricing = calculatePrice(variant);
     summaryPrice.textContent = pricing ? formatUsd(pricing.retailPrice) : '-';
