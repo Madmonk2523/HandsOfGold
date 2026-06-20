@@ -1258,7 +1258,6 @@ const initCubanConfigurator = async () => {
     selectedKarat: '',
     selectedView: 'front',
     cart: [],
-    cartLocked: false,
   };
 
   const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
@@ -1404,13 +1403,6 @@ const initCubanConfigurator = async () => {
     ) || null;
   };
 
-  const unlockCartPrices = () => {
-    state.cartLocked = false;
-    state.cart.forEach((item) => {
-      item.lockedPrice = null;
-    });
-  };
-
   const openCart = () => {
     cartDrawer.classList.add('is-open');
     cartDrawer.setAttribute('aria-hidden', 'false');
@@ -1443,7 +1435,7 @@ const initCubanConfigurator = async () => {
     const entries = state.cart.map((item) => {
       const variant = getVariantByKey(item.key);
       const livePricing = calculatePrice(variant);
-      const unitPrice = item.lockedPrice || livePricing?.retailPrice || 0;
+      const unitPrice = livePricing?.retailPrice || 0;
       return {
         item,
         unitPrice,
@@ -1472,10 +1464,6 @@ const initCubanConfigurator = async () => {
     const subtotal = entries.reduce((sum, entry) => sum + entry.unitPrice * entry.item.quantity, 0);
 
     cartSubtotal.textContent = formatUsd(subtotal);
-
-    if (state.cartLocked) {
-      priceLockNote.textContent = 'Price locked at checkout.';
-    }
   };
 
   const renderAll = () => {
@@ -1579,8 +1567,6 @@ const initCubanConfigurator = async () => {
     const key = toCartKey(variant);
     const existing = state.cart.find((item) => item.key === key);
 
-    unlockCartPrices();
-
     if (existing) {
       existing.quantity += 1;
     } else {
@@ -1592,7 +1578,6 @@ const initCubanConfigurator = async () => {
         karat: variant.karat,
         weightText: `${variant.weightGrams.toFixed(2)} grams`,
         price: pricing.retailPrice,
-        lockedPrice: null,
         quantity: 1,
       });
     }
@@ -1627,12 +1612,10 @@ const initCubanConfigurator = async () => {
     }
 
     if (action === 'increase') {
-      unlockCartPrices();
       state.cart[index].quantity += 1;
     }
 
     if (action === 'decrease') {
-      unlockCartPrices();
       state.cart[index].quantity -= 1;
       if (state.cart[index].quantity <= 0) {
         state.cart.splice(index, 1);
@@ -1640,7 +1623,6 @@ const initCubanConfigurator = async () => {
     }
 
     if (action === 'remove') {
-      unlockCartPrices();
       state.cart.splice(index, 1);
     }
 
@@ -1649,7 +1631,6 @@ const initCubanConfigurator = async () => {
 
   cartClear.addEventListener('click', () => {
     state.cart = [];
-    state.cartLocked = false;
     renderCart();
   });
 
@@ -1658,14 +1639,7 @@ const initCubanConfigurator = async () => {
       return;
     }
 
-    state.cart.forEach((item) => {
-      const variant = getVariantByKey(item.key);
-      const livePricing = calculatePrice(variant);
-      item.lockedPrice = livePricing?.retailPrice || item.price;
-    });
-    state.cartLocked = true;
-    renderCart();
-    priceLockNote.textContent = 'Price locked at checkout.';
+    // Checkout is a placeholder; final price lock happens in real payment flow.
     closeCart();
   });
 
