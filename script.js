@@ -1262,14 +1262,14 @@ const initCubanConfigurator = async () => {
 
   const mediaCatalog = {
     bracelet: [
-      { type: 'image', src: 'cuban-bracelet-closeup.jpg', label: 'Bracelet Close-Up' },
-      { type: 'image', src: 'cuban-bracelet-standing.jpg', label: 'Bracelet Full View' },
+      { type: 'image', src: 'cuban-bracelet-closeup.jpg', label: 'Bracelet Pic 1' },
+      { type: 'image', src: 'cuban-bracelet-standing.jpg', label: 'Bracelet Pic 2' },
       { type: 'image', src: 'cuban-bracelet-on-wrist.jpg', label: 'Bracelet On Wrist' },
       { type: 'video', src: 'cuban-bracelet-video.mp4', label: 'Bracelet Video' },
     ],
     necklace: [
-      { type: 'image', src: 'cuban-necklace-hero.jpg', label: 'Necklace Hero' },
-      { type: 'image', src: 'cuban-necklace-clasp-closeup.jpg', label: 'Necklace Clasp Close-Up' },
+      { type: 'image', src: 'cuban-necklace-hero.jpg', label: 'Necklace Pic 1' },
+      { type: 'image', src: 'cuban-necklace-clasp-closeup.jpg', label: 'Necklace Pic 2' },
       { type: 'video', src: 'cuban-necklace-video.mp4', label: 'Necklace Video' },
     ],
   };
@@ -1311,10 +1311,7 @@ const initCubanConfigurator = async () => {
       return mediaCatalog[state.selectedProduct] || [];
     }
 
-    return [
-      ...(mediaCatalog.bracelet || []),
-      ...(mediaCatalog.necklace || []),
-    ];
+    return [];
   };
 
   const renderOptionButtons = ({ root, values, activeValue, onSelect }) => {
@@ -1375,7 +1372,7 @@ const initCubanConfigurator = async () => {
 
     const mediaSet = getActiveMediaSet();
     if (!mediaSet.length) {
-      galleryPlaceholder.innerHTML = '<p>No media uploaded yet.</p>';
+      galleryPlaceholder.innerHTML = '<p>slect an item</p>';
       if (galleryThumbs) {
         galleryThumbs.innerHTML = '';
       }
