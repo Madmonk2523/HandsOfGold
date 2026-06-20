@@ -117,7 +117,7 @@
                 <div class="option-grid option-product-grid" id="option-product" role="radiogroup" aria-label="Select product"></div>
               </div>
 
-              <p class="product-gate-note" id="product-gate-note">Choose a product to unlock specs and checkout.</p>
+              <p class="product-gate-note" id="product-gate-note">Choose a product to unlock specs.</p>
 
               <div class="requires-product" id="requires-product-block" hidden>
 
@@ -139,16 +139,6 @@
                 <div class="option-grid" id="option-karat" role="radiogroup" aria-label="Select karat"></div>
               </div>
 
-              <div class="builder-step">
-                <p class="builder-step-label">Visual Finish</p>
-                <h3>Gold Color</h3>
-                <div class="option-grid" id="option-color" role="radiogroup" aria-label="Select gold color">
-                  <button type="button" data-color="yellow" class="is-active">Yellow Gold</button>
-                  <button type="button" data-color="white">White Gold</button>
-                  <button type="button" data-color="rose">Rose Gold</button>
-                </div>
-              </div>
-
               <div class="config-alert" id="catalog-alert" aria-live="polite"></div>
 
               <div class="final-config-card">
@@ -159,7 +149,6 @@
                   <div><dt>Width</dt><dd id="summary-width">-</dd></div>
                   <div><dt>Length</dt><dd id="summary-length">-</dd></div>
                   <div><dt>Karat</dt><dd id="summary-karat">-</dd></div>
-                  <div><dt>Gold Color</dt><dd id="summary-color">-</dd></div>
                   <div><dt>Weight</dt><dd id="summary-weight">-</dd></div>
                   <div><dt>Availability</dt><dd id="summary-availability">-</dd></div>
                 </dl>
@@ -173,136 +162,6 @@
                 </div>
                 <p class="price-lock-note" id="price-lock-note">Live price updates with spot.</p>
               </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section cuban-filters-section">
-          <div class="container">
-            <article class="cuban-filter-card" data-reveal="up">
-              <div class="filter-head">
-                <p class="eyebrow">Search Variants</p>
-                <h2>Instant Filtering</h2>
-              </div>
-              <div class="variant-filters">
-                <label>Product<select id="filter-product"><option value="">All</option></select></label>
-                <label>Width<select id="filter-width"><option value="">All</option></select></label>
-                <label>Length<select id="filter-length"><option value="">All</option></select></label>
-                <label>Karat<select id="filter-karat"><option value="">All</option></select></label>
-              </div>
-              <div class="variant-results" id="variant-results" aria-live="polite"></div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section cuban-tools-section">
-          <div class="container tool-grid">
-            <article class="tool-card" data-reveal="up">
-              <p class="eyebrow">Width Comparison</p>
-              <h2>Understand The Scale</h2>
-              <div class="width-bars">
-                <div><span>5mm</span><i style="--w: 20%"></i></div>
-                <div><span>8mm</span><i style="--w: 32%"></i></div>
-                <div><span>11mm</span><i style="--w: 44%"></i></div>
-                <div><span>15mm</span><i style="--w: 60%"></i></div>
-                <div><span>17mm</span><i style="--w: 68%"></i></div>
-              </div>
-            </article>
-
-            <article class="tool-card" data-reveal="up">
-              <p class="eyebrow">Bracelet Size Guide</p>
-              <h2>Wrist Lengths</h2>
-              <div class="size-pill-grid">
-                <span>7"</span><span>7.5"</span><span>8"</span><span>8.25"</span><span>8.5"</span><span>9"</span><span>10"</span>
-              </div>
-              <p class="tool-note">Use a soft tape around wrist bone and add comfort space based on fit preference.</p>
-            </article>
-
-            <article class="tool-card" data-reveal="up">
-              <p class="eyebrow">Necklace Guide</p>
-              <h2>Drop Position Reference</h2>
-              <div class="neck-drop-list">
-                <div><strong>16"</strong><span>High neck / choker fit</span></div>
-                <div><strong>18"</strong><span>Base of neck</span></div>
-                <div><strong>20"</strong><span>Upper chest</span></div>
-                <div><strong>22"</strong><span>Mid chest</span></div>
-                <div><strong>24"</strong><span>Lower chest</span></div>
-                <div><strong>30"</strong><span>Statement drop</span></div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section cuban-admin-section">
-          <div class="container">
-            <article class="admin-card" data-reveal="up">
-              <div class="admin-head">
-                <p class="eyebrow">Admin Dashboard</p>
-                <h2>Catalog + Pricing Controls</h2>
-                <button type="button" class="button button-tertiary" id="admin-toggle">Toggle Admin</button>
-              </div>
-              <div class="admin-body" id="admin-body" hidden>
-                <div class="admin-grid">
-                  <section>
-                    <h3>Pricing Controls</h3>
-                    <div class="admin-field-grid">
-                      <label>Surcharge $/gram
-                        <input type="number" id="admin-surcharge" min="0" step="0.01" />
-                      </label>
-                      <label>Margin Divisor
-                        <input type="number" id="admin-margin" min="0.01" step="0.01" />
-                      </label>
-                      <label>Compare Multiplier
-                        <input type="number" id="admin-compare" min="0.1" step="0.01" />
-                      </label>
-                    </div>
-                    <div class="admin-actions">
-                      <button type="button" class="button button-secondary" id="admin-save-pricing">Save Pricing</button>
-                      <button type="button" class="button button-tertiary" id="admin-reset-pricing">Reset Pricing</button>
-                    </div>
-                  </section>
-
-                  <section>
-                    <h3>Catalog Import</h3>
-                    <p class="admin-note">Upload CSV with columns: product,width,length,karat,weightGrams,sku,availability</p>
-                    <input type="file" id="admin-csv" accept=".csv,text/csv" />
-                    <div class="admin-actions">
-                      <button type="button" class="button button-secondary" id="admin-import-csv">Import CSV</button>
-                      <button type="button" class="button button-tertiary" id="admin-export-json">Export JSON</button>
-                    </div>
-                  </section>
-                </div>
-
-                <section class="admin-variant-section">
-                  <div class="admin-variant-head">
-                    <h3>Variant Editor</h3>
-                    <button type="button" class="button button-secondary" id="admin-add-variant">Add Variant</button>
-                  </div>
-                  <div class="admin-table-wrap">
-                    <table class="admin-table" id="admin-variant-table">
-                      <thead>
-                        <tr>
-                          <th>Product</th>
-                          <th>Width</th>
-                          <th>Length</th>
-                          <th>Karat</th>
-                          <th>Weight</th>
-                          <th>SKU</th>
-                          <th>Availability</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                  </div>
-                  <div class="admin-actions">
-                    <button type="button" class="button button-primary" id="admin-save-variants">Save Variants</button>
-                    <button type="button" class="button button-tertiary" id="admin-reset-variants">Reset To Seed</button>
-                  </div>
-                </section>
-
-                <p id="admin-status" class="admin-status" aria-live="polite"></p>
               </div>
             </article>
           </div>

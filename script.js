@@ -1192,7 +1192,6 @@ const initCubanConfigurator = async () => {
   const optionWidth = document.getElementById('option-width');
   const optionLength = document.getElementById('option-length');
   const optionKarat = document.getElementById('option-karat');
-  const optionColor = document.getElementById('option-color');
   const requiresProductBlock = document.getElementById('requires-product-block');
   const productGateNote = document.getElementById('product-gate-note');
   const catalogAlert = document.getElementById('catalog-alert');
@@ -1202,7 +1201,6 @@ const initCubanConfigurator = async () => {
   const summaryWidth = document.getElementById('summary-width');
   const summaryLength = document.getElementById('summary-length');
   const summaryKarat = document.getElementById('summary-karat');
-  const summaryColor = document.getElementById('summary-color');
   const summaryWeight = document.getElementById('summary-weight');
   const summaryAvailability = document.getElementById('summary-availability');
   const summaryPrice = document.getElementById('summary-price');
@@ -1216,68 +1214,25 @@ const initCubanConfigurator = async () => {
   const galleryZoom = document.getElementById('gallery-zoom');
   const galleryFullscreen = document.getElementById('gallery-fullscreen');
 
-  const filterProduct = document.getElementById('filter-product');
-  const filterWidth = document.getElementById('filter-width');
-  const filterLength = document.getElementById('filter-length');
-  const filterKarat = document.getElementById('filter-karat');
-  const variantResults = document.getElementById('variant-results');
-
-  const adminToggle = document.getElementById('admin-toggle');
-  const adminBody = document.getElementById('admin-body');
-  const adminSurcharge = document.getElementById('admin-surcharge');
-  const adminMargin = document.getElementById('admin-margin');
-  const adminCompare = document.getElementById('admin-compare');
-  const adminSavePricing = document.getElementById('admin-save-pricing');
-  const adminResetPricing = document.getElementById('admin-reset-pricing');
-  const adminCsv = document.getElementById('admin-csv');
-  const adminImportCsv = document.getElementById('admin-import-csv');
-  const adminExportJson = document.getElementById('admin-export-json');
-  const adminAddVariant = document.getElementById('admin-add-variant');
-  const adminSaveVariants = document.getElementById('admin-save-variants');
-  const adminResetVariants = document.getElementById('admin-reset-variants');
-  const adminVariantTable = document.getElementById('admin-variant-table');
-  const adminStatus = document.getElementById('admin-status');
-
   if (
     !optionProduct
     || !optionWidth
     || !optionLength
     || !optionKarat
-    || !optionColor
     || !requiresProductBlock
     || !productGateNote
+    || !catalogAlert
     || !summaryProduct
     || !summarySku
     || !summaryWidth
     || !summaryLength
     || !summaryKarat
-    || !summaryColor
     || !summaryWeight
     || !summaryAvailability
     || !summaryPrice
     || !liveSpot
     || !addToCartButton
     || !priceLockNote
-    || !filterProduct
-    || !filterWidth
-    || !filterLength
-    || !filterKarat
-    || !variantResults
-    || !adminToggle
-    || !adminBody
-    || !adminSurcharge
-    || !adminMargin
-    || !adminCompare
-    || !adminSavePricing
-    || !adminResetPricing
-    || !adminCsv
-    || !adminImportCsv
-    || !adminExportJson
-    || !adminAddVariant
-    || !adminSaveVariants
-    || !adminResetVariants
-    || !adminVariantTable
-    || !adminStatus
   ) {
     return;
   }
@@ -1294,58 +1249,29 @@ const initCubanConfigurator = async () => {
     ? await catalogResponse.json()
     : { products: {}, variants: [], pricingConfig: defaultPricingConfig };
 
-  const seedVariants = safeVariants(seedCatalog?.variants);
-  const seedPricing = safePricingConfig(seedCatalog?.pricingConfig);
-
-  const localCatalogRaw = window.localStorage.getItem(CUBAN_CATALOG_STORAGE_KEY);
-  const localPricingRaw = window.localStorage.getItem(CUBAN_PRICING_STORAGE_KEY);
-
-  let state = {
+  const state = {
     products: seedCatalog?.products || {},
-    variants: seedVariants,
-    pricingConfig: seedPricing,
+    variants: safeVariants(seedCatalog?.variants),
+    pricingConfig: safePricingConfig(seedCatalog?.pricingConfig),
     selectedProduct: '',
     selectedWidth: '',
     selectedLength: '',
     selectedKarat: '',
-    selectedColor: 'yellow',
     selectedView: 'front',
-    cart: null,
   };
 
-  if (localCatalogRaw) {
-    try {
-      const parsed = JSON.parse(localCatalogRaw);
-      state.variants = safeVariants(parsed?.variants);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  if (localPricingRaw) {
-    try {
-      const parsed = JSON.parse(localPricingRaw);
-      state.pricingConfig = safePricingConfig(parsed);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
 
   const getWidths = (product) => Object.keys(state.products?.[product]?.widths || {});
-
-  const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
 
   const getLengths = (product, width) => {
     const widths = state.products?.[product]?.widths || {};
     return widths[width] || [];
   };
 
-  const getMatchingVariants = (product, width, length) => state.variants.filter(
-    (variant) => variant.product === product && variant.width === width && variant.length === length
-  );
-
   const getKaratsForSelection = (product, width, length) => {
-    const options = getMatchingVariants(product, width, length)
+    const options = state.variants
+      .filter((variant) => variant.product === product && variant.width === width && variant.length === length)
       .map((variant) => variant.karat)
       .filter(Boolean);
 
@@ -1359,35 +1285,6 @@ const initCubanConfigurator = async () => {
     && variant.karat === state.selectedKarat
   );
 
-  const calculatePrices = (variant) => {
-    if (!variant) {
-      return null;
-    }
-
-    const purity = CUBAN_PURITY[variant.karat] || null;
-    if (!purity) {
-      return null;
-    }
-
-    const spot = goldPricePerGram;
-    const retailBase = ((spot + state.pricingConfig.surchargePerGram) * purity * variant.weightGrams)
-      / state.pricingConfig.marginDivisor;
-    const retailPrice = roundToFive(retailBase);
-    const compareAtPrice = spot * purity * variant.weightGrams * state.pricingConfig.compareMultiplier;
-
-    return {
-      spot,
-      retailPrice,
-      compareAtPrice,
-    };
-  };
-
-  const colorLabel = {
-    yellow: 'Yellow Gold',
-    white: 'White Gold',
-    rose: 'Rose Gold',
-  };
-
   const viewLabel = {
     front: 'Front View',
     side: 'Side View',
@@ -1396,10 +1293,6 @@ const initCubanConfigurator = async () => {
     lifestyle: 'Lifestyle View',
     wrist: 'On Wrist View',
     neck: 'On Neck View',
-  };
-
-  const setAlert = (message) => {
-    catalogAlert.textContent = message;
   };
 
   const renderOptionButtons = ({ root, values, activeValue, onSelect }) => {
@@ -1423,6 +1316,23 @@ const initCubanConfigurator = async () => {
     });
   };
 
+  const calculatePrice = (variant) => {
+    if (!variant) {
+      return null;
+    }
+
+    const purity = CUBAN_PURITY[variant.karat] || null;
+    if (!purity) {
+      return null;
+    }
+
+    const spot = goldPricePerGram;
+    const retailBase = ((spot + state.pricingConfig.surchargePerGram) * purity * variant.weightGrams)
+      / state.pricingConfig.marginDivisor;
+
+    return roundToFive(retailBase);
+  };
+
   const refreshSummary = () => {
     const variant = getSelectedVariant();
     const productName = state.products?.[state.selectedProduct]?.name || '-';
@@ -1432,19 +1342,12 @@ const initCubanConfigurator = async () => {
     summaryWidth.textContent = state.selectedWidth || '-';
     summaryLength.textContent = state.selectedLength || '-';
     summaryKarat.textContent = state.selectedKarat || '-';
-    summaryColor.textContent = colorLabel[state.selectedColor] || '-';
     summaryWeight.textContent = variant ? `${variant.weightGrams.toFixed(2)} grams` : '-';
     summaryAvailability.textContent = variant?.availability || '-';
-
     liveSpot.textContent = formatUsd(goldPricePerGram);
 
-    const pricing = calculatePrices(variant);
-    if (!pricing) {
-      summaryPrice.textContent = '-';
-      return;
-    }
-
-    summaryPrice.textContent = formatUsd(pricing.retailPrice);
+    const price = calculatePrice(variant);
+    summaryPrice.textContent = price ? formatUsd(price) : '-';
   };
 
   const refreshGallery = () => {
@@ -1452,11 +1355,11 @@ const initCubanConfigurator = async () => {
       return;
     }
 
-    galleryPlaceholder.dataset.color = state.selectedColor;
+    galleryPlaceholder.dataset.color = 'yellow';
     galleryPlaceholder.dataset.view = state.selectedView;
     galleryPlaceholder.innerHTML = `
       <p>Image Placeholder</p>
-      <small>${viewLabel[state.selectedView]} - ${colorLabel[state.selectedColor]}</small>
+      <small>${viewLabel[state.selectedView]} - Yellow Gold</small>
     `;
 
     if (galleryThumbs) {
@@ -1468,146 +1371,12 @@ const initCubanConfigurator = async () => {
     }
   };
 
-  const refreshFilters = () => {
-    const products = Array.from(new Set(state.variants.map((variant) => variant.product)));
-    const widths = Array.from(new Set(state.variants.map((variant) => variant.width)));
-    const lengths = Array.from(new Set(state.variants.map((variant) => variant.length)));
-    const karats = Array.from(new Set(state.variants.map((variant) => variant.karat)));
-
-    const fillSelect = (select, values, defaultLabel) => {
-      const current = select.value;
-      select.innerHTML = '';
-      const defaultOption = document.createElement('option');
-      defaultOption.value = '';
-      defaultOption.textContent = defaultLabel;
-      select.appendChild(defaultOption);
-
-      values.sort().forEach((value) => {
-        const option = document.createElement('option');
-        option.value = value;
-        option.textContent = value;
-        select.appendChild(option);
-      });
-
-      select.value = values.includes(current) ? current : '';
-    };
-
-    fillSelect(filterProduct, products, 'All');
-    fillSelect(filterWidth, widths, 'All');
-    fillSelect(filterLength, lengths, 'All');
-    fillSelect(filterKarat, karats, 'All');
-  };
-
-  const refreshFilterResults = () => {
-    const rows = state.variants.filter((variant) => {
-      if (filterProduct.value && variant.product !== filterProduct.value) {
-        return false;
-      }
-
-      if (filterWidth.value && variant.width !== filterWidth.value) {
-        return false;
-      }
-
-      if (filterLength.value && variant.length !== filterLength.value) {
-        return false;
-      }
-
-      if (filterKarat.value && variant.karat !== filterKarat.value) {
-        return false;
-      }
-
-      return true;
-    });
-
-    if (!rows.length) {
-      variantResults.innerHTML = '<p class="variant-empty">No matching variants.</p>';
-      return;
-    }
-
-    const tableRows = rows
-      .map((row) => `
-        <tr>
-          <td>${row.product}</td>
-          <td>${row.width}</td>
-          <td>${row.length}</td>
-          <td>${row.karat}</td>
-          <td>${row.weightGrams.toFixed(2)}g</td>
-          <td>${row.sku || '-'}</td>
-          <td>${row.availability}</td>
-        </tr>
-      `)
-      .join('');
-
-    variantResults.innerHTML = `
-      <table class="variant-table">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Width</th>
-            <th>Length</th>
-            <th>Karat</th>
-            <th>Weight</th>
-            <th>SKU</th>
-            <th>Availability</th>
-          </tr>
-        </thead>
-        <tbody>${tableRows}</tbody>
-      </table>
-    `;
-  };
-
-  const renderAdminTable = () => {
-    const tableBody = adminVariantTable.querySelector('tbody');
-    if (!tableBody) {
-      return;
-    }
-
-    tableBody.innerHTML = '';
-    state.variants.forEach((variant, index) => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td><input type="text" value="${variant.product}" data-field="product" data-index="${index}" /></td>
-        <td><input type="text" value="${variant.width}" data-field="width" data-index="${index}" /></td>
-        <td><input type="text" value="${variant.length}" data-field="length" data-index="${index}" /></td>
-        <td><input type="text" value="${variant.karat}" data-field="karat" data-index="${index}" /></td>
-        <td><input type="number" value="${variant.weightGrams}" data-field="weightGrams" data-index="${index}" step="0.01" min="0" /></td>
-        <td><input type="text" value="${variant.sku}" data-field="sku" data-index="${index}" /></td>
-        <td><input type="text" value="${variant.availability}" data-field="availability" data-index="${index}" /></td>
-        <td><button type="button" class="admin-delete-row" data-index="${index}">Delete</button></td>
-      `;
-      tableBody.appendChild(row);
-    });
-
-    tableBody.querySelectorAll('.admin-delete-row').forEach((button) => {
-      button.addEventListener('click', () => {
-        const index = Number.parseInt(button.dataset.index || '', 10);
-        if (!Number.isFinite(index)) {
-          return;
-        }
-
-        state.variants.splice(index, 1);
-        renderAdminTable();
-      });
-    });
-  };
-
-  const saveCatalogToStorage = () => {
-    window.localStorage.setItem(
-      CUBAN_CATALOG_STORAGE_KEY,
-      JSON.stringify({ variants: state.variants })
-    );
-  };
-
-  const savePricingToStorage = () => {
-    window.localStorage.setItem(CUBAN_PRICING_STORAGE_KEY, JSON.stringify(state.pricingConfig));
-  };
-
   const repopulateSelections = () => {
     if (!hasSelectedProduct()) {
       state.selectedWidth = '';
       state.selectedLength = '';
       state.selectedKarat = '';
-      setAlert('Pick bracelet or necklace to continue.');
+      catalogAlert.textContent = 'Pick bracelet or necklace to continue.';
       return;
     }
 
@@ -1626,18 +1395,15 @@ const initCubanConfigurator = async () => {
       state.selectedKarat = karats[0] || '';
     }
 
-    setAlert(
-      karats.length
-        ? 'Variants loaded from catalog. Only valid karats are shown for this width/length.'
-        : 'No karat variant found for this width/length in current catalog. Import your CSV to unlock exact options.'
-    );
+    catalogAlert.textContent = karats.length
+      ? 'Only valid catalog karats are shown for this size.'
+      : 'No karat variant found for this width/length in current catalog.';
   };
 
   const renderAll = () => {
     repopulateSelections();
 
     const productChoices = ['bracelet', 'necklace'];
-
     renderOptionButtons({
       root: optionProduct,
       values: productChoices.map((value) => state.products?.[value]?.name || value),
@@ -1651,18 +1417,13 @@ const initCubanConfigurator = async () => {
       },
     });
 
-    const isReady = hasSelectedProduct();
-    requiresProductBlock.hidden = !isReady;
-    productGateNote.hidden = isReady;
-    if (!isReady) {
+    const ready = hasSelectedProduct();
+    requiresProductBlock.hidden = !ready;
+    productGateNote.hidden = ready;
+
+    if (!ready) {
       refreshSummary();
       refreshGallery();
-      refreshFilters();
-      refreshFilterResults();
-      renderAdminTable();
-      adminSurcharge.value = String(state.pricingConfig.surchargePerGram);
-      adminMargin.value = String(state.pricingConfig.marginDivisor);
-      adminCompare.value = String(state.pricingConfig.compareMultiplier);
       return;
     }
 
@@ -1696,28 +1457,9 @@ const initCubanConfigurator = async () => {
       },
     });
 
-    optionColor.querySelectorAll('button').forEach((button) => {
-      const isActive = button.dataset.color === state.selectedColor;
-      button.classList.toggle('is-active', isActive);
-    });
-
     refreshSummary();
     refreshGallery();
-    refreshFilters();
-    refreshFilterResults();
-    renderAdminTable();
-
-    adminSurcharge.value = String(state.pricingConfig.surchargePerGram);
-    adminMargin.value = String(state.pricingConfig.marginDivisor);
-    adminCompare.value = String(state.pricingConfig.compareMultiplier);
   };
-
-  optionColor.querySelectorAll('button').forEach((button) => {
-    button.addEventListener('click', () => {
-      state.selectedColor = button.dataset.color || 'yellow';
-      renderAll();
-    });
-  });
 
   if (galleryThumbs) {
     galleryThumbs.querySelectorAll('button').forEach((button) => {
@@ -1741,7 +1483,6 @@ const initCubanConfigurator = async () => {
           await document.exitFullscreen();
           return;
         }
-
         await galleryMain.requestFullscreen();
       } catch (error) {
         console.error(error);
@@ -1749,151 +1490,16 @@ const initCubanConfigurator = async () => {
     });
   }
 
-  [filterProduct, filterWidth, filterLength, filterKarat].forEach((select) => {
-    select.addEventListener('change', refreshFilterResults);
-  });
-
   addToCartButton.addEventListener('click', () => {
     const variant = getSelectedVariant();
     if (!variant) {
       priceLockNote.textContent = 'Cannot add to cart. Select a catalog-backed karat option first.';
       return;
     }
-
-    state.cart = {
-      variant,
-      color: state.selectedColor,
-      addedAt: Date.now(),
-    };
     priceLockNote.textContent = 'Added to cart.';
   });
 
-  adminToggle.addEventListener('click', () => {
-    const isOpen = adminBody.hasAttribute('hidden');
-    if (isOpen) {
-      adminBody.removeAttribute('hidden');
-    } else {
-      adminBody.setAttribute('hidden', 'hidden');
-    }
-  });
-
-  adminSavePricing.addEventListener('click', () => {
-    state.pricingConfig = safePricingConfig({
-      surchargePerGram: adminSurcharge.value,
-      marginDivisor: adminMargin.value,
-      compareMultiplier: adminCompare.value,
-    });
-    savePricingToStorage();
-    adminStatus.textContent = 'Pricing config saved.';
-    renderAll();
-  });
-
-  adminResetPricing.addEventListener('click', () => {
-    state.pricingConfig = { ...seedPricing };
-    savePricingToStorage();
-    adminStatus.textContent = 'Pricing config reset to seed defaults.';
-    renderAll();
-  });
-
-  adminAddVariant.addEventListener('click', () => {
-    state.variants.push({
-      product: hasSelectedProduct() ? state.selectedProduct : 'bracelet',
-      width: state.selectedWidth || '8mm',
-      length: state.selectedLength || '8"',
-      karat: state.selectedKarat || '14K',
-      weightGrams: 1,
-      sku: '',
-      availability: 'Made To Order',
-    });
-    renderAdminTable();
-    adminStatus.textContent = 'Variant row added.';
-  });
-
-  adminSaveVariants.addEventListener('click', () => {
-    const tableBody = adminVariantTable.querySelector('tbody');
-    if (!tableBody) {
-      return;
-    }
-
-    const rows = Array.from(tableBody.querySelectorAll('tr'));
-    const editedVariants = rows.map((row) => {
-      const getValue = (field) => {
-        const input = row.querySelector(`input[data-field="${field}"]`);
-        return input ? input.value : '';
-      };
-
-      return {
-        product: getValue('product'),
-        width: getValue('width'),
-        length: getValue('length'),
-        karat: getValue('karat'),
-        weightGrams: getValue('weightGrams'),
-        sku: getValue('sku'),
-        availability: getValue('availability'),
-      };
-    });
-
-    state.variants = safeVariants(editedVariants);
-    saveCatalogToStorage();
-    adminStatus.textContent = 'Variants saved.';
-    renderAll();
-  });
-
-  adminResetVariants.addEventListener('click', () => {
-    state.variants = [...seedVariants];
-    saveCatalogToStorage();
-    adminStatus.textContent = 'Variants reset to seed catalog.';
-    renderAll();
-  });
-
-  adminImportCsv.addEventListener('click', async () => {
-    const file = adminCsv.files && adminCsv.files[0];
-    if (!file) {
-      adminStatus.textContent = 'Select a CSV file first.';
-      return;
-    }
-
-    try {
-      const csvText = await file.text();
-      const parsed = parseCatalogCsv(csvText);
-      const cleaned = safeVariants(parsed);
-
-      if (!cleaned.length) {
-        adminStatus.textContent = 'No valid variants found in CSV.';
-        return;
-      }
-
-      state.variants = cleaned;
-      saveCatalogToStorage();
-      adminStatus.textContent = `Imported ${cleaned.length} variants from CSV.`;
-      renderAll();
-    } catch (error) {
-      adminStatus.textContent = 'CSV import failed.';
-      console.error(error);
-    }
-  });
-
-  adminExportJson.addEventListener('click', () => {
-    const payload = {
-      products: state.products,
-      variants: state.variants,
-      pricingConfig: state.pricingConfig,
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = 'cuban-catalog-export.json';
-    anchor.click();
-    URL.revokeObjectURL(url);
-    adminStatus.textContent = 'Catalog JSON exported.';
-  });
-
-  window.setInterval(() => {
-    refreshSummary();
-  }, 2500);
-
+  window.setInterval(refreshSummary, 2500);
   renderAll();
 };
 
