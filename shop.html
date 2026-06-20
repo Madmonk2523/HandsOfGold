@@ -114,8 +114,12 @@
               <div class="builder-step">
                 <p class="builder-step-label">Step 1</p>
                 <h2>Select Product</h2>
-                <div class="option-grid" id="option-product" role="radiogroup" aria-label="Select product"></div>
+                <div class="option-grid option-product-grid" id="option-product" role="radiogroup" aria-label="Select product"></div>
               </div>
+
+              <p class="product-gate-note" id="product-gate-note">Choose a product to unlock specs and checkout.</p>
+
+              <div class="requires-product" id="requires-product-block" hidden>
 
               <div class="builder-step">
                 <p class="builder-step-label">Step 2</p>
@@ -163,14 +167,12 @@
 
               <div class="price-live-card">
                 <p>Live spot per gram: <strong id="shop-live-spot">-</strong></p>
-                <p class="live-price">Now <strong id="summary-price">-</strong></p>
-                <p class="compare-price">Was <span id="summary-compare">-</span></p>
-                <p class="price-note">Retail formula: (spot + surcharge) x purity x weight / margin. Final rounded to nearest $5.</p>
+                <p class="live-price compact-price-line"><span>Price</span><strong id="summary-price">-</strong></p>
                 <div class="price-actions">
                   <button class="button button-secondary" type="button" id="add-to-cart">Add to Cart</button>
-                  <button class="button button-primary" type="button" id="checkout-lock">Checkout / Lock Price</button>
                 </div>
-                <p class="price-lock-note" id="price-lock-note">Price locks only at checkout.</p>
+                <p class="price-lock-note" id="price-lock-note">Live price updates with spot.</p>
+              </div>
               </div>
             </article>
           </div>

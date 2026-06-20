@@ -2867,7 +2867,7 @@ p {
 .cuban-config-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
-  gap: 1.1rem;
+  gap: 0.85rem;
   align-items: start;
 }
 
@@ -2902,7 +2902,7 @@ p {
 .cuban-filter-card,
 .tool-card,
 .admin-card {
-  padding: 1.35rem;
+  padding: 1rem;
 }
 
 .cuban-gallery-main {
@@ -3018,17 +3018,17 @@ p {
 }
 
 .builder-step {
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }
 
 .builder-step h2 {
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
-  margin-bottom: 0.65rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  margin-bottom: 0.45rem;
 }
 
 .builder-step h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.45rem;
+  font-size: 1.02rem;
+  margin-bottom: 0.35rem;
 }
 
 .builder-step-label {
@@ -3043,6 +3043,34 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+}
+
+.option-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.option-product-grid button {
+  min-height: 72px;
+  text-align: left;
+  padding: 0.8rem;
+  font-weight: 700;
+}
+
+.product-gate-note {
+  margin: 0.2rem 0 0.8rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 221, 164, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(245, 239, 229, 0.85);
+  font-size: 0.88rem;
+}
+
+.requires-product {
+  display: grid;
+  gap: 0.3rem;
 }
 
 .option-grid-tight button {
@@ -3075,8 +3103,8 @@ p {
   border-radius: 16px;
   border: 1px solid rgba(255, 222, 166, 0.2);
   background: rgba(255, 255, 255, 0.04);
-  padding: 1rem;
-  margin-top: 0.9rem;
+  padding: 0.8rem;
+  margin-top: 0.65rem;
 }
 
 .final-config-card h3,
@@ -3116,9 +3144,24 @@ p {
 
 .price-actions {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0.6rem;
-  margin: 0.7rem 0;
+  margin: 0.55rem 0;
+}
+
+.compact-price-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.compact-price-line span {
+  color: rgba(245, 239, 229, 0.78);
+}
+
+.compact-price-line strong {
+  font-size: 1.2rem;
 }
 
 .variant-filters {
@@ -3364,6 +3407,10 @@ p {
 @media (max-width: 640px) {
   .cuban-hero {
     padding-top: 7rem;
+  }
+
+  .option-product-grid {
+    grid-template-columns: 1fr;
   }
 
   .final-config-grid,

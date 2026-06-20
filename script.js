@@ -1193,6 +1193,8 @@ const initCubanConfigurator = async () => {
   const optionLength = document.getElementById('option-length');
   const optionKarat = document.getElementById('option-karat');
   const optionColor = document.getElementById('option-color');
+  const requiresProductBlock = document.getElementById('requires-product-block');
+  const productGateNote = document.getElementById('product-gate-note');
   const catalogAlert = document.getElementById('catalog-alert');
 
   const summaryProduct = document.getElementById('summary-product');
@@ -1204,10 +1206,8 @@ const initCubanConfigurator = async () => {
   const summaryWeight = document.getElementById('summary-weight');
   const summaryAvailability = document.getElementById('summary-availability');
   const summaryPrice = document.getElementById('summary-price');
-  const summaryCompare = document.getElementById('summary-compare');
   const liveSpot = document.getElementById('shop-live-spot');
   const addToCartButton = document.getElementById('add-to-cart');
-  const checkoutLockButton = document.getElementById('checkout-lock');
   const priceLockNote = document.getElementById('price-lock-note');
 
   const galleryMain = document.getElementById('gallery-main');
@@ -1244,6 +1244,8 @@ const initCubanConfigurator = async () => {
     || !optionLength
     || !optionKarat
     || !optionColor
+    || !requiresProductBlock
+    || !productGateNote
     || !summaryProduct
     || !summarySku
     || !summaryWidth
@@ -1253,10 +1255,8 @@ const initCubanConfigurator = async () => {
     || !summaryWeight
     || !summaryAvailability
     || !summaryPrice
-    || !summaryCompare
     || !liveSpot
     || !addToCartButton
-    || !checkoutLockButton
     || !priceLockNote
     || !filterProduct
     || !filterWidth
@@ -1304,14 +1304,13 @@ const initCubanConfigurator = async () => {
     products: seedCatalog?.products || {},
     variants: seedVariants,
     pricingConfig: seedPricing,
-    selectedProduct: 'bracelet',
+    selectedProduct: '',
     selectedWidth: '',
     selectedLength: '',
     selectedKarat: '',
     selectedColor: 'yellow',
     selectedView: 'front',
     cart: null,
-    priceLockedAtCheckout: null,
   };
 
   if (localCatalogRaw) {
@@ -1333,6 +1332,8 @@ const initCubanConfigurator = async () => {
   }
 
   const getWidths = (product) => Object.keys(state.products?.[product]?.widths || {});
+
+  const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
 
   const getLengths = (product, width) => {
     const widths = state.products?.[product]?.widths || {};
@@ -1440,12 +1441,10 @@ const initCubanConfigurator = async () => {
     const pricing = calculatePrices(variant);
     if (!pricing) {
       summaryPrice.textContent = '-';
-      summaryCompare.textContent = '-';
       return;
     }
 
     summaryPrice.textContent = formatUsd(pricing.retailPrice);
-    summaryCompare.textContent = formatUsd(pricing.compareAtPrice);
   };
 
   const refreshGallery = () => {
@@ -1604,6 +1603,14 @@ const initCubanConfigurator = async () => {
   };
 
   const repopulateSelections = () => {
+    if (!hasSelectedProduct()) {
+      state.selectedWidth = '';
+      state.selectedLength = '';
+      state.selectedKarat = '';
+      setAlert('Pick bracelet or necklace to continue.');
+      return;
+    }
+
     const widths = getWidths(state.selectedProduct);
     if (!widths.includes(state.selectedWidth)) {
       state.selectedWidth = widths[0] || '';
@@ -1629,18 +1636,35 @@ const initCubanConfigurator = async () => {
   const renderAll = () => {
     repopulateSelections();
 
+    const productChoices = ['bracelet', 'necklace'];
+
     renderOptionButtons({
       root: optionProduct,
-      values: ['bracelet', 'necklace'].map((value) => state.products?.[value]?.name || value),
-      activeValue: state.products?.[state.selectedProduct]?.name || state.selectedProduct,
+      values: productChoices.map((value) => state.products?.[value]?.name || value),
+      activeValue: hasSelectedProduct() ? (state.products?.[state.selectedProduct]?.name || state.selectedProduct) : '',
       onSelect: (value) => {
-        const matchedProduct = ['bracelet', 'necklace'].find(
+        const matchedProduct = productChoices.find(
           (key) => (state.products?.[key]?.name || key) === value
         ) || 'bracelet';
         state.selectedProduct = matchedProduct;
         renderAll();
       },
     });
+
+    const isReady = hasSelectedProduct();
+    requiresProductBlock.hidden = !isReady;
+    productGateNote.hidden = isReady;
+    if (!isReady) {
+      refreshSummary();
+      refreshGallery();
+      refreshFilters();
+      refreshFilterResults();
+      renderAdminTable();
+      adminSurcharge.value = String(state.pricingConfig.surchargePerGram);
+      adminMargin.value = String(state.pricingConfig.marginDivisor);
+      adminCompare.value = String(state.pricingConfig.compareMultiplier);
+      return;
+    }
 
     renderOptionButtons({
       root: optionWidth,
@@ -1741,27 +1765,7 @@ const initCubanConfigurator = async () => {
       color: state.selectedColor,
       addedAt: Date.now(),
     };
-    state.priceLockedAtCheckout = null;
-    priceLockNote.textContent = 'Added to cart. Price stays live and will lock only when you click checkout.';
-  });
-
-  checkoutLockButton.addEventListener('click', () => {
-    const variant = getSelectedVariant();
-    const pricing = calculatePrices(variant);
-
-    if (!variant || !pricing) {
-      priceLockNote.textContent = 'Cannot lock price. Complete a valid configuration first.';
-      return;
-    }
-
-    state.priceLockedAtCheckout = {
-      lockedAtMs: Date.now(),
-      spot: pricing.spot,
-      retailPrice: pricing.retailPrice,
-      compareAtPrice: pricing.compareAtPrice,
-    };
-
-    priceLockNote.textContent = `Locked at ${formatUsd(pricing.retailPrice)} using ${formatUsd(pricing.spot)}/g spot.`;
+    priceLockNote.textContent = 'Added to cart.';
   });
 
   adminToggle.addEventListener('click', () => {
@@ -1793,7 +1797,7 @@ const initCubanConfigurator = async () => {
 
   adminAddVariant.addEventListener('click', () => {
     state.variants.push({
-      product: state.selectedProduct,
+      product: hasSelectedProduct() ? state.selectedProduct : 'bracelet',
       width: state.selectedWidth || '8mm',
       length: state.selectedLength || '8"',
       karat: state.selectedKarat || '14K',
@@ -1887,9 +1891,6 @@ const initCubanConfigurator = async () => {
   });
 
   window.setInterval(() => {
-    if (state.priceLockedAtCheckout) {
-      return;
-    }
     refreshSummary();
   }, 2500);
 
