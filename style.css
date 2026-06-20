@@ -274,6 +274,51 @@ p {
   box-shadow: 0 14px 28px rgba(17, 14, 10, 0.06);
 }
 
+.shop-promo-strip {
+  position: relative;
+  z-index: 20;
+  border-top: 1px solid rgba(255, 228, 184, 0.14);
+  border-bottom: 1px solid rgba(255, 228, 184, 0.2);
+  background:
+    linear-gradient(120deg, rgba(74, 51, 20, 0.86) 0%, rgba(150, 111, 54, 0.9) 48%, rgba(70, 46, 18, 0.9) 100%);
+}
+
+.shop-promo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+}
+
+.shop-promo-inner p {
+  margin: 0;
+  color: #fff4de;
+  font-size: 0.96rem;
+}
+
+.shop-promo-inner strong {
+  color: #ffe5b0;
+}
+
+.shop-promo-cta {
+  min-height: 44px;
+  padding: 0.6rem 1.15rem;
+  box-shadow: 0 12px 24px rgba(44, 26, 3, 0.3);
+}
+
+.home-shop-spotlight {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 230, 180, 0.55);
+  background: rgba(207, 155, 70, 0.2);
+  color: #fcedcd;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 .nav-wrap {
   display: grid;
   grid-template-columns: auto 1fr auto auto;
@@ -1457,6 +1502,15 @@ p {
     padding-top: 8rem;
   }
 
+  .shop-promo-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .shop-promo-cta {
+    width: auto;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1506,6 +1560,24 @@ p {
 
   .button {
     width: 100%;
+  }
+
+  .shop-promo-inner {
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .shop-promo-inner p {
+    font-size: 0.9rem;
+  }
+
+  .shop-promo-cta {
+    width: 100%;
+  }
+
+  .home-shop-spotlight {
+    display: block;
+    font-size: 0.88rem;
   }
 
   .why-grid,
