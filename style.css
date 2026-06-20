@@ -2916,10 +2916,6 @@ p {
   place-items: center;
 }
 
-.cuban-gallery-main.is-zoomed {
-  transform: scale(1.02);
-}
-
 .placeholder-image-block {
   width: calc(100% - 2rem);
   min-height: 420px;
@@ -2961,7 +2957,6 @@ p {
     repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 20px);
 }
 
-.gallery-zoom-toggle,
 .gallery-fullscreen-toggle {
   position: absolute;
   bottom: 0.85rem;
@@ -2972,10 +2967,6 @@ p {
   background: rgba(16, 13, 10, 0.82);
   color: #fff7e7;
   cursor: pointer;
-}
-
-.gallery-zoom-toggle {
-  left: 0.85rem;
 }
 
 .gallery-fullscreen-toggle {

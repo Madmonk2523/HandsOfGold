@@ -1197,7 +1197,6 @@ const initCubanConfigurator = async () => {
   const catalogAlert = document.getElementById('catalog-alert');
 
   const summaryProduct = document.getElementById('summary-product');
-  const summarySku = document.getElementById('summary-sku');
   const summaryWidth = document.getElementById('summary-width');
   const summaryLength = document.getElementById('summary-length');
   const summaryKarat = document.getElementById('summary-karat');
@@ -1211,7 +1210,6 @@ const initCubanConfigurator = async () => {
   const galleryMain = document.getElementById('gallery-main');
   const galleryPlaceholder = document.getElementById('gallery-placeholder');
   const galleryThumbs = document.getElementById('gallery-thumbs');
-  const galleryZoom = document.getElementById('gallery-zoom');
   const galleryFullscreen = document.getElementById('gallery-fullscreen');
 
   if (
@@ -1222,7 +1220,6 @@ const initCubanConfigurator = async () => {
     || !requiresProductBlock
     || !catalogAlert
     || !summaryProduct
-    || !summarySku
     || !summaryWidth
     || !summaryLength
     || !summaryKarat
@@ -1337,7 +1334,6 @@ const initCubanConfigurator = async () => {
     const productName = state.products?.[state.selectedProduct]?.name || '-';
 
     summaryProduct.textContent = productName;
-    summarySku.textContent = variant?.sku || 'Pending CSV SKU';
     summaryWidth.textContent = state.selectedWidth || '-';
     summaryLength.textContent = state.selectedLength || '-';
     summaryKarat.textContent = state.selectedKarat || '-';
@@ -1469,12 +1465,6 @@ const initCubanConfigurator = async () => {
         state.selectedView = button.dataset.view || 'front';
         refreshGallery();
       });
-    });
-  }
-
-  if (galleryZoom && galleryMain) {
-    galleryZoom.addEventListener('click', () => {
-      galleryMain.classList.toggle('is-zoomed');
     });
   }
 
