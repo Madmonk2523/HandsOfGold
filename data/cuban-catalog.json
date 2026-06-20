@@ -1,70 +1,981 @@
 {
-  "products": {
-    "bracelet": {
-      "name": "Classic Cuban Link Bracelet",
-      "widths": {
-        "5mm": ["7\"", "7.5\"", "8\"", "10\""],
-        "6mm": ["7\"", "7.5\"", "8\"", "10\""],
-        "7mm": ["7\"", "7.5\"", "8\"", "10\""],
-        "8mm": ["7\"", "7.5\"", "8\"", "8.25\"", "8.5\"", "10\""],
-        "9mm": ["7\"", "7.5\"", "8\"", "8.5\"", "10\""],
-        "11mm": ["8\"", "8.5\"", "10\""],
-        "13mm": ["8\"", "8.5\""],
-        "15mm": ["8\"", "8.5\""],
-        "17mm": ["8\"", "8.5\""],
-        "30mm": ["9\""],
-        "50mm": ["9\""]
-      }
-    },
-    "necklace": {
-      "name": "Classic Cuban Link Necklace",
-      "widths": {
-        "5mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "6mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "7mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "8mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "9mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "11mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "13mm": ["16\"", "18\"", "20\"", "22\"", "24\""],
-        "15mm": ["18\"", "20\"", "22\"", "24\""],
-        "17mm": ["18\"", "20\"", "22\"", "24\""],
-        "30mm": ["30\""],
-        "50mm": ["30\""]
-      }
-    }
-  },
-  "variants": [
-    {
-      "product": "bracelet",
-      "width": "5mm",
-      "length": "7\"",
-      "karat": "14K",
-      "weightGrams": 4.34,
-      "sku": "",
-      "availability": "Made To Order"
-    },
-    {
-      "product": "bracelet",
-      "width": "8mm",
-      "length": "8\"",
-      "karat": "10K",
-      "weightGrams": 6.76,
-      "sku": "",
-      "availability": "In Stock"
-    },
-    {
-      "product": "bracelet",
-      "width": "8mm",
-      "length": "8\"",
-      "karat": "14K",
-      "weightGrams": 7.34,
-      "sku": "",
-      "availability": "In Stock"
-    }
-  ],
-  "pricingConfig": {
-    "surchargePerGram": 10,
-    "marginDivisor": 0.65,
-    "compareMultiplier": 2.4
-  }
+    "products":  {
+                     "necklace":  {
+                                      "widths":  {
+                                                     "30mm":  [
+                                                                  "30\""
+                                                              ],
+                                                     "5mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "9mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "13mm":  [
+                                                                  "16\"",
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "6mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "15mm":  [
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "8mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "50mm":  [
+                                                                  "30\""
+                                                              ],
+                                                     "7mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "11mm":  [
+                                                                  "16\"",
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "17mm":  [
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ]
+                                                 },
+                                      "name":  "Classic Cuban Link Necklace"
+                                  },
+                     "bracelet":  {
+                                      "widths":  {
+                                                     "30mm":  [
+                                                                  "9\""
+                                                              ],
+                                                     "5mm":  [
+                                                                 "7\"",
+                                                                 "7.5\"",
+                                                                 "8\"",
+                                                                 "10\""
+                                                             ],
+                                                     "9mm":  [
+                                                                 "7\"",
+                                                                 "7.5\"",
+                                                                 "8\"",
+                                                                 "8.5\"",
+                                                                 "10\""
+                                                             ],
+                                                     "13mm":  [
+                                                                  "8\"",
+                                                                  "8.5\""
+                                                              ],
+                                                     "6mm":  [
+                                                                 "7\"",
+                                                                 "7.5\"",
+                                                                 "8\"",
+                                                                 "10\""
+                                                             ],
+                                                     "15mm":  [
+                                                                  "8\"",
+                                                                  "8.5\""
+                                                              ],
+                                                     "8mm":  [
+                                                                 "7\"",
+                                                                 "7.5\"",
+                                                                 "8\"",
+                                                                 "8.25\"",
+                                                                 "8.5\"",
+                                                                 "10\""
+                                                             ],
+                                                     "50mm":  [
+                                                                  "9\""
+                                                              ],
+                                                     "7mm":  [
+                                                                 "7\"",
+                                                                 "7.5\"",
+                                                                 "8\"",
+                                                                 "10\""
+                                                             ],
+                                                     "11mm":  [
+                                                                  "8\"",
+                                                                  "8.5\"",
+                                                                  "10\""
+                                                              ],
+                                                     "17mm":  [
+                                                                  "8\"",
+                                                                  "8.5\""
+                                                              ]
+                                                 },
+                                      "name":  "Classic Cuban Link Bracelet"
+                                  }
+                 },
+    "variants":  [
+                     {
+                         "product":  "bracelet",
+                         "width":  "5mm",
+                         "length":  "7\"",
+                         "karat":  "14K",
+                         "weightGrams":  4.34,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "5mm",
+                         "length":  "7.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "5mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "5mm",
+                         "length":  "10\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "6mm",
+                         "length":  "7\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "6mm",
+                         "length":  "7.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "6mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "6mm",
+                         "length":  "10\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "7mm",
+                         "length":  "7\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "7mm",
+                         "length":  "7.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "7mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "7mm",
+                         "length":  "10\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "7\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "7\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "7.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "8\"",
+                         "karat":  "10K",
+                         "weightGrams":  6.76,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  7.34,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "8.25\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "8.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "8mm",
+                         "length":  "10\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "7\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "7\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "7.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "8\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "8.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "9mm",
+                         "length":  "10\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "11mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "11mm",
+                         "length":  "8.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "11mm",
+                         "length":  "10\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "13mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "13mm",
+                         "length":  "8.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "15mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "15mm",
+                         "length":  "8.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "17mm",
+                         "length":  "8\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "17mm",
+                         "length":  "8.5\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "30mm",
+                         "length":  "9\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "bracelet",
+                         "width":  "50mm",
+                         "length":  "9\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "5mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "5mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "5mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "5mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "5mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "6mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "6mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "6mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "6mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "6mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "16\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "18\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "20\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "22\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "24\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "7mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "16\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "18\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "20\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "22\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "24\"",
+                         "karat":  "10K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "8mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "9mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "9mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "9mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "9mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "9mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "11mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "11mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "11mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "11mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "11mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "13mm",
+                         "length":  "16\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "13mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "13mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "13mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "13mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "15mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "15mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "15mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "15mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "17mm",
+                         "length":  "18\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "17mm",
+                         "length":  "20\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "17mm",
+                         "length":  "22\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "17mm",
+                         "length":  "24\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "30mm",
+                         "length":  "30\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     },
+                     {
+                         "product":  "necklace",
+                         "width":  "50mm",
+                         "length":  "30\"",
+                         "karat":  "14K",
+                         "weightGrams":  1,
+                         "sku":  "",
+                         "availability":  "Made To Order"
+                     }
+                 ],
+    "pricingConfig":  {
+                          "surchargePerGram":  10,
+                          "marginDivisor":  0.65,
+                          "compareMultiplier":  2.4
+                      }
 }
