@@ -1256,8 +1256,22 @@ const initCubanConfigurator = async () => {
     selectedWidth: '',
     selectedLength: '',
     selectedKarat: '',
-    selectedView: 'front',
+    selectedMediaIndex: 0,
     cart: [],
+  };
+
+  const mediaCatalog = {
+    bracelet: [
+      { type: 'image', src: 'cuban-bracelet-closeup.jpg', label: 'Bracelet Close-Up' },
+      { type: 'image', src: 'cuban-bracelet-standing.jpg', label: 'Bracelet Full View' },
+      { type: 'image', src: 'cuban-bracelet-on-wrist.jpg', label: 'Bracelet On Wrist' },
+      { type: 'video', src: 'cuban-bracelet-video.mp4', label: 'Bracelet Video' },
+    ],
+    necklace: [
+      { type: 'image', src: 'cuban-necklace-hero.jpg', label: 'Necklace Hero' },
+      { type: 'image', src: 'cuban-necklace-clasp-closeup.jpg', label: 'Necklace Clasp Close-Up' },
+      { type: 'video', src: 'cuban-necklace-video.mp4', label: 'Necklace Video' },
+    ],
   };
 
   const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
@@ -1285,14 +1299,22 @@ const initCubanConfigurator = async () => {
     && variant.karat === state.selectedKarat
   );
 
-  const viewLabel = {
-    front: 'Front View',
-    side: 'Side View',
-    clasp: 'Clasp View',
-    close: 'Close-Up View',
-    lifestyle: 'Lifestyle View',
-    wrist: 'On Wrist View',
-    neck: 'On Neck View',
+  const escapeHtml = (value) => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+  const getActiveMediaSet = () => {
+    if (hasSelectedProduct()) {
+      return mediaCatalog[state.selectedProduct] || [];
+    }
+
+    return [
+      ...(mediaCatalog.bracelet || []),
+      ...(mediaCatalog.necklace || []),
+    ];
   };
 
   const renderOptionButtons = ({ root, values, activeValue, onSelect }) => {
@@ -1351,19 +1373,43 @@ const initCubanConfigurator = async () => {
       return;
     }
 
-    galleryPlaceholder.dataset.color = 'yellow';
-    galleryPlaceholder.dataset.view = state.selectedView;
-    galleryPlaceholder.innerHTML = `
-      <p>Image Placeholder</p>
-      <small>${viewLabel[state.selectedView]} - Yellow Gold</small>
-    `;
+    const mediaSet = getActiveMediaSet();
+    if (!mediaSet.length) {
+      galleryPlaceholder.innerHTML = '<p>No media uploaded yet.</p>';
+      if (galleryThumbs) {
+        galleryThumbs.innerHTML = '';
+      }
+      return;
+    }
+
+    if (state.selectedMediaIndex < 0 || state.selectedMediaIndex >= mediaSet.length) {
+      state.selectedMediaIndex = 0;
+    }
+
+    const activeMedia = mediaSet[state.selectedMediaIndex];
+    const safeLabel = escapeHtml(activeMedia.label);
+
+    if (activeMedia.type === 'video') {
+      galleryPlaceholder.innerHTML = `
+        <video class="gallery-media-asset" src="${activeMedia.src}" controls autoplay muted loop playsinline preload="metadata" aria-label="${safeLabel}"></video>
+        <small class="gallery-media-caption">${safeLabel}</small>
+      `;
+    } else {
+      galleryPlaceholder.innerHTML = `
+        <img class="gallery-media-asset" src="${activeMedia.src}" alt="${safeLabel}" loading="eager" decoding="async" />
+        <small class="gallery-media-caption">${safeLabel}</small>
+      `;
+    }
 
     if (galleryThumbs) {
-      const buttons = galleryThumbs.querySelectorAll('button');
-      buttons.forEach((button) => {
-        const isActive = button.dataset.view === state.selectedView;
-        button.classList.toggle('is-active', isActive);
-      });
+      galleryThumbs.innerHTML = mediaSet
+        .map((item, index) => `
+          <button type="button" data-media-index="${index}" class="${index === state.selectedMediaIndex ? 'is-active' : ''}">
+            <span class="gallery-thumb-type">${item.type === 'video' ? 'Video' : 'Photo'}</span>
+            <span>${escapeHtml(item.label)}</span>
+          </button>
+        `)
+        .join('');
     }
   };
 
@@ -1478,6 +1524,9 @@ const initCubanConfigurator = async () => {
         const matchedProduct = productChoices.find(
           (key) => (state.products?.[key]?.name || key) === value
         ) || 'bracelet';
+        if (state.selectedProduct !== matchedProduct) {
+          state.selectedMediaIndex = 0;
+        }
         state.selectedProduct = matchedProduct;
         renderAll();
       },
@@ -1532,11 +1581,24 @@ const initCubanConfigurator = async () => {
   };
 
   if (galleryThumbs) {
-    galleryThumbs.querySelectorAll('button').forEach((button) => {
-      button.addEventListener('click', () => {
-        state.selectedView = button.dataset.view || 'front';
-        refreshGallery();
-      });
+    galleryThumbs.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
+
+      const button = target.closest('button[data-media-index]');
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      const index = Number.parseInt(button.dataset.mediaIndex || '', 10);
+      if (!Number.isFinite(index)) {
+        return;
+      }
+
+      state.selectedMediaIndex = index;
+      refreshGallery();
     });
   }
 
