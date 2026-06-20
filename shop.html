@@ -55,6 +55,10 @@
             </div>
           </div>
 
+          <button class="header-cart-trigger" id="header-cart-toggle" type="button" aria-expanded="false" aria-controls="cart-drawer">
+            Cart <span id="header-cart-count">0</span>
+          </button>
+
           <button
             class="nav-toggle"
             type="button"
@@ -122,20 +126,6 @@
                 <div class="option-grid" id="option-karat" role="radiogroup" aria-label="Select karat"></div>
               </div>
 
-              <div class="config-alert" id="catalog-alert" aria-live="polite"></div>
-
-              <div class="final-config-card">
-                <h3>Specs</h3>
-                <dl class="final-config-grid">
-                  <div><dt>Product</dt><dd id="summary-product">-</dd></div>
-                  <div><dt>Width</dt><dd id="summary-width">-</dd></div>
-                  <div><dt>Length</dt><dd id="summary-length">-</dd></div>
-                  <div><dt>Karat</dt><dd id="summary-karat">-</dd></div>
-                  <div><dt>Weight</dt><dd id="summary-weight">-</dd></div>
-                  <div><dt>Availability</dt><dd id="summary-availability">-</dd></div>
-                </dl>
-              </div>
-
               <div class="price-live-card">
                 <p>Live spot per gram: <strong id="shop-live-spot">-</strong></p>
                 <p class="live-price compact-price-line"><span>Price</span><strong id="summary-price">-</strong></p>
@@ -149,6 +139,22 @@
           </div>
         </section>
       </main>
+
+      <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+      <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+        <div class="cart-drawer-head">
+          <h2>Your Cart</h2>
+          <button type="button" class="cart-close" id="cart-close" aria-label="Close cart">x</button>
+        </div>
+        <div class="cart-items" id="cart-items" aria-live="polite"></div>
+        <div class="cart-footer">
+          <p class="cart-subtotal">Subtotal <strong id="cart-subtotal">$0</strong></p>
+          <div class="cart-footer-actions">
+            <button type="button" class="button button-tertiary" id="cart-clear">Clear Cart</button>
+            <button type="button" class="button button-primary" id="cart-checkout">Checkout</button>
+          </div>
+        </div>
+      </aside>
 
       <footer class="site-footer">
         <div class="container footer-grid">

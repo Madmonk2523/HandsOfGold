@@ -1,109 +1,26 @@
 {
     "products":  {
-                     "necklace":  {
-                                      "widths":  {
-                                                     "30mm":  [
-                                                                  "30\""
-                                                              ],
-                                                     "5mm":  [
-                                                                 "16\"",
-                                                                 "18\"",
-                                                                 "20\"",
-                                                                 "22\"",
-                                                                 "24\""
-                                                             ],
-                                                     "9mm":  [
-                                                                 "16\"",
-                                                                 "18\"",
-                                                                 "20\"",
-                                                                 "22\"",
-                                                                 "24\""
-                                                             ],
-                                                     "13mm":  [
-                                                                  "16\"",
-                                                                  "18\"",
-                                                                  "20\"",
-                                                                  "22\"",
-                                                                  "24\""
-                                                              ],
-                                                     "6mm":  [
-                                                                 "16\"",
-                                                                 "18\"",
-                                                                 "20\"",
-                                                                 "22\"",
-                                                                 "24\""
-                                                             ],
-                                                     "15mm":  [
-                                                                  "18\"",
-                                                                  "20\"",
-                                                                  "22\"",
-                                                                  "24\""
-                                                              ],
-                                                     "8mm":  [
-                                                                 "16\"",
-                                                                 "18\"",
-                                                                 "20\"",
-                                                                 "22\"",
-                                                                 "24\""
-                                                             ],
-                                                     "50mm":  [
-                                                                  "30\""
-                                                              ],
-                                                     "7mm":  [
-                                                                 "16\"",
-                                                                 "18\"",
-                                                                 "20\"",
-                                                                 "22\"",
-                                                                 "24\""
-                                                             ],
-                                                     "11mm":  [
-                                                                  "16\"",
-                                                                  "18\"",
-                                                                  "20\"",
-                                                                  "22\"",
-                                                                  "24\""
-                                                              ],
-                                                     "17mm":  [
-                                                                  "18\"",
-                                                                  "20\"",
-                                                                  "22\"",
-                                                                  "24\""
-                                                              ]
-                                                 },
-                                      "name":  "Classic Cuban Link Necklace"
-                                  },
                      "bracelet":  {
+                                      "name":  "Classic Cuban Link Bracelet",
                                       "widths":  {
-                                                     "30mm":  [
-                                                                  "9\""
-                                                              ],
                                                      "5mm":  [
                                                                  "7\"",
                                                                  "7.5\"",
                                                                  "8\"",
                                                                  "10\""
                                                              ],
-                                                     "9mm":  [
-                                                                 "7\"",
-                                                                 "7.5\"",
-                                                                 "8\"",
-                                                                 "8.5\"",
-                                                                 "10\""
-                                                             ],
-                                                     "13mm":  [
-                                                                  "8\"",
-                                                                  "8.5\""
-                                                              ],
                                                      "6mm":  [
                                                                  "7\"",
                                                                  "7.5\"",
                                                                  "8\"",
                                                                  "10\""
                                                              ],
-                                                     "15mm":  [
-                                                                  "8\"",
-                                                                  "8.5\""
-                                                              ],
+                                                     "7mm":  [
+                                                                 "7\"",
+                                                                 "7.5\"",
+                                                                 "8\"",
+                                                                 "10\""
+                                                             ],
                                                      "8mm":  [
                                                                  "7\"",
                                                                  "7.5\"",
@@ -112,13 +29,11 @@
                                                                  "8.5\"",
                                                                  "10\""
                                                              ],
-                                                     "50mm":  [
-                                                                  "9\""
-                                                              ],
-                                                     "7mm":  [
+                                                     "9mm":  [
                                                                  "7\"",
                                                                  "7.5\"",
                                                                  "8\"",
+                                                                 "8.5\"",
                                                                  "10\""
                                                              ],
                                                      "11mm":  [
@@ -126,12 +41,97 @@
                                                                   "8.5\"",
                                                                   "10\""
                                                               ],
+                                                     "13mm":  [
+                                                                  "8\"",
+                                                                  "8.5\""
+                                                              ],
+                                                     "15mm":  [
+                                                                  "8\"",
+                                                                  "8.5\""
+                                                              ],
                                                      "17mm":  [
                                                                   "8\"",
                                                                   "8.5\""
+                                                              ],
+                                                     "30mm":  [
+                                                                  "9\""
+                                                              ],
+                                                     "50mm":  [
+                                                                  "9\""
                                                               ]
-                                                 },
-                                      "name":  "Classic Cuban Link Bracelet"
+                                                 }
+                                  },
+                     "necklace":  {
+                                      "name":  "Classic Cuban Link Necklace",
+                                      "widths":  {
+                                                     "5mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "6mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "7mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "8mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "9mm":  [
+                                                                 "16\"",
+                                                                 "18\"",
+                                                                 "20\"",
+                                                                 "22\"",
+                                                                 "24\""
+                                                             ],
+                                                     "11mm":  [
+                                                                  "16\"",
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "13mm":  [
+                                                                  "16\"",
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "15mm":  [
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "17mm":  [
+                                                                  "18\"",
+                                                                  "20\"",
+                                                                  "22\"",
+                                                                  "24\""
+                                                              ],
+                                                     "30mm":  [
+                                                                  "30\""
+                                                              ],
+                                                     "50mm":  [
+                                                                  "30\""
+                                                              ]
+                                                 }
                                   }
                  },
     "variants":  [
@@ -149,7 +149,7 @@
                          "width":  "5mm",
                          "length":  "7.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  4.66,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -158,7 +158,7 @@
                          "width":  "5mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  4.49,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -167,7 +167,7 @@
                          "width":  "5mm",
                          "length":  "10\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  5.84,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -176,7 +176,7 @@
                          "width":  "6mm",
                          "length":  "7\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  5.86,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -185,7 +185,7 @@
                          "width":  "6mm",
                          "length":  "7.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  5.8,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -194,7 +194,7 @@
                          "width":  "6mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  5.8,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -203,7 +203,7 @@
                          "width":  "6mm",
                          "length":  "10\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  7.27,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -212,7 +212,7 @@
                          "width":  "7mm",
                          "length":  "7\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  6.49,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -221,7 +221,7 @@
                          "width":  "7mm",
                          "length":  "7.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  7.01,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -230,7 +230,7 @@
                          "width":  "7mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  7.17,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -239,7 +239,7 @@
                          "width":  "7mm",
                          "length":  "10\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  8.64,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -248,7 +248,7 @@
                          "width":  "8mm",
                          "length":  "7\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  6.57,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -257,7 +257,7 @@
                          "width":  "8mm",
                          "length":  "7\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  7.44,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -266,7 +266,7 @@
                          "width":  "8mm",
                          "length":  "7.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  8.06,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -293,7 +293,7 @@
                          "width":  "8mm",
                          "length":  "8.25\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  12.07,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -302,7 +302,7 @@
                          "width":  "8mm",
                          "length":  "8.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  9.81,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -311,7 +311,7 @@
                          "width":  "8mm",
                          "length":  "10\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  10.17,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -320,7 +320,7 @@
                          "width":  "9mm",
                          "length":  "7\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  7.87,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -329,7 +329,7 @@
                          "width":  "9mm",
                          "length":  "7\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  10.7,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -338,7 +338,7 @@
                          "width":  "9mm",
                          "length":  "7.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  9.16,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -347,7 +347,7 @@
                          "width":  "9mm",
                          "length":  "8\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  8.22,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -356,7 +356,7 @@
                          "width":  "9mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  9.04,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -365,7 +365,7 @@
                          "width":  "9mm",
                          "length":  "8.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  10.66,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -374,7 +374,7 @@
                          "width":  "9mm",
                          "length":  "10\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  11.74,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -383,7 +383,7 @@
                          "width":  "11mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  14.65,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -392,7 +392,7 @@
                          "width":  "11mm",
                          "length":  "8.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  15.05,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -401,7 +401,7 @@
                          "width":  "11mm",
                          "length":  "10\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  17.78,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -410,7 +410,7 @@
                          "width":  "13mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  18.11,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -419,7 +419,7 @@
                          "width":  "13mm",
                          "length":  "8.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  18.79,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -428,7 +428,7 @@
                          "width":  "15mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  24.76,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -437,7 +437,7 @@
                          "width":  "15mm",
                          "length":  "8.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  25.29,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -446,7 +446,7 @@
                          "width":  "17mm",
                          "length":  "8\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  31.3,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -455,7 +455,7 @@
                          "width":  "17mm",
                          "length":  "8.5\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  33.54,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -464,7 +464,7 @@
                          "width":  "30mm",
                          "length":  "9\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  80.32,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -473,7 +473,7 @@
                          "width":  "50mm",
                          "length":  "9\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  208.55,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -482,7 +482,7 @@
                          "width":  "5mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  8.4,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -491,7 +491,7 @@
                          "width":  "5mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  9.12,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -500,7 +500,7 @@
                          "width":  "5mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  10.26,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -509,7 +509,7 @@
                          "width":  "5mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  11.54,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -518,7 +518,7 @@
                          "width":  "5mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  12.11,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -527,7 +527,7 @@
                          "width":  "6mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  10.21,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -536,7 +536,7 @@
                          "width":  "6mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  11.65,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -545,7 +545,7 @@
                          "width":  "6mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  12.79,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -554,7 +554,7 @@
                          "width":  "6mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  14.73,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -563,7 +563,7 @@
                          "width":  "6mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  15.15,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -572,7 +572,7 @@
                          "width":  "7mm",
                          "length":  "16\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  11.75,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -581,7 +581,7 @@
                          "width":  "7mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  12.54,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -590,7 +590,7 @@
                          "width":  "7mm",
                          "length":  "18\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  12.5,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -599,7 +599,7 @@
                          "width":  "7mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  14.56,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -608,7 +608,7 @@
                          "width":  "7mm",
                          "length":  "20\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  13.7,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -617,7 +617,7 @@
                          "width":  "7mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  15.83,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -626,7 +626,7 @@
                          "width":  "7mm",
                          "length":  "22\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  15.45,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -635,7 +635,7 @@
                          "width":  "7mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  17.3,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -644,7 +644,7 @@
                          "width":  "7mm",
                          "length":  "24\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  16.81,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -653,7 +653,7 @@
                          "width":  "7mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  19.05,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -662,7 +662,7 @@
                          "width":  "8mm",
                          "length":  "16\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  13.09,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -671,7 +671,7 @@
                          "width":  "8mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  13.91,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -680,7 +680,7 @@
                          "width":  "8mm",
                          "length":  "18\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  14.51,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -689,7 +689,7 @@
                          "width":  "8mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  15.53,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -698,7 +698,7 @@
                          "width":  "8mm",
                          "length":  "20\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  14.54,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -707,7 +707,7 @@
                          "width":  "8mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  16.43,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -716,7 +716,7 @@
                          "width":  "8mm",
                          "length":  "22\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  16.18,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -725,7 +725,7 @@
                          "width":  "8mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  17.6,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -734,7 +734,7 @@
                          "width":  "8mm",
                          "length":  "24\"",
                          "karat":  "10K",
-                         "weightGrams":  1,
+                         "weightGrams":  17.1,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -743,7 +743,7 @@
                          "width":  "8mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  19.49,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -752,7 +752,7 @@
                          "width":  "9mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  14.79,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -761,7 +761,7 @@
                          "width":  "9mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  16.2,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -770,7 +770,7 @@
                          "width":  "9mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  18.04,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -779,7 +779,7 @@
                          "width":  "9mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  18.56,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -788,7 +788,7 @@
                          "width":  "9mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  21.26,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -797,7 +797,7 @@
                          "width":  "11mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  24.88,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -806,7 +806,7 @@
                          "width":  "11mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  29.62,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -815,7 +815,7 @@
                          "width":  "11mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  27.63,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -824,7 +824,7 @@
                          "width":  "11mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  31.85,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -833,7 +833,7 @@
                          "width":  "11mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  33.11,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -842,7 +842,7 @@
                          "width":  "13mm",
                          "length":  "16\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  31.77,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -851,7 +851,7 @@
                          "width":  "13mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  34.15,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -860,7 +860,7 @@
                          "width":  "13mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  38.33,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -869,7 +869,7 @@
                          "width":  "13mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  39.16,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -878,7 +878,7 @@
                          "width":  "13mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  43.21,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -887,7 +887,7 @@
                          "width":  "15mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  52.25,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -896,7 +896,7 @@
                          "width":  "15mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  57.92,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -905,7 +905,7 @@
                          "width":  "15mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  53.25,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -914,7 +914,7 @@
                          "width":  "15mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  57.77,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -923,7 +923,7 @@
                          "width":  "17mm",
                          "length":  "18\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  58.37,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -932,7 +932,7 @@
                          "width":  "17mm",
                          "length":  "20\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  61.56,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -941,7 +941,7 @@
                          "width":  "17mm",
                          "length":  "22\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  67.35,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -950,7 +950,7 @@
                          "width":  "17mm",
                          "length":  "24\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  72.82,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -959,7 +959,7 @@
                          "width":  "30mm",
                          "length":  "30\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  207.96,
                          "sku":  "",
                          "availability":  "Made To Order"
                      },
@@ -968,7 +968,7 @@
                          "width":  "50mm",
                          "length":  "30\"",
                          "karat":  "14K",
-                         "weightGrams":  1,
+                         "weightGrams":  477.82,
                          "sku":  "",
                          "availability":  "Made To Order"
                      }

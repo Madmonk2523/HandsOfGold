@@ -1194,14 +1194,6 @@ const initCubanConfigurator = async () => {
   const optionKarat = document.getElementById('option-karat');
   const requiresProductBlock = document.getElementById('requires-product-block');
   const productGateNote = document.getElementById('product-gate-note');
-  const catalogAlert = document.getElementById('catalog-alert');
-
-  const summaryProduct = document.getElementById('summary-product');
-  const summaryWidth = document.getElementById('summary-width');
-  const summaryLength = document.getElementById('summary-length');
-  const summaryKarat = document.getElementById('summary-karat');
-  const summaryWeight = document.getElementById('summary-weight');
-  const summaryAvailability = document.getElementById('summary-availability');
   const summaryPrice = document.getElementById('summary-price');
   const liveSpot = document.getElementById('shop-live-spot');
   const addToCartButton = document.getElementById('add-to-cart');
@@ -1212,23 +1204,35 @@ const initCubanConfigurator = async () => {
   const galleryThumbs = document.getElementById('gallery-thumbs');
   const galleryFullscreen = document.getElementById('gallery-fullscreen');
 
+  const cartToggle = document.getElementById('header-cart-toggle');
+  const cartCount = document.getElementById('header-cart-count');
+  const cartDrawer = document.getElementById('cart-drawer');
+  const cartBackdrop = document.getElementById('cart-backdrop');
+  const cartClose = document.getElementById('cart-close');
+  const cartItems = document.getElementById('cart-items');
+  const cartSubtotal = document.getElementById('cart-subtotal');
+  const cartClear = document.getElementById('cart-clear');
+  const cartCheckout = document.getElementById('cart-checkout');
+
   if (
     !optionProduct
     || !optionWidth
     || !optionLength
     || !optionKarat
     || !requiresProductBlock
-    || !catalogAlert
-    || !summaryProduct
-    || !summaryWidth
-    || !summaryLength
-    || !summaryKarat
-    || !summaryWeight
-    || !summaryAvailability
     || !summaryPrice
     || !liveSpot
     || !addToCartButton
     || !priceLockNote
+    || !cartToggle
+    || !cartCount
+    || !cartDrawer
+    || !cartBackdrop
+    || !cartClose
+    || !cartItems
+    || !cartSubtotal
+    || !cartClear
+    || !cartCheckout
   ) {
     return;
   }
@@ -1254,6 +1258,8 @@ const initCubanConfigurator = async () => {
     selectedLength: '',
     selectedKarat: '',
     selectedView: 'front',
+    cart: [],
+    cartLocked: false,
   };
 
   const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
@@ -1326,23 +1332,18 @@ const initCubanConfigurator = async () => {
     const retailBase = ((spot + state.pricingConfig.surchargePerGram) * purity * variant.weightGrams)
       / state.pricingConfig.marginDivisor;
 
-    return roundToFive(retailBase);
+    return {
+      spot,
+      retailPrice: roundToFive(retailBase),
+    };
   };
 
   const refreshSummary = () => {
     const variant = getSelectedVariant();
-    const productName = state.products?.[state.selectedProduct]?.name || '-';
-
-    summaryProduct.textContent = productName;
-    summaryWidth.textContent = state.selectedWidth || '-';
-    summaryLength.textContent = state.selectedLength || '-';
-    summaryKarat.textContent = state.selectedKarat || '-';
-    summaryWeight.textContent = variant ? `${variant.weightGrams.toFixed(2)} grams` : '-';
-    summaryAvailability.textContent = variant?.availability || '-';
     liveSpot.textContent = formatUsd(goldPricePerGram);
 
-    const price = calculatePrice(variant);
-    summaryPrice.textContent = price ? formatUsd(price) : '-';
+    const pricing = calculatePrice(variant);
+    summaryPrice.textContent = pricing ? formatUsd(pricing.retailPrice) : '-';
   };
 
   const refreshGallery = () => {
@@ -1371,7 +1372,6 @@ const initCubanConfigurator = async () => {
       state.selectedWidth = '';
       state.selectedLength = '';
       state.selectedKarat = '';
-      catalogAlert.textContent = 'Pick bracelet or necklace to continue.';
       return;
     }
 
@@ -1389,10 +1389,92 @@ const initCubanConfigurator = async () => {
     if (!karats.includes(state.selectedKarat)) {
       state.selectedKarat = karats[0] || '';
     }
+  };
 
-    catalogAlert.textContent = karats.length
-      ? 'Only valid catalog karats are shown for this size.'
-      : 'No karat variant found for this width/length in current catalog.';
+  const toCartKey = (variant) => `${variant.product}|${variant.width}|${variant.length}|${variant.karat}`;
+
+  const getVariantByKey = (key) => {
+    const [product, width, length, karat] = String(key || '').split('|');
+    return state.variants.find((variant) =>
+      variant.product === product
+      && variant.width === width
+      && variant.length === length
+      && variant.karat === karat
+    ) || null;
+  };
+
+  const unlockCartPrices = () => {
+    state.cartLocked = false;
+    state.cart.forEach((item) => {
+      item.lockedPrice = null;
+    });
+  };
+
+  const openCart = () => {
+    cartDrawer.classList.add('is-open');
+    cartDrawer.setAttribute('aria-hidden', 'false');
+    cartBackdrop.hidden = false;
+    cartToggle.setAttribute('aria-expanded', 'true');
+  };
+
+  const closeCart = () => {
+    cartDrawer.classList.remove('is-open');
+    cartDrawer.setAttribute('aria-hidden', 'true');
+    cartBackdrop.hidden = true;
+    cartToggle.setAttribute('aria-expanded', 'false');
+  };
+
+  const renderCart = () => {
+    const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = String(count);
+
+    if (!state.cart.length) {
+      cartItems.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+      cartSubtotal.textContent = formatUsd(0);
+      cartClear.disabled = true;
+      cartCheckout.disabled = true;
+      return;
+    }
+
+    cartClear.disabled = false;
+    cartCheckout.disabled = false;
+
+    const entries = state.cart.map((item) => {
+      const variant = getVariantByKey(item.key);
+      const livePricing = calculatePrice(variant);
+      const unitPrice = item.lockedPrice || livePricing?.retailPrice || 0;
+      return {
+        item,
+        unitPrice,
+      };
+    });
+
+    cartItems.innerHTML = entries
+      .map(({ item, unitPrice }, index) => `
+        <article class="cart-item">
+          <h3>${item.productName}</h3>
+          <p>${item.width} | ${item.length} | ${item.karat}</p>
+          <p>${item.weightText}</p>
+          <div class="cart-item-row">
+            <strong>${formatUsd(unitPrice)}</strong>
+            <div class="cart-qty">
+              <button type="button" data-action="decrease" data-index="${index}" aria-label="Decrease quantity">-</button>
+              <span>${item.quantity}</span>
+              <button type="button" data-action="increase" data-index="${index}" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <button type="button" class="cart-remove" data-action="remove" data-index="${index}">Remove</button>
+        </article>
+      `)
+      .join('');
+
+    const subtotal = entries.reduce((sum, entry) => sum + entry.unitPrice * entry.item.quantity, 0);
+
+    cartSubtotal.textContent = formatUsd(subtotal);
+
+    if (state.cartLocked) {
+      priceLockNote.textContent = 'Price locked at checkout.';
+    }
   };
 
   const renderAll = () => {
@@ -1484,14 +1566,118 @@ const initCubanConfigurator = async () => {
 
   addToCartButton.addEventListener('click', () => {
     const variant = getSelectedVariant();
-    if (!variant) {
+    const pricing = calculatePrice(variant);
+
+    if (!variant || !pricing) {
       priceLockNote.textContent = 'Cannot add to cart. Select a catalog-backed karat option first.';
       return;
     }
+
+    const productName = state.products?.[state.selectedProduct]?.name || 'Custom Piece';
+    const key = toCartKey(variant);
+    const existing = state.cart.find((item) => item.key === key);
+
+    unlockCartPrices();
+
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      state.cart.push({
+        key,
+        productName,
+        width: variant.width,
+        length: variant.length,
+        karat: variant.karat,
+        weightText: `${variant.weightGrams.toFixed(2)} grams`,
+        price: pricing.retailPrice,
+        lockedPrice: null,
+        quantity: 1,
+      });
+    }
+
+    renderCart();
+    openCart();
     priceLockNote.textContent = 'Added to cart.';
   });
 
-  window.setInterval(refreshSummary, 2500);
+  cartToggle.addEventListener('click', () => {
+    if (cartDrawer.classList.contains('is-open')) {
+      closeCart();
+      return;
+    }
+
+    openCart();
+  });
+
+  cartClose.addEventListener('click', closeCart);
+  cartBackdrop.addEventListener('click', closeCart);
+
+  cartItems.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const action = target.dataset.action;
+    const index = Number.parseInt(target.dataset.index || '', 10);
+    if (!action || !Number.isFinite(index) || !state.cart[index]) {
+      return;
+    }
+
+    if (action === 'increase') {
+      unlockCartPrices();
+      state.cart[index].quantity += 1;
+    }
+
+    if (action === 'decrease') {
+      unlockCartPrices();
+      state.cart[index].quantity -= 1;
+      if (state.cart[index].quantity <= 0) {
+        state.cart.splice(index, 1);
+      }
+    }
+
+    if (action === 'remove') {
+      unlockCartPrices();
+      state.cart.splice(index, 1);
+    }
+
+    renderCart();
+  });
+
+  cartClear.addEventListener('click', () => {
+    state.cart = [];
+    state.cartLocked = false;
+    renderCart();
+  });
+
+  cartCheckout.addEventListener('click', () => {
+    if (!state.cart.length) {
+      return;
+    }
+
+    state.cart.forEach((item) => {
+      const variant = getVariantByKey(item.key);
+      const livePricing = calculatePrice(variant);
+      item.lockedPrice = livePricing?.retailPrice || item.price;
+    });
+    state.cartLocked = true;
+    renderCart();
+    priceLockNote.textContent = 'Price locked at checkout.';
+    closeCart();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && cartDrawer.classList.contains('is-open')) {
+      closeCart();
+    }
+  });
+
+  window.setInterval(() => {
+    refreshSummary();
+    renderCart();
+  }, 2500);
+  renderCart();
   renderAll();
 };
 
