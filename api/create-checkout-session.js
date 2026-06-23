@@ -57,6 +57,22 @@ const quantityToInt = (value) => {
   return parsed;
 };
 
+const trimTrailingSlash = (value) => String(value || '').replace(/\/+$/, '');
+
+const getProductImageUrl = (baseUrl, product) => {
+  const safeBaseUrl = trimTrailingSlash(baseUrl);
+
+  if (product === 'bracelet') {
+    return `${safeBaseUrl}/cuban-bracelet-closeup.jpg`;
+  }
+
+  if (product === 'necklace') {
+    return `${safeBaseUrl}/cuban-necklace-hero.jpg`;
+  }
+
+  return `${safeBaseUrl}/storefront.jpeg`;
+};
+
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
@@ -82,6 +98,16 @@ module.exports = async function handler(req, res) {
     const variants = (await loadCatalog()).map(normalizeVariant);
     const pricingConfig = getPricingConfig();
     const spotPricePerGram = await loadSpotPricePerGram();
+
+    const siteUrlFromEnv = String(process.env.SITE_URL || '').trim();
+    const fallbackOrigin = String(req.headers.origin || '').trim();
+    const baseUrl = siteUrlFromEnv || fallbackOrigin;
+
+    if (!baseUrl) {
+      return res.status(500).json({
+        error: 'Missing SITE_URL environment variable. Set SITE_URL to your public domain.',
+      });
+    }
 
     const lineItems = bodyItems.map((item) => {
       const requested = parseCartKey(item?.key);
@@ -112,6 +138,7 @@ module.exports = async function handler(req, res) {
       const unitAmountCents = Math.round(pricing.retailPrice * 100);
       const productTypeName = variant.product === 'bracelet' ? 'Classic Cuban Link Bracelet' : 'Classic Cuban Link Necklace';
       const variantLabel = `${variant.width} | ${variant.length} | ${variant.karat}`;
+      const productImageUrl = getProductImageUrl(baseUrl, variant.product);
 
       return {
         quantity,
@@ -120,6 +147,7 @@ module.exports = async function handler(req, res) {
           unit_amount: unitAmountCents,
           product_data: {
             name: `${productTypeName} (${variantLabel})`,
+            images: [productImageUrl],
             metadata: {
               sku: variant.sku || '',
               product: variant.product,
@@ -132,16 +160,6 @@ module.exports = async function handler(req, res) {
         },
       };
     });
-
-    const siteUrlFromEnv = String(process.env.SITE_URL || '').trim();
-    const fallbackOrigin = String(req.headers.origin || '').trim();
-    const baseUrl = siteUrlFromEnv || fallbackOrigin;
-
-    if (!baseUrl) {
-      return res.status(500).json({
-        error: 'Missing SITE_URL environment variable. Set SITE_URL to your public domain.',
-      });
-    }
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
