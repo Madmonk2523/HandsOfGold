@@ -20,6 +20,8 @@ const LEAD_MIN_FILL_MS = 1200;
 const LEAD_API_ENDPOINT = '/api/send-lead';
 const LEAD_REQUEST_TIMEOUT_MS = 20000;
 const REPO_BASE_PATH = window.location.hostname.endsWith('github.io') ? '/HandsOfGold' : '';
+const STRIPE_CONFIG_ENDPOINT = '/api/stripe-config';
+const STRIPE_CHECKOUT_ENDPOINT = '/api/create-checkout-session';
 
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
@@ -1099,6 +1101,42 @@ const parseWeight = (value) => {
   return parsed;
 };
 
+let stripeClientPromise;
+
+const getStripeClient = async () => {
+  if (stripeClientPromise) {
+    return stripeClientPromise;
+  }
+
+  stripeClientPromise = (async () => {
+    if (typeof window.Stripe !== 'function') {
+      throw new Error('Stripe.js failed to load. Refresh the page and try again.');
+    }
+
+    const response = await fetch(STRIPE_CONFIG_ENDPOINT, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Stripe config endpoint is unavailable. Check deployment environment variables.');
+    }
+
+    const payload = await response.json();
+    const publishableKey = String(payload?.publishableKey || '').trim();
+
+    if (!publishableKey) {
+      throw new Error('Missing Stripe publishable key on server.');
+    }
+
+    return window.Stripe(publishableKey);
+  })();
+
+  return stripeClientPromise;
+};
+
 const roundToFive = (value) => Math.round(value / 5) * 5;
 
 const defaultPricingConfig = {
@@ -1693,13 +1731,58 @@ const initCubanConfigurator = async () => {
     renderCart();
   });
 
-  cartCheckout.addEventListener('click', () => {
+  cartCheckout.addEventListener('click', async () => {
     if (!state.cart.length) {
       return;
     }
 
-    // Checkout is a placeholder; final price lock happens in real payment flow.
-    closeCart();
+    cartCheckout.disabled = true;
+    const defaultCheckoutLabel = cartCheckout.textContent;
+    cartCheckout.textContent = 'Redirecting...';
+
+    try {
+      const stripe = await getStripeClient();
+
+      const checkoutItems = state.cart.map((item) => ({
+        key: item.key,
+        quantity: item.quantity,
+      }));
+
+      const response = await fetch(STRIPE_CHECKOUT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          items: checkoutItems,
+          sourcePath: window.location.pathname,
+        }),
+      });
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok || !payload?.sessionId) {
+        throw new Error(payload?.error || `Checkout session failed with status ${response.status}`);
+      }
+
+      const redirectResult = await stripe.redirectToCheckout({
+        sessionId: payload.sessionId,
+      });
+
+      if (redirectResult?.error?.message) {
+        throw new Error(redirectResult.error.message);
+      }
+    } catch (error) {
+      const message = error instanceof Error && error.message
+        ? error.message
+        : 'Checkout is unavailable right now. Please try again in a moment.';
+
+      priceLockNote.textContent = message;
+      console.error('Stripe checkout redirect failed:', error);
+      cartCheckout.disabled = false;
+      cartCheckout.textContent = defaultCheckoutLabel;
+    }
   });
 
   document.addEventListener('keydown', (event) => {
