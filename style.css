@@ -509,6 +509,8 @@ p {
 
 .ring-builder-frame {
   overflow: hidden;
+  max-width: 1080px;
+  margin-inline: auto;
   border: 1px solid rgba(221, 184, 114, 0.28);
   border-radius: 28px;
   background: #fff;
@@ -518,7 +520,7 @@ p {
 .ring-builder-frame iframe {
   display: block;
   width: 100%;
-  height: clamp(720px, 82vh, 980px);
+  height: clamp(640px, 72vh, 840px);
   border: 0;
   background: #fff;
 }
@@ -1688,7 +1690,7 @@ p {
   }
 
   .ring-builder-frame iframe {
-    height: 760px;
+    height: 680px;
   }
 
   .lead-popup-card {
