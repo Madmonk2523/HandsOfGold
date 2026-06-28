@@ -495,6 +495,49 @@ p {
   padding: 9rem 0 6rem;
 }
 
+.ring-builder-section {
+  scroll-margin-top: calc(var(--metals-bar-height) + 88px);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(213, 168, 79, 0.13), transparent 42%),
+    #0d0b09;
+}
+
+.ring-builder-section .section-header p:last-child {
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.ring-builder-frame {
+  overflow: hidden;
+  border: 1px solid rgba(221, 184, 114, 0.28);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
+}
+
+.ring-builder-frame iframe {
+  display: block;
+  width: 100%;
+  height: clamp(720px, 82vh, 980px);
+  border: 0;
+  background: #fff;
+}
+
+.ring-builder-fallback {
+  margin: 0;
+  padding: 0.9rem 1.25rem;
+  background: #17120c;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.ring-builder-fallback a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .hero-backdrop {
   position: absolute;
   inset: 0;
@@ -1638,6 +1681,14 @@ p {
 
   .map-card iframe {
     min-height: 320px;
+  }
+
+  .ring-builder-frame {
+    border-radius: 20px;
+  }
+
+  .ring-builder-frame iframe {
+    height: 760px;
   }
 
   .lead-popup-card {
