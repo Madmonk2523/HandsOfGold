@@ -508,8 +508,10 @@ p {
 }
 
 .ring-builder-frame {
+  --ring-builder-height: clamp(560px, 66svh, 740px);
   overflow: hidden;
-  max-width: 1080px;
+  width: 100%;
+  max-width: 960px;
   margin-inline: auto;
   border: 1px solid rgba(221, 184, 114, 0.28);
   border-radius: 28px;
@@ -520,7 +522,8 @@ p {
 .ring-builder-frame iframe {
   display: block;
   width: 100%;
-  height: clamp(640px, 72vh, 840px);
+  height: 640px;
+  height: var(--ring-builder-height);
   border: 0;
   background: #fff;
 }
@@ -1437,6 +1440,10 @@ p {
     padding: 0.85rem 0;
   }
 
+  .ring-builder-frame {
+    --ring-builder-height: clamp(540px, 68svh, 660px);
+  }
+
   .nav-wrap {
     grid-template-columns: auto 1fr auto auto;
     gap: 0.7rem;
@@ -1686,11 +1693,13 @@ p {
   }
 
   .ring-builder-frame {
-    border-radius: 20px;
+    --ring-builder-height: clamp(500px, 70svh, 600px);
+    border-radius: 18px;
   }
 
-  .ring-builder-frame iframe {
-    height: 680px;
+  .ring-builder-fallback {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
   }
 
   .lead-popup-card {
