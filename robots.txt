@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://madmonk2523.github.io/HandsOfGold/sitemap.xml
+Sitemap: https://www.handsofgoldny.com/sitemap.xml

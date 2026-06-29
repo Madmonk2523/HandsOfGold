@@ -19,7 +19,6 @@ const LEAD_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const LEAD_MIN_FILL_MS = 1200;
 const LEAD_API_ENDPOINT = '/api/send-lead';
 const LEAD_REQUEST_TIMEOUT_MS = 20000;
-const REPO_BASE_PATH = window.location.hostname.endsWith('github.io') ? '/HandsOfGold' : '';
 const STRIPE_CONFIG_ENDPOINT = '/api/stripe-config';
 const STRIPE_CHECKOUT_ENDPOINT = '/api/create-checkout-session';
 
@@ -145,7 +144,7 @@ const metalPriceNodes = {
 };
 const metalsUpdatedNode = document.getElementById('metals-updated');
 
-const METALS_DATA_URL = `${REPO_BASE_PATH}/data/metals.json`;
+const METALS_DATA_URL = '/data/metals.json';
 const METALS_REFRESH_MS = 60 * 60 * 1000;
 const METALS_CACHE_KEY = 'hog-metals-cache-v2';
 const METALS_DISPLAY_REFRESH_MS = 60 * 1000;
@@ -1080,9 +1079,11 @@ if (repairsSubmitNode) {
   repairsSubmitNode.dataset.defaultText = repairsSubmitNode.textContent;
 }
 
-const CUBAN_CATALOG_URL = `${REPO_BASE_PATH}/data/cuban-catalog.json`;
+const CUBAN_CATALOG_URL = '/data/cuban-catalog.json';
 const CUBAN_CATALOG_STORAGE_KEY = 'hog-cuban-catalog-v1';
 const CUBAN_PRICING_STORAGE_KEY = 'hog-cuban-pricing-v1';
+// Temporary end-to-end Stripe test price for both Cuban products.
+const CUBAN_TEST_PRICE_USD = 1;
 
 const CUBAN_PURITY = {
   '10K': 0.4167,
@@ -1389,7 +1390,7 @@ const initCubanConfigurator = async () => {
 
     return {
       spot,
-      retailPrice: roundToFive(retailBase),
+      retailPrice: CUBAN_TEST_PRICE_USD || roundToFive(retailBase),
     };
   };
 
