@@ -7,8 +7,6 @@ const KARAT_PURITY_VALUES = {
 const DEFAULT_SURCHARGE_PER_GRAM = 10;
 const DEFAULT_MARGIN_DIVISOR = 0.65;
 const DEFAULT_COMPARE_MULTIPLIER = 2.4;
-// Temporary end-to-end Stripe test price for both Cuban products.
-const TEST_RETAIL_PRICE_USD = 1;
 
 const toPositiveNumber = (value) => {
   const numeric = Number(value);
@@ -81,7 +79,7 @@ const calculateRetailPrice = ({
   const compareAtPrice = spot * purity * weight * config.compareMultiplier;
 
   return {
-    retailPrice: TEST_RETAIL_PRICE_USD || roundedRetail,
+    retailPrice: roundedRetail,
     compareAtPrice: Number(compareAtPrice.toFixed(2)),
     inputs: {
       spotPricePerGram: spot,
@@ -96,7 +94,6 @@ const calculateRetailPrice = ({
 
 module.exports = {
   KARAT_PURITY_VALUES,
-  TEST_RETAIL_PRICE_USD,
   calculateRetailPrice,
   getPricingConfig,
   normalizeKarat,

@@ -1082,8 +1082,6 @@ if (repairsSubmitNode) {
 const CUBAN_CATALOG_URL = '/data/cuban-catalog.json';
 const CUBAN_CATALOG_STORAGE_KEY = 'hog-cuban-catalog-v1';
 const CUBAN_PRICING_STORAGE_KEY = 'hog-cuban-pricing-v1';
-// Temporary end-to-end Stripe test price for both Cuban products.
-const CUBAN_TEST_PRICE_USD = 1;
 
 const CUBAN_PURITY = {
   '10K': 0.4167,
@@ -1390,7 +1388,7 @@ const initCubanConfigurator = async () => {
 
     return {
       spot,
-      retailPrice: CUBAN_TEST_PRICE_USD || roundToFive(retailBase),
+      retailPrice: roundToFive(retailBase),
     };
   };
 
