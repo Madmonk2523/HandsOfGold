@@ -1,3 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T4Q695C5');</script>
+<!-- End Google Tag Manager -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f0f10" />
+    <meta
+      name="description"
+      content="Privacy Policy for Hands of Gold Jewelry and Repairs, Copiague NY. How we collect, use, and protect your information."
+    />
+    <link rel="canonical" href="https://www.handsofgoldny.com/privacy.html" />
+    <title>Privacy Policy | Hands of Gold Jewelry and Repairs</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f0f10;
+        --panel: #17171a;
+        --gold: #c9a84c;
+        --gold-soft: rgba(201, 168, 76, 0.35);
+        --text: #e8e6e1;
+        --text-dim: #b3b0a8;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--ink);
+        color: var(--text);
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+      header.policy-header {
+        border-bottom: 1px solid var(--gold-soft);
+        padding: 20px 0;
+      }
+      .policy-header .wrap {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .policy-header img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+      .policy-header a {
+        color: var(--text);
+        text-decoration: none;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      .policy-header a span { color: var(--gold); }
+      main { padding: 56px 0 72px; }
+      .eyebrow {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.1rem, 5vw, 3rem);
+        font-weight: 600;
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+      .effective { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 40px; }
+      h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: var(--gold);
+        margin: 40px 0 12px;
+      }
+      p, li { color: var(--text-dim); font-size: 0.96rem; }
+      p { margin-bottom: 14px; }
+      strong { color: var(--text); font-weight: 600; }
+      ul { padding-left: 22px; margin-bottom: 14px; }
+      li { margin-bottom: 8px; }
+      a { color: var(--gold); }
+      .contact-card {
+        margin-top: 44px;
+        border: 1px solid var(--gold-soft);
+        background: var(--panel);
+        border-radius: 12px;
+        padding: 26px 28px;
+      }
+      .contact-card h2 { margin-top: 0; }
+      footer.policy-footer {
+        border-top: 1px solid var(--gold-soft);
+        padding: 22px 0;
+        color: var(--text-dim);
+        font-size: 0.85rem;
+      }
+      footer.policy-footer a { color: var(--text-dim); }
+      @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4Q695C5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <header class="policy-header">
+      <div class="wrap">
+        <img src="logo.jpg" alt="Hands of Gold Jewelry and Repairs logo" />
+        <a href="index.html">Hands of Gold <span>Jewelry and Repairs</span></a>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <p class="eyebrow">Legal</p>
+        <h1>Privacy Policy</h1>
+        <p class="effective">Effective date: August 3, 2026</p>
+
+        <p>
+          This Privacy Policy describes how <strong>Hands of Gold Jewelry and Repairs</strong> ("Hands of Gold," "we," "us"), located at 494 Oak St, Copiague, NY 11726, collects, uses, and shares information when you visit
+          <a href="https://www.handsofgoldny.com/">handsofgoldny.com</a> (the "Site") or contact us through it.
+        </p>
+
+        <h2>Information We Collect</h2>
+        <p><strong>Information you provide.</strong> When you submit a form on the Site — including our offer sign-up, repair or engraving inquiries, custom design requests, or gold-buying estimate forms — we may collect your name, email address, phone number, and any details you include about your request.</p>
+        <p><strong>Information collected automatically.</strong> When you browse the Site, we and our service providers may automatically collect your IP address, device and browser type, the pages you view, the page that referred you, and general usage data, using cookies and similar technologies.</p>
+
+        <h2>How We Use Your Information</h2>
+        <ul>
+          <li>To respond to your inquiries, quotes, and service requests</li>
+          <li>To deliver offers you have requested, such as welcome discounts</li>
+          <li>To contact you by phone, text, or email about your request or offer</li>
+          <li>To operate, secure, and improve the Site</li>
+          <li>To measure the performance of our advertising and marketing</li>
+          <li>To comply with legal obligations</li>
+        </ul>
+
+        <h2>Cookies, Analytics, and Advertising</h2>
+        <p>
+          We use Google Tag Manager and analytics tools to understand how visitors use the Site, and we may use advertising services such as Google Ads, including conversion measurement and remarketing, to show you relevant ads on other websites. These services may set cookies or use similar identifiers in your browser.
+        </p>
+        <p>
+          You can control cookies through your browser settings, and you can opt out of Google's personalized advertising at
+          <a href="https://adssettings.google.com" rel="noreferrer" target="_blank">adssettings.google.com</a>.
+        </p>
+
+        <h2>How We Share Information</h2>
+        <p>We do not sell your personal information. We share it only with:</p>
+        <ul>
+          <li><strong>Service providers</strong> that help us operate the Site and respond to you, such as form-processing, hosting, analytics, and design-tool providers</li>
+          <li><strong>Advertising partners</strong> such as Google, for measurement and remarketing as described above</li>
+          <li><strong>Legal authorities</strong> when required by law or to protect our rights and the safety of others</li>
+        </ul>
+
+        <h2>Text Messages and Calls</h2>
+        <p>
+          If you provide your phone number, you agree that we may call or text you about your inquiry or offer. Message and data rates may apply. You can opt out of texts at any time by replying STOP, and you may ask us to stop contacting you by using the contact details below.
+        </p>
+
+        <h2>Data Retention</h2>
+        <p>We keep your information for as long as needed to respond to you, provide our services, meet legal and recordkeeping requirements, and resolve disputes, after which it is deleted or de-identified.</p>
+
+        <h2>Your Choices and Rights</h2>
+        <p>
+          You may request access to, correction of, or deletion of the personal information we hold about you by contacting us using the details below. Depending on where you live, you may have additional rights under applicable law. We will respond to verified requests as required.
+        </p>
+
+        <h2>Children's Privacy</h2>
+        <p>The Site is intended for a general audience and is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us information, contact us and we will delete it.</p>
+
+        <h2>Security</h2>
+        <p>We use reasonable administrative and technical safeguards to protect your information. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. The effective date above shows when it was last revised. Continued use of the Site after changes means you accept the updated policy.</p>
+
+        <div class="contact-card">
+          <h2>Contact Us</h2>
+          <p>
+            Hands of Gold Jewelry and Repairs<br />
+            494 Oak St, Copiague, NY 11726<br />
+            Phone: <a href="tel:6312646610">(631) 264-6610</a>
+          </p>
+          <p>Hablamos español.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="policy-footer">
+      <div class="wrap">
+        <p>© 2026 Hands of Gold Jewelry and Repairs. All rights reserved. <a href="index.html">Back to home</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -604,7 +812,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label class="lead-honeypot" for="lead-website">Website</label>
             <input class="lead-honeypot" id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off" />
 
-            <p class="lead-popup-fineprint">By submitting, you agree to be contacted by Hands Of Gold NY about your offer. See our <a href="privacy.html">Privacy Policy</a>.</p>
+            <p class="lead-popup-fineprint">By submitting, you agree to be contacted by Hands Of Gold NY about your offer.</p>
 
             <button class="button button-primary lead-submit" type="submit" id="lead-submit">Claim My 10% Off</button>
             <p class="lead-popup-status" id="lead-status" role="status" aria-live="polite"></p>
@@ -640,7 +848,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="engraving/">Engraving</a>
             <a href="repairs/">Repairs</a>
             <a href="return-policy/">Return Policy</a>
-            <a href="privacy.html">Privacy Policy</a>
             <a href="https://instagram.com/handsofgoldnyc?utm_medium=copy_link" target="_blank" rel="noreferrer">Instagram</a>
             <a href="https://www.facebook.com/Handsofgoldnyc" target="_blank" rel="noreferrer">Facebook</a>
             <a href="https://www.tiktok.com/@handsofgoldoficial_" target="_blank" rel="noreferrer">TikTok</a>
@@ -655,240 +862,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <script src="script.js"></script>
-    <script>
-      // GTM conversion events: phone clicks + lead form submits
-      (function () {
-        window.dataLayer = window.dataLayer || [];
-
-        // Any tap/click on a tel: link anywhere on the page
-        document.addEventListener("click", function (e) {
-          var link = e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
-          if (link) {
-            window.dataLayer.push({
-              event: "phone_call_click",
-              link_text: (link.textContent || "").trim(),
-              link_location: link.className || "unlabeled"
-            });
-          }
-        });
-
-        // Lead popup form submit (fires on attempt; see GTM notes)
-        var leadForm = document.getElementById("lead-form");
-        if (leadForm) {
-          leadForm.addEventListener("submit", function () {
-            window.dataLayer.push({ event: "lead_form_submit" });
-          });
-        }
-      })();
-    </script>
-  </body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T4Q695C5');</script>
-<!-- End Google Tag Manager -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0f0f10" />
-    <meta
-      name="description"
-      content="Privacy Policy for Hands of Gold Jewelry and Repairs, Copiague NY. How we collect, use, and protect your information."
-    />
-    <link rel="canonical" href="https://www.handsofgoldny.com/privacy.html" />
-    <title>Privacy Policy | Hands of Gold Jewelry and Repairs</title>
-    <link rel="icon" href="logo.jpg" type="image/jpeg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --ink: #0f0f10;
-        --panel: #17171a;
-        --gold: #c9a84c;
-        --gold-soft: rgba(201, 168, 76, 0.35);
-        --text: #e8e6e1;
-        --text-dim: #b3b0a8;
-      }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        background: var(--ink);
-        color: var(--text);
-        font-family: "Montserrat", sans-serif;
-        line-height: 1.7;
-        -webkit-font-smoothing: antialiased;
-      }
-      .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-      header.policy-header {
-        border-bottom: 1px solid var(--gold-soft);
-        padding: 20px 0;
-      }
-      .policy-header .wrap {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      .policy-header img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-      .policy-header a {
-        color: var(--text);
-        text-decoration: none;
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.35rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-      }
-      .policy-header a span { color: var(--gold); }
-      main { padding: 56px 0 72px; }
-      .eyebrow {
-        color: var(--gold);
-        text-transform: uppercase;
-        letter-spacing: 0.22em;
-        font-size: 0.72rem;
-        font-weight: 600;
-        margin-bottom: 14px;
-      }
-      h1 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.1rem, 5vw, 3rem);
-        font-weight: 600;
-        line-height: 1.15;
-        margin-bottom: 10px;
-      }
-      .effective { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 40px; }
-      h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.55rem;
-        font-weight: 600;
-        color: var(--gold);
-        margin: 40px 0 12px;
-      }
-      p, li { color: var(--text-dim); font-size: 0.96rem; }
-      p { margin-bottom: 14px; }
-      strong { color: var(--text); font-weight: 600; }
-      ul { padding-left: 22px; margin-bottom: 14px; }
-      li { margin-bottom: 8px; }
-      a { color: var(--gold); }
-      .contact-card {
-        margin-top: 44px;
-        border: 1px solid var(--gold-soft);
-        background: var(--panel);
-        border-radius: 12px;
-        padding: 26px 28px;
-      }
-      .contact-card h2 { margin-top: 0; }
-      footer.policy-footer {
-        border-top: 1px solid var(--gold-soft);
-        padding: 22px 0;
-        color: var(--text-dim);
-        font-size: 0.85rem;
-      }
-      footer.policy-footer a { color: var(--text-dim); }
-      @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-    </style>
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T4Q695C5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-    <header class="policy-header">
-      <div class="wrap">
-        <img src="logo.jpg" alt="Hands of Gold Jewelry and Repairs logo" />
-        <a href="index.html">Hands of Gold <span>Jewelry and Repairs</span></a>
-      </div>
-    </header>
-
-    <main>
-      <div class="wrap">
-        <p class="eyebrow">Legal</p>
-        <h1>Privacy Policy</h1>
-        <p class="effective">Effective date: August 3, 2026</p>
-
-        <p>
-          This Privacy Policy describes how <strong>Hands of Gold Jewelry and Repairs</strong> ("Hands of Gold," "we," "us"), located at 494 Oak St, Copiague, NY 11726, collects, uses, and shares information when you visit
-          <a href="https://www.handsofgoldny.com/">handsofgoldny.com</a> (the "Site") or contact us through it.
-        </p>
-
-        <h2>Information We Collect</h2>
-        <p><strong>Information you provide.</strong> When you submit a form on the Site — including our offer sign-up, repair or engraving inquiries, custom design requests, or gold-buying estimate forms — we may collect your name, email address, phone number, and any details you include about your request.</p>
-        <p><strong>Information collected automatically.</strong> When you browse the Site, we and our service providers may automatically collect your IP address, device and browser type, the pages you view, the page that referred you, and general usage data, using cookies and similar technologies.</p>
-
-        <h2>How We Use Your Information</h2>
-        <ul>
-          <li>To respond to your inquiries, quotes, and service requests</li>
-          <li>To deliver offers you have requested, such as welcome discounts</li>
-          <li>To contact you by phone, text, or email about your request or offer</li>
-          <li>To operate, secure, and improve the Site</li>
-          <li>To measure the performance of our advertising and marketing</li>
-          <li>To comply with legal obligations</li>
-        </ul>
-
-        <h2>Cookies, Analytics, and Advertising</h2>
-        <p>
-          We use Google Tag Manager and analytics tools to understand how visitors use the Site, and we may use advertising services such as Google Ads, including conversion measurement and remarketing, to show you relevant ads on other websites. These services may set cookies or use similar identifiers in your browser.
-        </p>
-        <p>
-          You can control cookies through your browser settings, and you can opt out of Google's personalized advertising at
-          <a href="https://adssettings.google.com" rel="noreferrer" target="_blank">adssettings.google.com</a>.
-        </p>
-
-        <h2>How We Share Information</h2>
-        <p>We do not sell your personal information. We share it only with:</p>
-        <ul>
-          <li><strong>Service providers</strong> that help us operate the Site and respond to you, such as form-processing, hosting, analytics, and design-tool providers</li>
-          <li><strong>Advertising partners</strong> such as Google, for measurement and remarketing as described above</li>
-          <li><strong>Legal authorities</strong> when required by law or to protect our rights and the safety of others</li>
-        </ul>
-
-        <h2>Text Messages and Calls</h2>
-        <p>
-          If you provide your phone number, you agree that we may call or text you about your inquiry or offer. Message and data rates may apply. You can opt out of texts at any time by replying STOP, and you may ask us to stop contacting you by using the contact details below.
-        </p>
-
-        <h2>Data Retention</h2>
-        <p>We keep your information for as long as needed to respond to you, provide our services, meet legal and recordkeeping requirements, and resolve disputes, after which it is deleted or de-identified.</p>
-
-        <h2>Your Choices and Rights</h2>
-        <p>
-          You may request access to, correction of, or deletion of the personal information we hold about you by contacting us using the details below. Depending on where you live, you may have additional rights under applicable law. We will respond to verified requests as required.
-        </p>
-
-        <h2>Children's Privacy</h2>
-        <p>The Site is intended for a general audience and is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us information, contact us and we will delete it.</p>
-
-        <h2>Security</h2>
-        <p>We use reasonable administrative and technical safeguards to protect your information. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
-
-        <h2>Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. The effective date above shows when it was last revised. Continued use of the Site after changes means you accept the updated policy.</p>
-
-        <div class="contact-card">
-          <h2>Contact Us</h2>
-          <p>
-            Hands of Gold Jewelry and Repairs<br />
-            494 Oak St, Copiague, NY 11726<br />
-            Phone: <a href="tel:6312646610">(631) 264-6610</a>
-          </p>
-          <p>Hablamos español.</p>
-        </div>
-      </div>
-    </main>
-
-    <footer class="policy-footer">
-      <div class="wrap">
-        <p>© 2026 Hands of Gold Jewelry and Repairs. All rights reserved. <a href="index.html">Back to home</a></p>
-      </div>
-    </footer>
   </body>
 </html>
