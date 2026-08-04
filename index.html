@@ -243,11 +243,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </section>
 
-        <section class="section piece-builder-section" id="build-your-custom piece" aria-labelledby="piece-builder-title">
+        <section class="section piece-builder-section" id="build-your-ideas" aria-labelledby="piece-builder-title">
           <div class="container">
             <div class="section-header center" data-reveal="up">
               <p class="eyebrow">Create Your Perfect Piece</p>
-              <h2 id="ring-builder-title">Custom Jewelry</h2>
+              <h2 id="piece-builder-title">Custom Jewelry</h2>
               <p>Choose the details that matter to you and create a piece that is entirely your own.</p>
             </div>
 
@@ -508,20 +508,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </section>
 
-        <section class="section gallery-section" id="gallery">
-          <div class="container">
-            <div class="section-header center" data-reveal="up">
-              <p class="eyebrow">Gallery</p>
-              <h2>Selected pieces and in-store moments from Hands of Gold.</h2>
-              <p>
-                A look at the craftsmanship, jewelry selection, and visual character that define the Hands of Gold experience.
-              </p>
-            </div>
-
-            
-          </div>
-        </section>
-
         <section class="section visit-section" id="visit">
           <div class="container visit-layout">
             <div class="visit-content" data-reveal="up">
@@ -617,7 +603,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label class="lead-honeypot" for="lead-website">Website</label>
             <input class="lead-honeypot" id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off" />
 
-            <p class="lead-popup-fineprint">By submitting, you agree to be contacted by Hands Of Gold NY about your offer.</p>
+            <p class="lead-popup-fineprint">By submitting, you agree to be contacted by Hands Of Gold NY about your offer. See our <a href="privacy.html">Privacy Policy</a>.</p>
 
             <button class="button button-primary lead-submit" type="submit" id="lead-submit">Claim My 10% Off</button>
             <p class="lead-popup-status" id="lead-status" role="status" aria-live="polite"></p>
@@ -653,6 +639,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="engraving/">Engraving</a>
             <a href="repairs/">Repairs</a>
             <a href="return-policy/">Return Policy</a>
+            <a href="privacy.html">Privacy Policy</a>
             <a href="https://instagram.com/handsofgoldnyc?utm_medium=copy_link" target="_blank" rel="noreferrer">Instagram</a>
             <a href="https://www.facebook.com/Handsofgoldnyc" target="_blank" rel="noreferrer">Facebook</a>
             <a href="https://www.tiktok.com/@handsofgoldoficial_" target="_blank" rel="noreferrer">TikTok</a>
@@ -667,5 +654,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <script src="script.js"></script>
+    <script>
+      // GTM conversion events: phone clicks + lead form submits
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+
+        // Any tap/click on a tel: link anywhere on the page
+        document.addEventListener("click", function (e) {
+          var link = e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+          if (link) {
+            window.dataLayer.push({
+              event: "phone_call_click",
+              link_text: (link.textContent || "").trim(),
+              link_location: link.className || "unlabeled"
+            });
+          }
+        });
+
+        // Lead popup form submit (fires on attempt; see GTM notes)
+        var leadForm = document.getElementById("lead-form");
+        if (leadForm) {
+          leadForm.addEventListener("submit", function () {
+            window.dataLayer.push({ event: "lead_form_submit" });
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
