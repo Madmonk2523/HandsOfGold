@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07090d" />
+  <title>Hands of Gold OS — Jeweler Sales Operating System</title>
+  <meta name="description" content="A jewelry-specific sales operating system for independent jewelers: leads, follow-ups, custom jobs and AI-assisted selling in one place." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Hands of Gold OS home">
+      <span class="brand-mark">HG</span>
+      <span><strong>Hands of Gold OS</strong><small>Private Beta</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#product">Product</a>
+      <a href="#demo">Live Demo</a>
+      <a href="#pricing">Pricing</a>
+      <button class="btn btn-small" data-scroll="#demo">Open Demo</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <div class="eyebrow">Built inside a real jewelry store</div>
+        <h1>Turn more jewelry inquiries into <span>closed sales.</span></h1>
+        <p class="hero-sub">One operating system for leads, follow-ups, custom jobs, deposits and sales conversations — designed around how independent jewelers actually work.</p>
+        <div class="hero-actions">
+          <button class="btn" data-scroll="#demo">Try the live prototype</button>
+          <button class="btn btn-ghost" data-scroll="#pricing">See founding pricing</button>
+        </div>
+        <div class="trust-row">
+          <span>Lead pipeline</span><span>Custom jobs</span><span>Follow-ups</span><span>AI sales assist</span>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Product snapshot">
+        <div class="panel-top"><span>Today</span><span class="status-dot">Live</span></div>
+        <div class="big-stat"><small>Open opportunity value</small><strong>$41,850</strong><em>12 active opportunities</em></div>
+        <div class="mini-grid">
+          <div><small>Follow-ups due</small><strong>7</strong></div>
+          <div><small>Custom jobs</small><strong>9</strong></div>
+          <div><small>Deposits</small><strong>$8.4k</strong></div>
+          <div><small>Close rate</small><strong>32%</strong></div>
+        </div>
+        <div class="activity-card"><span class="activity-icon">◆</span><div><strong>Custom Cuban inquiry</strong><small>Follow-up due in 18 min</small></div><span class="pill hot">Hot</span></div>
+        <div class="activity-card"><span class="activity-icon">◇</span><div><strong>Engagement ring CAD</strong><small>Quote sent yesterday</small></div><span class="pill">Quote</span></div>
+      </div>
+    </section>
+
+    <section id="product" class="section-shell feature-section">
+      <div class="section-heading">
+        <div class="eyebrow">The wedge</div>
+        <h2>Do one job exceptionally well first: <span>never lose a jewelry lead.</span></h2>
+        <p>Inventory, POS and accounting can come later. The first product is the revenue layer: every inquiry gets captured, assigned, followed up and pushed toward a deposit.</p>
+      </div>
+      <div class="feature-grid">
+        <article><div class="feature-num">01</div><h3>Capture every inquiry</h3><p>Walk-ins, calls, web leads, Instagram and referrals land in one pipeline with budget, product interest and next action.</p></article>
+        <article><div class="feature-num">02</div><h3>Run the follow-up</h3><p>The system tells staff who needs attention today instead of relying on memory, sticky notes or forgotten DMs.</p></article>
+        <article><div class="feature-num">03</div><h3>Move custom jobs</h3><p>Track consultation → CAD → quote → approval → deposit → production → pickup without losing context.</p></article>
+        <article><div class="feature-num">04</div><h3>Close with assistance</h3><p>Generate concise, jewelry-specific follow-up messages based on the customer, stage, budget and item being discussed.</p></article>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-wrap">
+      <div class="section-shell">
+        <div class="section-heading demo-heading">
+          <div class="eyebrow">Interactive prototype</div>
+          <h2>Use it like a jeweler.</h2>
+          <p>Add a lead, move the opportunity, then generate the next follow-up. Prototype data is saved in this browser.</p>
+        </div>
+
+        <div class="app-shell">
+          <aside class="app-sidebar">
+            <div class="app-logo"><span>HG</span><div><strong>Gold OS</strong><small>Store #001</small></div></div>
+            <button class="app-nav active" data-tab="dashboard">Overview</button>
+            <button class="app-nav" data-tab="leads">Leads <span id="leadCountBadge">0</span></button>
+            <button class="app-nav" data-tab="jobs">Custom Jobs</button>
+            <button class="app-nav" data-tab="assistant">Sales Assistant</button>
+            <div class="sidebar-bottom"><small>Prototype workspace</small><strong>Hands of Gold</strong></div>
+          </aside>
+
+          <section class="app-main">
+            <div class="app-toolbar">
+              <div><small id="viewEyebrow">Command center</small><h3 id="viewTitle">Good morning.</h3></div>
+              <button class="btn btn-small" id="addLeadBtn">+ Add lead</button>
+            </div>
+
+            <div class="app-view active" id="view-dashboard">
+              <div class="kpi-grid">
+                <div class="kpi"><small>Pipeline value</small><strong id="pipelineValue">$0</strong><span>Active opportunities</span></div>
+                <div class="kpi"><small>Open leads</small><strong id="openLeads">0</strong><span>Not yet closed</span></div>
+                <div class="kpi"><small>Follow-ups due</small><strong id="followupsDue">0</strong><span>Needs attention</span></div>
+                <div class="kpi"><small>Won this month</small><strong id="wonValue">$0</strong><span>Closed business</span></div>
+              </div>
+              <div class="dashboard-grid">
+                <div class="module-card">
+                  <div class="module-head"><div><small>Revenue pipeline</small><h4>Opportunities by stage</h4></div><button class="text-button" data-tab-jump="leads">View all</button></div>
+                  <div id="stageBars" class="stage-bars"></div>
+                </div>
+                <div class="module-card">
+                  <div class="module-head"><div><small>Priority</small><h4>Next follow-ups</h4></div></div>
+                  <div id="followupList" class="followup-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="app-view" id="view-leads">
+              <div class="filter-row">
+                <input id="leadSearch" class="input" type="search" placeholder="Search customer, item or source" />
+                <select id="stageFilter" class="input"><option value="all">All stages</option></select>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Customer</th><th>Interest</th><th>Value</th><th>Stage</th><th>Next action</th><th></th></tr></thead>
+                  <tbody id="leadTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="app-view" id="view-jobs">
+              <div class="job-board" id="jobBoard"></div>
+            </div>
+
+            <div class="app-view" id="view-assistant">
+              <div class="assistant-layout">
+                <div class="module-card assistant-form">
+                  <small>AI sales assistant</small><h4>Generate the next message</h4>
+                  <label>Customer<select class="input" id="assistantLead"></select></label>
+                  <label>Tone<select class="input" id="assistantTone"><option>Warm</option><option>Direct</option><option>Luxury</option><option>Short</option></select></label>
+                  <label>Goal<select class="input" id="assistantGoal"><option>Get a reply</option><option>Book appointment</option><option>Close deposit</option><option>Re-engage</option></select></label>
+                  <button class="btn" id="generateMessageBtn">Generate follow-up</button>
+                </div>
+                <div class="assistant-output">
+                  <div class="assistant-badge">Sales Draft</div>
+                  <p id="assistantMessage">Choose a customer and generate the next message.</p>
+                  <button class="btn btn-ghost btn-small" id="copyMessageBtn">Copy message</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section-shell pricing-section">
+      <div class="section-heading"><div class="eyebrow">Founding customer offer</div><h2>Price it low enough to learn. High enough that the customer uses it.</h2></div>
+      <div class="pricing-card">
+        <div><span class="pill hot">First 10 stores</span><h3>Founding Jeweler</h3><p>One location. Full lead pipeline, custom-job workflow, follow-up dashboard and sales assistant.</p></div>
+        <div class="price"><strong>$299</strong><span>/ month</span><small>No setup fee during beta</small></div>
+        <ul><li>Unlimited staff during beta</li><li>White-glove onboarding</li><li>Direct founder feedback channel</li><li>Price locked for 12 months</li><li>Cancel anytime</li></ul>
+        <button class="btn" id="betaRequestBtn">Request founding access</button>
+        <small class="pricing-note">Prototype request is stored locally until the production lead backend is connected.</small>
+      </div>
+    </section>
+
+    <section class="section-shell close-section">
+      <div><div class="eyebrow">The target</div><h2>First milestone: <span>10 paying jewelers.</span></h2><p>Not 10,000. Ten. Ten stores at $299/month gives us real usage, real objections and the evidence to build the next layer.</p></div>
+      <button class="btn" data-scroll="#demo">Start with store #001</button>
+    </section>
+  </main>
+
+  <footer><span>Hands of Gold OS</span><span>Private beta prototype · 2026</span></footer>
+
+  <dialog id="leadDialog">
+    <form method="dialog" id="leadForm" class="dialog-card">
+      <div class="dialog-head"><div><small>New opportunity</small><h3>Add jewelry lead</h3></div><button class="icon-btn" value="cancel" aria-label="Close">×</button></div>
+      <div class="form-grid">
+        <label>Customer name<input class="input" name="name" required placeholder="Customer name" /></label>
+        <label>Phone / contact<input class="input" name="contact" placeholder="Phone or Instagram" /></label>
+        <label>Interested in<input class="input" name="interest" required placeholder="Cuban chain, ring, repair..." /></label>
+        <label>Estimated value<input class="input" name="value" type="number" min="0" step="50" placeholder="2500" /></label>
+        <label>Source<select class="input" name="source"><option>Walk-in</option><option>Website</option><option>Instagram</option><option>Phone</option><option>Referral</option></select></label>
+        <label>Stage<select class="input" name="stage" id="newLeadStage"></select></label>
+        <label class="full">Next action<input class="input" name="nextAction" placeholder="Text quote at 3 PM" /></label>
+      </div>
+      <div class="dialog-actions"><button class="btn btn-ghost" value="cancel">Cancel</button><button class="btn" value="default" id="saveLeadBtn">Save lead</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="betaDialog">
+    <form method="dialog" id="betaForm" class="dialog-card">
+      <div class="dialog-head"><div><small>Founding access</small><h3>Request beta spot</h3></div><button class="icon-btn" value="cancel" aria-label="Close">×</button></div>
+      <div class="form-grid">
+        <label>Store name<input class="input" name="store" required placeholder="Store name" /></label>
+        <label>Your name<input class="input" name="name" required placeholder="Owner / manager" /></label>
+        <label>Best contact<input class="input" name="contact" required placeholder="Phone or email" /></label>
+        <label>Locations<input class="input" name="locations" type="number" min="1" value="1" /></label>
+        <label class="full">Biggest sales problem<textarea class="input" name="problem" rows="4" placeholder="What falls through the cracks today?"></textarea></label>
+      </div>
+      <div class="dialog-actions"><button class="btn btn-ghost" value="cancel">Cancel</button><button class="btn" value="default" id="saveBetaBtn">Save request</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
