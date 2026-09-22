@@ -25,6 +25,52 @@
   --transition: 220ms ease;
 }
 
+/* AI concierge: intent routing, lead scoring, and custom jewelry intake */
+.concierge-section { background: #080808; color: #fff; }
+.concierge-shell { max-width: 1040px; }
+.concierge-intro { max-width: 700px; margin-bottom: 1.5rem; }
+.concierge-intro h2 { margin: .35rem 0 .75rem; color: #fff; }
+.concierge-intro p:last-child { color: rgba(255,255,255,.72); font-size: 1.05rem; }
+.concierge-search,
+.concierge-result,
+.concierge-lead-form { border: 1px solid rgba(207,171,83,.4); background: linear-gradient(145deg, #141414, #0d0d0d); border-radius: 18px; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 22px 70px rgba(0,0,0,.28); }
+.concierge-search label { display: block; margin-bottom: .7rem; font-weight: 700; font-size: 1rem; }
+.concierge-search-row { display: grid; grid-template-columns: 1fr auto; gap: .75rem; align-items: stretch; }
+.concierge-search textarea,
+.concierge-fields input,
+.concierge-fields select,
+.concierge-fields textarea { width: 100%; min-height: 48px; border: 1px solid rgba(255,255,255,.2); border-radius: 10px; background: #fff; color: #111; padding: .85rem 1rem; font: inherit; }
+.concierge-search textarea { resize: vertical; min-height: 88px; }
+.concierge-search textarea:focus,
+.concierge-fields input:focus,
+.concierge-fields select:focus,
+.concierge-fields textarea:focus { outline: 3px solid rgba(207,171,83,.28); border-color: #cfab53; }
+.concierge-examples { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .9rem; }
+.concierge-examples button { border: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.86); background: transparent; border-radius: 999px; padding: .55rem .8rem; font: inherit; cursor: pointer; }
+.concierge-examples button:hover { border-color: #cfab53; color: #fff; }
+.concierge-result { margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+.concierge-result[hidden], .concierge-lead-form[hidden] { display: none; }
+.concierge-result-label { margin: 0 0 .35rem; color: #cfab53; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; font-size: .78rem; }
+.concierge-result h3, .concierge-lead-form h3 { color: #fff; margin: 0 0 .35rem; }
+.concierge-result p:last-child { margin: 0; color: rgba(255,255,255,.7); }
+.concierge-lead-form { margin-top: 1rem; }
+.concierge-form-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.lead-priority { border: 1px solid rgba(207,171,83,.45); color: #e8cc83; border-radius: 999px; padding: .55rem .75rem; font-size: .82rem; line-height: 1.2; }
+.lead-priority.is-hot { background: #cfab53; color: #080808; border-color: #cfab53; }
+.concierge-fields { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; margin-bottom: 1rem; }
+.concierge-fields label { display: grid; gap: .45rem; color: rgba(255,255,255,.85); font-weight: 650; }
+.concierge-details { grid-column: 1 / -1; }
+.concierge-details textarea { resize: vertical; }
+.concierge-status { min-height: 1.5rem; margin: .75rem 0 0; }
+.concierge-status.is-success { color: #9fe2b2; }
+.concierge-status.is-error { color: #ff9c9c; }
+@media (max-width: 720px) {
+  .concierge-search-row, .concierge-fields { grid-template-columns: 1fr; }
+  .concierge-search-row .button { width: 100%; }
+  .concierge-result, .concierge-form-heading { align-items: stretch; flex-direction: column; }
+  .concierge-result .button { width: 100%; text-align: center; }
+}
+
 * {
   box-sizing: border-box;
 }

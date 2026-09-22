@@ -1801,3 +1801,136 @@ const initCubanConfigurator = async () => {
 initCubanConfigurator().catch((error) => {
   console.error('Cuban configurator failed to initialize:', error);
 });
+
+const initConcierge = () => {
+  const searchForm = document.getElementById('concierge-search');
+  const messageInput = document.getElementById('concierge-message');
+  const result = document.getElementById('concierge-result');
+  const resultTitle = document.getElementById('concierge-result-title');
+  const resultCopy = document.getElementById('concierge-result-copy');
+  const resultLink = document.getElementById('concierge-result-link');
+  const customForm = document.getElementById('concierge-lead-form');
+  const priorityNode = document.getElementById('concierge-priority');
+  const statusNode = document.getElementById('concierge-status');
+  const submitButton = document.getElementById('concierge-submit');
+
+  if (!searchForm || !messageInput || !result || !resultTitle || !resultCopy || !resultLink || !customForm) return;
+
+  const routes = [
+    { id: 'custom', words: ['custom', 'make', 'design', 'create', 'picture pendant', 'nameplate', 'one of a kind'], title: 'Start a custom jewelry request', copy: 'Tell our jewelers your idea, budget, metal, and deadline.', href: '#concierge-lead-form' },
+    { id: 'gold', words: ['sell gold', 'cash for gold', 'gold buyer', 'scrap gold', 'grams of gold'], title: 'Get an estimate for your gold', copy: 'Use our gold calculator, then send the details for a store offer.', href: 'we-buy-gold.html' },
+    { id: 'repair', words: ['repair', 'resize', 'broken', 'fix', 'battery', 'cleaning', 'polish'], title: 'Request a repair', copy: 'Tell us what needs attention and when you would like to visit.', href: 'repairs/' },
+    { id: 'finance', words: ['finance', 'financing', 'monthly', 'payment plan', 'acima', 'snap', 'progressive'], title: 'See financing options', copy: 'Compare available payment options and choose the one that fits.', href: '#financing' },
+    { id: 'shop', words: ['buy', 'shop', 'chain', 'bracelet', 'ring', 'earrings', 'gift', 'anniversary', 'cuban'], title: 'Shop jewelry', copy: 'Browse available pieces and our Cuban link builder.', href: 'shop.html' },
+    { id: 'engraving', words: ['engrave', 'engraving', 'personalize', 'inscription'], title: 'Start an engraving request', copy: 'Share the item, wording, and preferred visit date.', href: 'engraving/' },
+  ];
+
+  const classifyIntent = (input) => {
+    const normalized = input.toLowerCase();
+    const scored = routes.map((route) => ({ ...route, score: route.words.reduce((sum, word) => sum + (normalized.includes(word) ? 1 : 0), 0) }));
+    scored.sort((a, b) => b.score - a.score);
+    return scored[0].score ? scored[0] : { id: 'contact', title: 'Speak with a jeweler', copy: 'We can help in English or Spanish and guide you personally.', href: 'tel:6312646610' };
+  };
+
+  const showRoute = (input) => {
+    const route = classifyIntent(input);
+    resultTitle.textContent = route.title;
+    resultCopy.textContent = route.copy;
+    resultLink.href = route.href;
+    resultLink.textContent = route.id === 'contact' ? 'Call the Store' : 'Continue';
+    result.hidden = false;
+    customForm.hidden = route.id !== 'custom';
+    if (route.id === 'custom') {
+      customForm.elements.details.value = input;
+      customForm.elements.formStart.value = String(Date.now());
+      updatePriority();
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'concierge_intent', concierge_intent: route.id });
+  };
+
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = messageInput.value.trim();
+    if (!input) { messageInput.focus(); return; }
+    showRoute(input);
+  });
+
+  document.querySelectorAll('[data-concierge-example]').forEach((button) => {
+    button.addEventListener('click', () => {
+      messageInput.value = button.dataset.conciergeExample || '';
+      showRoute(messageInput.value);
+    });
+  });
+
+  const getPriority = () => {
+    const data = new FormData(customForm);
+    let score = 0;
+    if (data.get('budget')) score += 2;
+    if (data.get('deadline')) score += 2;
+    if (data.get('jewelryType')) score += 1;
+    if (data.get('metal')) score += 1;
+    if (String(data.get('details') || '').trim().length >= 25) score += 1;
+    if (data.get('phone') && data.get('email')) score += 2;
+    return score >= 7 ? 'HOT' : score >= 4 ? 'WARM' : 'NEW';
+  };
+
+  function updatePriority() {
+    const priority = getPriority();
+    priorityNode.textContent = priority === 'HOT' ? 'Priority request â ready for jeweler review' : priority === 'WARM' ? 'Strong request â add contact details for priority' : 'Add details to receive faster help';
+    priorityNode.classList.toggle('is-hot', priority === 'HOT');
+  }
+
+  customForm.addEventListener('input', updatePriority);
+  customForm.addEventListener('change', updatePriority);
+
+  customForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    statusNode.className = 'concierge-status';
+    if (!customForm.reportValidity()) return;
+
+    const data = new FormData(customForm);
+    const priority = getPriority();
+    const details = [
+      `Priority: ${priority}`,
+      `Jewelry type: ${data.get('jewelryType') || 'Not specified'}`,
+      `Metal: ${data.get('metal') || 'Not specified'}`,
+      `Budget: ${data.get('budget') || 'Not specified'}`,
+      `Needed by: ${data.get('deadline') || 'Not specified'}`,
+      `Customer idea: ${data.get('details') || ''}`,
+    ].join('\n');
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    statusNode.textContent = '';
+
+    try {
+      const response = await fetch(LEAD_API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'), phone: data.get('phone'), email: data.get('email'),
+          website: data.get('website'), formStart: data.get('formStart'),
+          pageUrl: window.location.href, utmSource: new URLSearchParams(window.location.search).get('utm_source') || 'direct',
+          leadType: `${priority} - Custom Jewelry Concierge`, itemType: data.get('jewelryType'), description: details,
+        }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || 'We could not send your request.');
+      statusNode.textContent = 'Request received. A Hands of Gold jeweler will contact you shortly.';
+      statusNode.classList.add('is-success');
+      customForm.reset();
+      customForm.elements.formStart.value = String(Date.now());
+      updatePriority();
+      window.dataLayer.push({ event: 'concierge_lead_submit', lead_priority: priority, lead_type: 'custom_jewelry' });
+    } catch (error) {
+      statusNode.textContent = error instanceof Error ? error.message : 'We could not send your request. Please call (631) 264-6610.';
+      statusNode.classList.add('is-error');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send My Request';
+    }
+  });
+};
+
+initConcierge();
