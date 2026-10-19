@@ -1,10 +1,10 @@
 {
   "source": "gold-api.com",
   "currency": "USD",
-  "updatedAtMs": 1792389600000,
+  "updatedAtMs": 1792393200000,
   "prices": {
-    "XAU": 4184.299805,
-    "XAG": 57.93,
-    "XPT": 1665
+    "XAU": 4185.899902,
+    "XAG": 57.789001,
+    "XPT": 1663
   }
 }
