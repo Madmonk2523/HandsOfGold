@@ -4,17 +4,32 @@ let card = new URLSearchParams(location.search).get('card');
 let savedAddress = '';
 const btc = sats => `${(sats / 100000000).toFixed(8)} BTC`;
 const dollars = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+let pricePromise, priceRequestedAt = 0;
+function getPrice() {
+  if (!pricePromise || Date.now() - priceRequestedAt > 30000) {
+    priceRequestedAt = Date.now();
+    pricePromise = (async () => {
+      const response = await fetch('/api/bitcoin-price');
+      if (!response.ok) throw new Error('Price unavailable');
+      const price = await response.json(), time = Date.parse(price.quotedAt);
+      if (!Number.isFinite(price.usd) || price.usd <= 0 || !Number.isFinite(time) || Date.now() - time > 900000 || time > Date.now() + 60000) throw new Error('Price outdated');
+      el('header-btc-price').textContent = `1 BTC = ${dollars(price.usd)} USD`;
+      el('header-btc-price').title = `Price as of ${new Date(time).toLocaleString()} · mempool.space`;
+      return price;
+    })();
+  }
+  return pricePromise;
+}
+getPrice().catch(() => { el('header-btc-price').textContent = 'BTC price unavailable'; });
 async function showDollarValue(sats) {
   el('usd-value').textContent = 'Checking dollar value…'; el('usd-rate').textContent = '';
   try {
-    const response = await fetch('/api/bitcoin-price');
-    if (!response.ok) throw new Error('Price unavailable');
-    const price = await response.json();
+    const price = await getPrice();
     const time = Date.parse(price.quotedAt);
     if (!Number.isFinite(price.usd) || price.usd <= 0 || !Number.isFinite(time) || Date.now() - time > 900000 || time > Date.now() + 60000) throw new Error('Price outdated');
     el('usd-value').textContent = `≈ ${dollars((sats / 100000000) * price.usd)} USD`;
     el('usd-rate').textContent = `Estimated confirmed value · 1 BTC = ${dollars(price.usd)} USD · Price as of ${new Date(time).toLocaleString()} · mempool.space`;
-  } catch (_) { el('usd-value').textContent = 'Dollar estimate unavailable'; el('usd-rate').textContent = 'Your Bitcoin balance is still shown. Refresh to try the dollar estimate again.'; }
+  } catch (_) { el('header-btc-price').textContent = 'BTC price unavailable'; el('usd-value').textContent = 'Dollar estimate unavailable'; el('usd-rate').textContent = 'Your Bitcoin balance is still shown. Refresh to try the dollar estimate again.'; }
 }
 function error(message) { el('error').textContent = message; el('error').hidden = !message; }
 async function api(body) {
