@@ -32,7 +32,7 @@ module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   if (!['GET', 'POST'].includes(req.method)) return res.status(405).json({ error: 'Method not allowed.' });
-  if (!configured()) return res.status(503).json({ error: 'Card setup is temporarily unavailable. Please contact Hands of Gold.' });
+  if (!configured()) return res.status(503).json({ error: 'Jewelry setup is temporarily unavailable. Please contact Hands of Gold.' });
   try {
     const ip = hash(String(req.headers['x-vercel-forwarded-for'] || req.headers['x-forwarded-for'] || 'unknown').split(',')[0].trim());
     if (!await limit(ip, 120, 60)) return res.status(429).json({ error: 'Too many requests. Please try again in a minute.' });
@@ -42,16 +42,16 @@ module.exports = async function handler(req, res) {
       if (typeof body === 'string') { if (Buffer.byteLength(body) > 2048) return res.status(413).json({ error: 'Request too large.' }); body = JSON.parse(body); }
       if (!body || typeof body !== 'object' || JSON.stringify(body).length > 2048) return res.status(400).json({ error: 'Invalid request.' });
       if (body.action === 'create') {
-        if (!await limit(`create:${ip}`, 5, 3600) || !await limit('create:all', 100, 86400)) return res.status(429).json({ error: 'Card creation limit reached. Please try later.' });
+        if (!await limit(`create:${ip}`, 5, 3600) || !await limit('create:all', 100, 86400)) return res.status(429).json({ error: 'Jewelry link creation limit reached. Please try later.' });
         const id = crypto.randomBytes(16).toString('hex');
         const editCode = crypto.randomBytes(24).toString('hex');
         await command('SET', key(id), JSON.stringify({ address: null, editHash: hash(editCode) }), 'NX', 'EX', 2592000);
         return res.status(201).json({ id, editCode });
       }
-      if (!ID.test(body.id || '')) return res.status(400).json({ error: 'Invalid card link.' });
+      if (!ID.test(body.id || '')) return res.status(400).json({ error: 'Invalid jewelry link.' });
       if (!await limit(`edit:${body.id}`, 10, 600)) return res.status(429).json({ error: 'Too many setup attempts. Try again in 10 minutes.' });
       const raw = await command('GET', key(body.id));
-      if (!raw) return res.status(404).json({ error: 'Card not found or unactivated card expired. Contact Hands of Gold.' });
+      if (!raw) return res.status(404).json({ error: 'Jewelry link not found or unactivated link expired. Contact Hands of Gold.' });
       const record = typeof raw === 'string' ? JSON.parse(raw) : raw;
       const supplied = hash(typeof body.editCode === 'string' ? body.editCode : '');
       if (!crypto.timingSafeEqual(Buffer.from(record.editHash, 'hex'), Buffer.from(supplied, 'hex'))) return res.status(403).json({ error: 'The setup code is incorrect.' });
@@ -61,9 +61,9 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ id: body.id, address: savedAddress });
     }
     const id = req.query.card;
-    if (typeof id !== 'string' || !ID.test(id)) return res.status(400).json({ error: 'Invalid card link.' });
+    if (typeof id !== 'string' || !ID.test(id)) return res.status(400).json({ error: 'Invalid jewelry link.' });
     const raw = await command('GET', key(id));
-    if (!raw) return res.status(404).json({ error: 'Card not found or unactivated card expired. Contact Hands of Gold.' });
+    if (!raw) return res.status(404).json({ error: 'Jewelry link not found or unactivated link expired. Contact Hands of Gold.' });
     const record = typeof raw === 'string' ? JSON.parse(raw) : raw;
     if (!record.address) return res.status(200).json({ id, address: null });
     const cached = await command('GET', `hog:btc:balance:${record.address}`);
@@ -76,7 +76,7 @@ module.exports = async function handler(req, res) {
     } catch (_) { return res.status(502).json({ address: record.address, error: 'Your address is saved, but the balance service is unavailable. Please refresh later.' }); }
     await command('SET', `hog:btc:balance:${record.address}`, JSON.stringify(balance), 'EX', 30);
     return res.status(200).json({ id, address: record.address, ...balance });
-  } catch (_) { return res.status(503).json({ error: 'Unable to load your card right now. Please try again.' }); }
+  } catch (_) { return res.status(503).json({ error: 'Unable to load your jewelry right now. Please try again.' }); }
 };
 module.exports.balances = balances;
 module.exports.validateAddress = address;

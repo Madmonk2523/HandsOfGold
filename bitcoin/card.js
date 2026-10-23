@@ -19,7 +19,7 @@ function showAddress(value) {
 }
 async function load() {
   error(''); el('refresh').disabled = true;
-  el('balance').hidden = true; el('status').textContent = 'Checking your card…';
+  el('balance').hidden = true; el('status').textContent = 'Checking your jewelry…';
   try {
     const data = await api();
     el('settings').hidden = false; showLink();
@@ -61,5 +61,5 @@ el('refresh').onclick = load;
 el('copy-code').onclick = event => copy(el('issued-code').value, event.currentTarget);
 el('copy-link').onclick = event => copy(el('card-link').value, event.currentTarget);
 el('copy-address').onclick = event => copy(savedAddress, event.currentTarget);
-if (card) { if (/^[a-f0-9]{32}$/.test(card)) load(); else { el('status').textContent = 'Invalid card link'; error('Check the card link or contact Hands of Gold.'); } }
-else { el('status').textContent = 'Welcome to your tap-to-check card.'; el('start').hidden = false; }
+if (card) { if (/^[a-f0-9]{32}$/.test(card)) load(); else { el('status').textContent = 'Invalid jewelry link'; error('Check the jewelry link or contact Hands of Gold.'); } }
+else { el('status').textContent = 'Tap your jewelry to show your Bitcoin balance.'; el('start').hidden = false; }
