@@ -3,6 +3,19 @@ const el = id => document.getElementById(id);
 let card = new URLSearchParams(location.search).get('card');
 let savedAddress = '';
 const btc = sats => `${(sats / 100000000).toFixed(8)} BTC`;
+const dollars = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+async function showDollarValue(sats) {
+  el('usd-value').textContent = 'Checking dollar value…'; el('usd-rate').textContent = '';
+  try {
+    const response = await fetch('/api/bitcoin-price');
+    if (!response.ok) throw new Error('Price unavailable');
+    const price = await response.json();
+    const time = Date.parse(price.quotedAt);
+    if (!Number.isFinite(price.usd) || price.usd <= 0 || !Number.isFinite(time) || Date.now() - time > 900000 || time > Date.now() + 60000) throw new Error('Price outdated');
+    el('usd-value').textContent = `≈ ${dollars((sats / 100000000) * price.usd)} USD`;
+    el('usd-rate').textContent = `Estimated confirmed value · 1 BTC = ${dollars(price.usd)} USD · Price as of ${new Date(time).toLocaleString()} · mempool.space`;
+  } catch (_) { el('usd-value').textContent = 'Dollar estimate unavailable'; el('usd-rate').textContent = 'Your Bitcoin balance is still shown. Refresh to try the dollar estimate again.'; }
+}
 function error(message) { el('error').textContent = message; el('error').hidden = !message; }
 async function api(body) {
   const response = await fetch(body ? '/api/bitcoin-card' : `/api/bitcoin-card?card=${encodeURIComponent(card)}`, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : { cache: 'no-store' });
@@ -30,6 +43,7 @@ async function load() {
     el('total').textContent = btc(data.total);
     el('checked').textContent = `Last checked ${new Date(data.checkedAt).toLocaleString()}`;
     el('status').textContent = 'Your linked address';
+    await showDollarValue(data.confirmed);
   } catch (e) { el('status').textContent = 'Balance unavailable'; error(e.message); }
   finally { el('refresh').disabled = false; }
 }
