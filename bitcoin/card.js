@@ -25,6 +25,12 @@ async function api(body) {
 }
 function showLink() { el('card-link-box').hidden = false; el('card-link').value = `${location.origin}/bitcoin/?card=${card}`; }
 function showAddress(value) {
+  el('card-link-box').hidden = true;
+  el('start').hidden = true;
+  el('issued').hidden = true;
+  el('issued-code').value = '';
+  el('settings').hidden = false;
+  document.querySelector('.intro > p:last-child').textContent = 'Your Bitcoin balance and estimated dollar value, one tap away.';
   savedAddress = value; el('receiving').hidden = false; el('address').textContent = value;
   el('new-address').value = value; el('explorer').href = `https://mempool.space/address/${encodeURIComponent(value)}`;
   const qr = qrcode(0, 'M'); qr.addData(`bitcoin:${value}`); qr.make();
@@ -35,8 +41,8 @@ async function load() {
   el('balance').hidden = true; el('status').textContent = 'Checking your jewelry…';
   try {
     const data = await api();
-    el('settings').hidden = false; showLink();
-    if (!data.address) { el('status').textContent = 'Ready to link your Bitcoin address.'; el('settings').open = true; return; }
+    el('settings').hidden = false;
+    if (!data.address) { showLink(); el('status').textContent = 'Ready to link your Bitcoin address.'; el('settings').open = true; return; }
     showAddress(data.address); el('balance').hidden = false;
     el('confirmed').textContent = btc(data.confirmed);
     el('pending').textContent = `${data.pending > 0 ? '+' : ''}${btc(data.pending)}`;
