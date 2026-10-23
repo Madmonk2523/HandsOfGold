@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "bitcoinjs-lib": "^7.0.4",
     "nodemailer": "^6.10.1",
+    "qrcode-generator": "^2.0.4",
     "stripe": "^22.2.3"
   }
 }
