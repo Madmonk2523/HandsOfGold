@@ -4,7 +4,7 @@
  * throws away the old cached copies. HTML, CSS and JS are fetched
  * network-first on purpose, so a deploy is never hidden behind cache.
  * ------------------------------------------------------------------ */
-var CACHE_VERSION = 'hog-release-2026102219';
+var CACHE_VERSION = 'hog-release-2026102220';
 
 var PRECACHE = CACHE_VERSION + '-precache';
 var RUNTIME  = CACHE_VERSION + '-runtime';
@@ -69,7 +69,7 @@ self.addEventListener('fetch', function (event) {
   if (VIDEO.test(url.pathname)) { return; }
   if (url.pathname.indexOf('/api/') === 0) { return; }
   // Tap URLs and staff/key-preparation screens must never enter offline caches.
-  if (/^\/(?:tap|jewelry-staff|bitcoin)(?:\/|$)/.test(url.pathname)) { return; }
+  if (/^\/(?:tap|jewelry-staff|jewelry-owner|bitcoin)(?:\/|$)/.test(url.pathname)) { return; }
 
   var isShell = request.mode === 'navigate' ||
                 url.pathname === '/' ||

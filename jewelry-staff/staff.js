@@ -41,7 +41,8 @@ async function loadCard() {
     if (tag.state !== 'revoked') { const revoke = document.createElement('button'); revoke.className = 'secondary'; revoke.textContent = 'Revoke this tag'; revoke.onclick = () => { if (confirm('Remove verified status from this tag? Wallet addresses and jewelry links will stay unchanged.')) change(tag, 'revoke', revoke); }; box.append(revoke); }
     $('tag-list').append(box);
   }
-  message('Jewelry loaded. Tag actions do not change coin addresses.');
+  await HOGPreferences.load(cardId);
+  message('Jewelry loaded.');
 }
 async function change(tag, action, button) {
   button.disabled = true;

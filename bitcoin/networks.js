@@ -27,5 +27,16 @@
     if (asset === 'DOGE') return `dogecoin:${value}`;
     return value;
   }
-  return { coins, order: Object.keys(coins), formatAtomic, receivePayload };
+  function visibleUsdTotal(assets, prices) {
+    let total = 0, count = 0;
+    for (const asset of Object.keys(coins)) {
+      const entry = assets[asset];
+      if (!entry || entry.balanceHidden === true || (asset === 'XRP' && entry.destinationTag !== undefined) || !entry.balance) continue;
+      if (!Number.isFinite(prices[asset]) || prices[asset] <= 0) return null;
+      const amount = Number(formatAtomic(entry.balance.confirmed, asset).split(' ')[0]) * prices[asset];
+      if (!Number.isFinite(amount)) return null; total += amount; count++;
+    }
+    return count && Number.isFinite(total) ? total : null;
+  }
+  return { coins, order: Object.keys(coins), formatAtomic, receivePayload, visibleUsdTotal };
 });

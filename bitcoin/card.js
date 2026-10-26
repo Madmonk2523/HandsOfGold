@@ -1,6 +1,6 @@
 'use strict';
 const el = id => document.getElementById(id);
-const { coins, order, formatAtomic, receivePayload } = HOGCrypto;
+const { coins, order, formatAtomic, receivePayload, visibleUsdTotal } = HOGCrypto;
 let card = new URLSearchParams(location.search).get('card'), assets = {}, activeAsset = 'BTC', prices = {}, priceTime = {}, priceSource = {};
 let pricePromise, priceRequestedAt = 0;
 let staffSignedIn = false, verificationTimer;
@@ -36,8 +36,12 @@ function estimate(asset, balance) {
   return Number.isFinite(value) ? dollars(value) : null;
 }
 function updatePrices() {
+  el('header-btc-price').hidden = !assets[activeAsset] || balanceHidden(activeAsset, assets[activeAsset]);
   el('header-btc-price').textContent = priceValid(activeAsset) ? `1 ${activeAsset} = ${dollars(prices[activeAsset])} USD` : `${activeAsset} price unavailable`;
   rootPrices();
+  const aggregate = visibleUsdTotal(assets, Object.fromEntries(order.filter(priceValid).map(a => [a, prices[a]])));
+  el('portfolio-total').hidden = aggregate === null;
+  el('portfolio-total').textContent = aggregate === null ? '' : `Visible coin estimate ≈ ${dollars(aggregate)} USD`;
   const entry = assets[activeAsset]; if (!entry?.balance || balanceHidden(activeAsset, entry)) return;
   const usd = estimate(activeAsset, entry.balance.confirmed);
   el('usd-value').textContent = usd === null ? 'Dollar estimate unavailable' : `≈ ${usd} USD`;
@@ -79,10 +83,18 @@ function renderPortfolio() {
     button.setAttribute('aria-pressed', String(!!entry && asset === activeAsset));
     const label = document.createElement('span'); label.className = 'coin-name'; label.textContent = `${coins[asset].name} · ${asset}`;
     button.disabled = !entry && !staffSignedIn;
-    const value = document.createElement('strong'); value.textContent = !entry ? staffSignedIn ? 'Add address' : 'Not linked' : balanceHidden(asset, entry) ? 'Balance not shown' : entry.balance ? formatAtomic(entry.balance.confirmed, asset).replace(/(\.\d*?[1-9])0+ |\.0+ /, '$1 ') : 'Balance unavailable';
+    const value = document.createElement('strong'); value.textContent = !entry ? staffSignedIn ? 'Add address' : 'Not linked' : balanceHidden(asset, entry) ? 'Receiving address' : entry.balance ? formatAtomic(entry.balance.confirmed, asset).replace(/(\.\d*?[1-9])0+ |\.0+ /, '$1 ') : 'Balance unavailable';
     const usd = document.createElement('span'); usd.className = 'coin-usd';
     button.append(label, value, usd);
-    button.addEventListener('click', () => { if (!entry) return addCoin(asset); activeAsset = asset; renderPortfolio(); showActive(); }); list.append(button);
+    button.addEventListener('click', () => { if (!entry) return addCoin(asset); activeAsset = asset; renderPortfolio(); showActive(); });
+    if (balanceHidden(asset, entry)) {
+      const tile = document.createElement('div'); tile.className = 'private-coin';
+      const address = document.createElement('p'); address.className = 'private-address'; address.textContent = entry.address;
+      const qr = qrcode(0, 'M'); qr.addData(receivePayload(asset, entry)); qr.make();
+      const picture = document.createElement('div'); picture.className = 'private-qr'; picture.setAttribute('aria-label', `${asset} receiving QR code`); picture.innerHTML = qr.createSvgTag({ cellSize: 3, margin: 0, scalable: true });
+      const copyButton = document.createElement('button'); copyButton.className = 'secondary tile-copy'; copyButton.textContent = asset === 'XRP' && entry.destinationTag !== undefined ? 'Copy X-address + tag' : 'Copy address'; copyButton.onclick = () => copy(entry.receiveAddress || entry.address, copyButton);
+      tile.append(button, address, picture, copyButton); list.append(tile);
+    } else list.append(button);
   }
   rootPrices();
 }
@@ -91,10 +103,13 @@ function showActive() {
   el('coin-icon').textContent = coin.icon; el('network-badge').textContent = coin.network.toUpperCase();
   el('balance').hidden = !entry?.balance || hiddenBalance; el('receiving').hidden = !entry;
   el('balance-notice').hidden = !hiddenBalance;
+  el('notice-title').textContent = entry?.balanceReason === 'owner-private' ? 'Balance hidden by the owner' : 'Tagged XRP account — balance not shown';
+  el('notice-body').textContent = entry?.balanceReason === 'owner-private' ? 'You can still use the receiving address and QR code. Anyone with the address can look it up on a blockchain explorer.' : 'A destination tag does not have its own on-chain balance. This address may be shared, so its total could include other people’s XRP. Check your wallet or exchange app for your balance.';
   for (const id of ['confirmed', 'pending', 'total', 'usd-value', 'usd-rate', 'checked']) el(id).textContent = '';
   updatePrices(); if (!entry) return;
   el('receive-title').textContent = `Receive ${coin.name}`; el('address').textContent = entry.address;
   el('explorer').href = coin.explorer + encodeURIComponent(entry.address); el('explorer').textContent = `View ${activeAsset} account / transactions ↗`;
+  el('explorer').hidden = hiddenBalance;
   el('qr').setAttribute('aria-label', `${coin.network} receiving QR code`);
   const qr = qrcode(0, 'M'); qr.addData(receivePayload(activeAsset, entry)); qr.make(); el('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
   el('xrp-tag-box').hidden = activeAsset !== 'XRP' || entry.destinationTag === undefined;
@@ -113,14 +128,18 @@ async function load() {
   error(''); el('refresh').disabled = true; el('status').textContent = 'Checking your linked coins…';
   try {
     const [data] = await Promise.all([api(), staffStatus()]); assets = data.assets || {};
+    el('preview-banner').hidden = data.preview !== true;
     el('portfolio').hidden = false; el('settings').hidden = !staffSignedIn; el('start').hidden = true;
     el('card-link-box').hidden = false; el('card-link').value = `${location.origin}/bitcoin/?card=${card}`;
     if (!assets[activeAsset]) activeAsset = order.find(a => assets[a]) || 'BTC';
     if (!Object.keys(assets).length) { el('status').textContent = 'Contact the store to link your coin addresses.'; el('settings').open = staffSignedIn; }
+    el('refresh').textContent = 'Refresh visible balances';
+    el('refresh').hidden = !order.some(a => assets[a] && !balanceHidden(a, assets[a]));
+    el('owner-link').href = '/jewelry-owner/?card=' + card; el('owner-link').hidden = false;
     configureForm(activeAsset); renderPortfolio(); showActive();
     if (!Object.keys(assets).length) el('status').textContent = 'Contact the store to link your coin addresses.';
     verificationStatus();
-    getPrices();
+    if (order.some(a => assets[a] && !balanceHidden(a, assets[a]))) getPrices();
   } catch (e) { el('status').textContent = 'Unable to load your jewelry'; error(e.message); }
   finally { el('refresh').disabled = false; }
 }
@@ -144,7 +163,6 @@ el('asset').onchange = () => configureForm(el('asset').value);
 el('refresh').onclick = load; el('add-coin').onclick = () => addCoin();
 el('copy-link').onclick = e => copy(el('card-link').value, e.currentTarget);
 el('copy-address').onclick = e => { const entry = assets[activeAsset]; if (entry) copy(entry.receiveAddress || entry.address, e.currentTarget); };
-getPrices();
 if (card) { if (/^[a-f0-9]{32}$/.test(card)) load(); else { el('status').textContent = 'Invalid jewelry link'; error('Check the jewelry link or contact Hands of Gold.'); } }
 else { el('status').textContent = 'One jewelry link. Up to six coin addresses. Contact the store for setup.'; staffStatus(); }
 window.addEventListener('focus', verificationStatus);
