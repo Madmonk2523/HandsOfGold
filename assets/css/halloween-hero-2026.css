@@ -1,0 +1,40 @@
+/* Compact seasonal banner. Preserve the complete supplied artwork. */
+#home-main>section.hog-halloween-special{box-sizing:border-box;width:100%;padding:12px 20px!important;background:radial-gradient(ellipse at 30% 50%,#38200d,#0b0b0d 75%);border-bottom:1px solid #b77d36}
+.halloween-special-inner{display:grid;grid-template-columns:minmax(0,430px) minmax(0,1fr);align-items:center;gap:32px;max-width:1000px;margin:0 auto}
+.halloween-special-art{position:static!important;display:block;width:100%;height:auto;max-height:228px;object-fit:contain;opacity:1!important;transform:none!important;border-radius:4px}
+.halloween-special-copy h1{margin:0 0 8px;color:#f6d18e;font:600 clamp(24px,2.5vw,34px)/1.05 Georgia,serif;letter-spacing:.01em}
+.halloween-special-copy h1 span{color:#ff9e39}
+.halloween-special-copy p{margin:0 0 14px;color:#eee2d1;font-size:14px;line-height:1.4}
+.halloween-special-actions{display:flex;flex-wrap:wrap;gap:10px}
+.halloween-special-actions a{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border:1px solid #e9b564;border-radius:5px;background:#f4bf68;color:#16100b!important;font-size:14px;font-weight:800;line-height:1.3;text-decoration:none}
+.halloween-special-actions a+a{background:#16100b;color:#ffe5b9!important}
+.halloween-special-actions a:hover{background:#ffcf88;color:#16100b!important}
+.halloween-special-actions a:focus-visible{outline:3px solid white;outline-offset:3px}
+@media(max-width:600px){#home-main>section.hog-halloween-special{padding:8px 12px!important}.halloween-special-inner{display:flex;flex-direction:column;gap:8px}.halloween-special-art{width:100%;max-width:430px;max-height:210px}.halloween-special-copy{width:100%;max-width:430px}.halloween-special-copy h1,.halloween-special-copy p{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.halloween-special-actions{flex-wrap:nowrap;gap:8px}.halloween-special-actions a{flex:1;padding:9px 10px}}
+
+/* Small registration-first gold calculator beside the seasonal artwork. */
+.halloween-special-inner{max-width:1240px;grid-template-columns:minmax(0,420px) minmax(180px,1fr) 310px;gap:24px}
+.halloween-special-copy h1{font-size:clamp(24px,2.1vw,30px)}
+.hero-gold-card{box-sizing:border-box;min-width:0;padding:12px;border:1px solid #b68b44;border-radius:9px;background:#11100ddd;color:#f4e3bd;text-align:left}
+.hero-gold-card h2{margin:0 0 7px!important;font:700 17px/1.15 Georgia,serif!important;color:#f5cc7f!important;letter-spacing:0!important}
+.hero-gold-card p{margin:0 0 8px;font-size:11px;line-height:1.3;color:#d5c6ab!important}
+.hero-gold-card form[hidden]{display:none!important}
+.hero-gold-contact{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.hero-gold-card input:not([type=checkbox]),.hero-gold-card select{box-sizing:border-box;display:block;width:100%;min-width:0;height:36px;padding:7px 8px;border:1px solid #6c5b3b;border-radius:4px;background:#090909;color:#fff;font:14px/1.2 Arial,sans-serif}
+.hero-gold-card input::placeholder{color:#bbb1a0}
+.hero-gold-card button{box-sizing:border-box;display:block;width:100%;min-height:42px;margin:7px 0 0;padding:8px;border:1px solid #f3c875;border-radius:4px;background:#e3b65d;color:#151008;font:800 13px/1.2 Arial,sans-serif;cursor:pointer}
+.hero-gold-card button:disabled{opacity:.65;cursor:wait}
+.hero-gold-card :is(input,select,button,a):focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hero-gold-consent{display:flex;align-items:flex-start;gap:6px;margin:8px 0 0;color:#d5c6ab;font:10px/1.3 Arial,sans-serif}
+.hero-gold-consent input{flex:none;width:16px;height:16px;min-height:0;margin:0;accent-color:#e3b65d}
+.hero-gold-consent a{color:#f5cc7f;text-decoration:underline}
+.hero-gold-honey{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.hero-gold-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.hero-gold-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.hero-gold-fields label{color:#e4d1ac;font-size:10px;line-height:1.4}
+.hero-gold-card output{display:block;min-height:0;margin-top:6px;color:#f5cc7f;font-size:19px;font-weight:800;line-height:1.2}
+.hero-gold-card .hero-gold-note{font-size:10px;margin:5px 0 0}
+.hero-gold-card .hero-gold-status{font-size:11px;color:#f5cc7f!important;margin:6px 0 0}
+.hero-gold-status:empty{display:none}
+@media(min-width:601px) and (max-width:1050px){.halloween-special-inner{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.hero-gold-card{grid-column:1/-1;max-width:620px;width:100%;justify-self:center}}
+@media(max-width:600px){.hero-gold-card{width:100%;max-width:430px;margin-top:4px}.hero-gold-card input:not([type=checkbox]),.hero-gold-card select{font-size:16px}.hero-gold-card button{min-height:44px}.hero-gold-consent{font-size:11px}.hero-gold-card p{font-size:12px}}

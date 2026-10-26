@@ -4,7 +4,7 @@
  * throws away the old cached copies. HTML, CSS and JS are fetched
  * network-first on purpose, so a deploy is never hidden behind cache.
  * ------------------------------------------------------------------ */
-var CACHE_VERSION = 'hog-20260922-simple-studio';
+var CACHE_VERSION = 'hog-release-2026102219';
 
 var PRECACHE = CACHE_VERSION + '-precache';
 var RUNTIME  = CACHE_VERSION + '-runtime';
@@ -68,6 +68,8 @@ self.addEventListener('fetch', function (event) {
   /* Video uses byte-range requests. Caching it breaks seeking. */
   if (VIDEO.test(url.pathname)) { return; }
   if (url.pathname.indexOf('/api/') === 0) { return; }
+  // Tap URLs and staff/key-preparation screens must never enter offline caches.
+  if (/^\/(?:tap|jewelry-staff|bitcoin)(?:\/|$)/.test(url.pathname)) { return; }
 
   var isShell = request.mode === 'navigate' ||
                 url.pathname === '/' ||
@@ -109,3 +111,4 @@ self.addEventListener('fetch', function (event) {
 self.addEventListener('message', function (event) {
   if (event.data === 'hog-skip-waiting') { self.skipWaiting(); }
 });
+

@@ -1,0 +1,15 @@
+body.home-page.hog-system-v1 #product-hog013947 .catalog-product-image img{object-fit:contain!important;background:#171a1d!important}
+body.product-page.hog-system-v1 .jesus-item .product-media-card a{display:block}
+body.product-page.hog-system-v1 .jesus-item .product-media-card .jesus-main-photo{display:block;width:100%;height:auto;max-height:720px;aspect-ratio:941/1672;object-fit:contain!important;background:#171a1d!important}
+.jesus-thumbnails{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.jesus-thumbnails button{display:grid;gap:6px;padding:6px;border:1px solid #3b3c40;border-radius:12px;background:#111315;color:#fff;cursor:pointer;font:inherit;font-size:12px}
+.jesus-thumbnails button[aria-pressed="true"]{border-color:#d5b568;box-shadow:0 0 0 1px #d5b568}
+.jesus-thumbnails button:focus-visible{outline:3px solid #d5b568;outline-offset:3px}
+.jesus-thumbnails img{display:block;width:100%;height:110px;object-fit:contain;border-radius:6px}
+.jesus-price{font-size:2rem;font-weight:800;line-height:1.1;margin:24px 0 6px;color:#e6c783}
+.jesus-price-note{font-size:13px;opacity:.8;margin:0 0 20px}
+.jesus-specs{margin:20px 0 26px}
+.jesus-specs div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #303235;padding:11px 0}
+.jesus-specs dt{opacity:.75}
+.jesus-specs dd{margin:0;font-weight:600;text-align:right}
+@media(max-width:600px){body.product-page.hog-system-v1 .jesus-item .product-media-card .jesus-main-photo{max-height:620px}.jesus-thumbnails img{height:96px}.jesus-item .product-actions{display:grid;grid-template-columns:1fr}}

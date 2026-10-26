@@ -1,0 +1,9 @@
+/* Keep the uploaded Grillz campaign complete and responsive. */
+.hog-sub-hero.gz-poster-hero{padding:0;background:#090909;overflow:hidden}
+.gz-poster-hero .gz-poster-link{display:block;width:100%;max-width:640px;margin:0 auto;line-height:0;border:0}
+.gz-poster-hero .gz-poster-link img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;margin:0}
+.gz-poster-link:focus-visible{outline:3px solid #e9cf8c;outline-offset:-3px}
+.gz-poster-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.gz-poster-hero .gz-poster-support{padding-top:16px;padding-bottom:24px}
+.gz-poster-support .hog-sub-actions{justify-content:center}
+@media(max-width:767px){.gz-poster-hero .gz-poster-link{max-width:none}}

@@ -1,0 +1,1110 @@
+Bundled license information:
+
+@tensorflow/tfjs-core/dist/tf-core.node.js:
+  /**
+   * @license
+   * Copyright 2024 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2020 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2023 Google LLC.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2017 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2018 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2020 Google Inc. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2021 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2022 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the 'License');
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an 'AS IS' BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2022 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2022 Google LLC.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /** @license See the LICENSE file. */
+
+@tensorflow/tfjs-converter/dist/tf-converter.node.js:
+  /**
+   * @license
+   * Copyright 2024 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2021 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2023 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2020 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2023 Google LLC.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2017 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2018 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2020 Google Inc. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2022 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the 'License');
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an 'AS IS' BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2022 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /**
+   * @license
+   * Copyright 2022 Google LLC.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+  /** @license See the LICENSE file. */
+
+@tensorflow-models/hand-pose-detection/dist/constants.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/association_norm_rect.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/calculate_landmark_projection.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/calculate_world_landmark_projection.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/calculate_inverse_matrix.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/get_rotated_sub_rect_to_rect_transformation_matrix.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/image_utils.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/shift_image_value.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/convert_image_to_tensor.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/create_ssd_anchors.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/detection_to_rect.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/split_detection_result.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/detector_result.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/non_max_suppression.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/remove_detection_letterbox.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/remove_landmark_letterbox.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/tensors_to_detections.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/sigmoid.js:
+@tensorflow-models/hand-pose-detection/dist/shared/calculators/transform_rect.js:
+@tensorflow-models/hand-pose-detection/dist/tfjs/calculators/hand_landmarks_to_rect.js:
+@tensorflow-models/hand-pose-detection/dist/tfjs/constants.js:
+@tensorflow-models/hand-pose-detection/dist/tfjs/detector_utils.js:
+@tensorflow-models/hand-pose-detection/dist/tfjs/detector.js:
+@tensorflow-models/pose-detection/dist/calculators/tracker_utils.js:
+@tensorflow-models/pose-detection/dist/calculators/tracker.js:
+@tensorflow-models/pose-detection/dist/calculators/bounding_box_tracker.js:
+@tensorflow-models/pose-detection/dist/calculators/keypoint_tracker.js:
+@tensorflow-models/pose-detection/dist/calculators/types.js:
+@tensorflow-models/pose-detection/dist/constants.js:
+@tensorflow-models/pose-detection/dist/shared/calculators/constants.js:
+@tensorflow-models/pose-detection/dist/shared/calculators/image_utils.js:
+@tensorflow-models/pose-detection/dist/shared/calculators/is_video.js:
+@tensorflow-models/pose-detection/dist/shared/filters/low_pass_filter.js:
+@tensorflow-models/pose-detection/dist/shared/filters/one_euro_filter.js:
+@tensorflow-models/pose-detection/dist/shared/filters/keypoints_one_euro_filter.js:
+@tensorflow-models/pose-detection/dist/util.js:
+@tensorflow-models/pose-detection/dist/movenet/constants.js:
+@tensorflow-models/pose-detection/dist/movenet/crop_utils.js:
+@tensorflow-models/pose-detection/dist/movenet/detector_utils.js:
+@tensorflow-models/pose-detection/dist/movenet/detector.js:
+  /**
+   * @license
+   * Copyright 2021 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * https://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-webgl/dist/canvas_util.js:
+@tensorflow/tfjs-backend-webgl/dist/glsl_version.js:
+@tensorflow/tfjs-backend-webgl/dist/shader_compiler_util.js:
+@tensorflow/tfjs-backend-webgl/dist/encode_float_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/encode_float_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/encode_matrix_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/encode_matrix_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/packing_util.js:
+@tensorflow/tfjs-backend-webgl/dist/pack_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/reshape_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/unaryop_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/unpack_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/binaryop_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/mulmat_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/binaryop_complex_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/batchnorm_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/clip_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/complex_abs_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/depth_to_space_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_packed_gpu_depthwise.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_backprop_gpu_depthwise.js:
+@tensorflow/tfjs-backend-webgl/dist/fft_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FromPixels_utils/from_pixels_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FromPixels_utils/from_pixels_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/lrn_grad_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/resize_bilinear_backprop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/resize_nearest_neighbor_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/resize_nearest_neighbor_backprop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/scatter_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/segment_gpu.js:
+  /**
+   * @license
+   * Copyright 2018 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-webgl/dist/tex_util.js:
+@tensorflow/tfjs-backend-webgl/dist/webgl_util.js:
+@tensorflow/tfjs-backend-webgl/dist/shader_compiler.js:
+@tensorflow/tfjs-backend-webgl/dist/gpgpu_math.js:
+@tensorflow/tfjs-backend-webgl/dist/gpgpu_util.js:
+@tensorflow/tfjs-backend-webgl/dist/gpgpu_context.js:
+@tensorflow/tfjs-backend-webgl/dist/texture_manager.js:
+@tensorflow/tfjs-backend-webgl/dist/unaryop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/backend_webgl.js:
+@tensorflow/tfjs-backend-webgl/dist/binaryop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/reduce_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/transpose_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/argminmax_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/pool_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/avg_pool_backprop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/batchnorm_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/slice_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/clip_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/concat_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_backprop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/crop_and_resize_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_gpu_depthwise.js:
+@tensorflow/tfjs-backend-webgl/dist/dilation_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/gather_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/lrn_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/max_pool_backprop_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/multinomial_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/onehot_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/pad_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/resize_bilinear_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/reverse_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/select_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/strided_slice_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/tile_gpu.js:
+  /**
+   * @license
+   * Copyright 2017 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-webgl/dist/flags_webgl.js:
+@tensorflow/tfjs-backend-webgl/dist/decode_matrix_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/decode_matrix_packed_gpu.js:
+@tensorflow/tfjs-backend-cpu/dist/cpu_util.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Tile_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/transpose_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/addn_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/addn_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/argminmax_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/slice_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/concat_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/im2col_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/diag_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/fill_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FromPixels.js:
+@tensorflow/tfjs-backend-webgl/dist/lrn_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/pad_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/resize_bilinear_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/resize_nearest_neighbor_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/reverse_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Square.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/NonMaxSuppressionV5.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Square.js:
+  /**
+   * @license
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-cpu/dist/kernels/Abs.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Ceil.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Exp.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Expm1.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Floor.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Log.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Rsqrt.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sigmoid.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sqrt.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/_FusedMatMul.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ExpandDims.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Unique.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Elu.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Prelu.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Relu.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Relu6.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/BatchMatMul.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/_FusedMatMul.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Acos.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Acosh.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Asin.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Asinh.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Atan.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Atan2.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Atanh.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ClipByValue.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ComplexAbs.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Cosh.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Erf.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/IsFinite.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/IsInf.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/IsNaN.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Log1p.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LogicalNot.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Reciprocal.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Round.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Selu.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sign.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sin.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sinh.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Softplus.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Step.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Tan.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Tanh.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Unique.js:
+  /**
+   * @license
+   * Copyright 2020 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the License);
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an AS IS BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-cpu/dist/utils/binary_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Complex.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/zeros_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Identity.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Real.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Cast.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/binary_utils.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Add.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Bincount_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/unary_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/unary_utils.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Concat_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Equal.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/FloorDiv.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/GatherV2_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Greater.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/GreaterEqual.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Less.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LessEqual.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LinSpace_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Max_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Maximum.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Minimum.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Multiply.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Neg.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/NotEqual.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Transpose_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Transpose.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Prod.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Range_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Scatter_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Slice.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SquaredDifference.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StridedSlice_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sub.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/TopK_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Unique_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/shared.js:
+@tensorflow/tfjs-backend-webgl/dist/kernel_utils/shared.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Identity.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Complex.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LeakyRelu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Prelu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernel_utils/kernel_funcs_utils.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Multiply.js:
+@tensorflow/tfjs-backend-webgl/dist/kernel_utils/reshape.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Reshape.js:
+@tensorflow/tfjs-backend-webgl/dist/mean_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernel_utils/reduce.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Transpose_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sum_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sum.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Transpose.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/BatchMatMul_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Abs.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Acos.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Acosh.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Add.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/AddN.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/All.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Any.js:
+@tensorflow/tfjs-backend-webgl/dist/kernel_utils/arg_min_max.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ArgMax.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ArgMin.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Asin.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Asinh.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Atan.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Atan2.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Atanh.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/AvgPool.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/AvgPool3D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/AvgPool3DGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/AvgPoolGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/BatchMatMul.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/BatchNorm.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Slice.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/BatchToSpaceND.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Bincount.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/NotEqual.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Real.js:
+@tensorflow/tfjs-backend-webgl/dist/kernel_utils/int.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Cast.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Ceil.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ClipByValue.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ComplexAbs.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Imag.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Concat_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Concat.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv2D_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv2D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv2DBackpropFilter.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv2DBackpropInput.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv3D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv3DBackpropFilterV2.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Conv3DBackpropInputV2.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Cos.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Cosh.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/CropAndResize.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/DenseBincount.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/DepthToSpace.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/DepthwiseConv2dNative.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/DepthwiseConv2dNativeBackpropFilter.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/DepthwiseConv2dNativeBackpropInput.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Diag.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Dilation2D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Elu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/EluGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Equal.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Erf.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Exp.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Expm1.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FFT_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FFT.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Fill.js:
+@tensorflow/tfjs-backend-webgl/dist/flip_left_right_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FlipLeftRight.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Floor.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FloorDiv.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FusedConv2D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/FusedDepthwiseConv2D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/GatherNd.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/GatherV2.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Greater.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/GreaterEqual.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/IFFT.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/IsFinite.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/IsInf.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/IsNaN.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Less.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LessEqual.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LinSpace.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Log.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Log1p.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LogicalAnd.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LogicalNot.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LogicalOr.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LRN.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/LRNGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Max_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Max.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Maximum.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MaxPool.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MaxPool3D.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MaxPool3DGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MaxPoolGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MaxPoolWithArgmax_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MaxPoolWithArgmax.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Mean_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Mean.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Min.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Minimum.js:
+@tensorflow/tfjs-backend-webgl/dist/mirror_pad_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/mirror_pad_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/MirrorPad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Mod.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/RealDiv.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sub.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Softmax.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Multinomial.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Neg.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/NonMaxSuppressionV3.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/NonMaxSuppressionV4.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/NonMaxSuppressionV5.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/OneHot.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ZerosLike.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/OnesLike.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Pack.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/PadV2.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Pow.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Prod.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Range.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Reciprocal.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Relu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Relu6.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ResizeBilinear.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ResizeBilinearGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ResizeNearestNeighbor.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ResizeNearestNeighborGrad.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Reverse.js:
+@tensorflow/tfjs-backend-webgl/dist/rotate_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/RotateWithOffset.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Round.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Rsqrt.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/ScatterNd.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Select.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Selu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sigmoid.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sign.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sin.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sinh.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Softplus.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SpaceToBatchND.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SparseToDense.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SplitV.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Sqrt.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SquaredDifference.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Step.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/StridedSlice.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Tan.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Tanh.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Tile.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/TopK.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Unpack.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/UnsortedSegmentSum.js:
+@tensorflow/tfjs-backend-webgl/dist/register_all_kernels.js:
+@tensorflow/tfjs-backend-webgl/dist/index.js:
+@tensorflow/tfjs-backend-cpu/dist/base.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LeakyRelu.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/fused_utils.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Reshape.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/AddN.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/All.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Any.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ArgMax.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ArgMin.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/pool_utils.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/AvgPool.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/AvgPool3D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/AvgPool3DGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/AvgPoolGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/BatchNorm.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/BatchToSpaceND.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Bincount.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Imag.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Concat.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Conv2D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Conv2DBackpropFilter.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Conv2DBackpropInput.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Conv3D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Conv3DBackpropFilterV2.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Conv3DBackpropInputV2.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Cos.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/CropAndResize.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Cumsum.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/DenseBincount.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/DepthToSpace.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/DepthwiseConv2dNative.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/DepthwiseConv2dNativeBackpropFilter.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/DepthwiseConv2dNativeBackpropInput.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Diag.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Dilation2D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Dilation2DBackpropFilter.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Dilation2DBackpropInput.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Sum.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/EluGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ExpandDims.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/RealDiv.js:
+@tensorflow/tfjs-backend-cpu/dist/utils/fft_utils.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/FFT.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Fill.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/FlipLeftRight.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/FusedConv2D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/FusedDepthwiseConv2D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/GatherNd.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/GatherV2.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/IFFT.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LinSpace.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LogicalAnd.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LogicalOr.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LRN.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/LRNGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Max.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MaxPool.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MaxPool3D.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MaxPool3DGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MaxPoolGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MaxPoolWithArgmax_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MaxPoolWithArgmax.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Mean.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Min.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/MirrorPad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Mod.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Softmax.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Multinomial.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/NonMaxSuppressionV3.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/NonMaxSuppressionV4.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/OneHot.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ZerosLike.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/OnesLike.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Pack.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/PadV2.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Pow.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Range.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ResizeBilinear.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ResizeBilinearGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ResizeNearestNeighbor.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ResizeNearestNeighborGrad.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Reverse.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/RotateWithOffset.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/ScatterNd.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Select.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SpaceToBatchND.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseToDense.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SplitV.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StridedSlice.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Tile.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/TopK.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Unpack.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/UnsortedSegmentSum.js:
+@tensorflow/tfjs-backend-cpu/dist/register_all_kernels.js:
+@tensorflow/tfjs-backend-cpu/dist/index.js:
+  /**
+   * @license
+   * Copyright 2020 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-cpu/dist/kernels/BitwiseAnd.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StaticRegexReplace.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/BitwiseAnd.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_backprop_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/scatter_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/StaticRegexReplace.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Draw.js:
+  /**
+   * @license
+   * Copyright 2023 Google LLC.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-cpu/dist/kernels/GatherNd_Impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseFillEmptyRows_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseReshape_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseSegmentReduction_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StringNGrams_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StringSplit_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StringToHashBucketFast_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/BroadcastArgs.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Einsum.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SparseFillEmptyRows.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SparseReshape.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SparseSegmentMean.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SparseSegmentSum.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/StringNGrams.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/StringSplit.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/StringToHashBucketFast.js:
+@tensorflow/tfjs-backend-webgl/dist/transform_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Transform.js:
+@tensorflow/tfjs-backend-cpu/dist/backend_cpu.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/BroadcastArgs.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Einsum.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseFillEmptyRows.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseReshape.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseSegmentMean.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SparseSegmentSum.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StringNGrams.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StringSplit.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/StringToHashBucketFast.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Transform.js:
+  /**
+   * @license
+   * Copyright 2021 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-cpu/dist/kernels/RaggedGather_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/RaggedTensorToTensor_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/conv_packed_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Cum_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Cumprod.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/Cumsum.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/RaggedGather.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/RaggedTensorToTensor.js:
+@tensorflow/tfjs-backend-webgl/dist/search_sorted_gpu.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/SearchSorted.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/TensorScatterUpdate.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/Cumprod.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/RaggedGather.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/RaggedTensorToTensor.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SearchSorted_impl.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/SearchSorted.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/TensorScatterUpdate.js:
+  /**
+   * @license
+   * Copyright 2022 Google LLC. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-cpu/dist/kernels/RaggedRange_impl.js:
+@tensorflow/tfjs-backend-webgl/dist/kernels/RaggedRange.js:
+@tensorflow/tfjs-backend-cpu/dist/kernels/RaggedRange.js:
+  /**
+   * @license
+   * Copyright 2022 Google LLC.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */
+
+@tensorflow/tfjs-backend-webgl/dist/base.js:
+  /**
+   * @license
+   * Copyright 2020 Google Inc. All Rights Reserved.
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   * =============================================================================
+   */

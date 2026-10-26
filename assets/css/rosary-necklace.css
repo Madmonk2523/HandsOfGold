@@ -1,0 +1,12 @@
+body.home-page.hog-system-v1 #product-rosary-necklace-7-8g .catalog-product-image img{object-fit:cover!important;object-position:center center!important;background:#171a1d!important}
+body.product-page.hog-system-v1 .rosary-necklace-item .product-media-card a{display:block}
+body.product-page.hog-system-v1 .rosary-necklace-item .product-media-card .rosary-necklace-main-photo{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain!important;background:#171a1d!important}
+.rosary-necklace-photo-note{font-size:13px;opacity:.75;margin:10px 0 0;text-align:center}
+.rosary-necklace-price{font-size:2rem;font-weight:800;line-height:1.1;margin:24px 0 6px;color:#e6c783}
+.rosary-necklace-price-note{font-size:13px;opacity:.8;margin:0 0 20px}
+.rosary-necklace-specs{margin:20px 0 26px}
+.rosary-necklace-specs div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #303235;padding:11px 0}
+.rosary-necklace-specs dt{opacity:.75}
+.rosary-necklace-specs dd{margin:0;font-weight:600;text-align:right}
+.rosary-necklace-pickup{margin-top:20px;line-height:1.6}
+@media(max-width:600px){body.product-page.hog-system-v1 .rosary-necklace-item .product-media-card .rosary-necklace-main-photo{max-height:none}}

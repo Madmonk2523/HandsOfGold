@@ -1,0 +1,39 @@
+/* Compact, evergreen introduction with one primary lead form. */
+html body.home-page.hog-system-v1 #home-main>section.hog-lead-hero{box-sizing:border-box;width:100%;padding:18px 20px!important;border-bottom:1px solid #d8bc7866;background:linear-gradient(90deg,#090b14d6,#090b1480)!important}
+.lead-hero-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,400px);gap:40px;align-items:center;max-width:1160px;margin:0 auto}
+.lead-hero-copy{min-width:0;text-shadow:0 2px 8px #020713}
+.lead-hero-copy .lead-hero-kicker{margin:0 0 7px;font:800 11px/1.3 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#f0d69c}
+.lead-hero-copy h1{margin:0 0 10px;font:600 clamp(29px,3.1vw,40px)/1.03 Georgia,serif;letter-spacing:-.025em}
+.lead-hero-copy .lead-hero-intro{max-width:480px;margin:0 0 9px;font:15px/1.4 Arial,sans-serif;color:#f0eee8}
+.lead-hero-copy .lead-hero-trust{margin:0 0 6px;font:12px/1.4 Arial,sans-serif;color:#e7d6ae}
+.lead-hero-secondary{display:flex;align-items:center;flex-wrap:wrap;column-gap:18px}
+.lead-hero-secondary :is(a,button){display:inline-flex;align-items:center;min-height:44px;padding:8px 0;border:0;background:none;color:#f1cf86;font:700 13px/1.3 Arial,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.lead-hero-secondary button{gap:4px;flex-wrap:wrap}
+.lead-hero-secondary button span{font-size:11px;font-weight:400}
+.lead-hero-services{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font:12px/1.3 Arial,sans-serif;color:#c7d5e8}
+.lead-hero-services a{display:inline-flex;align-items:center;min-height:32px;color:#e1e7f1;text-decoration:underline;text-underline-offset:3px}
+.hog-lead-hero :is(a,button,input,select):focus-visible{outline:3px solid #80e0ff;outline-offset:3px}
+.hero-gold-card{box-sizing:border-box;min-width:0;padding:15px;border:1px solid #b68b44;border-radius:9px;background:#11100ddd;color:#f4e3bd;text-align:left}
+.hero-gold-card h2{margin:0 0 7px!important;font:700 17px/1.15 Georgia,serif!important;color:#f5cc7f!important;letter-spacing:0!important}
+.hero-gold-card p{margin:0 0 8px;font-size:11px;line-height:1.3;color:#d5c6ab!important}
+.hero-gold-card form[hidden]{display:none!important}
+.hero-gold-contact{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.hero-gold-card input:not([type=checkbox]),.hero-gold-card select{box-sizing:border-box;display:block;width:100%;min-width:0;height:36px;padding:7px 8px;border:1px solid #6c5b3b;border-radius:4px;background:#090909;color:#fff;font:14px/1.2 Arial,sans-serif}
+.hero-gold-card input::placeholder{color:#bbb1a0}
+.hero-gold-card button{box-sizing:border-box;display:block;width:100%;min-height:42px;margin:7px 0 0;padding:8px;border:1px solid #f3c875;border-radius:4px;background:#e3b65d;color:#151008;font:800 13px/1.2 Arial,sans-serif;cursor:pointer}
+.hero-gold-card button:disabled{opacity:.65;cursor:wait}
+.hero-gold-card :is(input,select,button,a):focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hero-gold-consent{display:flex;align-items:flex-start;gap:6px;margin:8px 0 0;color:#d5c6ab;font:10px/1.3 Arial,sans-serif}
+.hero-gold-consent input{flex:none;width:16px;height:16px;min-height:0;margin:0;accent-color:#e3b65d}
+.hero-gold-consent a{color:#f5cc7f;text-decoration:underline}
+.hero-gold-honey{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.hero-gold-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.hero-gold-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.hero-gold-fields label{color:#e4d1ac;font-size:10px;line-height:1.4}
+.hero-gold-card output{display:block;min-height:0;margin-top:6px;color:#f5cc7f;font-size:19px;font-weight:800;line-height:1.2}
+.hero-gold-card .hero-gold-note{font-size:10px;margin:5px 0 0}
+.hero-gold-card .hero-gold-status{font-size:11px;color:#f5cc7f!important;margin:6px 0 0}
+.hero-gold-status:empty{display:none}
+html body.home-page.hog-system-v1 .hero-gold-card h2{font:700 21px/1.2 Georgia,serif!important}
+.hero-gold-card .hero-gold-note{margin-top:8px;font-size:11px;line-height:1.35}
+@media(max-width:700px){html body.home-page.hog-system-v1 #home-main>section.hog-lead-hero{padding:16px 14px!important}.lead-hero-inner{grid-template-columns:minmax(0,1fr);gap:12px;max-width:480px}.lead-hero-copy h1{font-size:32px}.lead-hero-copy .lead-hero-intro{font-size:14px;margin-bottom:7px}.lead-hero-copy .lead-hero-trust{font-size:11px;margin-bottom:0}.lead-hero-secondary{column-gap:14px}.lead-hero-secondary :is(a,button){font-size:12px;min-height:40px}.lead-hero-services a{min-height:30px}.hero-gold-card{width:100%;padding:13px}.hero-gold-card input:not([type=checkbox]),.hero-gold-card select{font-size:16px}.hero-gold-card button{min-height:44px}.hero-gold-consent{font-size:11px}.hero-gold-card p{font-size:12px}}

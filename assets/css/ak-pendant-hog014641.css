@@ -1,0 +1,13 @@
+body.home-page.hog-system-v1 #product-hog014641 .catalog-product-image img{object-fit:contain!important;background:#171a1d!important}
+.ak-pendant-gallery .product-media-card{overflow:hidden;background:#171a1d}
+.ak-pendant-gallery .product-media-card a{display:block}
+.ak-pendant-gallery .product-media-card img{display:block;width:100%;height:auto;background:#171a1d;object-fit:contain}
+.ak-pendant-gallery .ak-pendant-back-photo{margin-top:14px}
+.ak-pendant-gallery .photo-note{font-size:13px;opacity:.75;margin:10px 0 0;text-align:center}
+.ak-pendant-item .ak-pendant-price{font-size:2rem;font-weight:800;line-height:1.1;margin:24px 0 6px;color:#e6c783}
+.ak-pendant-item .price-note{font-size:13px;opacity:.8;margin:0 0 20px}
+.ak-pendant-item .ak-pendant-specs{margin:20px 0 26px}
+.ak-pendant-item .ak-pendant-specs div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #303235;padding:11px 0}
+.ak-pendant-item .ak-pendant-specs dt{opacity:.75}
+.ak-pendant-item .ak-pendant-specs dd{margin:0;font-weight:600;text-align:right}
+.ak-pendant-item .pickup-note{margin-top:20px;line-height:1.6}

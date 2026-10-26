@@ -16,6 +16,7 @@ async function command(...args) {
   if (!url || !token) throw new Error('Lead database is not configured.');
   const response = await fetch(url, {
     method: 'POST',
+    signal: AbortSignal.timeout(5000),
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(args)
   });

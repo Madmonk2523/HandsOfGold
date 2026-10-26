@@ -1,0 +1,25 @@
+/* Monaci photo gallery (Oct 2026) — loads after classic-cuban.css */
+.cc-result{grid-template-columns:1fr}
+.cc-gallery{display:grid;gap:10px}
+.cc-gallery-stage{position:relative;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--cc-line,rgba(8,26,71,.12));aspect-ratio:4/3;max-height:360px;width:100%}
+.cc-gallery-stage img,.cc-gallery-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+.cc-gallery-stage .is-cover{object-fit:cover}
+.cc-gallery-stage [hidden]{display:none}
+.cc-gallery-thumbs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:thin}
+.cc-gallery-thumbs button{flex:0 0 auto;width:68px;height:68px;padding:0;border:2px solid transparent;border-radius:12px;background:#fff;overflow:hidden;cursor:pointer;position:relative;box-shadow:0 0 0 1px var(--cc-line,rgba(8,26,71,.12))}
+.cc-gallery-thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.cc-gallery-thumbs button.is-active{border-color:#C79638}
+.cc-gallery-thumbs button:focus-visible{outline:2px solid #0A2E73;outline-offset:2px}
+.cc-gallery-play::after{content:"";position:absolute;left:50%;top:50%;width:0;height:0;margin:-9px 0 0 -6px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
+.cc-gallery-note{font-size:.72rem;line-height:1.5;color:#5b6472;margin:0}
+.cc-product-image{display:block;min-height:0;border:0;background:none;border-radius:0;overflow:visible}
+@media(max-width:760px){.cc-gallery-stage{aspect-ratio:1/1;max-height:none}.cc-gallery-thumbs button{width:58px;height:58px}}
+
+/* Labeled relative-size diagram, separate from the reference photos. */
+.cc-size-preview{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;background:linear-gradient(145deg,#fffdf8,#f4f1eb);padding:10px 12px;gap:3px;color:#28221a}
+.cc-preview-label{font:700 12px/1.4 Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:#77551c;background:#f1e6ca;border:1px solid #dac591;border-radius:999px;padding:4px 10px;text-align:center}
+.cc-size-preview svg{display:block;flex:1;min-height:0;width:100%;max-width:600px;overflow:visible}
+.cc-preview-dimensions{font:700 16px/1.35 Arial,sans-serif;color:#302719}
+.cc-size-preview small{font:12px/1.35 Arial,sans-serif;color:#675d4b}
+.cc-gallery-thumbs .cc-preview-thumb{font:700 12px/1.2 Arial,sans-serif;color:#674b1d;background:linear-gradient(140deg,#fffdf8,#ead9ae);padding:6px}
+.cc-gallery-note{color:#b9b9b3}

@@ -1,0 +1,23 @@
+/* Jewelry details are decorative; content and purchase controls stay usable. */
+.hog-motion-bar{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:7px max(16px,calc((100vw - 1200px)/2));background:#111110;color:#dcc48d;font:12px/1.4 system-ui,sans-serif;border-bottom:1px solid #c5a46226}
+.hog-motion-toggle{font:inherit;color:inherit;background:transparent;border:1px solid #c5a46266;border-radius:999px;padding:5px 12px;cursor:pointer}
+.hog-motion-toggle:hover,.hog-motion-toggle:focus-visible{background:#c5a46220;outline:2px solid #d6b56a;outline-offset:2px}
+.hog-jewel-stage{position:relative;isolation:isolate}
+.hog-jewel-ornament{position:absolute;right:clamp(14px,3vw,40px);top:20px;width:clamp(72px,9vw,126px);height:auto;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 8px #0008)}
+.hog-sub-hero .hog-jewel-ornament{opacity:.25;z-index:-1}
+.hog-jewel-ring,.hog-jewel-spark{transform-box:fill-box;transform-origin:center}
+.hog-jewel-spark{opacity:.8}
+[data-hog-motion="running"] .hog-jewel-ring{animation:hog-ring-turn 8s ease-in-out infinite!important}
+[data-hog-motion="running"] .hog-jewel-spark{animation:hog-gem-glint 3.8s ease-in-out infinite!important}
+[data-hog-motion="running"] .hog-jewel-spark.second{animation-delay:1.4s!important}
+.hog-glint-surface{position:relative;overflow:hidden}
+.hog-glint-surface::after{content:"";position:absolute;inset:-50% -100%;pointer-events:none;z-index:2;background:linear-gradient(110deg,transparent 44%,#fff0bf44 49%,transparent 54%);opacity:0;transform:translateX(-45%)}
+[data-hog-motion="running"] .hog-glint-surface:hover::after,[data-hog-motion="running"] .hog-glint-surface:focus-within::after{animation:hog-polished-glint 900ms ease-out!important}
+[data-hog-motion="running"] .hog-motion-reveal{animation:hog-setting-reveal 700ms cubic-bezier(.2,.75,.25,1) both!important;animation-delay:var(--hog-reveal-delay,0ms)}
+@media(hover:hover) and (pointer:fine){[data-hog-motion="running"] .catalog-product-card{transition:transform 250ms ease,box-shadow 250ms ease}[data-hog-motion="running"] .catalog-product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px #b9973922}}
+@keyframes hog-ring-turn{0%,100%{transform:rotate(-12deg) scaleX(.9)}50%{transform:rotate(12deg) scaleX(1)}}
+@keyframes hog-gem-glint{0%,100%{opacity:.25;transform:scale(.6) rotate(-12deg)}45%{opacity:1;transform:scale(1.12) rotate(12deg)}}
+@keyframes hog-polished-glint{0%{opacity:0;transform:translateX(-45%)}25%,65%{opacity:1}100%{opacity:0;transform:translateX(45%)}}
+@keyframes hog-setting-reveal{from{opacity:.5;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+[data-hog-motion="paused"] .hog-jewel-ring,[data-hog-motion="paused"] .hog-jewel-spark,[data-hog-motion="paused"] .hog-motion-reveal{animation:none!important}
+@media(prefers-reduced-motion:reduce){html:not([data-hog-motion="running"]) .hog-jewel-ornament *,html:not([data-hog-motion="running"]) .hog-motion-reveal{animation:none!important}}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monaci Cuban Link | Hands of Gold, Copiague NY</title>
+<meta name="description" content="Monaci gold Cuban link chains and bracelets, with weight-based 14K pricing. Hands of Gold, 494 Oak St, Copiague, NY.">
+<link rel="canonical" href="https://www.handsofgoldny.com/classic-cuban-collection.html">
+<style>
+  :root{--navy:#0A2E73;--dark:#080B12;--gold:#C79638;--gold2:#D6AD5C;--ivory:#F6F3EC;--line:rgba(255,255,255,.14)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--dark);color:var(--ivory);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+  a{color:inherit}
+  header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line)}
+  header a.brand{font-weight:700;letter-spacing:.08em;text-decoration:none;color:var(--gold)}
+  header a.back{font-size:14px;opacity:.85}
+  main{max-width:1040px;margin:0 auto;padding:24px 16px 48px;display:grid;gap:28px;grid-template-columns:1fr}
+  @media(min-width:800px){main{grid-template-columns:1.1fr 1fr;align-items:start}}
+  .photo{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .photo img{display:block;width:100%;height:auto}
+  .eyebrow{color:var(--gold2);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
+  h1{font-family:"Bodoni Moda",Georgia,serif;font-size:clamp(26px,4vw,36px);line-height:1.15;margin:0 0 14px}
+  .price{font-size:34px;font-weight:700;color:var(--gold);margin:6px 0 2px}
+  .note{font-size:13px;opacity:.75;margin:0 0 18px}
+  table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:15px}
+  td{padding:9px 0;border-bottom:1px solid var(--line)}
+  td:first-child{opacity:.7;width:42%}
+  .btns{display:grid;gap:10px}
+  .btn{display:block;text-align:center;padding:14px 18px;border-radius:10px;font-weight:600;text-decoration:none}
+  .btn.primary{background:var(--navy);color:#fff;border:1px solid var(--gold)}
+  .btn.ghost{border:1px solid var(--line)}
+  .trust{font-size:14px;opacity:.85;margin-top:18px}
+  .err{padding:40px 16px;text-align:center}
+</style>
+<script defer src="/ad-pixels.js?v=20261016"></script>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">HANDS OF GOLD</a>
+  <a class="back" href="/classic-cuban-collection.html">All Monaci chains &rarr;</a>
+</header>
+
+<main id="item" hidden>
+  <div class="photo"><img id="img" alt=""></div>
+  <section>
+    <p class="eyebrow">Monaci &middot; Cuban Link</p>
+    <h1 id="title"></h1>
+    <div class="price" id="price">&hellip;</div>
+    <p class="note" id="note">14K prices are based on catalog weight. Final specifications and availability are confirmed by the store.</p>
+    <table>
+      <tr><td>Gold</td><td id="k"></td></tr>
+      <tr><td>Width</td><td id="w"></td></tr>
+      <tr><td>Length</td><td id="l"></td></tr>
+      <tr><td>Approx. weight</td><td id="g"></td></tr>
+      <tr><td>Style</td><td>Hollow Cuban link</td></tr>
+      <tr><td>SKU</td><td id="sku"></td></tr>
+    </table>
+    <div class="btns">
+      <a class="btn primary" href="/classic-cuban-collection.html">Buy or reserve this piece</a>
+      <a class="btn ghost" href="tel:+16312646610">Call the store &middot; 631-264-6610</a>
+      <a class="btn ghost" href="https://maps.google.com/?q=494+Oak+St+Copiague+NY+11726" target="_blank" rel="noopener">Visit us &middot; 494 Oak St, Copiague</a>
+    </div>
+    <p class="trust">Family jeweler since 1983. Mon&ndash;Sat 10am&ndash;7pm, Sun 1&ndash;5pm.</p>
+  </section>
+</main>
+
+<div class="err" id="missing" hidden>
+  <p>We couldn't find that piece.</p>
+  <p><a class="btn primary" href="/classic-cuban-collection.html">See all Monaci chains &amp; bracelets</a></p>
+</div>
+
+<script src="/classic-cuban-data.js"></script>
+<script src="/classic-cuban-pricing.js?v=20261020-weight-rates"></script>
+<script src="/assets/js/jewelry-catalog-model.js?v=20261020-weight-rates"></script>
+<script>
+(function(){
+  "use strict";
+  var model=window.HOG_JEWELRY_CATALOG, pricing=window.HOG_CLASSIC_CUBAN_PRICING;
+  var qs = new URLSearchParams(location.search);
+  var sku = qs.get("sku"), karat = (qs.get("karat") || "14K").toUpperCase();
+  var list = window.HOG_CLASSIC_CUBAN_PRODUCTS || [];
+  var p = list.find(function(x){ return x.sku === sku; });
+  if (!p || !p.weights || !p.weights[karat]) { document.getElementById("missing").hidden = false; return; }
+
+  var grams = p.weights[karat];
+  var kind = p.type === "necklace" ? "Chain" : "Bracelet";
+  var title = "Monaci " + karat + " Gold Cuban Link " + kind + " – " + p.widthMm + "mm, " + p.lengthIn + " in";
+  document.title = title + " | Hands of Gold";
+  document.getElementById("title").textContent = title;
+  var img = document.getElementById("img"); img.src = "/" + p.image; img.alt = title;
+  document.getElementById("k").textContent = karat + " gold";
+  document.getElementById("w").textContent = p.widthMm + " mm";
+  document.getElementById("l").textContent = p.lengthIn + " in";
+  document.getElementById("g").textContent = grams + " g";
+  document.getElementById("sku").textContent = p.sku;
+  document.getElementById("item").hidden = false;
+
+  var money = new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2});
+  function load(){
+    var fixed=model.priceFor({grams:Number(grams),karat:karat},null,pricing);
+    if(fixed!=null){document.getElementById("price").textContent=money.format(fixed);return;}
+    fetch("https://api.gold-api.com/price/XAU",{headers:{Accept:"application/json"}})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        var spot = d && Number(d.price);
+        if (!(spot > 0)) throw 0;
+        var price = model.priceFor({grams:Number(grams),karat:karat},spot,pricing);
+        if(price==null)throw 0;
+        document.getElementById("price").textContent = money.format(price);
+      })
+      .catch(function(){
+        document.getElementById("price").textContent = "Call for today's price";
+        document.getElementById("note").textContent = "Live gold price is temporarily unavailable.";
+      });
+  }
+  load(); setInterval(load, 10 * 60 * 1000);
+})();
+</script>
+</body>
+</html>

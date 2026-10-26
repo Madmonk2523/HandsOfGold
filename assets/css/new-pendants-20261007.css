@@ -1,0 +1,15 @@
+.new-pendant-gallery .product-media-card{overflow:hidden;background:#171a1d}
+.new-pendant-gallery .product-media-card a{display:block}
+.new-pendant-gallery .product-media-card img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.new-pendant-gallery .back-photo{margin-top:14px}
+.photo-note{font-size:13px;opacity:.75;text-align:center}
+.pendant-price{font-size:2rem;font-weight:800;margin:24px 0 6px;color:#e6c783}
+.price-note{font-size:13px;opacity:.8;margin:0 0 20px}
+.pendant-specs{margin:20px 0 26px}
+.pendant-specs div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #303235;padding:11px 0}
+.pendant-specs dt{opacity:.75}.pendant-specs dd{margin:0;font-weight:600;text-align:right}
+.pickup-note{margin-top:20px;line-height:1.6}
+.pendant-item .product-detail-grid{align-items:start}
+
+/* New supplied photo angles: fill the square frame without rotation. */
+.new-pendant-gallery img[src*="front-238"]{object-fit:cover;object-position:center}

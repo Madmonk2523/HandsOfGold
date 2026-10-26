@@ -1,0 +1,91 @@
+/* ==========================================================================
+   Oct 2026 funnel update: compact hero (flier removed), pay in full,
+   text me my design, phone sticky bar, shorter how-it's-made on phones
+   ========================================================================== */
+[data-gz-open-studio][hidden],[data-gz-pay-wrap][hidden],[data-gz-full-only][hidden],[data-gz-pay-copy][hidden],[data-gz-full-summary][hidden]{display:none!important}
+
+/* hero */
+body.hog-system-v1 .hog-sub-hero.gz-hero-main{padding:34px 0 28px}
+body.hog-system-v1 .hog-sub-hero.gz-hero-main h1{margin:.3rem 0 .6rem}
+.gz-hero-main .gz-hero-lede{max-width:60ch;margin:0;color:rgba(255,255,255,.82)}
+.gz-hero-sale{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.35rem .7rem;margin-top:16px;padding:.6rem .9rem;border:1px solid rgba(228,199,125,.55);border-radius:14px;background:rgba(228,199,125,.08);color:#fff;text-decoration:none;line-height:1.3}
+.gz-hero-sale:hover{background:rgba(228,199,125,.16)}
+.gz-hero-sale-tag{font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#0b0b0c;background:#e4c77d;border-radius:999px;padding:3px 9px}
+.gz-hero-sale-prices b{color:#e4c77d}
+.gz-hero-sale-go{font-weight:900;color:#e4c77d}
+.gz-hero-main .hog-sub-actions{margin-top:16px}
+.gz-hero-main .gz-google-badge{margin-top:14px}
+@media(max-width:760px){
+  body.hog-system-v1 .hog-sub-hero.gz-hero-main{padding:22px 0 22px}
+  body.hog-system-v1 .hog-sub-hero.gz-hero-main h1{font-size:2.2rem}
+  .gz-hero-main .gz-hero-lede{font-size:.95rem;line-height:1.5}
+  .gz-hero-main .hog-sub-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .gz-hero-main .hog-sub-actions a{min-height:46px;padding:.55rem .7rem;font-size:.9rem;text-align:center}
+  .gz-hero-main .hog-sub-actions a:first-child{grid-column:1/-1}
+  .gz-hero-sale{font-size:.88rem}
+}
+
+/* phone sticky bar: Reserve | Design | Call. The floating bubble would sit on
+   top of it (and of the hero buttons), so phones use the bar's Design button. */
+.gz-sticky a.is-light{white-space:nowrap}
+@media(max-width:760px){
+  .gz-studio-bubble{display:none!important}
+  .gz-sticky a.is-light{padding:0 .85rem}
+}
+
+/* how it's made: tighter on phones (about 3 screens instead of 5) */
+@media(max-width:760px){
+  #craft .hog-lede{margin-bottom:.8rem}
+  .gz-craft{gap:.7rem}
+  .gz-craft-copy{padding:.8rem .95rem .95rem;gap:.3rem}
+  .gz-craft-copy h3{font-size:1.12rem}
+  .gz-craft-copy p{font-size:.92rem;line-height:1.5}
+  .gz-craft-copy p.gz-craft-hint{display:none}
+  .gz-craft-media.is-pair{grid-template-columns:1fr 1fr}
+  .gz-craft-media.is-pair a{aspect-ratio:4/3;overflow:hidden}
+  .gz-craft-media.is-pair img{height:100%;object-fit:cover}
+  .gz-craft-media:not(.is-pair):not(.is-quad){aspect-ratio:16/9}
+  .gz-craft-media.is-quad figure.gz-craft-extra{display:none}
+  .gz-craft-media.is-quad figure:last-child{grid-column:auto}
+  .gz-craft-media.is-quad figure:last-child a{aspect-ratio:4/3}
+  .gz-craft-cta{margin-top:.9rem;padding:1rem}
+}
+
+/* reserve: deposit or pay in full */
+.gz-lead-sub{margin:.9rem 0 .2rem;font-size:.75rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#a07a2c}
+body.hog-system-v1 .gz-lead-sub{color:var(--hog-gold-soft,#e4c77d)}
+.gz-pay-choices .gz-choice{gap:.1rem}
+.gz-pay-choices .gz-choice small{font-size:.74rem}
+.gz-full-summary{margin:0 0 .85rem;padding:.75rem .9rem;border:1px solid var(--hog-gold,#c79638);border-radius:12px;background:rgba(199,150,56,.08);display:grid;gap:.3rem}
+.gz-full-summary p{margin:0;display:flex;justify-content:space-between;gap:1rem;font-size:.92rem}
+.gz-full-summary p b{white-space:nowrap}
+.gz-full-summary p.is-free b{color:#16a34a}
+.gz-full-summary p.is-total{margin-top:.2rem;padding-top:.45rem;border-top:1px solid rgba(199,150,56,.45);font-size:1.02rem}
+.gz-full-summary p.is-note{display:block;font-size:.88rem;line-height:1.45}
+.gz-full-summary p.is-note b{display:none}
+
+/* text me my design */
+.gz-textme{margin-top:1rem;padding:.9rem 1rem;border:1px solid rgba(199,150,56,.55);border-radius:14px;background:rgba(199,150,56,.06)}
+.gz-textme-title{margin:0 0 .7rem;display:grid;gap:.15rem}
+.gz-textme-title strong{font-size:1.05rem}
+.gz-textme-title span{font-size:.88rem;opacity:.8}
+.gz-textme .hog-field-row{margin-bottom:.2rem}
+.gz-textme .gz-studio-row{margin-top:.4rem}
+.gz-textme .hog-form-note{margin:.4rem 0 0;font-size:.8rem}
+/* Phones: the form's own terms and price summary carry these details, so the
+   bullet lists are dropped and the form starts right under the heading. */
+@media(max-width:760px){
+  #reserve .hog-lead-copy ul,#reserve .gz-lead-sub{display:none}
+  #reserve .hog-lead-copy h2{font-size:1.6rem}
+}
+body.hog-system-v1 .gz-pay-choices .gz-choice[aria-pressed="true"] small{color:inherit!important;opacity:.85}
+
+/* The "Add to Home Screen" bar (pwa.js) would cover the sticky Reserve/Call bar. */
+body[data-hog-no-install]>div[role="dialog"][aria-label="Add Hands of Gold to your home screen"]{display:none!important}
+[data-gz-share][hidden]{display:none!important}
+.gz-share-consent span{font-size:.85rem}
+
+/* The "Add to Home Screen" bar (pwa.js) would cover the sticky Reserve/Call bar. */
+body[data-hog-no-install]>div[role="dialog"][aria-label="Add Hands of Gold to your home screen"]{display:none!important}
+[data-gz-share][hidden]{display:none!important}
+.gz-share-consent span{font-size:.85rem}

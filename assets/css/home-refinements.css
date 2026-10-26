@@ -1,0 +1,71 @@
+/* Category clips preserve the same clickable category tiles and responsive grid. */
+.jc-style-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.jc-style-heading #jc-style-title{margin:0}
+.jc-video-toggle{min-height:44px;padding:8px 12px;border:1px solid #dcc28e88;border-radius:8px;background:#111315;color:#f0d8a5;font:700 12px/1.2 Arial,sans-serif;cursor:pointer;flex:none}
+.jc-video-toggle[hidden]{display:none}
+.jc-video-toggle:focus-visible{outline:3px solid #f0d8a5;outline-offset:3px}
+.jc-style-photo:has(.jc-category-video){position:relative;overflow:hidden}
+.jc-style-photo .jc-category-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;background:#111315;pointer-events:none}
+.review-expand{display:none}
+@media(max-width:760px){
+  html body.home-page.hog-system-v1 #home-main #reviews{padding:20px 0!important}
+  html body.home-page.hog-system-v1 #reviews>.container{width:calc(100% - 24px)!important}
+  html body.home-page.hog-system-v1 #reviews .review-proof-heading{margin:0 0 12px!important;min-height:0!important;padding:0!important}
+  html body.home-page.hog-system-v1 #reviews .review-proof-heading .eyebrow,
+  html body.home-page.hog-system-v1 #reviews .review-proof-heading>p:not(.eyebrow),
+  html body.home-page.hog-system-v1 #reviews .review-proof-link{display:none!important}
+  html body.home-page.hog-system-v1 #reviews .review-proof-stars{font-size:15px!important;line-height:1.2!important;margin:0 0 5px!important}
+  html body.home-page.hog-system-v1 #reviews .review-proof-heading h2{font-size:24px!important;line-height:1.15!important;margin:0!important}
+  html body.home-page.hog-system-v1 #reviews .reviews-shell,
+  html body.home-page.hog-system-v1 #reviews .reviews-viewport{margin:0!important;padding:0!important}
+  html body.home-page.hog-system-v1 #reviews .reviews-track{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;align-items:start!important}
+  html body.home-page.hog-system-v1 #reviews .review-card{padding:10px 11px 4px!important;min-height:0!important;height:auto!important;border-radius:10px!important}
+  html body.home-page.hog-system-v1 #reviews .review-card h3{font-size:14px!important;line-height:1.25!important;margin:0 0 6px!important;min-height:35px;overflow-wrap:anywhere}
+  html body.home-page.hog-system-v1 #reviews .review-card p{font-size:13px!important;line-height:1.45!important;margin:0!important}
+  html body.home-page.hog-system-v1 #reviews.reviews-mobile-ready .review-card:not(.review-expanded) p{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;max-height:none!important}
+  html body.home-page.hog-system-v1 #reviews.reviews-mobile-ready .review-card.review-expanded p{display:block!important;-webkit-line-clamp:unset;overflow:visible;max-height:none!important}
+  html body.home-page.hog-system-v1 #reviews .review-expand{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;background:transparent;color:#e8cd91;font:700 12px/1.3 Arial,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  html body.home-page.hog-system-v1 #reviews .review-expand:focus-visible{outline:2px solid #f0d8a5;outline-offset:2px}
+  html body.home-page.hog-system-v1 #reviews .section-cta{margin:12px 0 0!important}
+  html body.home-page.hog-system-v1 #reviews .section-cta a{font-size:12px!important;min-height:44px!important;padding:10px 15px!important}
+  .jc-style-heading{gap:8px;align-items:center}
+  .jc-style-heading #jc-style-title{font-size:21px}
+  .jc-video-toggle{padding:6px 9px;font-size:11px}
+}
+@media(max-width:359px){
+  html body.home-page.hog-system-v1 #reviews .reviews-track{grid-template-columns:1fr!important}
+  html body.home-page.hog-system-v1 #reviews .review-card h3{min-height:0}
+}
+
+/* Financing leads into shopping; gold buying follows the jewelry results. */
+html body.home-page.hog-system-v1 #home-main>section#financing-offer.hog-financing-intro{padding:14px 20px!important}
+.hog-financing-intro .hog-mini-inner{grid-template-columns:minmax(0,720px) 104px;gap:24px;max-width:1000px}
+.hog-financing-intro .hog-mini-tools{display:block}
+.hog-financing-intro .hog-mini-financing{grid-column:auto;grid-row:auto;margin:0;padding:16px;border:1px solid #dcc28e66;border-radius:10px;background:#111315!important}
+html body.home-page.hog-system-v1 .hog-financing-intro #mini-financing-title{font:700 24px/1.15 Georgia,serif!important;margin:0 0 12px!important}
+.hog-financing-intro .hog-mini-finance-links{gap:8px}
+.hog-financing-intro .hog-mini-finance-links a{min-height:44px;padding:9px 14px;font-size:13px;background:#dcc28e;color:#17130d!important;border-color:#dcc28e}
+.hog-financing-intro .hog-mini-media{grid-column:auto;grid-row:auto;align-self:center}
+html body.home-page.hog-system-v1 #home-main>section#sell-used-gold.hog-gold-buying{box-sizing:border-box;max-width:1160px;width:calc(100% - 40px);margin:0 auto 20px;padding:0!important;background:none!important;scroll-margin-top:120px}
+.hog-gold-buying .hero-gold-card{display:grid;grid-template-columns:minmax(200px,.7fr) minmax(0,1.3fr);gap:6px 22px;align-items:center;padding:16px 20px}
+html body.home-page.hog-system-v1 .hog-gold-buying #hero-gold-title{font:700 27px/1.15 Georgia,serif!important;color:#f5cc7f!important;margin:0!important;letter-spacing:0!important;grid-column:1;grid-row:1}
+.hog-gold-buying #hero-gold-register,.hog-gold-buying #hero-gold-calculate{grid-column:2;grid-row:1;margin:0;scroll-margin-top:120px}
+.hog-gold-buying .hero-gold-contact{grid-template-columns:1fr 1fr}
+.hog-gold-buying #hero-gold-status{grid-column:1/-1;margin:0!important}
+.hog-gold-buying #hero-gold-status:empty{display:none}
+.hog-gold-buying .hero-gold-card input:not([type=checkbox]),.hog-gold-buying .hero-gold-card select{min-height:42px;height:42px}
+@media(max-width:760px){
+  html body.home-page.hog-system-v1 #home-main>section#financing-offer.hog-financing-intro{padding:12px!important}
+  .hog-financing-intro .hog-mini-inner{grid-template-columns:minmax(0,1fr) 76px;gap:10px}
+  .hog-financing-intro .hog-mini-financing{padding:12px}
+  html body.home-page.hog-system-v1 .hog-financing-intro #mini-financing-title{font-size:20px!important;margin-bottom:8px!important}
+  .hog-financing-intro .hog-mini-finance-links{gap:6px}
+  .hog-financing-intro .hog-mini-finance-links a{font-size:11px;padding:8px 10px}
+  html body.home-page.hog-system-v1 #home-main>section#sell-used-gold.hog-gold-buying{width:calc(100% - 24px);margin-bottom:14px}
+  .hog-gold-buying .hero-gold-card{display:block;padding:13px}
+  html body.home-page.hog-system-v1 .hog-gold-buying #hero-gold-title{font-size:23px!important;margin:0 0 10px!important}
+  .hog-gold-buying .hero-gold-card .hero-gold-consent{font-size:10px}
+}
+
+html body.home-page.hog-system-v1 #home-main #financing-offer #payment-options{padding:16px!important}
+@media(max-width:760px){html body.home-page.hog-system-v1 #home-main #financing-offer #payment-options{padding:12px!important}}

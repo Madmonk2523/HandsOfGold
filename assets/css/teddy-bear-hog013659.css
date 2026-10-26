@@ -1,0 +1,13 @@
+body.home-page.hog-system-v1 #product-hog013659 .catalog-product-image img{object-fit:cover!important;background:#171a1d!important}
+.teddy-bear-gallery .product-media-card{overflow:hidden;background:#171a1d}
+.teddy-bear-gallery .product-media-card a{display:block}
+.teddy-bear-gallery .product-media-card img{display:block;width:100%;height:auto;background:#171a1d;object-fit:contain}
+.teddy-bear-gallery .teddy-bear-back-photo{margin-top:14px}
+.teddy-bear-gallery .photo-note{font-size:13px;opacity:.75;margin:10px 0 0;text-align:center}
+.teddy-bear-item .teddy-bear-price{font-size:2rem;font-weight:800;line-height:1.1;margin:24px 0 6px;color:#e6c783}
+.teddy-bear-item .price-note{font-size:13px;opacity:.8;margin:0 0 20px}
+.teddy-bear-item .teddy-bear-specs{margin:20px 0 26px}
+.teddy-bear-item .teddy-bear-specs div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #303235;padding:11px 0}
+.teddy-bear-item .teddy-bear-specs dt{opacity:.75}
+.teddy-bear-item .teddy-bear-specs dd{margin:0;font-weight:600;text-align:right}
+.teddy-bear-item .pickup-note{margin-top:20px;line-height:1.6}

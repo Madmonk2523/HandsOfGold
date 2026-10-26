@@ -31,6 +31,8 @@
   }
 
   function initForm(form) {
+    if(!form.id)form.id="request-form";
+    form.style.scrollMarginTop="120px";
     var slug    = form.getAttribute("data-hog-form") || "service";
     var subject = form.getAttribute("data-hog-subject") || "New Hands of Gold Website Lead";
     var service = form.getAttribute("data-hog-service") || "Website enquiry";
@@ -139,6 +141,7 @@
   function boot() {
     document.querySelectorAll("form[data-hog-form]").forEach(initForm);
     initTelTracking();
+    if(window.location.hash==="#request-form"){var target=document.getElementById("request-form");if(target)target.scrollIntoView({block:"start"});}
     var y = document.getElementById("hog-year");
     if (y) y.textContent = new Date().getFullYear();
     document.querySelectorAll("[data-hog-phone]").forEach(function (el) {

@@ -1,1936 +1,2095 @@
-const body = document.body;
-const header = document.querySelector('.site-header');
-const navToggle = document.querySelector('.nav-toggle');
-const nav = document.querySelector('.site-nav');
-const navLinks = document.querySelectorAll('.site-nav a, .nav-actions a');
-const yearTarget = document.getElementById('year');
-const leadPopup = document.getElementById('lead-popup');
-const leadPopupClose = document.getElementById('lead-popup-close');
-const leadForm = document.getElementById('lead-form');
-const leadSubmit = document.getElementById('lead-submit');
-const leadStatus = document.getElementById('lead-status');
-const leadPageUrl = document.getElementById('lead-page-url');
-const leadUtmSource = document.getElementById('lead-utm-source');
-const leadFormStart = document.getElementById('lead-form-start');
+// Fill the in-stock card with the $1,100 rosary photo while its detail page keeps the full image.
+(() => {
+  const style = document.createElement("style");
+  style.textContent = "body.home-page.hog-system-v1 #product-rosary-necklace-7-8g .catalog-product-image img{object-fit:cover!important;object-position:center center!important}";
+  document.head.appendChild(style);
+})();
 
-const LEAD_POPUP_DELAY_MS = 3000;
-const LEAD_POPUP_STORAGE_KEY = 'hog-lead-popup-seen-v2';
-const LEAD_POPUP_COOLDOWN_MS = 24 * 60 * 60 * 1000;
-const LEAD_MIN_FILL_MS = 1200;
-const LEAD_API_ENDPOINT = '/api/send-lead';
-const LEAD_REQUEST_TIMEOUT_MS = 20000;
-const STRIPE_CONFIG_ENDPOINT = '/api/stripe-config';
-const STRIPE_CHECKOUT_ENDPOINT = '/api/create-checkout-session';
+// Use store-visit wording in the bottom location section.
+(() => {
+  const visit = document.getElementById("visit");
+  if (!visit) return;
+  const label = visit.querySelector(".visit-content .eyebrow");
+  const heading = visit.querySelector(".visit-content h2");
+  if (label) label.textContent = "Visit Our Store";
+  if (heading) heading.textContent = "Come see us in Copiague.";
+})();
 
-if (yearTarget) {
-  yearTarget.textContent = new Date().getFullYear();
-}
+// Add the in-stock HOG011194 rosary before catalog filters collect their cards.
+// Keep the AK pendant catalog price and checkout in sync with its detail page.
+(() => {
+  const card = document.getElementById("product-hog014641");
+  if (!card) return;
+  const price = card.querySelector(".catalog-product-footer > span");
+  const checkout = card.querySelector(".catalog-card-call");
+  if (price) price.textContent = "$1,325.00";
+  if (checkout) checkout.href = "https://buy.stripe.com/eVq4gs1AF6zCgUk7Sj8bS0h";
+})();
 
-const closeMenu = () => {
-  body.classList.remove('nav-open');
-  if (navToggle) {
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Open navigation menu');
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog011194")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "chain";
+  card.dataset.sku = "HOG011194";
+  card.id = "product-hog011194";
+  card.innerHTML = `<a aria-label="View 14K Tri-Color Rosary Necklace with Cross" class="catalog-product-image" href="/products/14k-tri-color-rosary-necklace-hog011194.html"><img src="/new-media/hog011194-tri-color-rosary-necklace.jpg" alt="14K tri-color rosary necklace with faceted beads, decorative center and cross drop on a dark display" width="864" height="1536" loading="lazy" decoding="async" style="object-fit:contain;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Necklace</span><span>14K Tri-Color Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-tri-color-rosary-necklace-hog011194.html">14K Tri-Color Rosary Necklace with Cross</a></h3><p>14.9 grams · Faceted beads · Cross drop · HOG011194</p>
+<div class="catalog-product-footer"><span>$2,049.00</span><a class="catalog-card-view" href="/products/14k-tri-color-rosary-necklace-hog011194.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/7sY7sE5QV8HK9rSfkL8bS0g">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+// Add the HOG013488 chain before the catalog filters collect product cards.
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog013488")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "chain";
+  card.dataset.sku = "HOG013488";
+  card.id = "product-hog013488";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Gucci-Link Chain" class="catalog-product-image" href="/products/14k-yellow-gold-gucci-link-chain-hog013488.html"><img src="/new-media/hog013488-yellow-gold-gucci-chain.jpg" alt="20-inch 14K yellow gold Gucci-link chain on a dark jewelry display" width="864" height="1536" loading="lazy" decoding="async" style="object-fit:contain;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Chain</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-gucci-link-chain-hog013488.html">14K Yellow Gold Gucci-Link Chain</a></h3><p>20 inches · 20.9 grams · Approx. 5.20 mm · HOG013488</p>
+<div class="catalog-product-footer"><span>$2,700.00</span><a class="catalog-card-view" href="/products/14k-yellow-gold-gucci-link-chain-hog013488.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/00w4gsbbf0be6fG2xZ8bS0i">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+// Add the HOG014280 tri-color chain before the catalog filters collect cards.
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog014280")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "chain";
+  card.dataset.sku = "HOG014280";
+  card.id = "product-hog014280";
+  card.innerHTML = `<a aria-label="View 14K Tri-Color Gold Gucci-Link Chain" class="catalog-product-image" href="/products/14k-tri-color-gucci-link-chain-hog014280.html"><img src="/new-media/hog014280-tri-color-gucci-chain.jpg" alt="22-inch 14K tri-color gold Gucci-link chain with patterned yellow, white and rose tones on a dark display" width="864" height="1536" loading="lazy" decoding="async" style="object-fit:contain;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Chain</span><span>14K Tri-Color Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-tri-color-gucci-link-chain-hog014280.html">14K Tri-Color Gold Gucci-Link Chain</a></h3><p>22 inches · 23.4 grams · Approx. 6.28 mm · HOG014280</p>
+<div class="catalog-product-footer"><span>$3,200.00</span><a class="catalog-card-view" href="/products/14k-tri-color-gucci-link-chain-hog014280.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/5kQ3coenr7DG5bC8Wn8bS0j">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+// Add the HOG014662 curb chain before the catalog filters collect cards.
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog014662")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "chain";
+  card.dataset.sku = "HOG014662";
+  card.id = "product-hog014662";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Curb Chain with White Accents" class="catalog-product-image" href="/products/14k-yellow-gold-curb-chain-hog014662.html"><img src="/new-media/hog014662-curb-chain.jpg" alt="24-inch yellow gold curb chain with bright white accents displayed on a dark jewelry bust" width="864" height="1536" loading="lazy" decoding="async" style="object-fit:contain;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Chain</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-curb-chain-hog014662.html">14K Yellow Gold Curb Chain with White Accents</a></h3><p>24 inches · 9.7 grams · HOG014662</p>
+<div class="catalog-product-footer"><span>$1,300.00</span><a class="catalog-card-view" href="/products/14k-yellow-gold-curb-chain-hog014662.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/7sYcMYdjn7DG8nOegH8bS0k">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+// New in-stock pendants, photographed without price tags.
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog014329")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "pendant";
+  card.dataset.sku = "HOG014329";
+  card.id = "product-hog014329";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Religious Medallion Pendant" class="catalog-product-image" href="/products/14k-yellow-gold-religious-medallion-hog014329.html"><img src="/new-media/hog014329-religious-medallion.jpg" alt="Round relief medallion with a pink-red accent stone" width="941" height="1672" loading="lazy" decoding="async" style="object-fit:contain;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Pendant</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-religious-medallion-hog014329.html">14K Yellow Gold Religious Medallion Pendant</a></h3><p>10.5 grams · HOG014329</p>
+<div class="catalog-product-footer"><span>$1,269.99</span><a class="catalog-card-view" href="/products/14k-yellow-gold-religious-medallion-hog014329.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/bJe00c4MRgac5bC1tV8bS0l">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog013571")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "pendant";
+  card.dataset.sku = "HOG013571";
+  card.id = "product-hog013571";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Teddy Bear Pendant with Pink Heart" class="catalog-product-image" href="/products/14k-yellow-gold-teddy-bear-pink-heart-hog013571.html"><img src="/new-media/hog013571-teddy-pink-heart.jpg" alt="Teddy bear pendant with clear stone accents and a pink heart center" width="1672" height="941" loading="lazy" decoding="async" style="object-fit:cover;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Pendant</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-teddy-bear-pink-heart-hog013571.html">14K Yellow Gold Teddy Bear Pendant with Pink Heart</a></h3><p>9.5 grams · HOG013571</p>
+<div class="catalog-product-footer"><span>$1,109.99</span><a class="catalog-card-view" href="/products/14k-yellow-gold-teddy-bear-pink-heart-hog013571.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/8x2aEQ3IN1fifQgb4v8bS0m">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog013455")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "pendant";
+  card.dataset.sku = "HOG013455";
+  card.id = "product-hog013455";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Diamond Hamsa Pendant" class="catalog-product-image" href="/products/14k-yellow-gold-diamond-hamsa-hog013455.html"><img src="/new-media/hog013455-diamond-hamsa.jpg" alt="Hamsa hand pendant with rows of round and baguette diamonds" width="1672" height="941" loading="lazy" decoding="async" style="object-fit:cover;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Pendant</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-diamond-hamsa-hog013455.html">14K Yellow Gold Diamond Hamsa Pendant</a></h3><p>5.50 ctw diamonds · HOG013455</p>
+<div class="catalog-product-footer"><span>$8,989.99</span><a class="catalog-card-view" href="/products/14k-yellow-gold-diamond-hamsa-hog013455.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/4gM4gsbbf3nq6fG6Of8bS0n">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog013408")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "pendant";
+  card.dataset.sku = "HOG013408";
+  card.id = "product-hog013408";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Gorilla Head Pendant" class="catalog-product-image" href="/products/14k-yellow-gold-gorilla-head-hog013408.html"><img src="/new-media/hog013408-gorilla-head.jpg" alt="Sculpted gorilla head with dark stone accents and an open-mouth profile" width="941" height="1672" loading="lazy" decoding="async" style="object-fit:cover;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Pendant</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-gorilla-head-hog013408.html">14K Yellow Gold Gorilla Head Pendant</a></h3><p>15.1 grams · HOG013408</p>
+<div class="catalog-product-footer"><span>$2,009.99</span><a class="catalog-card-view" href="/products/14k-yellow-gold-gorilla-head-hog013408.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/5kQdR25QVbTWeMc1tV8bS0o">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid || document.getElementById("product-hog013685")) return;
+  const card = document.createElement("article");
+  card.className = "catalog-product-card";
+  card.dataset.category = "pendant";
+  card.dataset.sku = "HOG013685";
+  card.id = "product-hog013685";
+  card.innerHTML = `<a aria-label="View 14K Yellow Gold Skull Pendant with Hat" class="catalog-product-image" href="/products/14k-yellow-gold-skull-hat-hog013685.html"><img src="/new-media/hog013685-skull-hat.jpg" alt="Stone-accented skull wearing a hat and dark-lensed glasses" width="941" height="1672" loading="lazy" decoding="async" style="object-fit:cover;object-position:center 30%;transform:scale(1.18);transform-origin:center 52%;background:#171a1d"></a>
+<div class="catalog-product-copy"><div class="catalog-product-meta"><span>Pendant</span><span>14K Yellow Gold</span></div>
+<h3><a class="catalog-product-title-link" href="/products/14k-yellow-gold-skull-hat-hog013685.html">14K Yellow Gold Skull Pendant with Hat</a></h3><p>10.9 grams · HOG013685</p>
+<div class="catalog-product-footer"><span>$1,339.00</span><a class="catalog-card-view" href="/products/14k-yellow-gold-skull-hat-hog013685.html">View details →</a><a class="catalog-card-call" href="https://buy.stripe.com/14AeV6enr2jm33u8Wn8bS0p">Buy Now</a></div></div>`;
+  grid.prepend(card);
+})();
+
+// New tag-verified pendants and live checkout prices.
+(() => {
+ const grid=document.getElementById("catalog-product-grid");
+ if(!grid)return;
+ const products=[{"sku": "HOG013319", "html": "<a aria-label=\"View 14K Yellow Gold Religious Tablet Pendant\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-religious-tablet-hog013319.html\"><img src=\"/new-media/hog013319-front.jpg\" alt=\"14K Yellow Gold Religious Tablet Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-religious-tablet-hog013319.html\">14K Yellow Gold Religious Tablet Pendant</a></h3><p>30.9 grams \u00b7 HOG013319</p><div class=\"catalog-product-footer\"><span>$4,739.99</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-religious-tablet-hog013319.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/4gM6oA1AFbTWeMcgoP8bS0q\">Buy Now</a></div></div>"}, {"sku": "HOG010288", "html": "<a aria-label=\"View 14K Yellow Gold Diamond Crowned E Pendant\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-diamond-crowned-e-hog010288.html\"><img src=\"/new-media/hog010288-front-23812.jpg\" alt=\"14K Yellow Gold Diamond Crowned E Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:cover;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-diamond-crowned-e-hog010288.html\">14K Yellow Gold Diamond Crowned E Pendant</a></h3><p>1.00 CTW \u00b7 100 diamonds \u00b7 HOG010288</p><div class=\"catalog-product-footer\"><span>$979.99</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-diamond-crowned-e-hog010288.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/8x27sEfrvbTWdI8c8z8bS0r\">Buy Now</a></div></div>"}, {"sku": "HOG005567", "html": "<a aria-label=\"View 10K Yellow Gold Playing Cards Pendant\" class=\"catalog-product-image\" href=\"/products/10k-yellow-gold-playing-cards-hog005567.html\"><img src=\"/new-media/hog005567-front-23811.jpg\" alt=\"10K Yellow Gold Playing Cards Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:cover;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>10K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/10k-yellow-gold-playing-cards-hog005567.html\">10K Yellow Gold Playing Cards Pendant</a></h3><p>8.3 grams \u00b7 HOG005567</p><div class=\"catalog-product-footer\"><span>$749.99</span><a class=\"catalog-card-view\" href=\"/products/10k-yellow-gold-playing-cards-hog005567.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/4gM3co1AFgaccE4a0r8bS0s\">Buy Now</a></div></div>"}, {"sku": "HOG013277", "html": "<a aria-label=\"View 14K Yellow Gold Lips Pendant\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-lips-hog013277.html\"><img src=\"/new-media/hog013277-front-23813.jpg\" alt=\"14K Yellow Gold Lips Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:cover;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-lips-hog013277.html\">14K Yellow Gold Lips Pendant</a></h3><p>4.7 grams \u00b7 HOG013277</p><div class=\"catalog-product-footer\"><span>$559.99</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-lips-hog013277.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/cNicMY3IN1fi5bCegH8bS0t\">Buy Now</a></div></div>"}, {"sku": "HOG012319", "html": "<a aria-label=\"View 14K Yellow Gold Star Pendant\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-star-hog012319.html\"><img src=\"/new-media/hog012319-front.jpg\" alt=\"14K Yellow Gold Star Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-star-hog012319.html\">14K Yellow Gold Star Pendant</a></h3><p>7 grams \u00b7 HOG012319</p><div class=\"catalog-product-footer\"><span>$919.00</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-star-hog012319.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/00weV62EJaPS9rS4G78bS0u\">Buy Now</a></div></div>"}];
+ for(const p of [...products].reverse()){
+  const id="product-"+p.sku.toLowerCase();if(document.getElementById(id))continue;
+  const card=document.createElement("article");card.className="catalog-product-card";card.dataset.category="pendant";card.dataset.sku=p.sku;card.id=id;
+  card.innerHTML=p.html;grid.prepend(card);
+ }
+})();
+
+// Four tag-verified pendants: tag price less $100.
+(() => {
+ const grid=document.getElementById('catalog-product-grid');if(!grid)return;
+ const products=[{"sku": "HOG010233", "html": "<a aria-label=\"View 14K White Gold Diamond Cross Pendant\" class=\"catalog-product-image\" href=\"/products/14k-white-gold-diamond-cross-hog010233.html\"><img src=\"/new-media/hog010233-front.jpg\" alt=\"14K White Gold Diamond Cross Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>14K white gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-white-gold-diamond-cross-hog010233.html\">14K White Gold Diamond Cross Pendant</a></h3><p>4.1 grams \u00b7 1.32 CTW \u00b7 33 diamonds \u00b7 HOG010233</p><div class=\"catalog-product-footer\"><span>$1,619.99</span><a class=\"catalog-card-view\" href=\"/products/14k-white-gold-diamond-cross-hog010233.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/8x2dR20wB9LOcE46Of8bS0v\">Buy Now</a></div></div>"}, {"sku": "HOG013724", "html": "<a aria-label=\"View 10K Yellow Gold Medusa Medallion Pendant\" class=\"catalog-product-image\" href=\"/products/10k-yellow-gold-medusa-medallion-hog013724.html\"><img src=\"/new-media/hog013724-front.jpg\" alt=\"10K Yellow Gold Medusa Medallion Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>10K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/10k-yellow-gold-medusa-medallion-hog013724.html\">10K Yellow Gold Medusa Medallion Pendant</a></h3><p>8.1 grams \u00b7 HOG013724</p><div class=\"catalog-product-footer\"><span>$829.99</span><a class=\"catalog-card-view\" href=\"/products/10k-yellow-gold-medusa-medallion-hog013724.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/14A9AM0wB9LO33uc8z8bS0w\">Buy Now</a></div></div>"}, {"sku": "HOG012658", "html": "<a aria-label=\"View 14K Yellow Gold Medusa Charm Pendant\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-medusa-charm-hog012658.html\"><img src=\"/new-media/hog012658-front.jpg\" alt=\"14K Yellow Gold Medusa Charm Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-medusa-charm-hog012658.html\">14K Yellow Gold Medusa Charm Pendant</a></h3><p>6.3 grams \u00b7 HOG012658</p><div class=\"catalog-product-footer\"><span>$919.00</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-medusa-charm-hog012658.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/5kQbIU937cY06fGegH8bS0x\">Buy Now</a></div></div>"}, {"sku": "HOG014629", "html": "<a aria-label=\"View 10K Yellow Gold Diamond SCAM LIKELY Pendant\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-diamond-scam-likely-hog014629.html\"><img src=\"/new-media/hog014629-front.jpg\" alt=\"10K Yellow Gold Diamond SCAM LIKELY Pendant\" width=\"1254\" height=\"1254\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Pendant</span><span>10K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-diamond-scam-likely-hog014629.html\">10K Yellow Gold Diamond SCAM LIKELY Pendant</a></h3><p>23.70 CTW \u00b7 321 diamonds \u00b7 HOG014629</p><div class=\"catalog-product-footer\"><span>$2,800.00</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-diamond-scam-likely-hog014629.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/7sY00cgvz2jmgUk3C38bS0D\">Buy Now</a></div></div>"}];
+ for(const p of [...products].reverse()){
+  const id='product-'+p.sku.toLowerCase();if(document.getElementById(id))continue;
+  const card=document.createElement('article');card.className='catalog-product-card';card.dataset.category='pendant';card.dataset.sku=p.sku;card.id=id;card.innerHTML=p.html;grid.prepend(card);
+ }
+})();
+
+// Tag-verified Bismarck chain: tag price less $175.
+(() => {
+ const grid=document.getElementById('catalog-product-grid');if(!grid)return;
+ const id='product-hog013938';if(document.getElementById(id))return;
+ const card=document.createElement('article');card.className='catalog-product-card';card.dataset.category='chain';card.dataset.sku='HOG013938';card.id=id;card.innerHTML="<a aria-label=\"View 14K Yellow Gold Bismarck Chain\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-bismarck-chain-hog013938.html\"><img src=\"/new-media/hog013938-bismarck-chain.jpg\" alt=\"14K Yellow Gold Bismarck Chain\" width=\"864\" height=\"1536\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Chain</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-bismarck-chain-hog013938.html\">14K Yellow Gold Bismarck Chain</a></h3><p>16.8 grams \u00b7 HOG013938</p><div class=\"catalog-product-footer\"><span>$2,514.99</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-bismarck-chain-hog013938.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/5kQaEQ3IN6zC5bCegH8bS0z\">Buy Now</a></div></div>";grid.prepend(card);
+})();
+
+// Tag-verified cable chain: tag price less $200.
+(() => {
+ const grid=document.getElementById('catalog-product-grid');if(!grid)return;
+ const id='product-hog014847';if(document.getElementById(id))return;
+ const card=document.createElement('article');card.className='catalog-product-card';card.dataset.category='chain';card.dataset.sku='HOG014847';card.id=id;card.innerHTML="<a aria-label=\"View 14K Yellow Gold Cable Chain\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-cable-chain-hog014847.html\"><img src=\"/new-media/hog014847-cable-chain.jpg\" alt=\"14K Yellow Gold Cable Chain\" width=\"941\" height=\"1672\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Chain</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-cable-chain-hog014847.html\">14K Yellow Gold Cable Chain</a></h3><p>20 inches \u00b7 12.8 grams \u00b7 HOG014847</p><div class=\"catalog-product-footer\"><span>$1,849.99</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-cable-chain-hog014847.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/bJe5kwgvzf689rS8Wn8bS0A\">Buy Now</a></div></div>";grid.prepend(card);
+})();
+
+// Tag-verified cable chain HOG014792: price set to $2,790.
+(() => {
+ const grid=document.getElementById('catalog-product-grid');if(!grid)return;
+ const id='product-hog014792';if(document.getElementById(id))return;
+ const card=document.createElement('article');card.className='catalog-product-card';card.dataset.category='chain';card.dataset.sku='HOG014792';card.id=id;card.innerHTML="<a aria-label=\"View 14K Yellow Gold Cable Chain\" class=\"catalog-product-image\" href=\"/products/14k-yellow-gold-cable-chain-hog014792.html\"><img src=\"/new-media/hog014792-cable-chain.jpg\" alt=\"14K Yellow Gold Cable Chain\" width=\"864\" height=\"1536\" loading=\"lazy\" decoding=\"async\" style=\"object-fit:contain;object-position:center;background:#171a1d\"></a><div class=\"catalog-product-copy\"><div class=\"catalog-product-meta\"><span>Chain</span><span>14K yellow gold</span></div><h3><a class=\"catalog-product-title-link\" href=\"/products/14k-yellow-gold-cable-chain-hog014792.html\">14K Yellow Gold Cable Chain</a></h3><p>20.1 grams \u00b7 HOG014792</p><div class=\"catalog-product-footer\"><span>$2,790.00</span><a class=\"catalog-card-view\" href=\"/products/14k-yellow-gold-cable-chain-hog014792.html\">View details \u2192</a><a class=\"catalog-card-call\" href=\"https://buy.stripe.com/00wcMYdjn7DGfQg3C38bS0C\">Buy Now</a></div></div>";grid.prepend(card);
+})();
+
+// Page 1 shows priced in-stock pieces; the older no-price gallery lives on Page 2.
+(() => {
+  const grid = document.getElementById("catalog-product-grid");
+  if (!grid) return;
+  [...grid.querySelectorAll(".catalog-product-card")].forEach(card => {
+    const price = card.querySelector(".catalog-product-footer > span")?.textContent?.trim() || "";
+    if (!/^\$[\d,]+(?:\.\d{2})?$/.test(price)) card.remove();
+  });
+  const style = document.createElement("style");
+  style.textContent = `
+    .home-page #curated-catalog-title{font-size:clamp(2rem,3vw,2.5rem)!important;line-height:1.08!important;letter-spacing:-.02em!important}
+    .hog-catalog-pages{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 25px}
+    .hog-catalog-pages>*{display:inline-flex;align-items:center;min-height:43px;padding:10px 16px;border:1px solid #74613f;border-radius:999px;font-size:.9rem;font-weight:750;text-decoration:none}
+    .hog-catalog-pages [aria-current]{background:#e7c783;border-color:#e7c783;color:#151515}
+    .hog-catalog-pages a{background:#15171b;color:#f4d99d}
+    .hog-catalog-pages a:hover,.hog-catalog-pages a:focus-visible{background:#3a2d18;outline:2px solid #e7c783;outline-offset:2px}
+  `;
+  document.head.appendChild(style);
+  const pagination = '<span aria-current="page">Page 1 · On Sale</span><a href="/jewelry-page-2.html">Page 2 · More jewelry →</a>';
+  const bottom = document.createElement("nav");
+  bottom.className = "hog-catalog-pages";
+  bottom.setAttribute("aria-label", "Jewelry pages");
+  bottom.innerHTML = pagination;
+  grid.after(bottom);
+  const headingCopy = document.querySelector(".curated-catalog-heading > p");
+  if (headingCopy) headingCopy.textContent = "Shop our in-stock pieces online.";
+})();
+
+(() => {
+  "use strict";
+
+  const money = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 2
+  });
+
+  let latestGoldPrice = null;
+
+  const PRICE_CACHE_KEY = "hog_metal_prices_v1";
+  function readCache() {
+    try { return JSON.parse(localStorage.getItem(PRICE_CACHE_KEY) || "{}"); } catch (e) { return {}; }
   }
-};
+  function writeCache(symbol, price) {
+    try {
+      const c = readCache();
+      c[symbol] = { price: price, at: Date.now() };
+      localStorage.setItem(PRICE_CACHE_KEY, JSON.stringify(c));
+    } catch (e) { /* private mode */ }
+  }
+  // Fallback so the gold calculator always returns a number if the feed is down.
+  // Review this figure periodically; the on-page copy already states the estimate
+  // is non-binding and confirmed in store.
+  const GOLD_FALLBACK_USD_PER_OZ = 3350;
 
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = body.classList.toggle('nav-open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-    navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+  async function loadMetal(symbol, elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    function apply(price, stale) {
+      el.textContent = money.format(price) + "/oz";
+      if (symbol === "XAU") {
+        latestGoldPrice = price;
+        const calcLive = document.getElementById("calc-live-gold");
+        if (calcLive) calcLive.textContent = money.format(price) + "/oz" + (stale ? " (last known)" : "");
+      }
+    }
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 5000);
+      const r = await fetch(`https://api.gold-api.com/price/${symbol}`, { cache: "no-store", signal: ctrl.signal });
+      clearTimeout(timer);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      const price = Number(d.price);
+      if (!Number.isFinite(price)) throw new Error("No price");
+      apply(price, false);
+      writeCache(symbol, price);
+      return d;
+    } catch (e) {
+      console.warn("Metal price error", symbol, e);
+      const cached = readCache()[symbol];
+      if (cached && Number.isFinite(cached.price)) {
+        apply(cached.price, true);
+        return { price: cached.price, stale: true };
+      }
+      if (symbol === "XAU" && !Number.isFinite(latestGoldPrice)) {
+        latestGoldPrice = GOLD_FALLBACK_USD_PER_OZ;
+      }
+      el.textContent = "Unavailable";
+      return null;
+    }
+  }
+
+  async function updateMetals() {
+    const updated = document.getElementById("metals-updated");
+    const results = await Promise.all([
+      loadMetal("XAU", "price-gold"),
+      loadMetal("XAG", "price-silver"),
+      loadMetal("XPT", "price-platinum")
+    ]);
+    const ticker = document.querySelector(".metals-ticker");
+    const anyLive = results.some(Boolean);
+    if (ticker) ticker.hidden = false; // Keep prices visible during a feed outage.
+    if (updated && anyLive) {
+      const stale = results.some(r => r && r.stale);
+      updated.textContent = stale
+        ? "Last known prices"
+        : `Updated ${new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"})}`;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const year = document.getElementById("year");
+    if (year) year.textContent = new Date().getFullYear();
+
+    updateMetals();
+    setInterval(updateMetals, 5 * 60 * 1000);
+
+    // Smooth in-page navigation
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", e => {
+        const id = a.getAttribute("href");
+        if (!id || id === "#") return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+    });
+
+    // Gold-buying calculator: payout logic stays on the server.
+    const calcButton = document.getElementById("gold-calc-button");
+    const weightInput = document.getElementById("gold-weight");
+    const weightUnitInput = document.getElementById("gold-weight-unit");
+    const karatInput = document.getElementById("gold-karat");
+    const calcResult = document.getElementById("gold-calc-result");
+    let calculationTimer = null;
+    async function calculateGoldOffer() {
+      const rawWeight = Number(weightInput?.value || 0);
+      const weightUnit = weightUnitInput?.value || "grams";
+      const karat = Number(karatInput?.value || 0);
+      if (!calcResult) return;
+      if (!Number.isFinite(rawWeight) || rawWeight <= 0 || !Number.isFinite(karat)) {
+        calcResult.textContent = "$0.00";
+        return;
+      }
+      calcResult.textContent = "Calculating…";
+      try {
+        const params = new URLSearchParams({ karat: String(karat), weight: String(rawWeight), unit: weightUnit });
+        const response = await fetch(`/api/gold-estimate?${params}`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Number.isFinite(data.estimate)) throw new Error("Invalid estimate");
+        calcResult.textContent = money.format(data.estimate);
+      } catch (error) {
+        console.warn("Gold estimate unavailable", error);
+        calcResult.textContent = "Call for estimate";
+      }
+    }
+
+    calcButton?.addEventListener("click", calculateGoldOffer);
+    weightInput?.addEventListener("input", () => {
+      clearTimeout(calculationTimer);
+      calculationTimer = setTimeout(calculateGoldOffer, 350);
+    });
+    weightUnitInput?.addEventListener("change", calculateGoldOffer);
+    karatInput?.addEventListener("change", calculateGoldOffer);
+
+
+    // Custom jewelry builder
+    const choiceGroups = document.querySelectorAll("[data-choice-group]");
+    const budgetSelect = document.getElementById("custom-budget");
+    const sizeInput = document.getElementById("custom-size");
+    const notesInput = document.getElementById("custom-notes");
+    const customSummary = document.getElementById("custom-summary");
+    const copyButton = document.getElementById("copy-custom-design");
+    const copyStatus = document.getElementById("custom-copy-status");
+
+    function selectedValue(groupName) {
+      return document.querySelector(`[data-choice-group="${groupName}"] .custom-choice.is-selected`)?.dataset.value || "";
+    }
+
+    function buildCustomText() {
+      const parts = [
+        selectedValue("piece"),
+        selectedValue("metal"),
+        selectedValue("stones"),
+        budgetSelect?.value || ""
+      ].filter(Boolean);
+      const size = sizeInput?.value?.trim();
+      const notes = notesInput?.value?.trim();
+      let text = parts.join(" · ");
+      if (size) text += ` · Size/Dimensions: ${size}`;
+      if (notes) text += ` · Notes: ${notes}`;
+      return text;
+    }
+
+    function refreshCustomSummary() {
+      if (customSummary) customSummary.textContent = buildCustomText();
+    }
+
+    choiceGroups.forEach(group => {
+      group.querySelectorAll(".custom-choice").forEach(button => {
+        button.addEventListener("click", () => {
+          group.querySelectorAll(".custom-choice").forEach(b => b.classList.remove("is-selected"));
+          button.classList.add("is-selected");
+          refreshCustomSummary();
+        });
+      });
+    });
+    budgetSelect?.addEventListener("change", refreshCustomSummary);
+    sizeInput?.addEventListener("input", refreshCustomSummary);
+    notesInput?.addEventListener("input", refreshCustomSummary);
+
+    copyButton?.addEventListener("click", async () => {
+      const text = `Hands of Gold custom jewelry request: ${buildCustomText()}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        if (copyStatus) copyStatus.textContent = "Design details copied to your device. They have not been sent to Hands of Gold. Call us and paste or read the request when you are ready.";
+      } catch {
+        if (copyStatus) copyStatus.textContent = text;
+      }
+    });
+    refreshCustomSummary();
+
+    // Catalog filters
+    const filters = document.querySelectorAll(".catalog-filter");
+    const cards = document.querySelectorAll(".catalog-product-card");
+    filters.forEach(button => {
+      button.addEventListener("click", () => {
+        filters.forEach(b => b.classList.remove("is-active"));
+        button.classList.add("is-active");
+        const filter = button.dataset.filter;
+        cards.forEach(card => {
+          card.hidden = !(filter === "all" || card.dataset.category === filter);
+        });
+      });
+    });
+
+    // Lead form: makes the CTA usable without a missing backend.
+    const form = document.getElementById("lead-form");
+    if (form) {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        const status = document.getElementById("lead-status");
+        if (!form.reportValidity()) return;
+        const name = document.getElementById("lead-name")?.value?.trim() || "Customer";
+        if (status) status.textContent = `Thanks, ${name}. Please call (631) 264-6610 to claim your offer.`;
+      });
+    }
+  });
+})();
+
+
+// V17 robust mobile navigation
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("nav-toggle") || document.querySelector(".nav-toggle");
+  const nav = document.getElementById("site-nav") || document.querySelector(".site-nav");
+  const body = document.body;
+
+  if (!toggle || !nav) return;
+
+  toggle.setAttribute("aria-expanded", "false");
+
+  const closeMenu = () => {
+    body.classList.remove("nav-open");
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const openMenu = () => {
+    body.classList.add("nav-open");
+    nav.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  toggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const isOpen = body.classList.contains("nav-open") || nav.classList.contains("is-open");
+    isOpen ? closeMenu() : openMenu();
   });
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', closeMenu);
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => closeMenu());
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
+  document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target) && !toggle.contains(event.target)) {
       closeMenu();
     }
   });
-}
 
-const updateHeaderState = () => {
-  if (!header) {
-    return;
-  }
-
-  header.classList.toggle('scrolled', window.scrollY > 12);
-};
-
-updateHeaderState();
-window.addEventListener('scroll', updateHeaderState, { passive: true });
-
-const revealItems = document.querySelectorAll('[data-reveal]');
-
-if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    },
-    {
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px',
-    }
-  );
-
-  revealItems.forEach((item) => revealObserver.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
-const counters = document.querySelectorAll('[data-counter]');
-
-const animateCounter = (element) => {
-  const target = Number(element.dataset.counter);
-  const suffix = element.dataset.suffix || '';
-  const duration = 1400;
-  const startTime = performance.now();
-
-  const step = (timestamp) => {
-    const progress = Math.min((timestamp - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const value = Math.round(target * eased);
-
-    element.textContent = `${value}${suffix}`;
-
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
-  };
-
-  window.requestAnimationFrame(step);
-};
-
-if ('IntersectionObserver' in window && counters.length) {
-  const counterObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.6 }
-  );
-
-  counters.forEach((counter) => counterObserver.observe(counter));
-} else {
-  counters.forEach(animateCounter);
-}
-
-const reviewsTrack = document.getElementById('reviews-track');
-const dotsContainer = document.getElementById('reviews-dots');
-const prevButton = document.getElementById('reviews-prev');
-const nextButton = document.getElementById('reviews-next');
-const metalsTicker = document.querySelector('.metals-ticker');
-
-const metalPriceNodes = {
-  XAU: document.getElementById('price-gold'),
-  XAG: document.getElementById('price-silver'),
-  XPT: document.getElementById('price-platinum'),
-};
-const metalsUpdatedNode = document.getElementById('metals-updated');
-
-const METALS_DATA_URL = '/data/metals.json';
-const METALS_REFRESH_MS = 60 * 60 * 1000;
-const METALS_CACHE_KEY = 'hog-metals-cache-v2';
-const METALS_DISPLAY_REFRESH_MS = 60 * 1000;
-
-const formatUsd = (value) =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 2,
-  }).format(value);
-
-const toNumber = (value) => {
-  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
-    return null;
-  }
-
-  return value;
-};
-
-const formatEasternTimestamp = (timestampMs) =>
-  new Date(timestampMs).toLocaleString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-    timeZone: 'America/New_York',
-    timeZoneName: 'short',
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 980) closeMenu();
   });
-
-const formatCountdown = (remainingMs) => {
-  const safeMs = Math.max(0, remainingMs);
-  const totalMinutes = Math.floor(safeMs / (60 * 1000));
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-
-  if (hours > 0) {
-    return `${hours}h ${minutes}m`;
-  }
-
-  return `${minutes}m`;
-};
-
-const renderMetalsUpdatedLine = (updatedAtMs) => {
-  const now = new Date();
-  const nextHourDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
-  const nextUpdateMs = nextHourDate.getTime();
-  const remainingMs = nextUpdateMs - Date.now();
-
-  return `Updated ${formatEasternTimestamp(updatedAtMs)} | Next update in ${formatCountdown(remainingMs)}`;
-};
-
-const syncStickyOffsets = () => {
-  if (!metalsTicker) {
-    return;
-  }
-
-  const tickerHeight = Math.max(1, Math.ceil(metalsTicker.getBoundingClientRect().height));
-  document.documentElement.style.setProperty('--metals-bar-height', `${tickerHeight}px`);
-};
-
-const TROY_OZ_TO_GRAMS = 31.1035;
-let goldPricePerGram = 70;
-
-const goldPricePerGramNode = document.getElementById('gold-price-per-gram');
-
-const paintMetalsTicker = (prices, updatedAtMs) => {
-  metalPriceNodes.XAU.textContent = `${formatUsd(prices.XAU)}/oz`;
-  metalPriceNodes.XAG.textContent = `${formatUsd(prices.XAG)}/oz`;
-  metalPriceNodes.XPT.textContent = `${formatUsd(prices.XPT)}/oz`;
-  metalsUpdatedNode.textContent = renderMetalsUpdatedLine(updatedAtMs);
-  syncStickyOffsets();
-
-  const liveGramPrice = prices.XAU / TROY_OZ_TO_GRAMS;
-  if (Number.isFinite(liveGramPrice) && liveGramPrice > 0) {
-    goldPricePerGram = liveGramPrice;
-    if (goldPricePerGramNode) {
-      goldPricePerGramNode.textContent = formatUsd(liveGramPrice);
-    }
-  }
-};
-
-const readMetalsCache = () => {
-  try {
-    const raw = window.localStorage.getItem(METALS_CACHE_KEY);
-    if (!raw) {
-      return null;
-    }
-
-    const parsed = JSON.parse(raw);
-    const updatedAtMs = Number(parsed?.updatedAtMs);
-    const prices = parsed?.prices;
-
-    if (
-      !Number.isFinite(updatedAtMs) ||
-      !prices ||
-      !toNumber(prices.XAU) ||
-      !toNumber(prices.XAG) ||
-      !toNumber(prices.XPT)
-    ) {
-      return null;
-    }
-
-    return {
-      updatedAtMs,
-      prices: {
-        XAU: Number(prices.XAU),
-        XAG: Number(prices.XAG),
-        XPT: Number(prices.XPT),
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-const writeMetalsCache = (prices, updatedAtMs) => {
-  try {
-    window.localStorage.setItem(
-      METALS_CACHE_KEY,
-      JSON.stringify({
-        updatedAtMs,
-        prices,
-      })
-    );
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const fetchMetalsSnapshot = async () => {
-  const response = await fetch(METALS_DATA_URL, {
-    method: 'GET',
-    cache: 'no-store',
-    headers: {
-      Accept: 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(`Metals snapshot request failed with status ${response.status}`);
-  }
-
-  const payload = await response.json();
-  const updatedAtMs = Number(payload?.updatedAtMs);
-  const prices = {
-    XAU: toNumber(payload?.prices?.XAU),
-    XAG: toNumber(payload?.prices?.XAG),
-    XPT: toNumber(payload?.prices?.XPT),
-  };
-
-  if (!Number.isFinite(updatedAtMs) || !prices.XAU || !prices.XAG || !prices.XPT) {
-    throw new Error('Invalid metals snapshot payload.');
-  }
-
-  return {
-    updatedAtMs,
-    prices,
-  };
-};
-
-const setMetalsErrorState = () => {
-  Object.values(metalPriceNodes).forEach((node) => {
-    if (node) {
-      node.textContent = 'Unavailable';
-    }
-  });
-
-  if (metalsUpdatedNode) {
-    metalsUpdatedNode.textContent = 'Update failed. Retrying in 12h';
-  }
-
-  syncStickyOffsets();
-};
-
-const updateMetalsTicker = async () => {
-  if (!metalPriceNodes.XAU || !metalPriceNodes.XAG || !metalPriceNodes.XPT || !metalsUpdatedNode) {
-    return;
-  }
-
-  const cached = readMetalsCache();
-
-  if (cached) {
-    paintMetalsTicker(cached.prices, cached.updatedAtMs);
-  }
-
-  try {
-    const snapshot = await fetchMetalsSnapshot();
-
-    if (!cached || snapshot.updatedAtMs >= cached.updatedAtMs) {
-      paintMetalsTicker(snapshot.prices, snapshot.updatedAtMs);
-      writeMetalsCache(snapshot.prices, snapshot.updatedAtMs);
-    }
-  } catch (error) {
-    if (cached) {
-      return;
-    }
-
-    setMetalsErrorState();
-    console.error(error);
-  }
-};
-
-updateMetalsTicker();
-syncStickyOffsets();
-window.setInterval(updateMetalsTicker, METALS_REFRESH_MS);
-window.setInterval(() => {
-  const cached = readMetalsCache();
-  if (cached && metalsUpdatedNode) {
-    metalsUpdatedNode.textContent = renderMetalsUpdatedLine(cached.updatedAtMs);
-    syncStickyOffsets();
-  }
-}, METALS_DISPLAY_REFRESH_MS);
-window.addEventListener('resize', syncStickyOffsets, { passive: true });
-
-const openLeadPopup = () => {
-  if (!leadPopup) {
-    return;
-  }
-
-  if (leadFormStart) {
-    leadFormStart.value = String(Date.now());
-  }
-
-  leadPopup.classList.add('is-open');
-  leadPopup.setAttribute('aria-hidden', 'false');
-};
-
-const closeLeadPopup = () => {
-  if (!leadPopup) {
-    return;
-  }
-
-  leadPopup.classList.remove('is-open');
-  leadPopup.setAttribute('aria-hidden', 'true');
-
-  try {
-    window.localStorage.setItem(LEAD_POPUP_STORAGE_KEY, String(Date.now()));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-if (leadPopup) {
-  let popupSeen = false;
-
-  try {
-    const lastShownAt = Number(window.localStorage.getItem(LEAD_POPUP_STORAGE_KEY));
-    popupSeen = Number.isFinite(lastShownAt) && Date.now() - lastShownAt < LEAD_POPUP_COOLDOWN_MS;
-  } catch (error) {
-    console.error(error);
-  }
-
-  if (leadPageUrl) {
-    leadPageUrl.value = window.location.href;
-  }
-
-  if (leadUtmSource) {
-    const params = new URLSearchParams(window.location.search);
-    leadUtmSource.value = params.get('utm_source') || 'direct';
-  }
-
-  if (!popupSeen) {
-    window.setTimeout(openLeadPopup, LEAD_POPUP_DELAY_MS);
-  }
-
-  leadPopup.addEventListener('click', (event) => {
-    const target = event.target;
-    if (target instanceof HTMLElement && target.dataset.popupClose === 'true') {
-      closeLeadPopup();
-    }
-  });
-
-  if (leadPopupClose) {
-    leadPopupClose.addEventListener('click', closeLeadPopup);
-  }
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && leadPopup.classList.contains('is-open')) {
-      closeLeadPopup();
-    }
-  });
-}
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const isValidPhone = (value) => {
-  const digits = value.replace(/\D/g, '');
-  return digits.length >= 10 && digits.length <= 15;
-};
-
-if (leadForm && leadSubmit && leadStatus) {
-  leadForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(leadForm);
-    const payload = {
-      name: String(formData.get('name') || '').trim(),
-      email: String(formData.get('email') || '').trim(),
-      phone: String(formData.get('phone') || '').trim(),
-      pageUrl: String(formData.get('pageUrl') || '').trim(),
-      utmSource: String(formData.get('utmSource') || '').trim(),
-      formStart: String(formData.get('formStart') || '').trim(),
-      website: String(formData.get('website') || '').trim(),
-    };
-
-    if (!payload.name || !payload.email || !payload.phone) {
-      leadStatus.textContent = 'Please complete all fields before submitting.';
-      leadStatus.classList.add('is-error');
-      leadStatus.classList.remove('is-success');
-      return;
-    }
-
-    if (!emailPattern.test(payload.email)) {
-      leadStatus.textContent = 'Please enter a valid email address.';
-      leadStatus.classList.add('is-error');
-      leadStatus.classList.remove('is-success');
-      return;
-    }
-
-    if (!isValidPhone(payload.phone)) {
-      leadStatus.textContent = 'Please enter a valid phone number.';
-      leadStatus.classList.add('is-error');
-      leadStatus.classList.remove('is-success');
-      return;
-    }
-
-    const fillMs = Date.now() - Number(payload.formStart || 0);
-    if (!Number.isFinite(fillMs) || fillMs < LEAD_MIN_FILL_MS) {
-      leadStatus.textContent = 'Please review your details and try again.';
-      leadStatus.classList.add('is-error');
-      leadStatus.classList.remove('is-success');
-      return;
-    }
-
-    leadSubmit.disabled = true;
-    leadSubmit.textContent = 'Submitting...';
-    leadForm.setAttribute('aria-busy', 'true');
-    leadStatus.textContent = '';
-    leadStatus.classList.remove('is-error', 'is-success');
-
-    try {
-      const controller = new AbortController();
-      const timeoutId = window.setTimeout(() => controller.abort(), LEAD_REQUEST_TIMEOUT_MS);
-
-      const response = await fetch(LEAD_API_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
-
-      window.clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error('Lead form backend not found. Deploy with a live /api/send-lead endpoint.');
-        }
-
-        const payloadError = await response.json().catch(() => ({}));
-        throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
-      }
-
-      leadStatus.textContent = 'Success. Your 10% offer has been claimed.';
-      leadStatus.classList.add('is-success');
-      leadStatus.classList.remove('is-error');
-      leadForm.reset();
-      window.setTimeout(closeLeadPopup, 1200);
-    } catch (error) {
-      const message = error instanceof Error && error.message
-        ? error.message
-        : 'Something went wrong. Please try again in a moment.';
-
-      leadStatus.textContent = message;
-      leadStatus.classList.add('is-error');
-      leadStatus.classList.remove('is-success');
-      console.error(error);
-    } finally {
-      leadSubmit.disabled = false;
-      leadSubmit.textContent = 'Claim My 10% Off';
-      leadForm.setAttribute('aria-busy', 'false');
-    }
-  });
-}
-
-const productMainImage = document.getElementById('product-main-image');
-const productThumbs = document.querySelectorAll('.product-thumb');
-
-if (productMainImage && productThumbs.length) {
-  productThumbs.forEach((thumb) => {
-    thumb.addEventListener('click', () => {
-      const image = thumb.getAttribute('data-product-image');
-      const alt = thumb.getAttribute('data-product-alt') || productMainImage.alt;
-
-      if (!image) {
-        return;
-      }
-
-      productMainImage.src = image;
-      productMainImage.alt = alt;
-
-      productThumbs.forEach((item) => {
-        const isActive = item === thumb;
-        item.classList.toggle('is-active', isActive);
-        item.setAttribute('aria-pressed', String(isActive));
-      });
-    });
-  });
-}
-
-if (reviewsTrack && dotsContainer && prevButton && nextButton) {
-  const slides = Array.from(reviewsTrack.children);
-  let currentIndex = 0;
-  let visibleSlides = 3;
-
-  const getVisibleSlides = () => {
-    if (window.innerWidth <= 640) {
-      return 1;
-    }
-
-    if (window.innerWidth <= 860) {
-      return 2;
-    }
-
-    return 3;
-  };
-
-  const getPageCount = () => Math.max(1, slides.length - visibleSlides + 1);
-
-  const buildDots = () => {
-    dotsContainer.innerHTML = '';
-    Array.from({ length: getPageCount() }).forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'slider-dot';
-      dot.setAttribute('aria-label', `Go to review set ${index + 1}`);
-      dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateSlider();
-      });
-      dotsContainer.appendChild(dot);
-    });
-  };
-
-  const updateSlider = () => {
-    visibleSlides = getVisibleSlides();
-    const maxIndex = slides.length - visibleSlides;
-    currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
-
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    const gapValue = window.getComputedStyle(reviewsTrack).gap;
-    const gap = Number.parseFloat(gapValue) || 0;
-    const offset = currentIndex * (slideWidth + gap);
-    reviewsTrack.style.transform = `translateX(-${offset}px)`;
-
-    const dots = dotsContainer.querySelectorAll('.slider-dot');
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('is-active', index === currentIndex);
-    });
-
-    prevButton.disabled = currentIndex === 0;
-    nextButton.disabled = currentIndex >= maxIndex;
-  };
-
-  prevButton.addEventListener('click', () => {
-    currentIndex -= 1;
-    updateSlider();
-  });
-
-  nextButton.addEventListener('click', () => {
-    currentIndex += 1;
-    updateSlider();
-  });
-
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    window.clearTimeout(resizeTimer);
-    resizeTimer = window.setTimeout(() => {
-      const nextVisibleSlides = getVisibleSlides();
-      if (nextVisibleSlides !== visibleSlides) {
-        visibleSlides = nextVisibleSlides;
-        buildDots();
-      }
-      updateSlider();
-    }, 120);
-  });
-
-  buildDots();
-  updateSlider();
-}
-
-const goldPuritySelect = document.getElementById('gold-purity');
-const goldWeightInput = document.getElementById('gold-weight');
-const goldEstimatedOfferNode = document.getElementById('gold-estimated-offer');
-const goldOfferForm = document.getElementById('gold-offer-form');
-const goldFormPurity = document.getElementById('gold-form-purity');
-const goldFormWeight = document.getElementById('gold-form-weight');
-const goldFormEstimatedOffer = document.getElementById('gold-offer-estimated');
-const goldOfferSubmit = document.getElementById('gold-offer-submit');
-const goldFormStatus = document.getElementById('gold-form-status');
-const goldPhotoInput = document.getElementById('gold-photo');
-const goldPhotoName = document.getElementById('gold-photo-name');
-const goldPageUrl = document.getElementById('gold-page-url');
-const goldUtmSource = document.getElementById('gold-utm-source');
-const goldFormStart = document.getElementById('gold-form-start');
-
-const GOLD_PHOTO_MAX_BYTES = 4 * 1024 * 1024;
-const GOLD_PURITY_VALUES = {
-  '10k': 0.417,
-  '14k': 0.585,
-  '18k': 0.75,
-  '22k': 0.917,
-  '24k': 1,
-};
-
-const formatWeightForForm = (weight) => {
-  if (!Number.isFinite(weight) || weight <= 0) {
-    return '';
-  }
-
-  return `${Number.isInteger(weight) ? weight : weight.toFixed(1)} grams`;
-};
-
-const updateGoldOfferEstimate = () => {
-  if (!goldPuritySelect || !goldWeightInput || !goldEstimatedOfferNode) {
-    return 0;
-  }
-
-  const purityKey = goldPuritySelect.value;
-  const purityValue = GOLD_PURITY_VALUES[purityKey] ?? 0;
-  const weight = Math.max(0, Number.parseFloat(goldWeightInput.value) || 0);
-  const estimatedValue = weight * purityValue * goldPricePerGram * 0.8;
-  const displayValue = formatUsd(estimatedValue);
-
-  goldEstimatedOfferNode.textContent = displayValue;
-
-  if (goldFormPurity) {
-    goldFormPurity.value = purityKey.toUpperCase();
-  }
-
-  if (goldFormWeight) {
-    goldFormWeight.value = formatWeightForForm(weight);
-  }
-
-  if (goldFormEstimatedOffer) {
-    goldFormEstimatedOffer.value = displayValue;
-  }
-
-  return estimatedValue;
-};
-
-const fileToDataUrl = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      resolve(String(reader.result || ''));
-    };
-
-    reader.onerror = () => {
-      reject(new Error('Could not read the selected photo.'));
-    };
-
-    reader.readAsDataURL(file);
-  });
-
-if (goldPuritySelect && goldWeightInput) {
-  updateGoldOfferEstimate();
-  goldPuritySelect.addEventListener('change', updateGoldOfferEstimate);
-  goldWeightInput.addEventListener('input', updateGoldOfferEstimate);
-}
-
-if (goldPageUrl) {
-  goldPageUrl.value = window.location.href;
-}
-
-if (goldUtmSource) {
-  const params = new URLSearchParams(window.location.search);
-  goldUtmSource.value = params.get('utm_source') || 'direct';
-}
-
-if (goldFormStart) {
-  goldFormStart.value = String(Date.now());
-}
-
-if (goldPhotoInput && goldPhotoName) {
-  goldPhotoInput.addEventListener('change', () => {
-    const selectedFile = goldPhotoInput.files && goldPhotoInput.files[0];
-    goldPhotoName.textContent = selectedFile ? `Selected: ${selectedFile.name}` : 'No photo selected.';
-  });
-}
-
-if (goldOfferForm && goldOfferSubmit && goldFormStatus) {
-  goldOfferForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const estimatedValue = updateGoldOfferEstimate();
-    const formData = new FormData(goldOfferForm);
-    const payload = {
-      name: String(formData.get('name') || '').trim(),
-      email: String(formData.get('email') || '').trim(),
-      phone: String(formData.get('phone') || '').trim(),
-      purity: String(formData.get('purity') || '').trim(),
-      weight: String(formData.get('weight') || '').trim(),
-      estimatedOffer: String(formData.get('estimatedOffer') || '').trim(),
-      pageUrl: String(formData.get('pageUrl') || '').trim(),
-      utmSource: String(formData.get('utmSource') || '').trim(),
-      formStart: String(formData.get('formStart') || '').trim(),
-      website: String(formData.get('website') || '').trim(),
-      leadType: String(formData.get('leadType') || 'Gold Buying Offer').trim(),
-    };
-
-    if (!payload.name || !payload.email || !payload.phone) {
-      goldFormStatus.textContent = 'Please complete all required fields before submitting.';
-      goldFormStatus.classList.add('is-error');
-      goldFormStatus.classList.remove('is-success');
-      return;
-    }
-
-    if (!emailPattern.test(payload.email)) {
-      goldFormStatus.textContent = 'Please enter a valid email address.';
-      goldFormStatus.classList.add('is-error');
-      goldFormStatus.classList.remove('is-success');
-      return;
-    }
-
-    if (!isValidPhone(payload.phone)) {
-      goldFormStatus.textContent = 'Please enter a valid phone number.';
-      goldFormStatus.classList.add('is-error');
-      goldFormStatus.classList.remove('is-success');
-      return;
-    }
-
-    if (!Number.isFinite(estimatedValue) || estimatedValue <= 0) {
-      goldFormStatus.textContent = 'Please enter a valid gold weight to calculate your estimate.';
-      goldFormStatus.classList.add('is-error');
-      goldFormStatus.classList.remove('is-success');
-      return;
-    }
-
-    const fillMs = Date.now() - Number(payload.formStart || 0);
-    if (!Number.isFinite(fillMs) || fillMs < LEAD_MIN_FILL_MS) {
-      goldFormStatus.textContent = 'Please review your details and try again.';
-      goldFormStatus.classList.add('is-error');
-      goldFormStatus.classList.remove('is-success');
-      return;
-    }
-
-    let photoNameValue = '';
-    let photoTypeValue = '';
-    let photoDataUrlValue = '';
-    const selectedPhoto = goldPhotoInput && goldPhotoInput.files && goldPhotoInput.files[0];
-
-    if (selectedPhoto) {
-      if (selectedPhoto.size > GOLD_PHOTO_MAX_BYTES) {
-        goldFormStatus.textContent = 'Please upload an image under 4 MB.';
-        goldFormStatus.classList.add('is-error');
-        goldFormStatus.classList.remove('is-success');
-        return;
-      }
-
-      photoNameValue = selectedPhoto.name;
-      photoTypeValue = selectedPhoto.type || 'application/octet-stream';
-
-      try {
-        photoDataUrlValue = await fileToDataUrl(selectedPhoto);
-      } catch (error) {
-        goldFormStatus.textContent = 'We could not read the selected photo. Please try another image.';
-        goldFormStatus.classList.add('is-error');
-        goldFormStatus.classList.remove('is-success');
-        console.error(error);
-        return;
-      }
-    }
-
-    goldOfferSubmit.disabled = true;
-    goldOfferSubmit.textContent = 'Submitting...';
-    goldOfferForm.setAttribute('aria-busy', 'true');
-    goldFormStatus.textContent = '';
-    goldFormStatus.classList.remove('is-error', 'is-success');
-
-    try {
-      const controller = new AbortController();
-      const timeoutId = window.setTimeout(() => controller.abort(), LEAD_REQUEST_TIMEOUT_MS);
-
-      const response = await fetch(LEAD_API_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...payload,
-          photoName: photoNameValue,
-          photoType: photoTypeValue,
-          photoDataUrl: photoDataUrlValue,
-        }),
-        signal: controller.signal,
-      });
-
-      window.clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error('Lead form backend not found. Deploy with a live /api/send-lead endpoint.');
-        }
-
-        const payloadError = await response.json().catch(() => ({}));
-        throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
-      }
-
-      goldFormStatus.textContent = 'Success. Your offer request has been sent.';
-      goldFormStatus.classList.add('is-success');
-      goldFormStatus.classList.remove('is-error');
-      goldOfferForm.reset();
-
-      if (goldPhotoName) {
-        goldPhotoName.textContent = 'No photo selected.';
-      }
-
-      if (goldFormStart) {
-        goldFormStart.value = String(Date.now());
-      }
-
-      updateGoldOfferEstimate();
-    } catch (error) {
-      const message = error instanceof Error && error.message
-        ? error.message
-        : 'Something went wrong. Please try again in a moment.';
-
-      goldFormStatus.textContent = message;
-      goldFormStatus.classList.add('is-error');
-      goldFormStatus.classList.remove('is-success');
-      console.error(error);
-    } finally {
-      goldOfferSubmit.disabled = false;
-      goldOfferSubmit.textContent = 'Claim My Offer';
-      goldOfferForm.setAttribute('aria-busy', 'false');
-    }
-  });
-}
-
-const setupServiceForm = ({
-  formId,
-  submitId,
-  statusId,
-  pageUrlId,
-  utmSourceId,
-  formStartId,
-  successMessage,
-  buildPayload,
-}) => {
-  const form = document.getElementById(formId);
-  const submitButton = document.getElementById(submitId);
-  const statusNode = document.getElementById(statusId);
-  const pageUrlNode = document.getElementById(pageUrlId);
-  const utmNode = document.getElementById(utmSourceId);
-  const formStartNode = document.getElementById(formStartId);
-  const emptyStateNode = form ? form.querySelector('.service-form-empty') : null;
-
-  if (!form || !submitButton || !statusNode) {
-    return;
-  }
-
-  if (pageUrlNode) {
-    pageUrlNode.value = window.location.href;
-  }
-
-  if (utmNode) {
-    const params = new URLSearchParams(window.location.search);
-    utmNode.value = params.get('utm_source') || 'direct';
-  }
-
-  if (formStartNode) {
-    formStartNode.value = String(Date.now());
-  }
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-    const firstName = String(formData.get('firstName') || '').trim();
-    const lastName = String(formData.get('lastName') || '').trim();
-    const fullName = `${firstName} ${lastName}`.trim();
-    const email = String(formData.get('email') || '').trim();
-    const phone = String(formData.get('phone') || '').trim();
-    const pageUrl = String(formData.get('pageUrl') || '').trim();
-    const utmSource = String(formData.get('utmSource') || '').trim();
-    const formStart = String(formData.get('formStart') || '').trim();
-    const website = String(formData.get('website') || '').trim();
-    const leadType = String(formData.get('leadType') || 'Website Lead').trim();
-
-    if (!firstName || !lastName || !email || !phone) {
-      statusNode.textContent = 'Please complete all required fields before submitting.';
-      statusNode.classList.add('is-error');
-      statusNode.classList.remove('is-success');
-      return;
-    }
-
-    if (!emailPattern.test(email)) {
-      statusNode.textContent = 'Please enter a valid email address.';
-      statusNode.classList.add('is-error');
-      statusNode.classList.remove('is-success');
-      return;
-    }
-
-    if (!isValidPhone(phone)) {
-      statusNode.textContent = 'Please enter a valid phone number.';
-      statusNode.classList.add('is-error');
-      statusNode.classList.remove('is-success');
-      return;
-    }
-
-    const fillMs = Date.now() - Number(formStart || 0);
-    if (!Number.isFinite(fillMs) || fillMs < LEAD_MIN_FILL_MS) {
-      statusNode.textContent = 'Please review your details and try again.';
-      statusNode.classList.add('is-error');
-      statusNode.classList.remove('is-success');
-      return;
-    }
-
-    const payload = {
-      name: fullName,
-      email,
-      phone,
-      pageUrl,
-      utmSource,
-      formStart,
-      website,
-      leadType,
-      ...buildPayload(formData),
-    };
-
-    submitButton.disabled = true;
-    submitButton.textContent = 'Submitting...';
-    form.setAttribute('aria-busy', 'true');
-    statusNode.textContent = '';
-    statusNode.classList.remove('is-error', 'is-success');
-
-    try {
-      const controller = new AbortController();
-      const timeoutId = window.setTimeout(() => controller.abort(), LEAD_REQUEST_TIMEOUT_MS);
-
-      const response = await fetch(LEAD_API_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        signal: controller.signal,
-      });
-
-      window.clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error('Lead form backend not found. Deploy with a live /api/send-lead endpoint.');
-        }
-
-        const payloadError = await response.json().catch(() => ({}));
-        throw new Error(payloadError?.error || `Lead request failed with status ${response.status}`);
-      }
-
-      statusNode.textContent = successMessage;
-      statusNode.classList.add('is-success');
-      statusNode.classList.remove('is-error');
-      form.reset();
-
-      if (formStartNode) {
-        formStartNode.value = String(Date.now());
-      }
-
-      if (emptyStateNode) {
-        emptyStateNode.classList.add('is-hidden');
-      }
-    } catch (error) {
-      const message = error instanceof Error && error.message
-        ? error.message
-        : 'Something went wrong. Please try again in a moment.';
-
-      statusNode.textContent = message;
-      statusNode.classList.add('is-error');
-      statusNode.classList.remove('is-success');
-      console.error(error);
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = submitButton.dataset.defaultText || 'Submit';
-      form.setAttribute('aria-busy', 'false');
-    }
-  });
-};
-
-setupServiceForm({
-  formId: 'engraving-form',
-  submitId: 'engraving-submit',
-  statusId: 'engraving-status',
-  pageUrlId: 'engraving-page-url',
-  utmSourceId: 'engraving-utm-source',
-  formStartId: 'engraving-form-start',
-  successMessage: 'Success. Your engraving request was sent. We will contact you shortly.',
-  buildPayload: (formData) => ({
-    itemType: String(formData.get('material') || '').trim(),
-    textDesign: String(formData.get('textDesign') || '').trim(),
-    preferredVisitDate: String(formData.get('preferredVisitDate') || '').trim(),
-  }),
 });
 
-const engravingSubmitNode = document.getElementById('engraving-submit');
-if (engravingSubmitNode) {
-  engravingSubmitNode.dataset.defaultText = engravingSubmitNode.textContent;
-}
 
-setupServiceForm({
-  formId: 'repairs-form',
-  submitId: 'repairs-submit',
-  statusId: 'repairs-status',
-  pageUrlId: 'repairs-page-url',
-  utmSourceId: 'repairs-utm-source',
-  formStartId: 'repairs-form-start',
-  successMessage: 'Success. Your drop-off request was sent. We will confirm your visit soon.',
-  buildPayload: (formData) => ({
-    repairType: String(formData.get('repairType') || '').trim(),
-    description: String(formData.get('description') || '').trim(),
-    preferredVisitDate: String(formData.get('preferredDropoffDate') || '').trim(),
-  }),
-});
-
-const repairsSubmitNode = document.getElementById('repairs-submit');
-if (repairsSubmitNode) {
-  repairsSubmitNode.dataset.defaultText = repairsSubmitNode.textContent;
-}
-
-const CUBAN_CATALOG_URL = '/data/cuban-catalog.json';
-const CUBAN_CATALOG_STORAGE_KEY = 'hog-cuban-catalog-v1';
-const CUBAN_PRICING_STORAGE_KEY = 'hog-cuban-pricing-v1';
-
-const CUBAN_PURITY = {
-  '10K': 0.4167,
-  '14K': 0.5833,
-  '18K': 0.75,
-};
-
-const normalizeCatalogText = (value) => String(value || '').trim();
-
-const parseWeight = (value) => {
-  const parsed = Number.parseFloat(String(value || '').trim());
-  if (!Number.isFinite(parsed) || parsed <= 0) {
-    return null;
+// ===== HOG Custom Jewelry Studio: submit custom jewelry request =====
+(() => {
+  "use strict";
+  const MARKER = "hog-custom-order-v1";
+  function selectedValue(groupName) {
+    return document.querySelector(`[data-choice-group="${groupName}"] .custom-choice.is-selected`)?.dataset.value || "";
   }
-
-  return parsed;
-};
-
-let stripeClientPromise;
-
-const getStripeClient = async () => {
-  if (stripeClientPromise) {
-    return stripeClientPromise;
+  function addStyles() {
+    if (document.getElementById(MARKER + "-styles")) return;
+    const style = document.createElement("style");
+    style.id = MARKER + "-styles";
+    style.textContent = `
+      .home-page .custom-order-contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;padding:1.15rem;border:1px solid rgba(22,21,26,.10);border-radius:16px;background:#faf9f7;}
+      .home-page .custom-order-contact h3{grid-column:1/-1;margin:0;color:#16151a!important;}
+      .home-page .custom-order-contact label span{display:block;margin-bottom:.4rem;font-weight:800;color:#16151a!important;}
+      .home-page .custom-order-contact input{width:100%;min-height:48px;padding:.7rem .8rem;border:1px solid rgba(22,21,26,.14);border-radius:11px;background:#fff;color:#16151a;}
+      .home-page .custom-order-consent{grid-column:1/-1;display:flex;align-items:flex-start;gap:.55rem;padding:.7rem .8rem;border-radius:11px;border:1px solid rgba(185,138,55,.22);background:#fff;color:#57534c;font-size:.78rem;line-height:1.45;}
+      .home-page .custom-order-consent input{width:17px;height:17px;min-height:0;flex:0 0 auto;margin-top:.12rem;accent-color:#b98a37;}
+      .home-page .custom-order-consent a{color:#9a7129!important;text-decoration:underline;text-underline-offset:2px;}
+      .home-page .custom-order-submit-row{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.65rem;align-items:center;}
+      .home-page .custom-order-status{grid-column:1/-1;min-height:1.25rem;margin:0;font-size:.84rem;font-weight:700;color:#57534c!important;}
+      .home-page .custom-order-status.is-success{color:#76551d!important;}.home-page .custom-order-status.is-error{color:#9a3428!important;}
+      .home-page .custom-contact-button{background:#635bff!important;border-color:#635bff!important;color:#fff!important;}
+      .home-page .custom-contact-button:hover{background:#5148e5!important;border-color:#5148e5!important;color:#fff!important;}
+      .home-page .custom-order-note{grid-column:1/-1;margin:-.25rem 0 0;color:#70685d!important;font-size:.78rem;line-height:1.45;}
+      @media(max-width:760px){.home-page .custom-order-contact{grid-template-columns:1fr}.home-page .custom-order-contact h3,.home-page .custom-order-consent,.home-page .custom-order-submit-row,.home-page .custom-order-status,.home-page .custom-order-note{grid-column:auto}.home-page .custom-order-submit-row .button{width:100%}}
+    `;
+    document.head.appendChild(style);
   }
-
-  stripeClientPromise = (async () => {
-    if (typeof window.Stripe !== 'function') {
-      throw new Error('Stripe.js failed to load. Refresh the page and try again.');
-    }
-
-    const response = await fetch(STRIPE_CONFIG_ENDPOINT, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
+  document.addEventListener("DOMContentLoaded", () => {
+    const builder = document.getElementById("custom-builder");
+    if (!builder || builder.dataset.customOrderEnhanced === "1") return;
+    builder.dataset.customOrderEnhanced = "1";
+    const privacyNotice = builder.querySelector(".custom-builder-consent");
+    const summaryBox = builder.querySelector(".custom-builder-summary");
+    if (!summaryBox) return;
+    const panel = document.createElement("div");
+    panel.className = "custom-order-contact";
+    panel.innerHTML = `
+      <h3>4. Send your custom request</h3>
+      <label><span>Name</span><input id="custom-order-name" type="text" autocomplete="name" required></label>
+      <label><span>Email</span><input id="custom-order-email" type="email" autocomplete="email" required></label>
+      <label><span>Phone</span><input id="custom-order-phone" type="tel" autocomplete="tel" required></label>
+      <label class="custom-order-consent"><input id="custom-order-consent" type="checkbox" required><span>I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and consent to Hands of Gold contacting me by phone or email about this custom jewelry request.</span></label>
+      <div class="custom-order-submit-row"><button class="button button-primary" id="submit-custom-order" type="button">Submit Custom Order Request</button><a class="button custom-contact-button" href="tel:6312646610">Call About Your Design</a></div>
+      <p class="custom-order-note">Submitting a request does not finalize the order. Hands of Gold will review the design, specifications and final price. We will contact you to confirm purchase details.</p>
+      <p class="custom-order-status" id="custom-order-status" role="status" aria-live="polite"></p>`;
+    if (privacyNotice) privacyNotice.before(panel); else summaryBox.before(panel);
+    if (privacyNotice) privacyNotice.innerHTML = `<span><strong>Privacy note:</strong> Your selections stay on your device until you choose <strong>Submit Custom Order Request</strong>. If you submit, Hands of Gold receives your contact information and the custom jewelry details shown in your request so we can follow up. <strong>Copy Design Details</strong> still only copies the summary on your device. Do not enter payment card numbers, government ID numbers, or other sensitive information in the notes. <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a></span>`;
+    const submit = document.getElementById("submit-custom-order");
+    const status = document.getElementById("custom-order-status");
+    submit?.addEventListener("click", async () => {
+      const nameEl = document.getElementById("custom-order-name"), emailEl = document.getElementById("custom-order-email"), phoneEl = document.getElementById("custom-order-phone"), consentEl = document.getElementById("custom-order-consent");
+      const invalid = [nameEl,emailEl,phoneEl].find(el => !el?.checkValidity());
+      if (invalid) { invalid.reportValidity(); invalid.focus(); return; }
+      if (!consentEl?.checked) { if(status){status.className="custom-order-status is-error";status.textContent="Please accept the contact consent before submitting your custom request.";} consentEl?.focus(); return; }
+      const budget=document.getElementById("custom-budget")?.value||"", size=document.getElementById("custom-size")?.value?.trim()||"", notes=document.getElementById("custom-notes")?.value?.trim()||"", summary=document.getElementById("custom-summary")?.textContent?.trim()||"";
+      const payload={leadType:"custom_jewelry",_subject:"NEW CUSTOM JEWELRY REQUEST — HandsOfGoldNY.com",_template:"table",name:nameEl.value.trim(),email:emailEl.value.trim(),phone:phoneEl.value.trim(),piece:selectedValue("piece"),metal:selectedValue("metal"),stones:selectedValue("stones"),budget,size_dimensions:size||"Not provided",design_notes:notes||"Not provided",request_summary:summary,source:"HandsOfGoldNY.com Custom Jewelry Studio",page:window.location.href,submitted_at:new Date().toLocaleString(),consent:"Customer agreed to be contacted by phone or email about this custom jewelry request and accepted Terms/Privacy."};
+      submit.disabled=true;submit.textContent="Sending…";if(status){status.className="custom-order-status";status.textContent="Sending your custom jewelry request…";}
+      try { const response=await fetch("/api/leads",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)}); const data=await response.json().catch(()=>({})); if(!response.ok||data.success!==true||!data.leadId) throw new Error(data.error||"Submission failed"); if(status){status.className="custom-order-status is-success";status.textContent="Request sent ✓ Hands of Gold received your custom jewelry details. We will contact you to review your design and confirm the purchase details.";} submit.textContent="Request Sent ✓"; window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"custom_order_request_success",piece:selectedValue("piece"),budget}); }
+      catch(err){console.error("Custom order submission error",err);if(status){status.className="custom-order-status is-error";status.textContent="We couldn't send the request yet. Please try again or call (631) 264-6610.";}submit.disabled=false;submit.textContent="Submit Custom Order Request";}
     });
-
-    if (!response.ok) {
-      throw new Error('Stripe config endpoint is unavailable. Check deployment environment variables.');
-    }
-
-    const payload = await response.json();
-    const publishableKey = String(payload?.publishableKey || '').trim();
-
-    if (!publishableKey) {
-      throw new Error('Missing Stripe publishable key on server.');
-    }
-
-    return window.Stripe(publishableKey);
-  })();
-
-  return stripeClientPromise;
-};
-
-const roundToFive = (value) => Math.round(value / 5) * 5;
-
-const defaultPricingConfig = {
-  surchargePerGram: 10,
-  marginDivisor: 0.65,
-  compareMultiplier: 2.4,
-};
-
-const safePricingConfig = (config) => {
-  const surchargePerGram = Number.parseFloat(config?.surchargePerGram);
-  const marginDivisor = Number.parseFloat(config?.marginDivisor);
-  const compareMultiplier = Number.parseFloat(config?.compareMultiplier);
-
-  return {
-    surchargePerGram: Number.isFinite(surchargePerGram) && surchargePerGram >= 0
-      ? surchargePerGram
-      : defaultPricingConfig.surchargePerGram,
-    marginDivisor: Number.isFinite(marginDivisor) && marginDivisor > 0
-      ? marginDivisor
-      : defaultPricingConfig.marginDivisor,
-    compareMultiplier: Number.isFinite(compareMultiplier) && compareMultiplier > 0
-      ? compareMultiplier
-      : defaultPricingConfig.compareMultiplier,
-  };
-};
-
-const safeVariants = (variants) => {
-  if (!Array.isArray(variants)) {
-    return [];
-  }
-
-  return variants
-    .map((variant) => ({
-      product: normalizeCatalogText(variant?.product).toLowerCase(),
-      width: normalizeCatalogText(variant?.width),
-      length: normalizeCatalogText(variant?.length),
-      karat: normalizeCatalogText(variant?.karat).toUpperCase(),
-      weightGrams: parseWeight(variant?.weightGrams),
-      sku: normalizeCatalogText(variant?.sku),
-      availability: normalizeCatalogText(variant?.availability) || 'Made To Order',
-    }))
-    .filter((variant) =>
-      (variant.product === 'bracelet' || variant.product === 'necklace')
-      && variant.width
-      && variant.length
-      && variant.karat
-      && variant.weightGrams
-    );
-};
-
-const parseCatalogCsv = (csvRaw) => {
-  const lines = String(csvRaw || '')
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  if (lines.length < 2) {
-    return [];
-  }
-
-  const headers = lines[0].split(',').map((item) => item.trim().toLowerCase());
-  const rows = lines.slice(1);
-
-  return rows.map((line) => {
-    const values = line.split(',').map((item) => item.trim());
-    const row = {};
-
-    headers.forEach((header, index) => {
-      row[header] = values[index] || '';
-    });
-
-    return {
-      product: row.product,
-      width: row.width,
-      length: row.length,
-      karat: row.karat,
-      weightGrams: row.weightgrams,
-      sku: row.sku,
-      availability: row.availability,
-    };
   });
-};
+})();
 
-const initCubanConfigurator = async () => {
-  const configuratorRoot = document.getElementById('configurator-app');
-  if (!configuratorRoot) {
-    return;
-  }
+/* HOG Mobile Upgrade — 2026-08-28
+   Mobile-only presentation + navigation. Does not replace product media or desktop layout. */
+(() => {
+  "use strict";
+  const MOBILE_MAX = 760;
+  const isMobile = () => window.matchMedia(`(max-width:${MOBILE_MAX}px)`).matches;
 
-  const optionProduct = document.getElementById('option-product');
-  const optionWidth = document.getElementById('option-width');
-  const optionLength = document.getElementById('option-length');
-  const optionKarat = document.getElementById('option-karat');
-  const requiresProductBlock = document.getElementById('requires-product-block');
-  const productGateNote = document.getElementById('product-gate-note');
-  const summaryPrice = document.getElementById('summary-price');
-  const liveSpot = document.getElementById('shop-live-spot');
-  const addToCartButton = document.getElementById('add-to-cart');
-  const priceLockNote = document.getElementById('price-lock-note');
+  function addStyles() {
+    if (document.getElementById("hog-mobile-upgrade-css")) return;
+    const style = document.createElement("style");
+    style.id = "hog-mobile-upgrade-css";
+    style.textContent = `
+      .hog-mobile-dock,.hog-mobile-review-proof,.mobile-offer-toggle{display:none;}
+      @media(max-width:${MOBILE_MAX}px){
+        html{scroll-padding-bottom:78px;}
+        body.home-page{padding-bottom:68px!important;}
 
-  const galleryMain = document.getElementById('gallery-main');
-  const galleryPlaceholder = document.getElementById('gallery-placeholder');
-  const galleryThumbs = document.getElementById('gallery-thumbs');
-  const galleryFullscreen = document.getElementById('gallery-fullscreen');
+        /* 1. Compact spot-price row */
+        .home-page .metals-ticker{min-height:42px!important;position:relative!important;}
+        .home-page .metals-ticker-inner{min-height:42px!important;display:block!important;padding:.35rem 0!important;}
+        .home-page .metals-label,.home-page .metals-updated{display:none!important;}
+        .home-page .metals-prices{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.3rem!important;width:100%!important;}
+        .home-page .metal-chip{min-height:32px!important;padding:.2rem .18rem!important;border-radius:8px!important;display:flex!important;flex-direction:row!important;gap:.25rem!important;font-size:.55rem!important;letter-spacing:.02em!important;text-transform:none!important;white-space:nowrap!important;}
+        .home-page .metal-chip strong{font-size:.72rem!important;margin:0!important;min-width:0!important;}
 
-  const cartToggle = document.getElementById('header-cart-toggle');
-  const cartCount = document.getElementById('header-cart-count');
-  const cartDrawer = document.getElementById('cart-drawer');
-  const cartBackdrop = document.getElementById('cart-backdrop');
-  const cartClose = document.getElementById('cart-close');
-  const cartItems = document.getElementById('cart-items');
-  const cartSubtotal = document.getElementById('cart-subtotal');
-  const cartClear = document.getElementById('cart-clear');
-  const cartCheckout = document.getElementById('cart-checkout');
+        /* 2. App-like header: logo | call | menu */
+        .home-page .site-header,.home-page .site-header.scrolled{position:sticky!important;top:0!important;z-index:70!important;padding:.25rem 0!important;min-height:58px!important;}
+        .home-page .nav-wrap{display:grid!important;grid-template-columns:1fr auto auto!important;gap:.5rem!important;min-height:58px!important;}
+        .home-page .brand{min-width:0!important;gap:0!important;}
+        .home-page .brand-copy{display:none!important;}
+        .home-page .brand-logo,.home-page header img[alt*="Hands of Gold"]{width:52px!important;height:52px!important;border-radius:11px!important;}
+        .home-page .header-phone{width:44px!important;height:44px!important;border:1px solid var(--line)!important;border-radius:50%!important;align-items:center!important;justify-content:center!important;background:#fff!important;margin:0!important;overflow:hidden!important;}
+        .home-page .header-phone::before{content:"☎";font-size:1.25rem;color:var(--gold-deep);line-height:1;}
+        .home-page .header-phone-number,.home-page .header-phone-note{display:none!important;}
+        .home-page .nav-toggle{width:44px!important;height:44px!important;margin:0!important;border-radius:12px!important;background:#fff!important;}
+        .home-page .nav-toggle span{background:#18130e!important;width:21px!important;height:2px!important;}
+        .home-page .nav-panel{top:calc(100% + .35rem)!important;left:.55rem!important;right:.55rem!important;}
 
-  if (
-    !optionProduct
-    || !optionWidth
-    || !optionLength
-    || !optionKarat
-    || !requiresProductBlock
-    || !summaryPrice
-    || !addToCartButton
-    || !priceLockNote
-    || !cartToggle
-    || !cartCount
-    || !cartDrawer
-    || !cartBackdrop
-    || !cartClose
-    || !cartItems
-    || !cartSubtotal
-    || !cartClear
-    || !cartCheckout
-  ) {
-    return;
-  }
+        /* 3. Tight trust + reputation proof */
+        .home-page .trust-band-inner{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:.2rem .55rem!important;padding:.4rem .65rem!important;text-align:center!important;}
+        .home-page .trust-band-inner span{font-size:.55rem!important;letter-spacing:.06em!important;}
+        .home-page .trust-band-inner span::before{display:none!important;}
+        .hog-mobile-review-proof{display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.58rem .75rem;background:#fff;border-bottom:1px solid rgba(22,21,26,.08);color:#16151a;font-size:.77rem;font-weight:850;text-align:center;}
+        .hog-mobile-review-proof .stars{color:#b98a37;letter-spacing:.08em;white-space:nowrap;}
 
-  const catalogResponse = await fetch(CUBAN_CATALOG_URL, {
-    method: 'GET',
-    cache: 'no-store',
-    headers: {
-      Accept: 'application/json',
-    },
-  });
+        /* 4. Financing is compact; 10% form expands only on demand */
+        .home-page .payment-options-strip{padding:.75rem 0!important;}
+        .home-page .payment-options-split{display:block!important;}
+        .home-page .payment-pane-leasing{gap:.45rem!important;}
+        .home-page .payment-options-eyebrow{display:none!important;}
+        .home-page .payment-options-title{font-size:1.2rem!important;text-align:center!important;}
+        .home-page .payment-options-subtitle{font-size:.72rem!important;line-height:1.35!important;text-align:center!important;margin:.3rem auto 0!important;}
+        .home-page .payment-options-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.35rem!important;}
+        .home-page .payment-options-split .payment-option-button{min-width:0!important;min-height:46px!important;padding:.35rem!important;border-radius:10px!important;}
+        .home-page .pay-btn-logo{height:20px!important;max-width:92px!important;}
+        .home-page .payment-options-terms{display:none!important;}
+        .mobile-offer-toggle{display:flex!important;width:100%;min-height:44px;margin-top:.55rem;align-items:center;justify-content:center;border:1px solid #b98a37;border-radius:999px;background:#b98a37;color:#fff;font-weight:900;cursor:pointer;}
+        .home-page .payment-pane-offer{display:none!important;padding:0!important;margin-top:.65rem!important;border:0!important;}
+        .home-page .payment-pane-offer.mobile-open{display:block!important;}
+        .home-page .offer-form{padding:.8rem;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.05);}
+        .home-page .offer-form-fields{grid-template-columns:1fr!important;gap:.35rem!important;}
+        .home-page .offer-field input{min-height:42px!important;}
+        .home-page .offer-consent{font-size:.64rem!important;}
+        .home-page .offer-submit{min-height:44px!important;font-size:.9rem!important;}
 
-  const seedCatalog = catalogResponse.ok
-    ? await catalogResponse.json()
-    : { products: {}, variants: [], pricingConfig: defaultPricingConfig };
+        /* 5. Product area feels like a mobile shop */
+        .home-page .curated-catalog-section{padding:1.35rem 0 2rem!important;}
+        .home-page .curated-catalog-heading{display:block!important;margin-bottom:.65rem!important;text-align:center!important;}
+        .home-page .curated-catalog-heading .eyebrow{margin-bottom:.2rem!important;font-size:.6rem!important;}
+        .home-page .fire-stock-heading{font-size:1.8rem!important;margin:.1rem 0!important;}
+        .home-page .curated-catalog-heading>p{font-size:.72rem!important;line-height:1.35!important;margin:.25rem auto .55rem!important;max-width:34ch!important;}
+        .home-page .catalog-filter-row{margin:0 0 .75rem!important;padding-bottom:.1rem!important;}
+        .home-page .catalog-filter{min-height:34px!important;padding:.35rem .65rem!important;font-size:.7rem!important;}
+        .home-page .catalog-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.55rem!important;}
+        .home-page .catalog-product-card{border-radius:12px!important;}
+        .home-page .catalog-product-image{aspect-ratio:1/1!important;}
+        .home-page .catalog-product-copy{padding:.6rem!important;}
+        .home-page .catalog-product-meta{font-size:.52rem!important;letter-spacing:.04em!important;}
+        .home-page .catalog-product-meta span:last-child{display:none!important;}
+        .home-page .catalog-product-copy h3{font-size:.88rem!important;line-height:1.2!important;margin:.28rem 0 .45rem!important;min-height:2.4em;}
+        .home-page .catalog-product-copy p{display:none!important;}
+        .home-page .catalog-product-footer{display:block!important;padding-top:.45rem!important;font-size:.65rem!important;}
+        .home-page .catalog-product-footer>span{display:none!important;}
+        .home-page .catalog-product-footer a{display:block!important;text-align:center!important;padding:.35rem;border-radius:8px;background:var(--paper);font-size:.66rem!important;}
+        .home-page .curated-catalog-footer{display:none!important;}
 
-  const state = {
-    products: seedCatalog?.products || {},
-    variants: safeVariants(seedCatalog?.variants),
-    pricingConfig: safePricingConfig(seedCatalog?.pricingConfig),
-    selectedProduct: '',
-    selectedWidth: '',
-    selectedLength: '',
-    selectedKarat: '',
-    selectedMediaIndex: 0,
-    cart: [],
-  };
+        /* 6. Custom Studio closer to shopping + compact controls */
+        .home-page .piece-builder-section{padding:1.8rem 0!important;}
+        .home-page .piece-builder-section .section-header{margin-bottom:.8rem!important;}
+        .home-page .piece-builder-section .section-header h2{font-size:1.85rem!important;}
+        .home-page .piece-builder-section .section-header p:last-child{font-size:.78rem!important;line-height:1.4!important;}
+        .home-page .custom-builder{gap:.6rem!important;}
+        .home-page .custom-builder-step,.home-page .custom-builder-summary{padding:.8rem!important;border-radius:12px!important;}
+        .home-page .custom-builder-step h3{font-size:.92rem!important;margin-bottom:.5rem!important;}
+        .home-page .custom-choice-grid{flex-wrap:nowrap!important;overflow-x:auto!important;gap:.35rem!important;scrollbar-width:none;}
+        .home-page .custom-choice-grid::-webkit-scrollbar{display:none;}
+        .home-page .custom-choice{flex:0 0 auto!important;padding:.5rem .72rem!important;font-size:.76rem!important;}
+        .home-page .custom-builder-fields{gap:.55rem!important;}
+        .home-page .custom-builder-fields input,.home-page .custom-builder-fields select,.home-page .custom-builder-fields textarea{padding:.62rem .68rem!important;font-size:.85rem!important;}
+        .home-page .custom-builder-fields textarea{min-height:84px!important;}
+        .home-page .custom-builder-consent{font-size:.66rem!important;line-height:1.35!important;padding:.6rem!important;}
+        .home-page .custom-order-contact{padding:.8rem!important;gap:.5rem!important;border-radius:12px!important;}
+        .home-page .custom-order-contact h3{font-size:1rem!important;}
+        .home-page .custom-order-submit-row{display:grid!important;grid-template-columns:1fr!important;}
+        .home-page .custom-order-submit-row .button{min-height:46px!important;font-size:.82rem!important;}
+        .home-page .custom-order-note{font-size:.7rem!important;}
 
-  const mediaCatalog = {
-    bracelet: [
-      { type: 'image', src: 'cuban-bracelet-closeup.jpg', label: 'Bracelet Pic 1' },
-      { type: 'image', src: 'cuban-bracelet-standing.jpg', label: 'Bracelet Pic 2' },
-      { type: 'image', src: 'cuban-bracelet-on-wrist.jpg', label: 'Bracelet On Wrist' },
-      { type: 'video', src: 'cuban-bracelet-video.mp4', label: 'Bracelet Video' },
-    ],
-    necklace: [
-      { type: 'image', src: 'cuban-necklace-hero.jpg', label: 'Necklace Pic 1' },
-      { type: 'image', src: 'cuban-necklace-clasp-closeup.jpg', label: 'Necklace Pic 2' },
-      { type: 'video', src: 'cuban-necklace-video.mp4', label: 'Necklace Video' },
-    ],
-  };
+        /* 7. Sell gold and service cards trim vertical space */
+        .home-page .gold-calculator-section{padding:1.8rem 0!important;}
+        .home-page .gold-calculator-layout{gap:1rem!important;}
+        .home-page .gold-calculator-copy h2{font-size:1.65rem!important;}
+        .home-page .gold-calculator-copy>p{font-size:.78rem!important;line-height:1.45!important;}
+        .home-page .sell-gold-instore{margin-top:.8rem!important;padding-top:.8rem!important;}
+        .home-page .gold-calculator-card{padding:.9rem!important;border-radius:14px!important;}
+        .home-page .gold-calculator-result{padding:.75rem!important;}
+        .home-page .gold-calculator-note{font-size:.7rem!important;}
+        .home-page .gold-calculator-actions{display:none!important;}
+        .home-page .quick-services-section{padding:1.2rem 0!important;}
+        .home-page .quick-services-pair{gap:.6rem!important;}
+        .home-page .repair-feature-card,.home-page .engraving-feature-card{padding:.85rem!important;border-radius:14px!important;}
+        .home-page .repair-feature-card h2,.home-page .engraving-feature-card h2{font-size:1.15rem!important;}
+        .home-page .service-lead{font-size:.78rem!important;line-height:1.4!important;margin-bottom:.5rem!important;}
+        .home-page .service-highlight-strip{gap:.25rem!important;margin-bottom:.45rem!important;}
+        .home-page .service-highlight-strip span{padding:.28rem .42rem!important;font-size:.62rem!important;}
+        .home-page .service-note{display:none!important;}
+        .home-page .service-cta-row{display:none!important;}
+        .home-page .engraving-ad-layout{display:grid!important;grid-template-columns:1fr 92px!important;gap:.55rem!important;align-items:center!important;}
+        .home-page .engraving-ad-image{width:92px!important;height:92px!important;aspect-ratio:1/1!important;object-fit:cover!important;border-radius:10px!important;}
 
-  const hasSelectedProduct = () => state.selectedProduct === 'bracelet' || state.selectedProduct === 'necklace';
+        /* 8. Contact and policies move toward the bottom and get smaller */
+        .home-page .home-contact-band{padding:1rem 0!important;}
+        .home-page .home-contact-band .eyebrow{display:none!important;}
+        .home-page .home-contact-phone{font-size:1.45rem!important;margin-bottom:.2rem!important;}
+        .home-page .home-contact-address{font-size:.9rem!important;}
+        .home-page .home-contact-actions{display:none!important;}
+        .home-page .store-policies-section{padding:.8rem 0!important;}
+        .home-page .store-policies-card{padding:.8rem!important;}
+        .home-page .store-policies-card h2{font-size:1.1rem!important;margin-bottom:.3rem!important;}
+        .home-page .store-policies-card>p{font-size:.7rem!important;}
+        .home-page .policy-action-row{gap:.35rem!important;margin-top:.5rem!important;}
+        .home-page .policy-action-row .button{min-height:36px!important;padding:.4rem .55rem!important;font-size:.66rem!important;width:auto!important;}
 
-  const getWidths = (product) => Object.keys(state.products?.[product]?.widths || {});
+        /* 9. Reviews and location */
+        .home-page .reviews-section{padding:1.5rem 0!important;}
+        .home-page .review-proof-stars{font-size:1rem!important;margin-bottom:.3rem!important;}
+        .home-page .review-proof-heading h2{font-size:1.55rem!important;}
+        .home-page .review-proof-heading>p{font-size:.72rem!important;}
+        .home-page .review-card{padding:.8rem!important;}
+        .home-page .review-card h3{font-size:.9rem!important;margin-bottom:.35rem!important;}
+        .home-page .review-card p{font-size:.75rem!important;line-height:1.45!important;}
+        .home-page .reviews-controls{display:none!important;}
+        .home-page .visit-section{padding:1.4rem 0!important;}
+        .home-page .visit-content h2{font-size:1.65rem!important;}
+        .home-page .visit-highlight-address{font-size:1rem!important;}
+        .home-page .visit-highlight-hours{font-size:.85rem!important;}
+        .home-page .visit-cards{display:none!important;}
+        .home-page .visit-actions{display:none!important;}
 
-  const getLengths = (product, width) => {
-    const widths = state.products?.[product]?.widths || {};
-    return widths[width] || [];
-  };
-
-  const getKaratsForSelection = (product, width, length) => {
-    const options = state.variants
-      .filter((variant) => variant.product === product && variant.width === width && variant.length === length)
-      .map((variant) => variant.karat)
-      .filter(Boolean);
-
-    return Array.from(new Set(options));
-  };
-
-  const getSelectedVariant = () => state.variants.find((variant) =>
-    variant.product === state.selectedProduct
-    && variant.width === state.selectedWidth
-    && variant.length === state.selectedLength
-    && variant.karat === state.selectedKarat
-  );
-
-  const escapeHtml = (value) => String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-
-  const getActiveMediaSet = () => {
-    if (hasSelectedProduct()) {
-      return mediaCatalog[state.selectedProduct] || [];
-    }
-
-    return [];
-  };
-
-  const renderOptionButtons = ({ root, values, activeValue, onSelect }) => {
-    root.innerHTML = '';
-
-    if (!values.length) {
-      const emptyChip = document.createElement('span');
-      emptyChip.className = 'option-empty';
-      emptyChip.textContent = 'No options';
-      root.appendChild(emptyChip);
-      return;
-    }
-
-    values.forEach((value) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.textContent = value;
-      button.classList.toggle('is-active', value === activeValue);
-      button.addEventListener('click', () => onSelect(value));
-      root.appendChild(button);
-    });
-  };
-
-  const calculatePrice = (variant) => {
-    if (!variant) {
-      return null;
-    }
-
-    const purity = CUBAN_PURITY[variant.karat] || null;
-    if (!purity) {
-      return null;
-    }
-
-    const spot = goldPricePerGram;
-    const retailBase = ((spot + state.pricingConfig.surchargePerGram) * purity * variant.weightGrams)
-      / state.pricingConfig.marginDivisor;
-
-    return {
-      spot,
-      retailPrice: roundToFive(retailBase),
-    };
-  };
-
-  const refreshSummary = () => {
-    const variant = getSelectedVariant();
-    if (liveSpot) {
-      liveSpot.textContent = formatUsd(goldPricePerGram);
-    }
-
-    const pricing = calculatePrice(variant);
-    summaryPrice.textContent = pricing ? formatUsd(pricing.retailPrice) : '-';
-  };
-
-  const refreshGallery = () => {
-    if (!galleryPlaceholder) {
-      return;
-    }
-
-    const mediaSet = getActiveMediaSet();
-    if (!mediaSet.length) {
-      galleryPlaceholder.innerHTML = '<p>select an item</p>';
-      if (galleryThumbs) {
-        galleryThumbs.innerHTML = '';
+        /* 10. Persistent mobile actions */
+        .hog-mobile-dock{position:fixed;display:grid;grid-template-columns:repeat(3,1fr);left:0;right:0;bottom:0;z-index:9999;height:62px;padding:5px max(7px,env(safe-area-inset-left)) calc(5px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid rgba(22,21,26,.10);box-shadow:0 -8px 24px rgba(22,21,26,.09);backdrop-filter:blur(10px);}
+        .hog-mobile-dock a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:#2a251e;font-size:.62rem;font-weight:850;text-decoration:none;border-radius:9px;}
+        .hog-mobile-dock a:active{background:#f0e4cd;}
+        .hog-mobile-dock b{font-size:1rem;line-height:1.1;color:#9a7129;}
+        .home-page .sitewide-privacy-disclosure{padding-bottom:6px!important;}
       }
-      return;
+    `;
+    document.head.appendChild(style);
+  }
+
+  function addReviewProof() {
+    if (document.querySelector(".hog-mobile-review-proof")) return;
+    const trust = document.querySelector(".trust-band");
+    if (!trust) return;
+    const proof = document.createElement("a");
+    proof.className = "hog-mobile-review-proof";
+    proof.href = "#reviews";
+    proof.innerHTML = '<span class="stars">★★★★★</span><span>230+ 5-star Google reviews</span>';
+    trust.insertAdjacentElement("afterend", proof);
+  }
+
+  function addOfferToggle() {
+    const pane = document.querySelector(".payment-pane-offer");
+    const leasing = document.querySelector(".payment-pane-leasing");
+    if (!pane || !leasing || document.querySelector(".mobile-offer-toggle")) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "mobile-offer-toggle";
+    button.textContent = "Offer Removed";
+    button.setAttribute("aria-expanded", "false");
+    button.addEventListener("click", () => {
+      const open = pane.classList.toggle("mobile-open");
+      button.setAttribute("aria-expanded", String(open));
+      button.textContent = open ? "Offer Removed" : "Offer Removed";
+      if (open) pane.querySelector("input")?.focus({preventScroll:true});
+    });
+    leasing.appendChild(button);
+  }
+
+  function addMobileDock() {
+    if (document.querySelector(".hog-mobile-dock")) return;
+    const dock = document.createElement("nav");
+    dock.className = "hog-mobile-dock";
+    dock.setAttribute("aria-label", "Quick actions");
+    dock.innerHTML = `
+      <a href="tel:6312646610" aria-label="Call Hands of Gold"><b>☎</b><span>Call</span></a>
+      <a href="/design-studio.html" aria-label="Open Custom Jewelry Studio"><b>◆</b><span>Custom</span></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=494+Oak+Street+Copiague+NY+11726" target="_blank" rel="noreferrer" aria-label="Get directions to Hands of Gold"><b>⌖</b><span>Visit</span></a>`;
+    document.body.appendChild(dock);
+  }
+
+  function reorderMobileSections() { return; }
+
+  function initMobileUpgrade() {
+    addMobileDock();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initMobileUpgrade);
+  else initMobileUpgrade();
+
+  let lastMobile = isMobile();
+  window.addEventListener("resize", () => {
+    const now = isMobile();
+    if (now && !lastMobile) reorderMobileSections();
+    lastMobile = now;
+  }, {passive:true});
+})();
+
+// ===== HOG catalog cleanup: remove Diamond Tennis Bracelet Stack =====
+(() => {
+  "use strict";
+  function removeDiamondTennisStack() {
+    document.querySelectorAll(".catalog-product-card").forEach(card => {
+      const title = card.querySelector("h3")?.textContent?.trim();
+      const video = card.querySelector('source[src*="diamond-tennis-bracelets-video.mp4"]');
+      if (title === "Diamond Tennis Bracelet Stack" || video) card.remove();
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", removeDiamondTennisStack);
+  } else {
+    removeDiamondTennisStack();
+  }
+})();
+
+
+// ===== HOG review count sync: 230+ five-star Google reviews =====
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("h1,h2,h3,p,span,a").forEach(el => {
+    if (el.children.length === 0 && /222\+\s*5-star Google reviews/i.test(el.textContent || "")) {
+      el.textContent = (el.textContent || "").replace(/222\+/g, "230+");
     }
+  });
+});
+// ===== HOG Desktop Upgrade: hero + Custom Studio priority + remove duplicate contact band =====
+(() => {
+  "use strict";
+  const DESKTOP_MIN = 761;
 
-    if (state.selectedMediaIndex < 0 || state.selectedMediaIndex >= mediaSet.length) {
-      state.selectedMediaIndex = 0;
+  function addDesktopStyles() {
+    if (document.getElementById("hog-desktop-upgrade-css")) return;
+    const style = document.createElement("style");
+    style.id = "hog-desktop-upgrade-css";
+    style.textContent = `
+      .hog-desktop-hero{display:none;}
+      @media(min-width:${DESKTOP_MIN}px){
+        /* Desktop-only. Mobile layout remains controlled by HOG Mobile Upgrade. */
+        .hog-desktop-hero{
+          display:block;
+          position:relative;
+          overflow:hidden;
+          min-height:390px;
+          background:#111;
+          border-bottom:1px solid rgba(185,138,55,.24);
+        }
+        .hog-desktop-hero-media{
+          position:absolute;
+          inset:0;
+          overflow:hidden;
+        }
+        .hog-desktop-hero-media video,
+        .hog-desktop-hero-media img{
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          object-position:58% 50%;
+          display:block;
+          filter:brightness(.80) saturate(.95);
+        }
+        .hog-desktop-hero-media::after{
+          content:"";
+          position:absolute;
+          inset:0;
+          background:
+            linear-gradient(90deg,rgba(8,11,18,.62) 0%,rgba(8,11,18,.40) 42%,rgba(8,11,18,.14) 72%,rgba(8,11,18,.08) 100%),
+            linear-gradient(0deg,rgba(8,11,18,.20),transparent 52%);
+          pointer-events:none;
+        }
+        .hog-desktop-hero-inner{
+          position:relative;
+          z-index:2;
+          min-height:390px;
+          display:flex;
+          align-items:center;
+          padding-top:32px;
+          padding-bottom:32px;
+          align-items:flex-end;
+        }
+        .hog-desktop-hero-copy{
+          width:min(680px,58%);
+          color:#fff;
+          text-shadow:0 2px 18px rgba(6,9,15,.55),0 1px 3px rgba(6,9,15,.45);
+        }
+        .hog-desktop-hero-eyebrow{
+          margin:0 0 12px;
+          color:#e2bf7f;
+          font-size:.78rem;
+          font-weight:900;
+          letter-spacing:.16em;
+          text-transform:uppercase;
+        }
+        .hog-desktop-hero .hog-desktop-hero-h1{
+          margin:0;
+          max-width:12ch;
+          color:#fff;
+          font-size:clamp(2rem,3.4vw,3.4rem);
+          line-height:1.02;
+          letter-spacing:-.045em;
+        }
+        .hog-desktop-hero-lead{
+          max-width:620px;
+          margin:20px 0 0;
+          color:rgba(255,255,255,.86);
+          font-size:1.05rem;
+          line-height:1.65;
+        }
+        .hog-desktop-hero-actions{
+          display:flex;
+          flex-wrap:wrap;
+          gap:10px;
+          margin-top:26px;
+        }
+        .hog-desktop-hero-actions .button{
+          min-width:170px;
+          min-height:50px;
+          justify-content:center;
+        }
+        .hog-desktop-hero .hog-hero-secondary{
+          border-color:rgba(255,255,255,.55)!important;
+          background:rgba(255,255,255,.08)!important;
+          color:#fff!important;
+          backdrop-filter:blur(6px);
+        }
+        .hog-desktop-hero .hog-hero-secondary:hover{
+          background:#fff!important;
+          color:#1d1812!important;
+        }
+        .hog-desktop-review-proof{
+          display:inline-flex;
+          align-items:center;
+          gap:10px;
+          margin-top:24px;
+          padding:10px 15px;
+          border:1px solid rgba(226,191,127,.34);
+          border-radius:999px;
+          background:rgba(15,13,11,.48);
+          color:#fff;
+          text-decoration:none;
+          backdrop-filter:blur(8px);
+          font-size:.9rem;
+          font-weight:800;
+        }
+        .hog-desktop-review-proof .stars{
+          color:#e2bf7f;
+          letter-spacing:.08em;
+        }
+        .hog-desktop-review-proof strong{color:#fff;}
+
+        /* Remove duplicate mid-page contact band on desktop only. */
+        .home-page .home-contact-band{
+          display:none!important;
+        }
+
+        /* The Custom Jewelry Studio follows inventory immediately on desktop. */
+        .home-page #build-your-ideas{
+          border-top:1px solid rgba(22,21,26,.08);
+        }
+
+        /* Let the financing area breathe after the hero without becoming another hero. */
+        .home-page #payment-options{
+          border-top:0!important;
+        }
+      }
+      @media(min-width:761px) and (max-width:1050px){
+        .hog-desktop-hero{min-height:340px;}
+        .hog-desktop-hero-inner{min-height:340px;}
+        .hog-desktop-hero-copy{width:72%;}
+        .hog-desktop-hero h1{font-size:clamp(2.8rem,6vw,4.8rem);}
+      }
+
+      /* Mobile: surface the H1 only - no video, no buttons, no extra requests.
+         Google indexes mobile-first, so the heading must be visible on phones. */
+      @media(max-width:760px){
+        .hog-desktop-hero{
+          display:block;
+          position:relative;
+          padding:20px 0 16px;
+          background:#0f0f10;
+          border-bottom:1px solid rgba(226,191,127,.18);
+        }
+        .hog-desktop-hero-media,
+        .hog-desktop-hero-media video,
+        .hog-desktop-hero-lead,
+        .hog-desktop-hero-actions,
+        .hog-desktop-review-proof{display:none!important;}
+        .hog-desktop-hero-inner{
+          display:block;
+          min-height:0;
+          padding-top:0;
+          padding-bottom:0;
+        }
+        .hog-desktop-hero-copy{width:auto;color:#fff;}
+        .hog-desktop-hero-eyebrow{
+          margin:0 0 7px;
+          color:#e2bf7f;
+          font-size:.64rem;
+          font-weight:900;
+          letter-spacing:.16em;
+          text-transform:uppercase;
+        }
+        .hog-desktop-hero h1{
+          margin:0;
+          max-width:none;
+          color:#fff;
+          font-size:1.45rem;
+          line-height:1.22;
+          letter-spacing:-.02em;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function addDesktopHero() {
+    if (document.querySelector(".hog-desktop-hero")) return;
+    const trust = document.querySelector(".trust-band");
+    if (!trust) return;
+
+    /* ---------------------------------------------------------------
+       HERO BACKGROUND VIDEO
+       Change the filename below to swap the clip behind the headline.
+       It must be a file that exists in your new-media folder.
+       --------------------------------------------------------------- */
+    const HERO_IMAGE = "new-media/hero-diamond-studs-landscape.png";
+
+    const hero = document.createElement("section");
+    hero.className = "hog-desktop-hero";
+    hero.setAttribute("aria-label", "Hands of Gold jewelry showroom");
+    hero.innerHTML = `
+      <div class="hog-desktop-hero-media" aria-hidden="true">
+        <img src="${HERO_IMAGE}" alt="" fetchpriority="high" decoding="async">
+      </div>
+      <div class="container hog-desktop-hero-inner">
+        <div class="hog-desktop-hero-copy">
+          <p class="hog-desktop-hero-eyebrow">Hands of Gold Jewelry & Repairs</p>
+          <div class="hog-desktop-hero-actions">
+            <a class="button button-primary" href="/on-sale.html">On Sale</a>
+            <a class="button hog-hero-secondary" href="/design-studio.html">Create Custom</a>
+            <a class="button hog-hero-secondary" href="#sell-watches-gold">Sell Gold</a>
+          </div>
+          <a class="hog-desktop-review-proof" href="#reviews" aria-label="See Hands of Gold Google reviews">
+            <span class="stars">★★★★★</span>
+            <span><strong>230+</strong> 5-star Google reviews</span>
+          </a>
+        </div>
+      </div>`;
+    trust.insertAdjacentElement("afterend", hero);
+  }
+
+  function moveCustomStudioDesktop() {
+    if (!window.matchMedia(`(min-width:${DESKTOP_MIN}px)`).matches) return;
+    const catalog = document.getElementById("featured-products");
+    const custom = document.getElementById("build-your-ideas");
+    if (catalog && custom && catalog.nextElementSibling !== custom) {
+      catalog.insertAdjacentElement("afterend", custom);
     }
+  }
 
-    const activeMedia = mediaSet[state.selectedMediaIndex];
-    const safeLabel = escapeHtml(activeMedia.label);
+  function initDesktopUpgrade() { return; }
 
-    if (activeMedia.type === 'video') {
-      galleryPlaceholder.innerHTML = `
-        <video class="gallery-media-asset" src="${activeMedia.src}" controls autoplay muted loop playsinline preload="metadata" aria-label="${safeLabel}"></video>
-        <small class="gallery-media-caption">${safeLabel}</small>
-      `;
-    } else {
-      galleryPlaceholder.innerHTML = `
-        <img class="gallery-media-asset" src="${activeMedia.src}" alt="${safeLabel}" loading="eager" decoding="async" />
-        <small class="gallery-media-caption">${safeLabel}</small>
-      `;
-    }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDesktopUpgrade);
+  } else {
+    initDesktopUpgrade();
+  }
 
-    if (galleryThumbs) {
-      galleryThumbs.innerHTML = mediaSet
-        .map((item, index) => `
-          <button type="button" data-media-index="${index}" class="${index === state.selectedMediaIndex ? 'is-active' : ''}">
-            <span class="gallery-thumb-type">${item.type === 'video' ? 'Video' : 'Photo'}</span>
-            <span>${escapeHtml(item.label)}</span>
-          </button>
-        `)
-        .join('');
-    }
-  };
+  let desktop = window.matchMedia(`(min-width:${DESKTOP_MIN}px)`).matches;
+  window.addEventListener("resize", () => {
+    const now = window.matchMedia(`(min-width:${DESKTOP_MIN}px)`).matches;
+    if (now && !desktop) moveCustomStudioDesktop();
+    desktop = now;
+  }, {passive:true});
+})();
+// ===== HOG Site Polish: catalog, performance, desktop conversion polish =====
+(() => {
+  "use strict";
+  const DESKTOP_MIN = 761;
 
-  const repopulateSelections = () => {
-    if (!hasSelectedProduct()) {
-      state.selectedWidth = '';
-      state.selectedLength = '';
-      state.selectedKarat = '';
-      return;
-    }
+  function addPolishStyles() {
+    if (document.getElementById("hog-site-polish-css")) return;
+    const style = document.createElement("style");
+    style.id = "hog-site-polish-css";
+    style.textContent = `
+      @media(min-width:${DESKTOP_MIN}px){
+        /* Slimmer financing + welcome offer */
+        .home-page #payment-options{
+          padding:1.05rem 0!important;
+        }
+        .home-page #payment-options .payment-options-inner{
+          gap:1rem!important;
+          align-items:stretch!important;
+        }
+        .home-page #payment-options .payment-options-split{
+          grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr)!important;
+        }
+        .home-page #payment-options .payment-pane{
+          padding:1rem 1.1rem!important;
+          border-radius:16px!important;
+        }
+        .home-page #payment-options .payment-options-copy{
+          margin-bottom:.6rem!important;
+        }
+        .home-page #payment-options .payment-options-eyebrow{
+          margin-bottom:.25rem!important;
+        }
+        .home-page #payment-options .payment-options-title{
+          font-size:1.45rem!important;
+          line-height:1.1!important;
+        }
+        .home-page #payment-options .payment-options-subtitle{
+          margin:.35rem 0 0!important;
+          font-size:.78rem!important;
+          line-height:1.45!important;
+        }
+        .home-page #payment-options .payment-options-actions{
+          gap:.45rem!important;
+        }
+        .home-page #payment-options .payment-option-button{
+          min-height:52px!important;
+          padding:.45rem .7rem!important;
+        }
+        .home-page #payment-options .payment-options-terms{
+          margin-top:.45rem!important;
+          font-size:.68rem!important;
+        }
+        .home-page #payment-options .offer-form{
+          padding:.15rem!important;
+        }
+        .home-page #payment-options .offer-form-eyebrow{
+          margin-bottom:.15rem!important;
+        }
+        .home-page #payment-options .offer-form-title{
+          font-size:1.35rem!important;
+          margin-bottom:.25rem!important;
+        }
+        .home-page #payment-options .offer-form-copy{
+          font-size:.75rem!important;
+          line-height:1.35!important;
+          margin-bottom:.5rem!important;
+        }
+        .home-page #payment-options .offer-form-fields{
+          gap:.4rem!important;
+        }
+        .home-page #payment-options .offer-field span{
+          font-size:.65rem!important;
+        }
+        .home-page #payment-options .offer-field input{
+          min-height:39px!important;
+          padding:.5rem .6rem!important;
+        }
+        .home-page #payment-options .offer-consent{
+          margin:.5rem 0!important;
+          font-size:.62rem!important;
+          line-height:1.35!important;
+        }
+        .home-page #payment-options .offer-submit{
+          min-height:42px!important;
+          padding:.55rem .8rem!important;
+        }
 
-    const widths = getWidths(state.selectedProduct);
-    if (!widths.includes(state.selectedWidth)) {
-      state.selectedWidth = widths[0] || '';
-    }
+        /* Cleaner desktop product cards */
+        .home-page .catalog-product-card{
+          transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+        }
+        .home-page .catalog-product-card:hover{
+          transform:translateY(-3px);
+          box-shadow:0 14px 34px rgba(22,21,26,.08);
+          border-color:rgba(185,138,55,.34)!important;
+        }
+        .home-page .catalog-product-footer a{
+          font-weight:800!important;
+          text-decoration:none!important;
+        }
 
-    const lengths = getLengths(state.selectedProduct, state.selectedWidth);
-    if (!lengths.includes(state.selectedLength)) {
-      state.selectedLength = lengths[0] || '';
-    }
+        /* True 2-column Custom Jewelry Studio */
+        .home-page #build-your-ideas .custom-builder.hog-custom-desktop-layout{
+          display:grid!important;
+          grid-template-columns:minmax(0,1.18fr) minmax(380px,.82fr)!important;
+          gap:1rem 1.2rem!important;
+          align-items:start!important;
+        }
+        .home-page #build-your-ideas .hog-custom-left,
+        .home-page #build-your-ideas .hog-custom-right{
+          min-width:0;
+        }
+        .home-page #build-your-ideas .hog-custom-left{
+          display:grid;
+          gap:.85rem;
+        }
+        .home-page #build-your-ideas .hog-custom-right{
+          display:grid;
+          gap:.85rem;
+          position:sticky;
+          top:112px;
+        }
+        .home-page #build-your-ideas .hog-custom-left .custom-builder-step,
+        .home-page #build-your-ideas .hog-custom-right .custom-order-contact,
+        .home-page #build-your-ideas .hog-custom-right .custom-builder-summary{
+          margin:0!important;
+        }
+        .home-page #build-your-ideas .hog-custom-right .custom-order-contact{
+          grid-template-columns:1fr 1fr!important;
+        }
+        .home-page #build-your-ideas .hog-custom-right .custom-order-contact h3,
+        .home-page #build-your-ideas .hog-custom-right .custom-order-consent,
+        .home-page #build-your-ideas .hog-custom-right .custom-order-submit-row,
+        .home-page #build-your-ideas .hog-custom-right .custom-order-note,
+        .home-page #build-your-ideas .hog-custom-right .custom-order-status{
+          grid-column:1/-1!important;
+        }
+        .home-page #build-your-ideas .hog-custom-right .custom-order-submit-row{
+          display:grid!important;
+          grid-template-columns:1fr!important;
+        }
+        .home-page #build-your-ideas .hog-custom-right .custom-order-submit-row .button{
+          width:100%!important;
+          justify-content:center!important;
+        }
+        .home-page #build-your-ideas .hog-custom-right .custom-builder-consent{
+          font-size:.72rem!important;
+          line-height:1.4!important;
+        }
 
-    const karats = getKaratsForSelection(state.selectedProduct, state.selectedWidth, state.selectedLength);
-    if (!karats.includes(state.selectedKarat)) {
-      state.selectedKarat = karats[0] || '';
-    }
-  };
+        /* Reviews: strong proof left, 3 review cards visible right */
+        .home-page #reviews > .container{
+          display:grid!important;
+          grid-template-columns:280px minmax(0,1fr)!important;
+          gap:1.25rem 2rem!important;
+          align-items:start!important;
+        }
+        .home-page #reviews .review-proof-heading{
+          grid-column:1!important;
+          grid-row:1!important;
+          text-align:left!important;
+          position:sticky;
+          top:112px;
+          margin:0!important;
+        }
+        .home-page #reviews .review-proof-heading h2{
+          font-size:2.15rem!important;
+          line-height:1.02!important;
+        }
+        .home-page #reviews .review-proof-stars{
+          justify-content:flex-start!important;
+        }
+        .home-page #reviews .reviews-shell{
+          grid-column:2!important;
+          grid-row:1!important;
+          min-width:0!important;
+          margin:0!important;
+        }
+        .home-page #reviews .section-cta{
+          grid-column:2!important;
+          margin-top:0!important;
+        }
+        .home-page #reviews .reviews-track{
+          gap:.75rem!important;
+          scroll-snap-type:x mandatory!important;
+        }
+        .home-page #reviews .review-card{
+          flex:0 0 calc((100% - 1.5rem)/3)!important;
+          min-width:0!important;
+          scroll-snap-align:start!important;
+          padding:1rem!important;
+        }
+        .home-page #reviews .review-card p{
+          font-size:.82rem!important;
+          line-height:1.5!important;
+        }
 
-  const toCartKey = (variant) => `${variant.product}|${variant.width}|${variant.length}|${variant.karat}`;
+        /* Smaller, cleaner desktop footer */
+        .home-page .site-footer{
+          padding-top:1.8rem!important;
+        }
+        .home-page .footer-grid{
+          gap:1.2rem!important;
+          padding-top:.5rem!important;
+          padding-bottom:1.1rem!important;
+        }
+        .home-page .footer-brand p,
+        .home-page .footer-column p,
+        .home-page .footer-column a{
+          font-size:.78rem!important;
+          line-height:1.45!important;
+        }
+        .home-page .footer-logo{
+          max-width:74px!important;
+        }
+        .home-page .footer-bottom{
+          padding-top:.7rem!important;
+          padding-bottom:.7rem!important;
+          font-size:.72rem!important;
+        }
+      }
 
-  const getVariantByKey = (key) => {
-    const [product, width, length, karat] = String(key || '').split('|');
-    return state.variants.find((variant) =>
-      variant.product === product
-      && variant.width === width
-      && variant.length === length
-      && variant.karat === karat
-    ) || null;
-  };
+      @media(max-width:1080px) and (min-width:761px){
+        .home-page #reviews > .container{
+          grid-template-columns:230px minmax(0,1fr)!important;
+          gap:1.2rem!important;
+        }
+        .home-page #reviews .review-card{
+          flex-basis:calc((100% - .75rem)/2)!important;
+        }
+        .home-page #build-your-ideas .custom-builder.hog-custom-desktop-layout{
+          grid-template-columns:minmax(0,1fr) minmax(340px,.9fr)!important;
+        }
+      }
 
-  const openCart = () => {
-    cartDrawer.classList.add('is-open');
-    cartDrawer.setAttribute('aria-hidden', 'false');
-    cartBackdrop.hidden = false;
-    cartToggle.setAttribute('aria-expanded', 'true');
-  };
+      @media(max-width:760px){
+        /* Wrappers preserve the mobile layout rather than changing it. */
+        .home-page #build-your-ideas .hog-custom-left,
+        .home-page #build-your-ideas .hog-custom-right{
+          display:contents!important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
-  const closeCart = () => {
-    cartDrawer.classList.remove('is-open');
-    cartDrawer.setAttribute('aria-hidden', 'true');
-    cartBackdrop.hidden = true;
-    cartToggle.setAttribute('aria-expanded', 'false');
-  };
+  function fixPendantCategory() {
+    const row = document.querySelector(".catalog-filter-row");
+    if (!row) return;
 
-  const renderCart = () => {
-    const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = String(count);
-
-    if (!state.cart.length) {
-      cartItems.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-      cartSubtotal.textContent = formatUsd(0);
-      cartClear.disabled = true;
-      cartCheckout.disabled = true;
-      return;
-    }
-
-    cartClear.disabled = false;
-    cartCheckout.disabled = false;
-
-    const entries = state.cart.map((item) => {
-      const variant = getVariantByKey(item.key);
-      const livePricing = calculatePrice(variant);
-      const unitPrice = livePricing?.retailPrice || 0;
-      return {
-        item,
-        unitPrice,
-      };
+    // Reclassify products whose visible type is Pendant.
+    document.querySelectorAll(".catalog-product-card").forEach(card => {
+      const type = card.querySelector(".catalog-product-meta span:first-child")?.textContent?.trim().toLowerCase() || "";
+      const title = card.querySelector("h3")?.textContent?.toLowerCase() || "";
+      if (type === "pendant" || title.includes("pendant")) {
+        card.dataset.category = "pendant";
+      }
     });
 
-    cartItems.innerHTML = entries
-      .map(({ item, unitPrice }, index) => `
-        <article class="cart-item">
-          <h3>${item.productName}</h3>
-          <p>${item.width} | ${item.length} | ${item.karat}</p>
-          <p>${item.weightText}</p>
-          <div class="cart-item-row">
-            <strong>${formatUsd(unitPrice)}</strong>
-            <div class="cart-qty">
-              <button type="button" data-action="decrease" data-index="${index}" aria-label="Decrease quantity">-</button>
-              <span>${item.quantity}</span>
-              <button type="button" data-action="increase" data-index="${index}" aria-label="Increase quantity">+</button>
+    if (row.querySelector('[data-filter="pendant"]')) return;
+    const button = document.createElement("button");
+    button.className = "catalog-filter";
+    button.dataset.filter = "pendant";
+    button.type = "button";
+    button.textContent = "Pendants";
+
+    const chain = row.querySelector('[data-filter="chain"]');
+    if (chain) chain.insertAdjacentElement("beforebegin", button);
+    else row.appendChild(button);
+
+    button.addEventListener("click", () => {
+      row.querySelectorAll(".catalog-filter").forEach(b => b.classList.remove("is-active"));
+      button.classList.add("is-active");
+      document.querySelectorAll(".catalog-product-card").forEach(card => {
+        card.hidden = card.dataset.category !== "pendant";
+      });
+    });
+  }
+
+  function improveProductActions() {
+    document.querySelectorAll(".catalog-product-card").forEach(card => {
+      const detailLink = card.querySelector(".catalog-product-title-link");
+      const action = card.querySelector(".catalog-card-view");
+      if (!detailLink || !action) return;
+      action.textContent = "View details →";
+      action.href = detailLink.href;
+      const title = card.querySelector("h3")?.textContent?.trim();
+      if (title) action.setAttribute("aria-label", `View details for ${title}`);
+    });
+  }
+
+  function optimizeVideoPlayback() {
+    if (!("IntersectionObserver" in window)) return;
+    const videos = [...document.querySelectorAll(".catalog-product-card video")];
+    if (!videos.length) return;
+
+    videos.forEach(video => {
+      video.dataset.hogAutoVideo = "1";
+      video.muted = true;
+      video.setAttribute("playsinline", "");
+      // Do not change any video files; only control playback.
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.18) {
+          const p = video.play();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, {threshold:[0,0.18,0.55]});
+
+    videos.forEach(video => observer.observe(video));
+  }
+
+  function buildDesktopCustomLayout() {
+    const builder = document.getElementById("custom-builder");
+    if (!builder || builder.dataset.hogTwoColumn === "1") return;
+
+    const steps = [...builder.querySelectorAll(":scope > .custom-builder-step")];
+    const contact = builder.querySelector(":scope > .custom-order-contact");
+    const consent = builder.querySelector(":scope > .custom-builder-consent");
+    const summary = builder.querySelector(":scope > .custom-builder-summary");
+    if (!steps.length || !summary) return;
+
+    const left = document.createElement("div");
+    const right = document.createElement("div");
+    left.className = "hog-custom-left";
+    right.className = "hog-custom-right";
+
+    steps.forEach(step => left.appendChild(step));
+    if (contact) right.appendChild(contact);
+    if (consent) right.appendChild(consent);
+    right.appendChild(summary);
+
+    builder.append(left, right);
+    builder.classList.add("hog-custom-desktop-layout");
+    builder.dataset.hogTwoColumn = "1";
+  }
+
+  function syncReviewCount() {
+    document.querySelectorAll("h1,h2,h3,p,span,a").forEach(el => {
+      if (el.children.length === 0 && /222\+\s*5-star Google reviews/i.test(el.textContent || "")) {
+        el.textContent = (el.textContent || "").replace(/222\+/g, "230+");
+      }
+    });
+  }
+
+  function initPolish() {
+    fixPendantCategory();
+    improveProductActions();
+    buildDesktopCustomLayout();
+    syncReviewCount();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPolish);
+  } else {
+    initPolish();
+  }
+})();
+// ===== HOG Full Conversion Upgrade: search, product details, inquiry, Spanish, FAQ, analytics =====
+(() => {
+  "use strict";
+  const STORE_PHONE = "6312646610";
+  const clean = s => (s || "").replace(/\s+/g, " ").trim();
+  const ga = (event, params={}) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event, ...params});
+  };
+
+  function addStyles() {
+    if (document.getElementById("hog-full-conversion-css")) return;
+    const style = document.createElement("style");
+    style.id = "hog-full-conversion-css";
+    style.textContent = `
+      .hog-product-modal,.hog-language-toggle,.hog-faq-section,.hog-process-section,.hog-service-proof,.hog-seo-links{font-family:inherit}
+      .hog-product-card-badges{position:absolute;left:.55rem;top:.55rem;z-index:3;display:flex;gap:.3rem;flex-wrap:wrap;pointer-events:none}
+      .hog-product-badge{padding:.26rem .45rem;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid rgba(22,21,26,.08);font-size:.56rem;font-weight:900;letter-spacing:.035em;text-transform:uppercase;color:#2d2924;box-shadow:0 3px 12px rgba(22,21,26,.06)}
+      .hog-product-badge.gold{background:#b98a37;color:#fff;border-color:#b98a37}
+      .hog-card-inquiry-row{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-top:.45rem}
+      .hog-card-inquiry-row a,.hog-card-inquiry-row button{min-height:34px;border-radius:8px;border:1px solid rgba(22,21,26,.11);background:#fff;color:#2d2924;font:inherit;font-size:.62rem;font-weight:850;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer}
+      .hog-card-inquiry-row a:hover,.hog-card-inquiry-row button:hover{border-color:#b98a37;color:#9a7129}
+      .hog-product-modal{position:fixed;inset:0;z-index:10020;display:none}
+      .hog-product-modal.is-open{display:block}
+      .hog-product-modal-overlay{position:absolute;inset:0;background:rgba(10,9,8,.74);backdrop-filter:blur(5px)}
+      .hog-product-modal-card{position:relative;z-index:2;width:min(960px,calc(100% - 32px));max-height:calc(100vh - 40px);overflow:auto;margin:20px auto;background:#fff;border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.28)}
+      .hog-product-modal-close{position:absolute;right:12px;top:12px;z-index:4;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.94);font-size:1.4rem;cursor:pointer}
+      .hog-product-modal-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr)}
+      .hog-product-modal-media{min-height:520px;background:#f5f2ed;display:flex;align-items:center;justify-content:center;overflow:hidden}
+      .hog-product-modal-media img,.hog-product-modal-media video{width:100%;height:100%;max-height:620px;object-fit:cover}
+      .hog-product-modal-copy{padding:2rem}
+      .hog-product-modal-copy h2{font-size:2rem;line-height:1.05;margin:.2rem 0 .7rem}
+      .hog-product-modal-desc{color:#5f584f;line-height:1.55}
+      .hog-product-modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:1rem 0}
+      .hog-product-modal-meta span{padding:.65rem;border-radius:10px;background:#f7f5f1;font-size:.76rem;font-weight:800}
+      .hog-product-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem}
+      .hog-product-modal-actions a{min-height:46px;display:flex;align-items:center;justify-content:center;text-decoration:none}
+      .hog-modal-finance{grid-column:1/-1}
+      .hog-language-toggle{position:fixed;right:18px;bottom:82px;z-index:68;display:flex;border:1px solid rgba(22,21,26,.12);border-radius:999px;background:#fff;box-shadow:0 8px 24px rgba(22,21,26,.10);overflow:hidden}
+      .hog-language-toggle button{border:0;background:#fff;padding:.5rem .7rem;font:inherit;font-size:.68rem;font-weight:900;cursor:pointer}
+      .hog-language-toggle button.is-active{background:#1a1713;color:#fff}
+      .hog-process-section,.hog-faq-section,.hog-service-proof{padding:2.5rem 0}
+      .hog-process-card,.hog-faq-card,.hog-service-proof-card{border:1px solid rgba(22,21,26,.09);border-radius:18px;background:#fff;padding:1.3rem}
+      .hog-process-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.55rem;margin-top:1rem}
+      .hog-process-step{padding:.9rem .7rem;border-radius:12px;background:#f8f6f2;min-height:110px}
+      .hog-process-step b{display:block;color:#9a7129;font-size:.72rem;margin-bottom:.3rem}
+      .hog-process-step strong{display:block;font-size:.9rem;line-height:1.2}
+      .hog-process-step span{display:block;color:#6f685f;font-size:.7rem;line-height:1.35;margin-top:.35rem}
+      .hog-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem}
+      .hog-faq-grid details{border:1px solid rgba(22,21,26,.08);border-radius:12px;background:#faf9f7;padding:.75rem .85rem}
+      .hog-faq-grid summary{font-weight:850;cursor:pointer}
+      .hog-faq-grid p{font-size:.78rem;line-height:1.5;color:#625c54}
+      .hog-seo-links{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.45rem}
+      .hog-seo-links a{font-size:.72rem;font-weight:800;color:#8a6525;text-decoration:none;padding:.38rem .55rem;border:1px solid rgba(185,138,55,.22);border-radius:999px}
+      .hog-service-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:1rem}
+      .hog-service-proof-item{padding:1rem;border-radius:12px;background:#f8f6f2}
+      .hog-service-proof-item strong{display:block;margin-bottom:.35rem}
+      .hog-service-proof-item span{font-size:.76rem;line-height:1.45;color:#655e55}
+      @media(max-width:900px){
+        .hog-process-grid{grid-template-columns:repeat(3,1fr)}
+        .hog-product-modal-grid{grid-template-columns:1fr}
+        .hog-product-modal-media{min-height:460px}
+        .hog-faq-grid{grid-template-columns:1fr}
+        .hog-service-proof-grid{grid-template-columns:1fr}
+      }
+      @media(max-width:760px){
+        .hog-card-inquiry-row{grid-template-columns:1fr}
+        .hog-product-modal-card{width:calc(100% - 14px);margin:7px auto;max-height:calc(100vh - 14px);border-radius:14px}
+        .hog-product-modal-copy{padding:1rem}
+        .hog-product-modal-copy h2{font-size:1.5rem}
+        .hog-product-modal-actions{grid-template-columns:1fr}
+        .hog-modal-finance{grid-column:auto}
+        .hog-language-toggle{right:8px;bottom:72px}
+        .hog-process-section,.hog-faq-section,.hog-service-proof{padding:1.4rem 0}
+        .hog-process-grid{grid-template-columns:1fr 1fr}
+        .hog-process-step{min-height:96px}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function collectProducts() {
+    return [...document.querySelectorAll(".catalog-product-card")].map((card, i) => {
+      const title = clean(card.querySelector("h3")?.textContent);
+      const desc = clean(card.querySelector(".catalog-product-copy > p")?.textContent);
+      const type = clean(card.querySelector(".catalog-product-meta span:first-child")?.textContent);
+      const state = clean(card.querySelector(".catalog-product-meta span:last-child")?.textContent);
+      const category = card.dataset.category || type.toLowerCase();
+      return {card, title, desc, type, state, category, index:i};
+    });
+  }
+
+  function inferAvailability(p) {
+    if (p.card.querySelector('.catalog-card-call[href^="https://buy.stripe.com/"]')) return "Buy Online";
+    if (p.card.dataset.sku === "HOG014536") return "Order online now";
+    if (p.card.dataset.sku === "HOG013947") return "In Store";
+    if (/available to order/i.test(p.state)) return "Made to Order";
+    if (/video/i.test(p.state)) return "In Store";
+    return "View Details";
+  }
+
+  function markMerchandising(products) {
+    const newArrivalWords = /new|arrival|exclusive/i;
+    const bestWords = /cuban|figaro|heart|hoop|iced|initial|picture/i;
+    products.forEach((p, i) => {
+      const image = p.card.querySelector(".catalog-product-image");
+      if (image && getComputedStyle(image).position === "static") image.style.position = "relative";
+      p.card.dataset.hogSearch = clean(`${p.title} ${p.desc} ${p.type} ${p.category}`).toLowerCase();
+      p.card.dataset.hogAvailability = inferAvailability(p);
+      p.card.dataset.hogNew = newArrivalWords.test(p.title) || i < 6 ? "1" : "0";
+      p.card.dataset.hogBest = bestWords.test(p.title) && i < 24 ? "1" : "0";
+      if (!p.card.querySelector(".hog-product-card-badges") && image) {
+        const badges = document.createElement("div");
+        badges.className = "hog-product-card-badges";
+        const avail = document.createElement("span");
+        avail.className = "hog-product-badge";
+        avail.textContent = p.card.dataset.hogAvailability;
+        badges.appendChild(avail);
+        if (p.card.dataset.hogNew === "1") {
+          const badge = document.createElement("span");
+          badge.className = "hog-product-badge gold";
+          badge.textContent = "New";
+          badges.appendChild(badge);
+        } else if (p.card.dataset.hogBest === "1") {
+          const badge = document.createElement("span");
+          badge.className = "hog-product-badge gold";
+          badge.textContent = "Popular";
+          badges.appendChild(badge);
+        }
+        image.appendChild(badges);
+      }
+    });
+  }
+
+  function ensureModal() {
+    let modal = document.querySelector(".hog-product-modal");
+    if (modal) return modal;
+    modal = document.createElement("div");
+    modal.className = "hog-product-modal";
+    modal.setAttribute("aria-hidden","true");
+    modal.innerHTML = `
+      <div class="hog-product-modal-overlay" data-hog-close="1"></div>
+      <div class="hog-product-modal-card" role="dialog" aria-modal="true" aria-label="Jewelry details">
+        <button class="hog-product-modal-close" type="button" aria-label="Close product details" data-hog-close="1">×</button>
+        <div class="hog-product-modal-grid">
+          <div class="hog-product-modal-media"></div>
+          <div class="hog-product-modal-copy">
+            <p class="eyebrow">Hands of Gold Jewelry</p>
+            <h2></h2>
+            <p class="hog-product-modal-desc"></p>
+            <div class="hog-product-modal-meta">
+              <span class="hog-modal-type"></span>
+              <span class="hog-modal-availability"></span>
+              <span>Price: Call for current price</span>
+              <span>Store: Copiague, NY</span>
+            </div>
+            <p style="font-size:.76rem;line-height:1.5;color:#6b645b">Metal, weight, dimensions, stone details, sizing and exact availability vary by piece. Call or text us and we’ll confirm the current item details before purchase.</p>
+            <div class="hog-product-modal-actions">
+              <a class="button button-primary hog-modal-call" href="tel:${STORE_PHONE}">Call About This Piece</a>
+              <a class="button button-secondary hog-modal-text" href="#">Text About This Piece</a>
+              <a class="button button-secondary hog-modal-finance" href="#payment-options">View Payment Options</a>
             </div>
           </div>
-          <button type="button" class="cart-remove" data-action="remove" data-index="${index}">Remove</button>
-        </article>
-      `)
-      .join('');
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+    modal.querySelectorAll("[data-hog-close]").forEach(el => el.addEventListener("click", closeProductModal));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeProductModal(); });
+    return modal;
+  }
 
-    const subtotal = entries.reduce((sum, entry) => sum + entry.unitPrice * entry.item.quantity, 0);
+  function openProductModal(p) {
+    if (p.card.dataset.sku || p.card.querySelector('.catalog-card-call[href^="https://buy.stripe.com/"]')) {
+      const detailLink = p.card.querySelector(".catalog-product-title-link");
+      if (detailLink) {
+        window.location.href = detailLink.href;
+        return;
+      }
+    }
+    const modal = ensureModal();
+    const media = modal.querySelector(".hog-product-modal-media");
+    media.innerHTML = "";
+    const sourceMedia = p.card.querySelector(".catalog-product-image img, .catalog-product-image video");
+    let modalVideo = null;
+    if (sourceMedia) {
+      const clone = sourceMedia.cloneNode(true);
+      if (clone.tagName === "VIDEO") {
+        // Card videos are click-to-play: initClickToPlay() moves each
+        // <source src> into data-src so nothing downloads until tapped.
+        // The clone inherits that stripped markup, so the real file has to be
+        // put back or the modal shows an empty player. This was the bug.
+        clone.querySelectorAll("source").forEach(function (sc) {
+          const d = sc.getAttribute("data-src");
+          if (d && !sc.getAttribute("src")) sc.setAttribute("src", d);
+        });
+        clone.controls = true;
+        clone.loop = true;
+        clone.muted = true;
+        clone.setAttribute("muted", "");
+        clone.playsInline = true;
+        clone.setAttribute("playsinline", "");
+        clone.setAttribute("preload", "auto");
+        clone.removeAttribute("autoplay"); // we call play() by hand once visible
+        modalVideo = clone;
+      }
+      media.appendChild(clone);
+    }
+    modal.querySelector("h2").textContent = p.title;
+    modal.querySelector(".hog-product-modal-desc").textContent = p.desc || "Ask Hands of Gold for details on this piece.";
+    modal.querySelector(".hog-modal-type").textContent = `Type: ${p.type || p.category}`;
+    modal.querySelector(".hog-modal-availability").textContent = "Availability: Call to confirm";
+    const smsText = encodeURIComponent(`Hi Hands of Gold, I'm interested in: ${p.title}`);
+    modal.querySelector(".hog-modal-text").href = `sms:${STORE_PHONE}?body=${smsText}`;
+    modal.querySelector(".hog-modal-call").onclick = () => ga("product_call_click", {product_name:p.title});
+    modal.querySelector(".hog-modal-text").onclick = () => ga("product_text_click", {product_name:p.title, source:"modal"});
+    document.dispatchEvent(new CustomEvent('hog:product-open', {detail: {card: p.card, modal: modal}}));
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden","false");
+    document.documentElement.style.overflow = "hidden";
 
-    cartSubtotal.textContent = formatUsd(subtotal);
-  };
+    // Play only after the modal is on screen. Chrome and Safari refuse
+    // playback for a video sitting inside a hidden container, and nothing
+    // retries it later, which is why the old code silently did nothing.
+    if (modalVideo) {
+      modalVideo.load();
+      requestAnimationFrame(function () {
+        const pr = modalVideo.play();
+        if (pr && pr.catch) pr.catch(function () {
+          modalVideo.controls = true; // blocked: leave the user a play button
+        });
+      });
+    }
+  }
 
-  const renderAll = () => {
-    repopulateSelections();
+  function closeProductModal() {
+    const modal = document.querySelector(".hog-product-modal");
+    if (!modal || !modal.classList.contains("is-open")) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden","true");
+    document.documentElement.style.overflow = "";
+    modal.querySelectorAll("video").forEach(v => v.pause());
+    // Empty the media pane so the clip stops downloading in the background.
+    const closedMedia = modal.querySelector(".hog-product-modal-media");
+    if (closedMedia) closedMedia.innerHTML = "";
+  }
 
-    const productChoices = ['bracelet', 'necklace'];
-    renderOptionButtons({
-      root: optionProduct,
-      values: productChoices.map((value) => state.products?.[value]?.name || value),
-      activeValue: hasSelectedProduct() ? (state.products?.[state.selectedProduct]?.name || state.selectedProduct) : '',
-      onSelect: (value) => {
-        const matchedProduct = productChoices.find(
-          (key) => (state.products?.[key]?.name || key) === value
-        ) || 'bracelet';
-        if (state.selectedProduct !== matchedProduct) {
-          state.selectedMediaIndex = 0;
+  function addInquiryActions(products) {
+    products.forEach(p => {
+      const footer = p.card.querySelector(".catalog-product-footer");
+      if (!footer || footer.querySelector(".catalog-card-view") || p.card.querySelector(".hog-card-inquiry-row")) return;
+      const row = document.createElement("div");
+      row.className = "hog-card-inquiry-row";
+      row.innerHTML = `<button type="button" class="hog-view-piece">View Details</button>`;
+      footer.insertAdjacentElement("afterend", row);
+      row.querySelector(".hog-view-piece").addEventListener("click", () => {
+        openProductModal(p);
+        ga("product_detail_open", {product_name:p.title, category:p.category});
+      });
+    });
+  }
+
+  function addLanguageToggle() {
+    if (document.querySelector(".hog-language-toggle")) return;
+    const toggle = document.createElement("div");
+    toggle.className = "hog-language-toggle";
+    toggle.setAttribute("aria-label","Language");
+    toggle.innerHTML = `<button class="is-active" data-lang="en" type="button">EN</button><button data-lang="es" type="button">ES</button>`;
+    document.body.appendChild(toggle);
+
+    const translations = {
+      "Products":"Productos","Payment Options":"Opciones de Pago","Custom Jewelry":"Joyería Personalizada",
+      "Sell Gold / Gold Calculator":"Vender Oro / Calculadora","Repairs":"Reparaciones","Engraving":"Grabado","Visit":"Visítanos",
+      "Shop In Stock":"Comprar en Inventario","Create Custom":"Crear Personalizado","Sell Gold":"Vender Oro",
+      "IN STOCK NOW":"EN INVENTARIO AHORA","All Items":"Todos","Bracelets":"Pulseras","Rings":"Anillos","Chains":"Cadenas",
+      "Earrings":"Aretes","Pendants":"Dijes","Create Your Jewelry":"Crea Tu Joya",
+      "See what your gold may be worth.":"Vea cuánto podría valer su oro.","Please visit our physical location.":"Visite nuestra tienda física."
+    };
+    const targets = () => [...document.querySelectorAll(".site-nav a,.hog-desktop-hero-actions a,.fire-stock-heading,.catalog-filter,.piece-builder-section h2,.gold-calculator-copy h2,.visit-content h2")];
+
+    targets().forEach(el => {
+      const text = clean(el.textContent);
+      if (translations[text]) el.dataset.hogEnglish = text;
+    });
+
+    toggle.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        toggle.querySelectorAll("button").forEach(b => b.classList.toggle("is-active", b === btn));
+        targets().forEach(el => {
+          const en = el.dataset.hogEnglish;
+          if (!en) return;
+          el.textContent = lang === "es" ? translations[en] : en;
+        });
+        document.documentElement.lang = lang === "es" ? "es" : "en";
+        ga("language_toggle", {language:lang});
+      });
+    });
+  }
+
+  function addCustomProcess() {
+    const custom = document.getElementById("build-your-ideas");
+    if (!custom || document.querySelector(".hog-process-section")) return;
+    const section = document.createElement("section");
+    section.className = "hog-process-section";
+    section.innerHTML = `
+      <div class="container"><div class="hog-process-card">
+        <p class="eyebrow">How Custom Jewelry Works</p>
+        <h2 style="margin:.15rem 0 0">From your idea to the finished piece.</h2>
+        <div class="hog-process-grid">
+          <div class="hog-process-step"><b>01</b><strong>Your Idea</strong><span>Tell us what you want to create.</span></div>
+          <div class="hog-process-step"><b>02</b><strong>Design / CAD</strong><span>We develop the design and specifications.</span></div>
+          <div class="hog-process-step"><b>03</b><strong>Approval</strong><span>You review the design before production.</span></div>
+          <div class="hog-process-step"><b>04</b><strong>Order Details</strong><span>We confirm pricing and purchase details with you.</span></div>
+          <div class="hog-process-step"><b>05</b><strong>Production</strong><span>Your piece is made, finished and inspected.</span></div>
+          <div class="hog-process-step"><b>06</b><strong>Pickup</strong><span>Complete your purchase and collect the finished piece.</span></div>
+        </div>
+        <p style="margin:.8rem 0 0;font-size:.72rem;color:#6f685f">Exact design process, production time, pricing and payment options depend on the custom project and are confirmed by Hands of Gold.</p>
+      </div></div>`;
+    custom.insertAdjacentElement("afterend", section);
+  }
+
+  function addServiceProof() {
+    const services = document.querySelector(".quick-services-section");
+    if (!services || document.querySelector(".hog-service-proof")) return;
+    const section = document.createElement("section");
+    section.className = "hog-service-proof";
+    section.innerHTML = `
+      <div class="container"><div class="hog-service-proof-card">
+        <p class="eyebrow">More Than a Jewelry Store</p>
+        <h2 style="margin:.15rem 0 0">Shop, create, repair, engrave and sell gold in one place.</h2>
+        <div class="hog-service-proof-grid">
+          <div class="hog-service-proof-item"><strong>Repairs</strong><span>Ring sizing, chains, clasps, watch batteries and service. Many straightforward repairs can be completed quickly; turnaround varies by job.</span></div>
+          <div class="hog-service-proof-item"><strong>Laser Engraving</strong><span>Names, dates, initials, logos, coordinates and memorial text on many common jewelry and metal surfaces.</span></div>
+          <div class="hog-service-proof-item"><strong>Sell Gold</strong><span>Use the online calculator for a non-binding estimate, then visit the store for testing, weighing and an actual offer.</span></div>
+        </div>
+      </div></div>`;
+    services.insertAdjacentElement("afterend", section);
+  }
+
+  function addFAQ() {
+    const visit = document.getElementById("visit");
+    if (!visit || document.querySelector(".hog-faq-section")) return;
+    const section = document.createElement("section");
+    section.className = "hog-faq-section";
+    section.innerHTML = `
+      <div class="container"><div class="hog-faq-card">
+        <p class="eyebrow">Frequently Asked Questions</p>
+        <h2 style="margin:.15rem 0 0">Before you visit Hands of Gold.</h2>
+        <div class="hog-faq-grid">
+          <details><summary>Do you make custom jewelry?</summary><p>Yes. Use the Custom Jewelry Studio to send your idea. Final design, specifications, price, production time and approval are confirmed directly by Hands of Gold.</p></details>
+          <details><summary>What happens after I submit a custom request?</summary><p>Hands of Gold reviews your design and contacts you to confirm specifications, pricing and next steps. Submitting a request does not finalize an order or final price.</p></details>
+          <details><summary>Can I finance jewelry?</summary><p>The site links to participating third-party financing or lease-to-own providers. Applications, eligibility, approvals and terms are handled by those providers.</p></details>
+          <details><summary>Do you repair jewelry and watches?</summary><p>Yes. Services include common jewelry repairs, ring sizing, chain and clasp work, watch batteries and watch service. Turnaround depends on the repair and parts required.</p></details>
+          <details><summary>Can you engrave jewelry?</summary><p>Yes. We offer laser engraving for many metals and can discuss names, dates, initials, logos, coordinates and other personal text.</p></details>
+          <details><summary>Can I sell gold to Hands of Gold?</summary><p>Yes. The website calculator provides a non-binding estimate. Actual purchase price is determined in store after testing and weighing.</p></details>
+          <details><summary>Are all items on the website physically in stock?</summary><p>No. Product cards are labeled as In Store, Made to Order, or Ask for Availability. Call or text us to confirm the specific piece before visiting.</p></details>
+          <details><summary>Do you speak Spanish?</summary><p>Yes — Hablamos Español. You can call or visit the store for help in Spanish.</p></details>
+        </div>
+        <div class="hog-seo-links">
+          <a href="/design-studio.html">Custom Jewelry</a><a href="jewelry-repair.html">Jewelry Repair</a><a href="sell-gold.html">Sell Gold</a>
+          <a href="engraving.html">Laser Engraving</a><a href="engagement-rings.html">Engagement Rings</a><a href="cuban-chains.html">Cuban Chains</a>
+        </div>
+      </div></div>`;
+    visit.insertAdjacentElement("beforebegin", section);
+  }
+
+  function trackCoreActions() {
+    document.addEventListener("click", e => {
+      const a = e.target.closest?.("a");
+      if (!a) return;
+      const href = a.getAttribute("href") || "";
+      if (href.includes("snapfinance.com")) ga("financing_provider_click",{provider:"snap"});
+      if (href.includes("acima.com")) ga("financing_provider_click",{provider:"acima"});
+      if (href.includes("approve.me")) ga("financing_provider_click",{provider:"progressive"});
+      if (href.includes("google.com/maps")) ga("directions_click",{location:"store"});
+      if (href.startsWith("sms:")) ga("sms_click",{location:a.className || "unlabeled"});
+    });
+    document.getElementById("gold-calc-button")?.addEventListener("click", () => ga("gold_calculator_completed"));
+    document.querySelector("#custom-builder")?.addEventListener("click", e => {
+      if (e.target.closest?.(".custom-choice")) ga("custom_studio_interaction");
+    }, {once:true});
+  }
+
+  function init() {
+    const products = collectProducts();
+    markMerchandising(products);
+    addInquiryActions(products);
+    ensureModal();
+    trackCoreActions();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+// ===== HOG Classic Cuban Collection integration =====
+(() => {
+  "use strict";
+  function addClassicCubanEntryPoints(){
+    if (document.querySelector('[data-hog-classic-cuban-link="1"]')) return;
+
+    // Desktop/mobile navigation entry.
+    const nav=document.querySelector(".site-nav");
+    if(nav){
+      const a=document.createElement("a");
+      a.href="classic-cuban-collection.html";
+      a.textContent="Monaci Cubans";
+      a.dataset.hogClassicCubanLink="1";
+      const products=nav.querySelector('a[href="#featured-products"]');
+      if(products) products.insertAdjacentElement("afterend",a); else nav.prepend(a);
+    }
+
+    // Homepage merchandising block removed Aug 2026 at Julio's request.
+    // Entry points to the Monaci page remain in the nav and the footer.
+
+    // Footer discovery.
+    const connect=[...document.querySelectorAll(".footer-column")].find(el=>/Connect/i.test(el.querySelector("h3")?.textContent||""));
+    if(connect && !connect.querySelector('[href="classic-cuban-collection.html"]')){
+      const link=document.createElement("a");link.href="classic-cuban-collection.html";link.textContent="Monaci Cuban Collection";connect.prepend(link);
+    }
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",addClassicCubanEntryPoints);
+  else addClassicCubanEntryPoints();
+})();
+
+// ===== HOG performance: catalog clips are click-to-play =====
+// Nothing downloads until a customer asks for it. Each card shows a still frame
+// with a play control; the rest of the card still dials the store, which is what
+// the surrounding tel: link is for.
+(() => {
+  "use strict";
+
+  function addStyles(){
+    if (document.getElementById("hog-ctp-css")) return;
+    const st=document.createElement("style");
+    st.id="hog-ctp-css";
+    st.textContent=`
+      .hog-ctp-wrap{position:relative;display:block;width:100%;height:100%}
+      .hog-ctp-btn{
+        position:absolute;right:12px;bottom:12px;left:auto;top:auto;transform:none;
+        width:48px;height:48px;border-radius:50%;border:0;cursor:pointer;
+        background:rgba(17,17,17,.62);backdrop-filter:blur(3px);
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 4px 18px rgba(0,0,0,.34);z-index:3;padding:0;
+        transition:background .15s ease, transform .15s ease;
+      }
+      .hog-ctp-btn:hover{background:rgba(185,138,55,.92);transform:scale(1.06)}
+      .hog-ctp-btn:focus-visible{outline:3px solid #e2bf7f;outline-offset:3px}
+      .hog-ctp-btn svg{width:20px;height:20px;fill:#fff;margin-left:3px}
+      .hog-ctp-btn.is-playing{width:38px;height:38px;background:rgba(17,17,17,.45);opacity:0;pointer-events:auto}
+      .hog-ctp-wrap:hover .hog-ctp-btn.is-playing{opacity:1}
+      .hog-ctp-btn.is-playing svg{margin-left:0}
+      @media (max-width:560px){.hog-ctp-btn{right:9px;bottom:9px;width:42px;height:42px}}
+      @media (prefers-reduced-motion: reduce){.hog-ctp-btn{transition:none}}
+    `;
+    document.head.appendChild(st);
+  }
+
+  /* ----------------------------------------------------------------
+     AUTOPLAY_IN_VIEW
+     false (default) = catalog clips stay click-to-play. Nothing downloads
+                       until the customer taps. Fastest page, least data.
+     true            = each clip loads and plays (muted) when it scrolls
+                       onto the screen, and pauses when it scrolls off.
+                       Only two or three ever load at once, so the page
+                       still feels alive without pulling every MP4 at once.
+     Change the one word below to switch. Nothing else needs editing.
+     ---------------------------------------------------------------- */
+  const AUTOPLAY_IN_VIEW = false;
+
+  const PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  const PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+  function catalogVideos(){
+    // Product clips only. The hero background video is ambience and must keep
+    // playing on its own - it is deliberately excluded here.
+    return [...document.querySelectorAll("video")].filter(function(v){
+      return !v.closest(".hog-desktop-hero") && !v.closest(".hog-mobile-hero") && !v.closest(".hog-mini-hero");
+    });
+  }
+
+  function initClickToPlay(){
+    addStyles();
+    const vids=catalogVideos();
+    if(!vids.length) return;
+
+    vids.forEach(function(v){
+      if (v.dataset.hogCtp === "1") return;
+      v.dataset.hogCtp = "1";
+
+      // belt and braces: never let a source load on its own
+      v.querySelectorAll("source").forEach(function(sc){
+        if (sc.getAttribute("src") && !sc.getAttribute("data-src")){
+          sc.setAttribute("data-src", sc.getAttribute("src"));
+          sc.removeAttribute("src");
         }
-        state.selectedProduct = matchedProduct;
-        renderAll();
-      },
-    });
+      });
+      v.removeAttribute("autoplay");
+      v.setAttribute("preload","none");
+      v.muted=true; v.loop=true;
+      v.setAttribute("playsinline","");
 
-    const ready = hasSelectedProduct();
-    requiresProductBlock.hidden = !ready;
-    requiresProductBlock.classList.toggle('is-ready', ready);
-    if (productGateNote) {
-      productGateNote.hidden = ready;
-      productGateNote.textContent = ready ? '' : 'Pick a product to start.';
-    }
+      const host=v.parentElement;
+      if(!host) return;
+      host.classList.add("hog-ctp-wrap");
 
-    if (!ready) {
-      refreshSummary();
-      refreshGallery();
-      return;
-    }
+      const btn=document.createElement("button");
+      btn.type="button";
+      btn.className="hog-ctp-btn";
+      btn.innerHTML=PLAY;
+      const label=(host.closest(".catalog-product-card")||{}).querySelector
+        ? (host.closest(".catalog-product-card").querySelector("h3")||{}).textContent : "";
+      btn.setAttribute("aria-label", "Play video" + (label ? ": "+label.trim() : ""));
 
-    renderOptionButtons({
-      root: optionWidth,
-      values: getWidths(state.selectedProduct),
-      activeValue: state.selectedWidth,
-      onSelect: (value) => {
-        state.selectedWidth = value;
-        renderAll();
-      },
-    });
+      btn.addEventListener("click", function(e){
+        // the card sits inside a tel: link - do not dial when the play control is used
+        e.preventDefault();
+        e.stopPropagation();
 
-    renderOptionButtons({
-      root: optionLength,
-      values: getLengths(state.selectedProduct, state.selectedWidth),
-      activeValue: state.selectedLength,
-      onSelect: (value) => {
-        state.selectedLength = value;
-        renderAll();
-      },
-    });
-
-    renderOptionButtons({
-      root: optionKarat,
-      values: getKaratsForSelection(state.selectedProduct, state.selectedWidth, state.selectedLength),
-      activeValue: state.selectedKarat,
-      onSelect: (value) => {
-        state.selectedKarat = value;
-        renderAll();
-      },
-    });
-
-    refreshSummary();
-    refreshGallery();
-  };
-
-  if (galleryThumbs) {
-    galleryThumbs.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) {
-        return;
-      }
-
-      const button = target.closest('button[data-media-index]');
-      if (!(button instanceof HTMLButtonElement)) {
-        return;
-      }
-
-      const index = Number.parseInt(button.dataset.mediaIndex || '', 10);
-      if (!Number.isFinite(index)) {
-        return;
-      }
-
-      state.selectedMediaIndex = index;
-      refreshGallery();
-    });
-  }
-
-  if (galleryFullscreen && galleryMain) {
-    galleryFullscreen.addEventListener('click', async () => {
-      try {
-        if (document.fullscreenElement) {
-          await document.exitFullscreen();
-          return;
+        if (v.dataset.hogLoaded !== "1"){
+          v.dataset.hogLoaded="1";
+          v.querySelectorAll("source").forEach(function(sc){
+            const d=sc.getAttribute("data-src");
+            if(d) sc.setAttribute("src", d);
+          });
+          v.load();
         }
-        await galleryMain.requestFullscreen();
-      } catch (error) {
-        console.error(error);
-      }
+        if (v.paused){
+          const pr=v.play();
+          if(pr && pr.catch) pr.catch(function(){});
+          btn.classList.add("is-playing");
+          btn.innerHTML=PAUSE;
+          btn.setAttribute("aria-label","Pause video");
+          try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"catalog_video_play",video:label||"unlabelled"});}catch(err){}
+        } else {
+          v.pause();
+          btn.classList.remove("is-playing");
+          btn.innerHTML=PLAY;
+          btn.setAttribute("aria-label","Play video");
+        }
+      });
+
+      host.appendChild(btn);
     });
+
+    // stop anything that scrolls out of view, so nothing plays unseen
+    if ("IntersectionObserver" in window){
+      const io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          const v=e.target;
+          const b=v.parentElement && v.parentElement.querySelector(".hog-ctp-btn");
+
+          if(e.isIntersecting){
+            if(!AUTOPLAY_IN_VIEW) return;
+            // Load this one clip on demand, then play it muted.
+            if(v.dataset.hogLoaded!=="1"){
+              v.dataset.hogLoaded="1";
+              v.querySelectorAll("source").forEach(function(sc){
+                const d=sc.getAttribute("data-src");
+                if(d && !sc.getAttribute("src")) sc.setAttribute("src", d);
+              });
+              v.load();
+            }
+            if(v.paused){
+              const pr=v.play();
+              if(pr && pr.catch) pr.catch(function(){});
+              if(b){b.classList.add("is-playing"); b.innerHTML=PAUSE; b.setAttribute("aria-label","Pause video");}
+            }
+            return;
+          }
+
+          if(v.dataset.hogLoaded==="1" && !v.paused){
+            v.pause();
+            if(b){b.classList.remove("is-playing"); b.innerHTML=PLAY; b.setAttribute("aria-label","Play video");}
+          }
+        });
+      },{threshold:AUTOPLAY_IN_VIEW ? [0,0.25] : 0});
+      vids.forEach(function(v){ io.observe(v); });
+      // the hero is not observed - it is meant to keep running
+    }
   }
 
-  addToCartButton.addEventListener('click', () => {
-    const variant = getSelectedVariant();
-    const pricing = calculatePrice(variant);
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", initClickToPlay);
+  else initClickToPlay();
+  // catalog cards can be injected after load; pick those up too
+  window.addEventListener("load", initClickToPlay);
+})();
 
-    if (!variant || !pricing) {
-      priceLockNote.textContent = 'Cannot add to cart. Select a catalog-backed karat option first.';
-      return;
-    }
-
-    const productName = state.products?.[state.selectedProduct]?.name || 'Custom Piece';
-    const key = toCartKey(variant);
-    const existing = state.cart.find((item) => item.key === key);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      state.cart.push({
-        key,
-        productName,
-        width: variant.width,
-        length: variant.length,
-        karat: variant.karat,
-        weightText: `${variant.weightGrams.toFixed(2)} grams`,
-        price: pricing.retailPrice,
-        quantity: 1,
-      });
-    }
-
-    renderCart();
-    openCart();
-    priceLockNote.textContent = 'Added to cart.';
-  });
-
-  cartToggle.addEventListener('click', () => {
-    if (cartDrawer.classList.contains('is-open')) {
-      closeCart();
-      return;
-    }
-
-    openCart();
-  });
-
-  cartClose.addEventListener('click', closeCart);
-  cartBackdrop.addEventListener('click', closeCart);
-
-  cartItems.addEventListener('click', (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-
-    const action = target.dataset.action;
-    const index = Number.parseInt(target.dataset.index || '', 10);
-    if (!action || !Number.isFinite(index) || !state.cart[index]) {
-      return;
-    }
-
-    if (action === 'increase') {
-      state.cart[index].quantity += 1;
-    }
-
-    if (action === 'decrease') {
-      state.cart[index].quantity -= 1;
-      if (state.cart[index].quantity <= 0) {
-        state.cart.splice(index, 1);
-      }
-    }
-
-    if (action === 'remove') {
-      state.cart.splice(index, 1);
-    }
-
-    renderCart();
-  });
-
-  cartClear.addEventListener('click', () => {
-    state.cart = [];
-    renderCart();
-  });
-
-  cartCheckout.addEventListener('click', async () => {
-    if (!state.cart.length) {
-      return;
-    }
-
-    cartCheckout.disabled = true;
-    const defaultCheckoutLabel = cartCheckout.textContent;
-    cartCheckout.textContent = 'Redirecting...';
-
+/* HOG — phone and text click tracking (homepage)
+   The homepage carries 123 tel: links and had no click tracking at all;
+   subpage.js does this for the service pages but is not loaded on index.html.
+   Calls are the primary conversion here, so they must be measurable. */
+(() => {
+  "use strict";
+  document.addEventListener("click", function (e) {
+    const a = e.target && e.target.closest ? e.target.closest("a[href^='tel:'], a[href^='sms:']") : null;
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    const card = a.closest(".catalog-product-card");
+    const h3 = card && card.querySelector("h3");
     try {
-      const stripe = await getStripeClient();
-
-      const checkoutItems = state.cart.map((item) => ({
-        key: item.key,
-        quantity: item.quantity,
-      }));
-
-      const response = await fetch(STRIPE_CHECKOUT_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          items: checkoutItems,
-          sourcePath: window.location.pathname,
-        }),
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: href.indexOf("sms:") === 0 ? "sms_click" : "call_click",
+        page: window.location.pathname,
+        link_location: card ? "product_card" : (a.closest("header") ? "header" : "page"),
+        product: h3 ? h3.textContent.trim() : ""
       });
+    } catch (err) { /* tracking must never break a phone call */ }
+  }, true);
+})();
 
-      const payload = await response.json().catch(() => ({}));
 
-      if (!response.ok || !payload?.sessionId) {
-        throw new Error(payload?.error || `Checkout session failed with status ${response.status}`);
-      }
-
-      const redirectResult = await stripe.redirectToCheckout({
-        sessionId: payload.sessionId,
-      });
-
-      if (redirectResult?.error?.message) {
-        throw new Error(redirectResult.error.message);
-      }
-    } catch (error) {
-      const message = error instanceof Error && error.message
-        ? error.message
-        : 'Checkout is unavailable right now. Please try again in a moment.';
-
-      priceLockNote.textContent = message;
-      console.error('Stripe checkout redirect failed:', error);
-      cartCheckout.disabled = false;
-      cartCheckout.textContent = defaultCheckoutLabel;
-    }
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && cartDrawer.classList.contains('is-open')) {
-      closeCart();
-    }
-  });
-
-  window.setInterval(() => {
-    refreshSummary();
-    renderCart();
-  }, 2500);
-  renderCart();
-  renderAll();
-};
-
-initCubanConfigurator().catch((error) => {
-  console.error('Cuban configurator failed to initialize:', error);
-});
-
-const initConcierge = () => {
-  const searchForm = document.getElementById('concierge-search');
-  const messageInput = document.getElementById('concierge-message');
-  const result = document.getElementById('concierge-result');
-  const resultTitle = document.getElementById('concierge-result-title');
-  const resultCopy = document.getElementById('concierge-result-copy');
-  const resultLink = document.getElementById('concierge-result-link');
-  const customForm = document.getElementById('concierge-lead-form');
-  const priorityNode = document.getElementById('concierge-priority');
-  const statusNode = document.getElementById('concierge-status');
-  const submitButton = document.getElementById('concierge-submit');
-
-  if (!searchForm || !messageInput || !result || !resultTitle || !resultCopy || !resultLink || !customForm) return;
-
-  const routes = [
-    { id: 'custom', words: ['custom', 'make', 'design', 'create', 'picture pendant', 'nameplate', 'one of a kind'], title: 'Start a custom jewelry request', copy: 'Tell our jewelers your idea, budget, metal, and deadline.', href: '#concierge-lead-form' },
-    { id: 'gold', words: ['sell gold', 'cash for gold', 'gold buyer', 'scrap gold', 'grams of gold'], title: 'Get an estimate for your gold', copy: 'Use our gold calculator, then send the details for a store offer.', href: 'we-buy-gold.html' },
-    { id: 'repair', words: ['repair', 'resize', 'broken', 'fix', 'battery', 'cleaning', 'polish'], title: 'Request a repair', copy: 'Tell us what needs attention and when you would like to visit.', href: 'repairs/' },
-    { id: 'finance', words: ['finance', 'financing', 'monthly', 'payment plan', 'acima', 'snap', 'progressive'], title: 'See financing options', copy: 'Compare available payment options and choose the one that fits.', href: '#financing' },
-    { id: 'shop', words: ['buy', 'shop', 'chain', 'bracelet', 'ring', 'earrings', 'gift', 'anniversary', 'cuban'], title: 'Shop jewelry', copy: 'Browse available pieces and our Cuban link builder.', href: 'shop.html' },
-    { id: 'engraving', words: ['engrave', 'engraving', 'personalize', 'inscription'], title: 'Start an engraving request', copy: 'Share the item, wording, and preferred visit date.', href: 'engraving/' },
-  ];
-
-  const classifyIntent = (input) => {
-    const normalized = input.toLowerCase();
-    const scored = routes.map((route) => ({ ...route, score: route.words.reduce((sum, word) => sum + (normalized.includes(word) ? 1 : 0), 0) }));
-    scored.sort((a, b) => b.score - a.score);
-    return scored[0].score ? scored[0] : { id: 'contact', title: 'Speak with a jeweler', copy: 'We can help in English or Spanish and guide you personally.', href: 'tel:6312646610' };
-  };
-
-  const showRoute = (input) => {
-    const route = classifyIntent(input);
-    resultTitle.textContent = route.title;
-    resultCopy.textContent = route.copy;
-    resultLink.href = route.href;
-    resultLink.textContent = route.id === 'contact' ? 'Call the Store' : 'Continue';
-    result.hidden = false;
-    customForm.hidden = route.id !== 'custom';
-    if (route.id === 'custom') {
-      customForm.elements.details.value = input;
-      customForm.elements.formStart.value = String(Date.now());
-      updatePriority();
-    }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'concierge_intent', concierge_intent: route.id });
-  };
-
-  searchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = messageInput.value.trim();
-    if (!input) { messageInput.focus(); return; }
-    showRoute(input);
-  });
-
-  document.querySelectorAll('[data-concierge-example]').forEach((button) => {
-    button.addEventListener('click', () => {
-      messageInput.value = button.dataset.conciergeExample || '';
-      showRoute(messageInput.value);
-    });
-  });
-
-  const getPriority = () => {
-    const data = new FormData(customForm);
-    let score = 0;
-    if (data.get('budget')) score += 2;
-    if (data.get('deadline')) score += 2;
-    if (data.get('jewelryType')) score += 1;
-    if (data.get('metal')) score += 1;
-    if (String(data.get('details') || '').trim().length >= 25) score += 1;
-    if (data.get('phone') && data.get('email')) score += 2;
-    return score >= 7 ? 'HOT' : score >= 4 ? 'WARM' : 'NEW';
-  };
-
-  function updatePriority() {
-    const priority = getPriority();
-    priorityNode.textContent = priority === 'HOT' ? 'Priority request â ready for jeweler review' : priority === 'WARM' ? 'Strong request â add contact details for priority' : 'Add details to receive faster help';
-    priorityNode.classList.toggle('is-hot', priority === 'HOT');
+// ===== HOG Mobile Hero Video Reliability =====
+(() => {
+  "use strict";
+  function startHeroVideo() {
+    const video = document.querySelector('.future-mobile-hero video');
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.autoplay = true;
+    video.loop = true;
+    video.preload = 'auto';
+    const attempt = () => {
+      const play = video.play();
+      if (play && typeof play.catch === 'function') play.catch(() => {});
+    };
+    if (video.readyState >= 2) attempt();
+    else video.addEventListener('canplay', attempt, { once: true });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) attempt(); });
+    ['touchstart','pointerdown','scroll'].forEach(evt => window.addEventListener(evt, attempt, {once:true, passive:true}));
   }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startHeroVideo);
+  else startHeroVideo();
+})();
 
-  customForm.addEventListener('input', updatePriority);
-  customForm.addEventListener('change', updatePriority);
+// Expired Halloween side popup removed October 19, 2026.
 
-  customForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    statusNode.className = 'concierge-status';
-    if (!customForm.reportValidity()) return;
+// Preserve bookmarks to the store inventory after moving it off the homepage.
+(()=>{if(['/','/index.html'].includes(location.pathname)&&(location.hash==='#featured-products'||location.hash.startsWith('#product-')))location.replace('/on-sale.html'+location.hash);})();
 
-    const data = new FormData(customForm);
-    const priority = getPriority();
-    const details = [
-      `Priority: ${priority}`,
-      `Jewelry type: ${data.get('jewelryType') || 'Not specified'}`,
-      `Metal: ${data.get('metal') || 'Not specified'}`,
-      `Budget: ${data.get('budget') || 'Not specified'}`,
-      `Needed by: ${data.get('deadline') || 'Not specified'}`,
-      `Customer idea: ${data.get('details') || ''}`,
-    ].join('\n');
-
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-    statusNode.textContent = '';
-
-    try {
-      const response = await fetch(LEAD_API_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: data.get('name'), phone: data.get('phone'), email: data.get('email'),
-          website: data.get('website'), formStart: data.get('formStart'),
-          pageUrl: window.location.href, utmSource: new URLSearchParams(window.location.search).get('utm_source') || 'direct',
-          leadType: `${priority} - Custom Jewelry Concierge`, itemType: data.get('jewelryType'), description: details,
-        }),
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(payload.error || 'We could not send your request.');
-      statusNode.textContent = 'Request received. A Hands of Gold jeweler will contact you shortly.';
-      statusNode.classList.add('is-success');
-      customForm.reset();
-      customForm.elements.formStart.value = String(Date.now());
-      updatePriority();
-      window.dataLayer.push({ event: 'concierge_lead_submit', lead_priority: priority, lead_type: 'custom_jewelry' });
-    } catch (error) {
-      statusNode.textContent = error instanceof Error ? error.message : 'We could not send your request. Please call (631) 264-6610.';
-      statusNode.classList.add('is-error');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = 'Send My Request';
-    }
-  });
-};
-
-initConcierge();
+// Custom navigation opens the fullscreen creator directly.
+(function(){
+  function directCustomLinks(){
+    document.querySelectorAll('a[href]').forEach(function(link){
+      var href=link.getAttribute('href')||'';
+      if(href==='#build-your-ideas'||/^(?:\/)?custom-jewelry(?:\.html)?(?:[?#].*)?$/.test(href))link.setAttribute('href','/design-studio.html');
+      if(/^(?:\/)?jewelry-repair\.html(?:#request)?$/.test(href))link.setAttribute('href','/jewelry-repair.html#repair-form');
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',directCustomLinks);else directCustomLinks();
+})();

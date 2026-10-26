@@ -1,0 +1,13 @@
+body.home-page.hog-system-v1 #product-hog013488 .catalog-product-image img{object-fit:contain!important;background:#171a1d!important}
+body.product-page.hog-system-v1 .gucci-chain-item .product-media-card a{display:block}
+body.product-page.hog-system-v1 .gucci-chain-item .product-media-card .gucci-chain-main-photo{display:block;width:100%;height:auto;max-height:720px;aspect-ratio:9/16;object-fit:contain!important;background:#171a1d!important}
+.gucci-chain-photo-note{font-size:13px;opacity:.75;margin:10px 0 0;text-align:center}
+.gucci-chain-price{font-size:2rem;font-weight:800;line-height:1.1;margin:24px 0 6px;color:#e6c783}
+.gucci-chain-price-note{font-size:13px;opacity:.8;margin:0 0 20px}
+.gucci-chain-specs{margin:20px 0 26px}
+.gucci-chain-specs div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #303235;padding:11px 0}
+.gucci-chain-specs dt{opacity:.75}
+.gucci-chain-specs dd{margin:0;font-weight:600;text-align:right}
+.gucci-chain-pickup{margin-top:20px;line-height:1.6}
+@media(max-width:600px){body.product-page.hog-system-v1 .gucci-chain-item .product-media-card .gucci-chain-main-photo{max-height:none}}
+

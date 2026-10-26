@@ -1,0 +1,9 @@
+#ring-maker{box-sizing:border-box;width:min(1120px,calc(100% - 32px));height:calc(100dvh - 32px);max-width:none;max-height:none;margin:auto;padding:0;border:1px solid #d9be7c;border-radius:16px;background:#fff;color:#f4e6c6;overflow:hidden;box-shadow:0 20px 80px #0008}
+#ring-maker::backdrop{background:rgba(0,0,0,.75)}
+.ring-maker-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+.ring-maker-header{display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;padding:10px 16px;background:#101113;border-bottom:1px solid #d9be7c}
+#ring-maker-title{margin:0;font:700 22px/1.2 Georgia,serif;color:#f4e6c6}
+#ring-maker-close{min-height:44px;padding:10px 16px;border:1px solid #d9be7c;border-radius:8px;background:#e3c88d;color:#151515;font:700 14px/1.2 Arial,sans-serif;cursor:pointer}
+#ring-maker-close:focus-visible{outline:3px solid white;outline-offset:3px}
+#ring-maker-frame{display:block;flex:1;width:100%;min-height:0;border:0;background:#fff}
+@media(max-width:600px){#ring-maker{width:100%;height:100dvh;margin:0;border:0;border-radius:0}.ring-maker-header{padding-top:max(10px,env(safe-area-inset-top));padding-inline:12px}}
