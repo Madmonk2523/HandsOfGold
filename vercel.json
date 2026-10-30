@@ -1,1 +1,185 @@
-{"redirects":[{"source":"/alloy-lab.html","destination":"/","permanent":true},{"source":"/alloy-lab","destination":"/","permanent":true},{"source":"/we-buy-gold.html","destination":"/sell-gold.html","permanent":true},{"source":"/we-buy-gold","destination":"/sell-gold.html","permanent":true},{"source":"/shop.html","destination":"/index.html","permanent":true},{"source":"/shop","destination":"/index.html","permanent":true},{"source":"/products/privacy.html","destination":"/privacy.html","permanent":true},{"source":"/products/terms.html","destination":"/terms.html","permanent":true},{"source":"/products/returns.html","destination":"/returns.html","permanent":true},{"source":"/repairs","destination":"/jewelry-repair.html","permanent":true},{"source":"/repairs/","destination":"/jewelry-repair.html","permanent":true},{"source":"/jewelry-repair","destination":"/jewelry-repair.html","permanent":true},{"source":"/engagement-rings","destination":"/engagement-rings.html","permanent":true},{"source":"/cuban-chains","destination":"/cuban-chains.html","permanent":true},{"source":"/index","destination":"/","permanent":true},{"source":"/custom-jewelry","destination":"/design-studio.html","permanent":false},{"source":"/custom-jewelry/","destination":"/design-studio.html","permanent":false},{"source":"/custom-jewelry.html","destination":"/design-studio.html","permanent":false}],"functions":{"api/design.js":{"maxDuration":300},"api/gold-estimate.js":{"includeFiles":"{classic-cuban-data.js,classic-cuban-pricing.js,assets/js/jewelry-catalog-model.js}"},"api/chat.js":{"maxDuration":60},"api/catalog.js":{"includeFiles":"{classic-cuban-pricing.js,assets/js/jewelry-catalog-model.js}","maxDuration":30},"api/catalog-checkout.js":{"includeFiles":"{classic-cuban-pricing.js,assets/js/jewelry-catalog-model.js}","maxDuration":60},"api/catalog-payment.js":{"maxDuration":60},"api/bitcoin-card.js":{"maxDuration":30}},"rewrites":[{"source":"/api/checkout","destination":"/api/gold-estimate?op=checkout"}],"headers":[{"source":"/tap/(.*)","headers":[{"key":"Cache-Control","value":"no-store"},{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Content-Security-Policy","value":"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"}]},{"source":"/jewelry-staff/(.*)","headers":[{"key":"Cache-Control","value":"no-store"},{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Content-Security-Policy","value":"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"}]},{"source":"/bitcoin/(.*)","headers":[{"key":"Cache-Control","value":"no-store"},{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Content-Security-Policy","value":"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"}]}]}
+{
+  "redirects": [
+    {
+      "source": "/alloy-lab.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/alloy-lab",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/we-buy-gold.html",
+      "destination": "/sell-gold.html",
+      "permanent": true
+    },
+    {
+      "source": "/we-buy-gold",
+      "destination": "/sell-gold.html",
+      "permanent": true
+    },
+    {
+      "source": "/shop.html",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/privacy.html",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/terms.html",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/returns.html",
+      "destination": "/returns.html",
+      "permanent": true
+    },
+    {
+      "source": "/repairs",
+      "destination": "/jewelry-repair.html",
+      "permanent": true
+    },
+    {
+      "source": "/repairs/",
+      "destination": "/jewelry-repair.html",
+      "permanent": true
+    },
+    {
+      "source": "/jewelry-repair",
+      "destination": "/jewelry-repair.html",
+      "permanent": true
+    },
+    {
+      "source": "/engagement-rings",
+      "destination": "/engagement-rings.html",
+      "permanent": true
+    },
+    {
+      "source": "/cuban-chains",
+      "destination": "/cuban-chains.html",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-jewelry",
+      "destination": "/design-studio.html",
+      "permanent": false
+    },
+    {
+      "source": "/custom-jewelry/",
+      "destination": "/design-studio.html",
+      "permanent": false
+    },
+    {
+      "source": "/custom-jewelry.html",
+      "destination": "/design-studio.html",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/checkout",
+      "destination": "/api/gateway?route=checkout"
+    },
+    {
+      "source": "/api/:route",
+      "destination": "/api/gateway?route=:route"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/tap/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/jewelry-staff/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/bitcoin/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none'"
+        }
+      ]
+    }
+  ],
+  "builds": [
+    {
+      "src": "api/gateway.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 60
+      }
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ]
+}
