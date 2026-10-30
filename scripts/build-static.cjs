@@ -6,7 +6,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'dist');
 const excluded = new Set(['api', 'dist', 'node_modules', '.git', '.github', '.vercel', 'scripts', 'release', 'tests', 'test', 'production']);
-fs.rmSync(out, {recursive:true,force:true});
+// Vercel may invoke the static builder twice concurrently. Never delete dist while another builder is reading it.
 fs.mkdirSync(out,{recursive:true});
 let files=0;
 for(const entry of fs.readdirSync(root,{withFileTypes:true})){
